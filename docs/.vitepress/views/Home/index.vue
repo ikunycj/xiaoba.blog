@@ -8,7 +8,7 @@
           <div
             class="absolute w-48 h-48 mx-auto rounded-full shadow-[0px_0px_3px#147eae] dark:shadow-[0px_0px_3px#9ba0a9] top-1/2 avatar-ping left-1/2">
           </div>
-          <img class="block w-48 h-48 mx-auto rounded-full" src="../../../src/public/xiaoba-logo.png" alt="avatar" />
+          <img class="block w-48 h-48 mx-auto rounded-full" src="xiaoba-logo.png" alt="avatar" />
         </div>
         <!-- Right-tags -->
         <p style="top: 32%"
@@ -86,58 +86,58 @@
             <!-- TODO:封装ICON组件,抽离背景颜色与svg地址 -->
             <div class="flex gap-4 w-fit icon-scroll">
               <div class="flex justify-center flex-shrink-0 w-20 h-20 p-4 rounded-lg bg-emerald-200">
-                <img src="../../../src/public/xiaoba-logo.png" alt="vue.js" />
+                <img src="xiaoba-logo.png" alt="vue.js" />
               </div>
               <div class="flex-shrink-0 w-20 h-20 p-4 bg-red-200 rounded-lg">
-                <img src="../../../src/public/xiaoba-logo.png" alt="" />
+                <img src="xiaoba-logo.png" alt="" />
               </div>
               <div class="flex-shrink-0 w-20 h-20 p-4 rounded-lg bg-sky-200">
-                <img src="../../../src/public/xiaoba-logo.png" alt="" />
+                <img src="xiaoba-logo.png" alt="" />
               </div>
               <div class="flex justify-center flex-shrink-0 w-20 h-20 p-4 rounded-lg bg-slate-200">
-                <img src="../../../src/public/xiaoba-logo.png" alt="" />
+                <img src="xiaoba-logo.png" alt="" />
               </div>
               <div class="flex justify-center w-20 h-20 p-4 flex-shrink-0 rounded-lg bg-[#f7cb4f]">
-                <img class="rounded-lg" src="../../../src/public/xiaoba-logo.png" alt="" />
+                <img class="rounded-lg" src="xiaoba-logo.png" alt="" />
               </div>
               <div class="flex justify-center flex-shrink-0 w-20 h-20 p-4 bg-red-400 rounded-lg">
-                <img class="rounded-lg" src="/xiaoba-logo.png" alt="" />
+                <img class="rounded-lg" src="xiaoba-logo.png" alt="" />
               </div>
               <div class="flex justify-center flex-shrink-0 w-20 h-20 p-4 rounded-lg bg-slate-200">
-                <img class="rounded-lg" src="../../../src/public/xiaoba-logo.png" alt="" />
+                <img class="rounded-lg" src="xiaoba-logo.png" alt="" />
               </div>
               <div class="flex justify-center flex-shrink-0 w-20 h-20 p-4 rounded-lg bg-rose-200">
-                <img class="rounded-lg" src="../../../src/public/xiaoba-logo.png" alt="" />
+                <img class="rounded-lg" src="xiaoba-logo.png" alt="" />
               </div>
               <div class="flex justify-center flex-shrink-0 w-20 h-20 p-4 bg-indigo-200 rounded-lg">
-                <img class="rounded-lg" src="../../../src/public/xiaoba-logo.png" alt="" />
+                <img class="rounded-lg" src="xiaoba-logo.png" alt="" />
               </div>
               <div class="flex justify-center flex-shrink-0 w-20 h-20 p-4 rounded-lg bg-emerald-200">
-                <img src="../../../src/public/xiaoba-logo.png" alt="vue.js" />
+                <img src="xiaoba-logo.png" alt="vue.js" />
               </div>
               <div class="flex-shrink-0 w-20 h-20 p-4 bg-red-200 rounded-lg">
-                <img src="../../../src/public/xiaoba-logo.png" alt="" />
+                <img src="xiaoba-logo.png" alt="" />
               </div>
               <div class="flex-shrink-0 w-20 h-20 p-4 rounded-lg bg-sky-200">
-                <img src="../../../src/public/xiaoba-logo.png" alt="" />
+                <img src="xiaoba-logo.png" alt="" />
               </div>
               <div class="flex justify-center flex-shrink-0 w-20 h-20 p-4 rounded-lg bg-slate-200">
-                <img src="../../../src/public/xiaoba-logo.png" alt="" />
+                <img src="xiaoba-logo.png" alt="" />
               </div>
               <div class="flex justify-center w-20 h-20 p-4 flex-shrink-0 rounded-lg bg-[#f7cb4f]">
-                <img class="rounded-lg" src="../../../src/public/xiaoba-logo.png" alt="" />
+                <img class="rounded-lg" src="xiaoba-logo.png" alt="" />
               </div>
               <div class="flex justify-center flex-shrink-0 w-20 h-20 p-4 bg-red-400 rounded-lg">
-                <img class="rounded-lg" src="../../../src/public/xiaoba-logo.png" alt="" />
+                <img class="rounded-lg" src="xiaoba-logo.png" alt="" />
               </div>
               <div class="flex justify-center flex-shrink-0 w-20 h-20 p-4 rounded-lg bg-slate-200">
-                <img class="rounded-lg" src="../../../src/public/xiaoba-logo.png" alt="" />
+                <img class="rounded-lg" src="xiaoba-logo.png" alt="" />
               </div>
               <div class="flex justify-center flex-shrink-0 w-20 h-20 p-4 rounded-lg bg-rose-200">
-                <img class="rounded-lg" src="../../../src/public/xiaoba-logo.png" alt="" />
+                <img class="rounded-lg" src="xiaoba-logo.png" alt="" />
               </div>
               <div class="flex justify-center flex-shrink-0 w-20 h-20 p-4 bg-indigo-200 rounded-lg">
-                <img class="rounded-lg" src="../../../src/public/xiaoba-logo.png" alt="" />
+                <img class="rounded-lg" src="xiaoba-logo.png" alt="" />
               </div>
             </div>
           </div>
@@ -170,16 +170,16 @@
 
 <style scoped>
 .honer-bg {
-  background-image: url("../../../src/public/xiaoba-logo.png");
+  background-image: url("xiaoba-logo.png");
 }
 
 .music-bg {
-  background-image: url("../../../src/public/xiaoba-logo.png");
+  background-image: url("xiaoba-logo.png");
   filter: brightness(0.6);
 }
 
 .kawaii-bg {
-  background-image: url("../../../src/public/xiaoba-logo.png");
+  background-image: url("xiaoba-logo.png");
 }
 
 .avatar-ping {
