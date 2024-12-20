@@ -30,7 +30,7 @@ updateTime: '2024-10-12 13:30'
 ---
 
 <script setup>
-import Note from '../../../docs/.vitepress/views/note/index.vue'
+import Note from '../../../docs/.vitepress/views/Note/index.vue'
 </script>
 
 <Note />
