@@ -1,6 +1,6 @@
 ---
 # 主页
-layout: fase
+layout: page
 ---
 
 <script setup>

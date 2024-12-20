@@ -9,7 +9,7 @@ export default defineConfig({
   srcDir: "./src",
   // 增加一个head标签
   head: [
-    ['link', { rel: 'icon', href: '/xioaba1.jpg' }] //网站icon
+    ['link', { rel: 'icon', href: '/xiaoba-logo.png' }] //网站icon
   ], 
 
   base: '/', // 部署到github pages需要设置base为'/'
@@ -21,7 +21,7 @@ export default defineConfig({
    * 主题配置
    */
   themeConfig: {
-    logo: '/xioaba1.jpg',
+    logo: '/xiaoba-logo.png',
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: '首页', link: '/home' },

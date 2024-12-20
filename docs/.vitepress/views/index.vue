@@ -38,8 +38,8 @@ const gotoGithub = () => {
 
 <style scoped>
 .home {
-  --primary-color: #ff6086;
-  background-image: url('/xioaba-runonce.gif'); 
+  --primary-color: #38bdf8;
+  background-image: url('/xiaoba-runonce.gif'); 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -47,7 +47,7 @@ const gotoGithub = () => {
 
 .button-github {
   /* @apply bg-sky-400 */
-  --primary-color: #38bdf8;
+  --primary-color: #52b957;
 }
 
 .button {
