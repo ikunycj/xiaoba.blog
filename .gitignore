@@ -2,4 +2,3 @@ node_modules
 package-lock.json
 **/.vitepress/cache
 **/.vitepress/dist
-./.idea
