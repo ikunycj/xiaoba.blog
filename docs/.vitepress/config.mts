@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import { generateSidebar } from 'vitepress-sidebar';  //https://vitepress-sidebar.cdget.com/zhHans/guide/getting-started  vitepress-sidebar插件
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -27,39 +28,41 @@ export default defineConfig({
       { text: '首页', link: '/home' },
       { text: '博客', link: '/blog/index' },
       { text: '笔记', link: '/note/index' },
-      { text: '分享',
+      { text: '分享', 
         items: [
-          {text: '导航', link: '/share/index/'},
-          {text: '测试用例', link: '/share/test/'}
-      ]},
+          { text: '分享推荐', link: '/share' },
+          { text: '网站导航', link: '/share/map' },
+          { text: '博客建站', link: '/share/blogbuild' },
+          { text: '效率工具推荐', link: '/share/tools' },
+          { text: '山大踩坑', link: '/share/sdu' },
+        ]
+       },
+
       { text: '项目', link: '/projects' }
     ],
 
-    sidebar: {
-      // 当用户位于 `guide` 目录时，会显示此侧边栏
-      '/note/': [
+    /** 
+     * 自动生成侧边栏配置 https://vitepress-sidebar.cdget.com
+     */
+    sidebar: generateSidebar([
+      // VitePress Sidebar's options here..
         {
-          text: 'note',
-          items: [
-            { text: 'Index', link: '/guide/' },
-            { text: 'One', link: '/guide/one' },
-            { text: 'Two', link: '/guide/two' }
-          ]
-        }
-      ],
-      
-      // 当用户位于 `config` 目录时，会显示此侧边栏
-      '/share/': [
+          documentRootPath: '/docs/src/note', // 文档根目录
+          scanStartPath: '/',          // 根目录下的，需要开始扫描的路径
+          resolvePath: '/note/',          // 网站的路径前缀(多侧边栏配置必须设置)
+          useTitleFromFileHeading: true,  // 从文件标题中获取标题
+          excludeFiles: ['do-not-include.md'],  // 排除的文件
+          collapsed: true,                // 是否折叠
+        },
         {
-          text: 'share',
-          items: [
-            { text: 'Index', link: '/index/' },
-            { text: 'debate', link: 'share/debate' },
-            { text: 'Four', link: '/config/four' }
-          ]
-        }
-      ]
-    },
+          documentRootPath: '/docs/src/share/blogbuild', 
+          scanStartPath: '/',         
+          resolvePath: '/share/blogbuild/',         
+          useTitleFromFileHeading: true,  
+          collapsed: true, 
+        },
+    ]),
+
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/ikunycj/xiaoba.my' }

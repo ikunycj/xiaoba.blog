@@ -1,20 +1,22 @@
 ---
 # 博客
 layout: home
-layoutClass: 'm-home-layout'
 
 hero:
   name: 小八博客
   text: welcome to my blog
-  tagline: 这里是小八的知识"小金库"，记录生活和技术的点滴
+  tagline: 这里是小八的知识"小金库"，记录生活和学习的点滴
   image:
     src: /xiaoba-smile.jpg
     alt: 小八
   actions:
+    - text: 近期更新
+      link: /note
     - text: 笔记仓库
       link: /note
     - text: 胡乱分享
       link: /share
+      theme: sponsor
     - text: 捻七杂八
       link: /daily-notes/
       theme: sponsor
@@ -40,9 +42,9 @@ features:
     link: /efficiency/online-tools
     linkText: 提效工具
   - icon: 🐞
-    title: 杂记分享
-    details: 一些乱七八糟的杂记<br />那些年我们踩过的坑
-    link: /pit/npm
+    title: 博客搭建
+    details: 基于VitePress搭建的博客<br />低代码、零配置、自动化部署，让你专注于内容创作
+    link: /share/blogbuild/
     linkText: 踩坑记录
   - icon: 💯
     title: 吾志所向，一往无前。
@@ -51,8 +53,8 @@ features:
 ---
 
 <script setup>
-import Home from '../../../docs/.vitepress/views/Blog/index.vue'
+import Blog from '../../../docs/.vitepress/views/Blog/index.vue'
 </script>
 
-<Home />
+<Blog />
 
