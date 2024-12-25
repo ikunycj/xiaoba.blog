@@ -23,6 +23,10 @@ export default defineConfig({
    */
   themeConfig: {
     logo: '/xiaoba-logo.png',
+    outline: {
+      level: `deep`,
+      label: `大纲`,
+    },
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: '首页', link: '/home' },
@@ -32,7 +36,7 @@ export default defineConfig({
         items: [
           { text: '分享推荐', link: '/share' },
           { text: '网站导航', link: '/share/map' },
-          { text: '博客建站', link: '/share/blogbuild' },
+          { text: '博客建站', link: '/share/blogbuild/choose' },
           { text: '效率工具推荐', link: '/share/tools' },
           { text: '山大踩坑', link: '/share/sdu' },
         ]
@@ -60,13 +64,33 @@ export default defineConfig({
           resolvePath: '/share/blogbuild/',         
           useTitleFromFileHeading: true,  
           collapsed: true, 
+          sortMenusByFrontmatterOrder: true,
         },
     ]),
 
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/ikunycj/xiaoba.my' }
-    ]
+    ],
+    footer: {
+      message: 'xiaoba blog',
+      copyright: 'Copyright © 2023-2024 xiaoba.my'
+    },
+    editLink: {
+      pattern: 'https://github.com/ikunycj/xiaoba.my/tree/master/docs/src/:path',
+      text: '👋Wlecomne Edit this page on GitHub'
+    },
+    lastUpdated: {
+      text: '最后更新于',
+      formatOptions: {
+        dateStyle: 'full',
+        timeStyle: 'medium'
+      }
+    },
+    docFooter: {
+      prev: '上一页',
+      next: '下一页'
+    }
   },
 
   /**
@@ -97,5 +121,6 @@ export default defineConfig({
         },
       ],
     }, */
-  }
+  },
+  
 })
