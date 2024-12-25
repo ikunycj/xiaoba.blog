@@ -15,6 +15,7 @@ export default defineConfig({
 
   base: '/', // 部署到github pages需要设置base为'/'
   cleanUrls:true, //开启纯净链接
+  ignoreDeadLinks: true, //忽略死链接
 
 
 
