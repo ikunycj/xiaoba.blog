@@ -4,7 +4,7 @@ layout: page
 ---
 
 <script setup>
-import Home from '../../../docs/.vitepress/views/Home/index.vue'
+import Blog from '../../../docs/.vitepress/views/Blog/index.vue'
 </script>
 
-<Home />
+<Blog />
