@@ -79,7 +79,7 @@ export default defineConfig({
     },
     editLink: {
       pattern: 'https://github.com/ikunycj/xiaoba.my/tree/master/docs/src/:path',
-      text: '👋Wlecomne Edit this page on GitHub'
+      text: '👋如果你乐意帮我改进，请点击这里编辑此页！'
     },
     lastUpdated: {
       text: '最后更新于',
