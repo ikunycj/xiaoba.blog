@@ -27,10 +27,10 @@ features:
     link: /share/blogbuild/choose
     linkText: 踩坑记录
   - icon: 📖
-    title: 前端
-    details: 整理前端常用知识点<small>（或者）</small><br />如有异议按你的理解为主，不接受反驳
+    title: 笔记仓库
+    details: 同步OneNote笔记到博客<small>（当然）</small><br />其他任何本地文件其实都能同步
     link: /note
-    linkText: 前端常用知识
+    linkText: 暂时更新了数据结构与算法笔记
   - icon: 📘
     title: 后端
     details: 包含了java/go/python等后端技术的学习笔记<small>（还有好玩的小东西）</small><br />
