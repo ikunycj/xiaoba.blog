@@ -55,7 +55,7 @@ export default defineConfig({
           documentRootPath: '/docs/src/note', // 文档根目录
           scanStartPath: '/',          // 根目录下的，需要开始扫描的路径
           resolvePath: '/note/',          // 网站的路径前缀(多侧边栏配置必须设置)
-          useTitleFromFileHeading: true,  // 从文件标题中获取标题
+          useTitleFromFileHeading: false,  // 从文件标题中获取标题
           excludeFiles: ['do-not-include.md'],  // 排除的文件
           collapsed: true,                // 是否折叠
         },
