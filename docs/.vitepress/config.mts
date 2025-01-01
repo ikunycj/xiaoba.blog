@@ -39,7 +39,7 @@ export default defineConfig({
           { text: '网站导航', link: '/share/map' },
           { text: '博客建站', link: '/share/blogbuild/choose' },
           { text: '效率工具推荐', link: '/share/tools' },
-          { text: '山大踩坑', link: '/share/sdu' },
+          { text: '山大', link: '/share/sdu' },
         ]
        },
 
@@ -63,6 +63,14 @@ export default defineConfig({
           documentRootPath: '/docs/src/share/blogbuild', 
           scanStartPath: '/',         
           resolvePath: '/share/blogbuild/',         
+          useTitleFromFileHeading: true,  
+          collapsed: true, 
+          sortMenusByFrontmatterOrder: true,
+        },
+        {
+          documentRootPath: '/docs/src/share/sdu', 
+          scanStartPath: '/',         
+          resolvePath: '/share/sdu/',         
           useTitleFromFileHeading: true,  
           collapsed: true, 
           sortMenusByFrontmatterOrder: true,
