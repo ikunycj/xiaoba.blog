@@ -107,7 +107,7 @@ export default defineConfig({
    */
   markdown: {
     // https://vitepress.dev/zh/reference/site-config#markdown
-    //math: true,
+    math: true,
   },
 
   /**
