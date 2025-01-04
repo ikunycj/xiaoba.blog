@@ -58,6 +58,7 @@ export default defineConfig({
           useTitleFromFileHeading: false,  // 从文件标题中获取标题
           excludeFiles: ['do-not-include.md'],  // 排除的文件
           collapsed: true,                // 是否折叠
+          sortMenusByFrontmatterOrder: true,  // 按frontmatter中的order排序(默认为0)
         },
         {
           documentRootPath: '/docs/src/share/blogbuild', 
