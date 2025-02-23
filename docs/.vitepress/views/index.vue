@@ -7,8 +7,8 @@
             <span class="shake-hand inline-block">👋</span> Hi, I am
             <span class="bg-gradient-to-r from-pink-500 to-rose-500 bg-clip-text text-transparent">小八</span>.
           </div>
-          <p class="mt-2 sm:text-lg text-base"> Xiaoba's Blog / Full-Stuck Developer</p>
-          <p class="mt-1 text-black/50">“🚀You can call me 小八. A IKUN who preacticed for 2.5 years.”</p>
+          <p class="mt-2 sm:text-lg text-base"> Xiaoba's Blog / Half-Stuck Developer</p>
+          <p class="mt-1 text-black/50">“🚀You can call me 小八. A IKUN who practiced for 2.5 years.”</p>
           <div class="mt-4 flex gap-4">
             <div @click="router.go('./home')"
               class="button relative w-fit cursor-pointer rounded-full bg-white active:scale-95">
