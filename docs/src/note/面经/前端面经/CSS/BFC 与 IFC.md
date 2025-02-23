@@ -1,12 +1,13 @@
-# BFC 与 IFC 
+## BFC 与 IFC 
+
 **BFC（Block Formatting Context）和 IFC（Inline Formatting Context）** 是 CSS 中的重要概念，它们决定了元素的布局方式和与其他元素的交互行为。
 
 ---
 
-## **1. BFC（Block Formatting Context）**
+### 1. BFC（Block Formatting Context）
 
 **定义**：  
-BFC 是一种格式化上下文，用于控制块级元素的布局。BFC 内部的子元素不会影响外部元素的布局，它是独立的。
+- BFC 是一种格式化上下文，用于控制块级元素的布局。BFC 内部的子元素不会影响外部元素的布局，它是独立的。
 
 **特点**：
 1. **独立的布局环境**：
@@ -22,33 +23,33 @@ BFC 是一种格式化上下文，用于控制块级元素的布局。BFC 内部
 
 以下方式可以触发一个元素成为 BFC：
 
-1. **使用 `overflow` 属性**：
+#### 1. **使用 `overflow` 属性**：
 ```css
 .bfc {
     overflow: hidden;
 }
 ```
 
-2. **使用 `display: flow-root`**（推荐的现代方法）：
+#### 2. **使用 `display: flow-root`**（推荐的现代方法）：
 ```css
 .bfc {
     display: flow-root;
 }
 ```
-3. **设置浮动（`float`）**：
+#### 3. **设置浮动（`float`）**：
 ```css
 .bfc {
     float: left;
 }
 ```
-4. **设置绝对定位或固定定位**：
+#### 4. **设置绝对定位或固定定位**：
 ```css
 .bfc {
     position: absolute;
 }
 ```
 
-5. **设置 `display` 为 `inline-block`、`table` 或 `flex`**：
+#### 5. **设置 `display` 为 `inline-block`、`table` 或 `flex`**：
 ```css
 .bfc {
     display: inline-block; 
@@ -61,7 +62,8 @@ BFC 是一种格式化上下文，用于控制块级元素的布局。BFC 内部
 
 ### **BFC 的应用场景**
 
-1. **清除浮动**： 当子元素使用 `float` 时，父元素的高度会塌陷。可以通过触发 BFC 来解决这一问题。
+#### 1. **清除浮动**： 
+当子元素使用 `float` 时，父元素的高度会塌陷。可以通过触发 BFC 来解决这一问题。
 ```html
 <style>
     .container {
@@ -78,7 +80,8 @@ BFC 是一种格式化上下文，用于控制块级元素的布局。BFC 内部
     <div class="float"></div>
 </div>
 ```
-2. **防止边距重叠**： BFC 内部的元素与外部元素的边距不会重叠。
+#### 2. **防止边距重叠**： 
+BFC 内部的元素与外部元素的边距不会重叠。
 ```html
 <style>
     .bfc {
@@ -96,7 +99,7 @@ BFC 是一种格式化上下文，用于控制块级元素的布局。BFC 内部
 
 ---
 
-## **2. IFC（Inline Formatting Context）**
+## 2. IFC（Inline Formatting Context）
 
 **定义**：  
 IFC 是一种格式化上下文，用于控制行内元素的布局。IFC 的布局规则决定了行内元素如何排列和换行。
@@ -114,10 +117,10 @@ IFC 是一种格式化上下文，用于控制行内元素的布局。IFC 的布
 
 ### **如何触发 IFC**
 
-1. **默认行为**：
-    - 当元素包含纯行内内容（如文字、`<span>`、`<img>`）时，浏览器默认会使用 IFC。
-2. **设置 `display: inline`**：
-    - 强制触发行内布局：
+#### 1. **默认行为**：
+- 当元素包含纯行内内容（如文字、`<span>`、`<img>`）时，浏览器默认会使用 IFC。
+#### 2. **设置 `display: inline`**：
+- 强制触发行内布局：
 ```css
 .ifc {
     display: inline;
@@ -128,7 +131,8 @@ IFC 是一种格式化上下文，用于控制行内元素的布局。IFC 的布
 
 ### **IFC 的应用场景**
 
-1. **水平对齐图文内容**： 使用 IFC 控制行内图片和文字的对齐方式。
+#### 1. **水平对齐图文内容**：
+使用 IFC 控制行内图片和文字的对齐方式。
 ```html
 <style>
     .ifc {
@@ -148,7 +152,8 @@ IFC 是一种格式化上下文，用于控制行内元素的布局。IFC 的布
     <img class="ifc image" src="icon.png" alt="icon">
 </div>
 ```
-2. **行内内容换行**： 当文字或行内内容需要自动换行时，IFC 会自动处理溢出换行。
+#### 2. **行内内容换行**： 
+当文字或行内内容需要自动换行时，IFC 会自动处理溢出换行。
 
 ---
 
@@ -170,3 +175,5 @@ IFC 是一种格式化上下文，用于控制行内元素的布局。IFC 的布
 - **BFC** 适合用于块级布局，主要解决==清除浮动==和==边距重叠==问题。
 - **IFC** 适合用于行内元素的==水平排列和对齐，如图文混排==。
 - 通过设置 CSS 属性（如 `display`、`overflow`、`float`）可以轻松触发 BFC 或 IFC。
+
+

@@ -1,4 +1,4 @@
-# 知道vue2和vue3响应式的原理吗？有什么区别特色？
+# 1.知道vue2和vue3响应式的原理吗？有什么区别特色？
 
 ## **一、什么是 Vue 的响应式？**
 
@@ -102,13 +102,13 @@ Vue3 通过 `Proxy` 实现响应式，核心原理：
 
 Vue3 解决了 Vue2 的几个核心问题：
 
-|**问题**|**Vue2（`Object.defineProperty`）**|**Vue3（`Proxy`）**|
-|---|---|---|
-|**对象新增/删除**|需要 `Vue.set()`|直接支持|
-|**数组索引监听**|无法监听|支持|
-|**性能**|初始化时需要递归所有属性，性能较差|只代理整个对象，性能更优|
-|**深度监听**|需要手动递归|自动处理|
-|**支持 Map、Set**|不支持|支持|
+| **问题**         | **Vue2（`Object.defineProperty`）** | **Vue3（`Proxy`）** |
+| -------------- | --------------------------------- | ----------------- |
+| **对象新增/删除**    | 需要 `Vue.set()`                    | 直接支持              |
+| **数组索引监听**     | 无法监听                              | 支持                |
+| **性能**         | 初始化时需要递归所有属性，性能较差                 | 只代理整个对象，性能更优      |
+| **深度监听**       | 需要手动递归                            | 自动处理              |
+| **支持 Map、Set** | 不支持                               | 支持                |
 
 ---
 
@@ -156,46 +156,40 @@ Vue 通过 **Virtual DOM（虚拟 DOM）** 来实现高效的 DOM 操作。Vue2 
 在 Vue 中，我们写的模板（`template`）最终会被渲染成真实的 HTML 页面。Vue 主要通过 **Virtual DOM（虚拟 DOM）** 来实现这一过程：
 
 1. **解析模板**
+   - Vue 会解析 `template` 选项，转换成 **Virtual DOM**（虚拟 DOM）。
+   - 例如：
+```vue
+<template>
+  <h1>{{ message }}</h1>
+</template>
+```
 
-    - Vue 会解析 `template` 选项，转换成 **Virtual DOM**（虚拟 DOM）。
-    - 例如：
+- Vue 会将其转换为：
+```js
+render() {
+  return h('h1', this.message);
+}
+```
 
-        ```vue
-        <template>
-          <h1>{{ message }}</h1>
-        </template>
-        ```
+其中 `h()` 是 Vue 的 **虚拟 DOM 生成函数**。
 
-        Vue 会将其转换为：
-
-        ```js
-        render() {
-          return h('h1', this.message);
-        }
-        ```
-
-        其中 `h()` 是 Vue 的 **虚拟 DOM 生成函数**。
-2. **生成 Virtual DOM**
-
+1. **生成 Virtual DOM**
     - Vue 维护一个 JavaScript 对象（虚拟 DOM），它是真实 DOM 的映射。
     - 例如：
-        
-        ```js
-        {
-          tag: 'h1',
-          props: {},
-          children: 'Hello Vue'
-        }
-        ```
+```js
+{
+  tag: 'h1',
+  props: {},
+  children: 'Hello Vue'
+}
+```
 
-        这个对象表示 `<h1>Hello Vue</h1>`。
-3. **对比新旧 Virtual DOM（Diff 算法）**
-    
-    - 当数据发生变化时，Vue 会创建一个新的 Virtual DOM，并与旧的 Virtual DOM 进行对比（Diff 算法）。
-    - Vue 只会更新发生变化的部分，而不是整个页面。
-4. **更新真实 DOM**
-
-    - Vue 计算出最小的变化范围，然后直接修改真实 DOM，提高渲染性能。
+这个对象表示 `<h1>Hello Vue</h1>`。
+1. **对比新旧 Virtual DOM（Diff 算法）**
+  - 当数据发生变化时，Vue 会创建一个新的 Virtual DOM，并与旧的 Virtual DOM 进行对比（Diff 算法）。
+  - Vue 只会更新发生变化的部分，而不是整个页面。
+2. **更新真实 DOM**
+ - Vue 计算出最小的变化范围，然后直接修改真实 DOM，提高渲染性能。
 
 ---
 
@@ -215,14 +209,11 @@ Vue2 使用 **Snabbdom** 作为 Virtual DOM 引擎，渲染过程如下：
 #### **Vue2 的问题**
 
 1. **性能较低**
-    
     - Vue2 在更新时需要重新执行 `render()`，导致所有子组件都会重新计算 Virtual DOM。
     - 即使组件的 `props` 没变，仍然会重新渲染。
 2. **响应式数据和 Virtual DOM 解耦**
-    
     - Vue2 的响应式系统与 Virtual DOM 是分开的，导致一些性能损耗。
 3. **静态节点重复对比**
-    
     - Vue2 的 Virtual DOM 需要对比所有节点，即使是**静态内容**（如 `v-if` 中不会变化的部分），也会重复计算。
 
 ---
@@ -235,24 +226,23 @@ Vue3 使用了**全新的编译优化策略**，使得 Virtual DOM 渲染更快�
 
 - Vue3 通过 **"静态节点提升"**，让不会改变的 DOM 只创建一次，而不在每次渲染时重新生成。
 - 例如：
-    
-    ```vue
-    <template>
-      <h1>静态文本</h1>
-      <p>{{ message }}</p>
-    </template>
-    ```
+```vue
+<template>
+  <h1>静态文本</h1>
+  <p>{{ message }}</p>
+</template>
+```
 
-    在 Vue2，每次 `message` 变化时，整个 `<h1>` 和 `<p>` 都会重新创建 Virtual DOM。 在 Vue3，Vue 会将 `<h1>静态文本</h1>` 提升为静态内容，只创建一次，后续不会重新生成。
+在 Vue2，每次 `message` 变化时，整个 `<h1>` 和 `<p>` 都会重新创建 Virtual DOM。 在 Vue3，Vue 会将 `<h1>静态文本</h1>` 提升为静态内容，只创建一次，后续不会重新生成。
 
 #### **2. 事件监听器缓存**
 
 - Vue3 **不会在每次渲染时重新创建事件监听函数**，Vue2 则会导致不必要的开销。
 - 例如：
 
-    ```vue
-    <button @click="handleClick">Click Me</button>
-    ```
+```vue
+<button @click="handleClick">Click Me</button>
+```
 
 Vue2 每次重新渲染时，都会创建一个新的 `handleClick` 方法，而 Vue3 会自动缓存，避免重复创建。
 
@@ -265,7 +255,6 @@ Vue2 每次重新渲染时，都会创建一个新的 `handleClick` 方法，而
 
 - Vue3 在编译时会**为每个动态节点打上 Patch 标记**，这样在更新时可以**快速跳过静态部分**，只处理变化的内容。
 - 例如：
-
 ```vue
 <h1>{{ message }}</h1>
 ```
@@ -290,13 +279,13 @@ Vue3 编译时会在 `h1` 上打上 "动态文本" 的 Patch Flag，更新时 Vu
 
 Vue3 在 DOM 渲染上的优势：
 
-1. **减少不必要的 Virtual DOM 计算**
+4. **减少不必要的 Virtual DOM 计算**
     - Vue3 只更新真正变化的部分，而 Vue2 可能会更新整个组件。
-2. **减少静态节点的重复创建**
+5. **减少静态节点的重复创建**
     - Vue3 会自动识别静态内容，只创建一次，Vue2 每次渲染都重新创建。
-3. **事件监听器不会重复创建**
+6. **事件监听器不会重复创建**
     - Vue3 会缓存事件监听器，减少性能浪费。
-4. **Block Tree 结构让 Diff 更高效**
+7. **Block Tree 结构让 Diff 更高效**
     - Vue3 不再遍历整个 Virtual DOM 树，而是只检查 Block 内的变动。
 
 ---

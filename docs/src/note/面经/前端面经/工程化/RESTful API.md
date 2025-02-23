@@ -3,17 +3,15 @@
 
 [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer) 是目前最流行的 API 设计规范，用于 Web 数据接口的设计。
 
-在 2000 年，[Roy Fielding](https://en.wikipedia.org/wiki/Roy_Fielding) 提议使用表现层状态转换 (英语：Representational State Transfer，缩写：REST) 作为设计 Web 服务的体系性方法。REST 是一种基于超媒体构建分布式系统的架构风格。REST 独立于任何基础协议，并且不一定绑定到 HTTP。但是，最常见的 REST 实现使用 HTTP 作为应用程序协议。
+在 2000 年，[Roy Fielding](https://en.wikipedia.org/wiki/Roy_Fielding) 提议使用表现层状态转换 (英语：**Representational State Transfer**，缩写：REST) 作为设计 Web 服务的体系性方法。REST 是一种基于超媒体构建分布式系统的架构风格。REST 独立于任何基础协议，并且不一定绑定到 HTTP。但是，最常见的 REST 实现使用 HTTP 作为应用程序协议。
 
 基于 HTTP 的 REST 的主要优势在于它使用开放标准，不会绑定 API 的实现，也不会将客户端应用程序绑定到任何具体实现。例如，可以使用 ASP.NET 或者 Node.js 编写 REST Web 服务，而客户端应用程序能够使用任何语言或工具来发起 HTTP 请求和分析 HTTP 响应。
 
 它的大原则容易把握，但是细节不容易做对。我们必须进行较多的工作来实施 REST API 中的最佳实践。大多数情况下，懒惰或缺乏时间意味着我们不会付出努力，如此为我们的用户留下一个个古怪的、难用的却又脆弱的 API。
 
-
-
 ![](https://developer.qcloudimg.com/http-save/yehe-admin/c405be51feb49e010abf4daa4b3ace2a.png)
 
-RESTful API 是应用程序接口 (API) 的一种架构风格，它使用 HTTP 请求来访问和使用数据。该数据可用于 GET、PUT、POST 和 DELETE 数据类型，这些数据类型是指有关资源的操作的读取、更新、创建和删除。
+**RESTful API** 是应用程序接口 (API) 的一种架构风格，它使用 HTTP 请求来访问和使用数据。该数据可用于 GET、PUT、POST 和 DELETE 数据类型，这些数据类型是指有关资源的操作的读取、更新、创建和删除。
 
 注意：**RESTful是一种风格而不是标准**。
 
@@ -35,25 +33,25 @@ RESTful API 是应用程序接口 (API) 的一种架构风格，它使用 HTTP �
 
 在restful风格中，将互联网的资源抽象成资源，将获取资源的方式定义为方法，从此请求再也不止get和post了：
 ```txt
-客户端请求					传统url接口							REST ful风格口
+客户端请求					传统url接口						REST ful风格口
 
-查询所有用户				    /user/findAll						GET /users
-查询编号为1的用户		        /user/findById?id=1			GET /user/1         
-新增一个用户				    /user/save							POST /user
-修改编号为1的用户		        /user/update						PUT /user/1
-删除编号为1的用户		        /user/delete?id=1				DELETE /user/1
+查询所有用户				    /user/findAll					GET/users
+查询编号为1的用户		    /user/findById?id=1			    GET/user/1    
+新增一个用户				    /user/save						POST/user
+修改编号为1的用户		    /user/update					PUT/user/1
+删除编号为1的用户		    /user/delete?id=1				DELETE/user/1
 ```
 
 ### 安全性和幂等性
 
 在谈及GET、POST、PUT、DELETE的时候，就必须提一下接口的**安全性和幂等性**。上述四个HTTP请求方法的安全性和幂等性如下：
 
-|HTTP Method|资源操作|CRUD操作|安全性|幂等性|解释|
-|---|---|---|---|---|---|
-|GET|SELECT|SELECT|安全|幂等|读操作安全，查询一次多次结果一致|
-|POST|INSERT|CREATE|非安全|非幂等|写操作非安全，每多插入一次都会出现新结果|
-|PUT|UPDATE|UPDATE|非安全|幂等|写操作非安全，一次和多次更新结果一致|
-|DELETE|DELETE|DELETE|非安全|幂等|写操作非安全，一次和多次删除结果一致|
+| HTTP Method | 资源操作   | CRUD操作 | 安全性 | 幂等性 | 解释                   |
+| ----------- | ------ | ------ | --- | --- | -------------------- |
+| GET         | SELECT | SELECT | 安全  | 幂等  | 读操作安全，查询一次多次结果一致     |
+| POST        | INSERT | CREATE | 非安全 | 非幂等 | 写操作非安全，每多插入一次都会出现新结果 |
+| PUT         | UPDATE | UPDATE | 非安全 | 幂等  | 写操作非安全，一次和多次更新结果一致   |
+| DELETE      | DELETE | DELETE | 非安全 | 幂等  | 写操作非安全，一次和多次删除结果一致   |
 
 幂等性： 对同一REST接口的多次访问，得到的资源状态是相同的。
 
@@ -79,16 +77,17 @@ _根据 HTTP 规范，动词一律大写。_
 
 特定请求的影响应取决于资源是集合还是单个项。下表汇总了使用电子商务示例的大多数 RESTful 实现所采用的常见约定。
 
-|资源|POST|GET|PUT|DELETE|
-|---|---|---|---|---|
-|/products|创建新商品|检索所有商品|批量更新商品|删除所有商品|
-|/products/1|N/A|检索商品 1 的详细信息|如果商品 1 存在，则更新其详细信息|删除商品 1|
-|/products/1/orders|创建商品 1 的新订单|检索商品 1 的所有订单|批量更新商品 1 的订单|删除商品 1 的所有订单|
+| 资源                 | POST        | GET          | PUT                | DELETE       |
+| ------------------ | ----------- | ------------ | ------------------ | ------------ |
+| /products          | 创建新商品       | 检索所有商品       | 批量更新商品             | 删除所有商品       |
+| /products/1        | N/A         | 检索商品 1 的详细信息 | 如果商品 1 存在，则更新其详细信息 | 删除商品 1       |
+| /products/1/orders | 创建商品 1 的新订单 | 检索商品 1 的所有订单 | 批量更新商品 1 的订单       | 删除商品 1 的所有订单 |
 
 ### 2、复数名词做资源名称
 
-在URI中使用名词来表示资源，而不是动词，以避免歧义和混淆。对于表示资源集合的URI，通常使用复数形式，以便明确表示这是一个集合而不是单个资源。例如：
+在URI中使用名词来表示资源，而不是动词，以避免歧义和混淆。对于表示资源集合的URI，通常使用复数形式，以便明确表示这是一个集合而不是单个资源。
 
+例如：
 ```shell
 # 推荐
 /users						# 用户资源
@@ -111,7 +110,7 @@ GET /users/1/orders/1
 使用查询参数来过滤和分页资源，例如：“**?page=1 & limit=10**”
 ```txt
 获取前10个用户：		GET /users?limit=10
-获取第二页的用户：		GET /users?page=2&limit=10
+获取第二页的用户：	GET /users?page=2&limit=10
 ```
 
 ### 5、使用 HTTP 状态码来表示请求结果
@@ -152,7 +151,6 @@ GET /users/1
 ### 7、使用版本号来管理 API
 
 RESTful API 应该使用版本号来管理 API 的不同版本，以便支持旧版 API 的兼容性和平稳升级。应该将API的版本号放入URL。 版本号以字符'v'开头，比如：v1、v2
-
 ```shell
 /v1/users
 /v2/users
@@ -160,7 +158,6 @@ RESTful API 应该使用版本号来管理 API 的不同版本，以便支持旧
 ### 8、提供清晰的错误信息：
 
 在响应中包含清晰、详细的错误信息，帮助客户端理解问题的原因和解决方案。
-
 ```json
 {
   "error": {
@@ -175,7 +172,7 @@ RESTful API 应该使用版本号来管理 API 的不同版本，以便支持旧
 使用HTTP头部中的**Accept**和**Content-Type**字段进行内容协商，以确定客户端期望的表示形式和服务器返回的表示形式。
 
 ```text
-接受JSON格式的响应：Accept: application/json
+接受JSON格式的响应：  Accept: application/json
 发送JSON格式的请求体：Content-Type: application/json
 ```
 ### 10、搜索、排序、筛选和分页
@@ -215,7 +212,7 @@ RESTful API 应该使用版本号来管理 API 的不同版本，以便支持旧
 ```txt
 # 推荐
 /user-profiles
-/article-comments
+/article_comments
 
 # 避免
 /userProfiles
@@ -239,21 +236,17 @@ URI中不应包含空格和特殊字符，可以使用短划线或下划线来�
 ### 避免深层嵌套URL：
 
 常见的情况是，资源需要多级分类，因此很容易写出多级的 URL，比如获取某个客户的某个订单。
-
 `GET /customers/1/orders/2`
 
 这种 URL 不利于扩展，语义也不明确，往往要想一会，才能明白含义。
 
 更好的做法是，除了第一级，其它级别都用查询字符串表达。
-
 `GET /products?category_id=12`
 
 下面是另一个例子，查询已上架的商品。你可能会设计成下面的 URL。
-
 `GET /products/discontinued`
 
 其实使用下面的查询字符串的写法明显更好。
-
 `GET /products?discontinued=false`
 
 ```txt
