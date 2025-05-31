@@ -2,3 +2,7 @@ node_modules
 package-lock.json
 **/.vitepress/cache
 **/.vitepress/dist
+
+# 可以忽略个性化obsidian配置的同步
+# **/.obsidian
+**/docs/local/*
