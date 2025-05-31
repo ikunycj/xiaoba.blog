@@ -1,6 +1,6 @@
 import { createContentLoader } from "vitepress";
-import { formatDate } from "./formatDate.js";
 import { Post } from "./types.js";
+import { formatDate } from "./formatData.js"
 
 declare const data: Post[];
 export { data };

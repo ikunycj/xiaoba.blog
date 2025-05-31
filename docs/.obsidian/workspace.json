@@ -1,0 +1,213 @@
+{
+  "main": {
+    "id": "c1b8c8411aa36c42",
+    "type": "split",
+    "children": [
+      {
+        "id": "e8dc61064a8f3e65",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "051026b4eb4f23f4",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "新标签页"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "4e36ee019766a4f8",
+    "type": "split",
+    "children": [
+      {
+        "id": "ac5956c127a5725c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "dd32e8621a780f9c",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "9d2b7256b6e6f7ff",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "6200dffd7b55113c",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "414ae52dfc0c6d34",
+    "type": "split",
+    "children": [
+      {
+        "id": "8b4aeac4b573cd63",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ba905c57543dd88c",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "反向链接"
+            }
+          },
+          {
+            "id": "8a1d4655ad0522ca",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "出链"
+            }
+          },
+          {
+            "id": "740c96176c48a0c0",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "d5d5517870962e14",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "大纲"
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false
+    }
+  },
+  "active": "dd32e8621a780f9c",
+  "lastOpenFiles": [
+    "local/test1",
+    "local",
+    "self",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/img/QQ_1734934328595.png",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/7.图(graph)/img/QQ_1736079977014.png",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/7.图(graph)/img/QQ_1736072127837.png",
+    "blogs/note/计算机基础/数据结构与算法/算法/数学运算/1.位运算.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/6.贪心/4.最大切分乘积问题.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/6.贪心/3.最大容量问题.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/6.贪心/2.分数背包问题.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/6.贪心/1.贪心算法.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/6.编辑距离问题.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/5.完全背包问题.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/4.0-1 背包问题.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/3.动态规划解题思路.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/2.动态规划问题特性.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/1.初探动态规划.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/3.分治/4.汉诺塔问题.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/3.分治/3.构建二叉树问题.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/3.分治/2.分治搜索策略.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/3.分治/1.分治算法.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/4.回溯/3.子集和问题.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/4.回溯/4.n 皇后问题.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/4.回溯/2.全排列问题.md",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/img",
+    "blogs/note/计算机基础/数据结构与算法/算法/4.回溯/1.回溯算法.md",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/8.霍夫曼树.md",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/9.B树与B+树.md",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/7.线段树.md",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/6.红黑树.md",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/5.AVL 树.md",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/4. 二叉搜索树.md",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/7.图(graph)/img",
+    "blogs/public/src/share/blogbuild/VitePress/githubblog.png",
+    "blogs/note/计算机基础/数据结构与算法/算法/数学运算",
+    "blogs/note/计算机基础/数据结构与算法/算法/6.贪心",
+    "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划",
+    "blogs/note/计算机基础/数据结构与算法/算法/3.分治",
+    "blogs/note/计算机基础/数据结构与算法/算法/4.回溯",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树",
+    "blogs/public/xioaba-cooke.jpg",
+    "blogs/public/xiaoba-smile.jpg",
+    "blogs/public/xiaoba-runonce.gif",
+    "blogs/public/xiaoba-logo.png",
+    "blogs/public/rotate.png",
+    "docs/markdown/note/计算机基础/数据结构与算法/数据结构/7.图(graph)/img/QQ_1736079977014.png"
+  ]
+}

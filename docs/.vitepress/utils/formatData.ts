@@ -4,7 +4,7 @@ import { Post } from "./types.js";
  * 格式化文章更新时间
  * @param raw - 日期字符串
  */
-export function formatDate(raw: string | undefined): Post["date"] {
+function formatDate(raw: string | undefined): Post["date"] {
   if (!raw)
     return {
       time: 0,
@@ -21,3 +21,5 @@ export function formatDate(raw: string | undefined): Post["date"] {
     }),
   };
 }
+
+export { formatDate };

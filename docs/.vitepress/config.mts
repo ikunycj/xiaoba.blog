@@ -4,14 +4,14 @@ import { generateSidebar } from 'vitepress-sidebar';  //https://vitepress-sideba
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "小八",
-  // titleTemplate: ":title 小八",  // 标题模板
+  // titleTemplate: ":title 小八",
   description: "小八博客",
   // md 文件根目录
-  srcDir: "./src",
+  srcDir: "./blogs",
   // 增加一个head标签
   head: [
     ['link', { rel: 'icon', href: '/xiaoba-logo.png' }] //网站icon
-  ], 
+  ],
 
   base: '/', // 部署到github pages需要设置base为'/'
   cleanUrls:true, //开启纯净链接
@@ -52,16 +52,16 @@ export default defineConfig({
     sidebar: generateSidebar([
       // VitePress Sidebar's options here..
         {
-          documentRootPath: '/docs/src/note', // 文档根目录
+          documentRootPath: '/docs/blogs/note', // 文档根目录
           scanStartPath: '/',          // 根目录下的，需要开始扫描的路径
           resolvePath: '/note/',          // 网站的路径前缀(多侧边栏配置必须设置)
           useTitleFromFileHeading: false,  // 从文件标题中获取标题
-          excludeFiles: ['do-not-include.md'],  // 排除的文件
+          excludePattern: ['do-not-include.md'],  // 排除的文件
           collapsed: true,                // 是否折叠
           sortMenusByFrontmatterOrder: true,  // 按frontmatter中的order排序(默认为0)
         },
         {
-          documentRootPath: '/docs/src/share/blogbuild', 
+          documentRootPath: '/docs/blogs/share/blogbuild', 
           scanStartPath: '/',         
           resolvePath: '/share/blogbuild/',         
           useTitleFromFileHeading: true,  
@@ -69,7 +69,7 @@ export default defineConfig({
           sortMenusByFrontmatterOrder: true,
         },
         {
-          documentRootPath: '/docs/src/share/sdu', 
+          documentRootPath: '/docs/blogs/share/sdu', 
           scanStartPath: '/',         
           resolvePath: '/share/sdu/',         
           useTitleFromFileHeading: true,  
