@@ -9,6 +9,7 @@ npm install
 ```
 
 ## [文件目录说明](https://vitepress.dev/zh/guide/routing#root-and-source-directory)
+
 ```
 xiaoba.my/
     ├── docs/            项目根目录，也算本地markdown笔记工具的根目录，你可以在非blogs目录下存放其他md文件or
