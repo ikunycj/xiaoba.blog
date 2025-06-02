@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "d68572515ec2b6da",
+        "id": "2b2ce4a817cd7cee",
         "type": "tabs",
         "children": [
           {
-            "id": "ac02e1e583a9c186",
+            "id": "6b4b2648c66c33c2",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "blogs/note/计算机基础/数据结构与算法/数据结构/1.算法基础/4.编码.md",
+                "file": "blogs/note/计算机基础/数据结构与算法/算法/1.搜索/4.双指针.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "4.编码"
+              "title": "4.双指针"
             }
           }
         ]
@@ -140,13 +140,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "blogs/note/计算机基础/数据结构与算法/数据结构/1.算法基础/4.编码.md",
+                "file": "blogs/note/计算机基础/数据结构与算法/算法/1.搜索/4.双指针.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "4.编码 的大纲"
+              "title": "4.双指针 的大纲"
             }
           }
         ],
@@ -166,53 +166,53 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "ac02e1e583a9c186",
+  "active": "6b4b2648c66c33c2",
   "lastOpenFiles": [
-    "blogs/note/计算机基础/数据结构与算法/数据结构/1.算法基础/3.基本数据类型.md",
-    "blogs/note/计算机基础/数据结构与算法/数据结构/1.算法基础/2.算法复杂度.md",
-    "blogs/note/计算机基础/数据结构与算法/数据结构/1.算法基础/1.数据结构与算法是什么.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/1.搜索/3.重识搜索算法.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/1.搜索/2.哈希优化策略.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/1.搜索/1.二分查找.md",
+    "local/demo/test1.js",
+    "local/demo/test1.ts",
+    "local/demo",
+    "blogs/note/计算机基础/数据结构与算法/相关资料.md",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/7.图(graph)/6.最短路.md",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/7.图(graph)/5.有向无环图.md",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/7.图(graph)/4.生成树.md",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/7.图(graph)/3.图的遍历.md",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/7.图(graph)/2.图的基础操作.md",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/7.图(graph)/1.图（graph）.md",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/6.堆(heap)/3.Top-k问题.md",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/6.堆(heap)/2.建堆操作.md",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/6.堆(heap)/1.堆.md",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/10.并查集.md",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/9.B树与B+树.md",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/8.霍夫曼树.md",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/7.线段树.md",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/6.红黑树.md",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/5.AVL 树.md",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/4. 二叉搜索树.md",
+    "local/JS/demo/test1.ts",
+    "local/JS/demo/test1.js",
+    "local/JS/demo",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/3.二叉树数组表示.md",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/2.二叉树遍历.md",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/1.二叉树.md",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/img/QQ_1734934328595.png",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/4.哈希表/3.哈希算法.md",
+    "self/埋点.md",
+    "local/工程设计/发布订阅.md",
+    "Pasted image 20250601145901.png",
     "blogs/public/xiaoba-smile.jpg",
     "blogs/public/xiaoba-runonce.gif",
     "blogs/public/xiaoba-logo.png",
-    "blogs/projects.md",
-    "blogs/home.md",
-    "blogs/index.md",
-    "local/工作/已经完成/饮食偏好.md",
-    "local/工作/待完成/IDEA插件开发.md",
-    "local/工作/已经完成/HealReport（）.md",
-    "local/工作/已经完成/获取体检报告历史记录.md",
-    "local/JS/Web API/TextDecoder.md",
-    "local/JS/Web API/Stream API.md",
-    "local/工具/Git/Git详细教程.md",
-    "local/工具/ESLint/开源勘探-ESlint篇：ESLint原理介绍与自定义插件的实现.md",
-    "local/工具/WbPack/未命名.md",
-    "local/工具/Git/Git速查.md",
-    "local/工具/Git/Github实用小技巧.md",
-    "local/react/react源码/QQ_1747466479319.png",
-    "local/react/react源码/171ca3cb228c57b5129c89fbcf1f4f64.png",
-    "local/react/react源码/7517fc31-6a3c-436d-b6f0-9d3c7ba84bb5.jpeg",
-    "local/react/react源码/3c87e000bc969927ee502d8fe5bec519.png",
-    "local/react/react源码/b1b0db5050195eca055cf483f6b73c18.png",
-    "local/react/react源码/38148e4f583a32c38ca7b21babf6c0f8.png",
-    "local/react/react源码/1d30c388-04ed-4a1b-bfcb-73c89ac340a2.jpeg",
-    "local/react/React Fiber原理解析/对react fiber的理解.md",
-    "local/react/React Fiber原理解析/p334_mateuszpawlik_vldb2012.pdf",
-    "local/乱七八糟/1-3章操作系统.md",
+    "self/react/react源码/QQ_1747466479319.png",
+    "self/react/react源码/171ca3cb228c57b5129c89fbcf1f4f64.png",
+    "self/react/react源码/7517fc31-6a3c-436d-b6f0-9d3c7ba84bb5.jpeg",
+    "self/react/react源码/3c87e000bc969927ee502d8fe5bec519.png",
+    "self/react/react源码/b1b0db5050195eca055cf483f6b73c18.png",
+    "self/react/React Fiber原理解析/p334_mateuszpawlik_vldb2012.pdf",
     "local/工作/进行中",
     "local/工作/待完成",
-    "local/工作/已经完成",
-    "local/乱七八糟/问题描述.md",
-    "local/乱七八糟/操作系统作业.md",
-    "local/乱七八糟/456章操作系统.md",
-    "local/乱七八糟/os.md",
-    "local/工程设计/埋点.md",
-    "local/工程设计/发布订阅.md",
-    "local/JS/Web API",
-    "local/工具/ESLint",
-    "local/工具/WbPack",
-    "local/工具/Git",
-    "local/react/React源码.md",
-    "local/react/react源码",
-    "local/react/React Fiber原理解析"
+    "local/工作/已经完成"
   ]
 }
