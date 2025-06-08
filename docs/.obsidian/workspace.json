@@ -13,12 +13,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "blogs/note/计算机基础/数据结构与算法/算法/1.搜索/4.双指针.md",
+                "file": "self/Test/算法.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "4.双指针"
+              "title": "算法"
+            }
+          },
+          {
+            "id": "4fab210873298b60",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/4.0-1 背包问题.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "4.0-1 背包问题"
             }
           }
         ]
@@ -140,13 +154,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "blogs/note/计算机基础/数据结构与算法/算法/1.搜索/4.双指针.md",
+                "file": "self/Test/算法.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "4.双指针 的大纲"
+              "title": "算法 的大纲"
             }
           }
         ],
@@ -166,41 +180,45 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "6b4b2648c66c33c2",
+  "active": "d5d5517870962e14",
   "lastOpenFiles": [
+    "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/7.编辑距离问题.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/5.完全背包问题.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/6.分数背包问题.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/4.0-1 背包问题.md",
+    "self/Test/算法.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/1.初探动态规划.md",
+    "blogs/home.md",
+    "blogs/index.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/2.排序/5.归并排序.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/3.动态规划解题思路.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/2.动态规划问题特性.md",
+    "self/Test",
+    "local/demo/tempCodeRunnerFile.js",
     "blogs/note/计算机基础/数据结构与算法/算法/1.搜索/3.重识搜索算法.md",
     "blogs/note/计算机基础/数据结构与算法/算法/1.搜索/2.哈希优化策略.md",
     "blogs/note/计算机基础/数据结构与算法/算法/1.搜索/1.二分查找.md",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/1.算法基础/2.算法复杂度.md",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/1.算法基础/1.数据结构与算法是什么.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/2.排序/4.希尔排序.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/2.排序/6.快速排序.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/2.排序/7.堆排序.md",
+    "local/demo/getIssue.js",
+    "local/demo/index.html",
+    "blogs/note/计算机基础/数据结构与算法/算法/2.排序/3.插入排序.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/2.排序/2.选择排序.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/2.排序/1.冒泡排序.md",
+    "local/demo/sort.js",
+    "blogs/note/计算机基础/数据结构与算法/算法/2.排序/0.排序算法.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/1.搜索/4.双指针.md",
     "local/demo/test1.js",
     "local/demo/test1.ts",
     "local/demo",
     "blogs/note/计算机基础/数据结构与算法/相关资料.md",
     "blogs/note/计算机基础/数据结构与算法/数据结构/7.图(graph)/6.最短路.md",
-    "blogs/note/计算机基础/数据结构与算法/数据结构/7.图(graph)/5.有向无环图.md",
-    "blogs/note/计算机基础/数据结构与算法/数据结构/7.图(graph)/4.生成树.md",
-    "blogs/note/计算机基础/数据结构与算法/数据结构/7.图(graph)/3.图的遍历.md",
-    "blogs/note/计算机基础/数据结构与算法/数据结构/7.图(graph)/2.图的基础操作.md",
-    "blogs/note/计算机基础/数据结构与算法/数据结构/7.图(graph)/1.图（graph）.md",
-    "blogs/note/计算机基础/数据结构与算法/数据结构/6.堆(heap)/3.Top-k问题.md",
-    "blogs/note/计算机基础/数据结构与算法/数据结构/6.堆(heap)/2.建堆操作.md",
-    "blogs/note/计算机基础/数据结构与算法/数据结构/6.堆(heap)/1.堆.md",
-    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/10.并查集.md",
-    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/9.B树与B+树.md",
-    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/8.霍夫曼树.md",
-    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/7.线段树.md",
-    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/6.红黑树.md",
-    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/5.AVL 树.md",
-    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/4. 二叉搜索树.md",
     "local/JS/demo/test1.ts",
     "local/JS/demo/test1.js",
-    "local/JS/demo",
-    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/3.二叉树数组表示.md",
-    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/2.二叉树遍历.md",
-    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/1.二叉树.md",
     "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/img/QQ_1734934328595.png",
-    "blogs/note/计算机基础/数据结构与算法/数据结构/4.哈希表/3.哈希算法.md",
-    "self/埋点.md",
-    "local/工程设计/发布订阅.md",
     "Pasted image 20250601145901.png",
     "blogs/public/xiaoba-smile.jpg",
     "blogs/public/xiaoba-runonce.gif",
@@ -209,10 +227,6 @@
     "self/react/react源码/171ca3cb228c57b5129c89fbcf1f4f64.png",
     "self/react/react源码/7517fc31-6a3c-436d-b6f0-9d3c7ba84bb5.jpeg",
     "self/react/react源码/3c87e000bc969927ee502d8fe5bec519.png",
-    "self/react/react源码/b1b0db5050195eca055cf483f6b73c18.png",
-    "self/react/React Fiber原理解析/p334_mateuszpawlik_vldb2012.pdf",
-    "local/工作/进行中",
-    "local/工作/待完成",
-    "local/工作/已经完成"
+    "self/react/react源码/b1b0db5050195eca055cf483f6b73c18.png"
   ]
 }
