@@ -1,1 +1,8 @@
-{}
+{
+  "cssTheme": "Blue Topaz",
+  "accentColor": "#8fe43a",
+  "interfaceFontFamily": "Arial Black",
+  "textFontFamily": "Arial Black,Inter,Arial Narrow",
+  "monospaceFontFamily": "Arial Black,Inter,Arial Narrow",
+  "nativeMenus": false
+}
