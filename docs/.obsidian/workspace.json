@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "f68dda9127ab1c0d",
+        "id": "76e5ac10388655b7",
         "type": "tabs",
         "children": [
           {
-            "id": "eb18e24061df9de9",
+            "id": "402b8805524a803b",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -136,12 +136,13 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "self/react/对react fiber的理解.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "大纲"
+              "title": "对react fiber的理解 的大纲"
             }
           },
           {
@@ -189,14 +190,19 @@
   },
   "active": "dd32e8621a780f9c",
   "lastOpenFiles": [
+    "self/ESLint/ESLint原理介绍与自定义插件的实现.md",
+    "local/JS/Web API/Stream API.md",
+    "local/JS/Web API/TextDecoder.md",
+    "local/工具/WbPack/未命名.md",
+    "local/工程设计/发布订阅.md",
     "self/Test/算法.md",
+    "blogs/home.md",
     "self/埋点.md",
     "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/7.编辑距离问题.md",
     "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/5.完全背包问题.md",
     "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/6.分数背包问题.md",
     "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/4.0-1 背包问题.md",
     "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/1.初探动态规划.md",
-    "blogs/home.md",
     "blogs/index.md",
     "blogs/note/计算机基础/数据结构与算法/算法/2.排序/5.归并排序.md",
     "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/3.动态规划解题思路.md",
@@ -214,15 +220,10 @@
     "local/demo/getIssue.js",
     "local/demo/index.html",
     "blogs/note/计算机基础/数据结构与算法/算法/2.排序/3.插入排序.md",
-    "blogs/note/计算机基础/数据结构与算法/算法/2.排序/2.选择排序.md",
-    "blogs/note/计算机基础/数据结构与算法/算法/2.排序/1.冒泡排序.md",
     "local/demo/sort.js",
-    "blogs/note/计算机基础/数据结构与算法/算法/2.排序/0.排序算法.md",
-    "blogs/note/计算机基础/数据结构与算法/算法/1.搜索/4.双指针.md",
     "local/demo/test1.js",
     "local/demo/test1.ts",
     "local/demo",
-    "blogs/note/计算机基础/数据结构与算法/相关资料.md",
     "local/JS/demo/test1.ts",
     "local/JS/demo/test1.js",
     "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/img/QQ_1734934328595.png",
