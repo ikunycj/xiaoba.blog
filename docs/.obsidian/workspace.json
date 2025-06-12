@@ -1,14 +1,14 @@
 {
   "main": {
-    "id": "c1b8c8411aa36c42",
+    "id": "2b63c844c431be84",
     "type": "split",
     "children": [
       {
-        "id": "76e5ac10388655b7",
+        "id": "57094f61aaba51d7",
         "type": "tabs",
         "children": [
           {
-            "id": "402b8805524a803b",
+            "id": "45ff08c5b71dc3e0",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -23,15 +23,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "4e36ee019766a4f8",
+    "id": "d33c24bd997a0633",
     "type": "split",
     "children": [
       {
-        "id": "ac5956c127a5725c",
+        "id": "286624c0e7a77e1c",
         "type": "tabs",
         "children": [
           {
-            "id": "dd32e8621a780f9c",
+            "id": "150e58ee8093b624",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -44,12 +44,12 @@
             }
           },
           {
-            "id": "9d2b7256b6e6f7ff",
+            "id": "a886675256e53516",
             "type": "leaf",
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "单点登录",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -61,7 +61,7 @@
             }
           },
           {
-            "id": "6200dffd7b55113c",
+            "id": "73679bd1a27d051d",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -74,99 +74,75 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 323.5
   },
   "right": {
-    "id": "414ae52dfc0c6d34",
+    "id": "5a308f9d57a5daae",
     "type": "split",
     "children": [
       {
-        "id": "8b4aeac4b573cd63",
+        "id": "8fb960e95a459842",
         "type": "tabs",
         "children": [
           {
-            "id": "ba905c57543dd88c",
+            "id": "ee17eab705637203",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
+                "file": "项目笔记/正式项目/UniversalAI/资源信息.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
                 "searchQuery": "",
                 "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
+                "unlinkedCollapsed": false
               },
               "icon": "links-coming-in",
-              "title": "反向链接"
+              "title": "资源信息 的反向链接列表"
             }
           },
           {
-            "id": "8a1d4655ad0522ca",
+            "id": "48896ec729243976",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "项目笔记/正式项目/UniversalAI/资源信息.md",
                 "linksCollapsed": false,
-                "unlinkedCollapsed": true
+                "unlinkedCollapsed": false
               },
               "icon": "links-going-out",
-              "title": "出链"
+              "title": "资源信息 的出链列表"
             }
           },
           {
-            "id": "740c96176c48a0c0",
+            "id": "769cc81ddc6cf0ee",
             "type": "leaf",
             "state": {
               "type": "tag",
               "state": {
-                "sortOrder": "frequency",
-                "useHierarchy": true,
-                "showSearch": false,
-                "searchQuery": ""
+                "sortOrder": "alphabetical",
+                "useHierarchy": false
               },
               "icon": "lucide-tags",
               "title": "标签"
             }
           },
           {
-            "id": "d5d5517870962e14",
+            "id": "0dcb13761e661ed8",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "self/react/对react fiber的理解.md",
+                "file": "blogs/note/计算机基础/数据结构与算法/数据结构/1.算法基础/4.编码.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "对react fiber的理解 的大纲"
-            }
-          },
-          {
-            "id": "07fa94e60be70143",
-            "type": "leaf",
-            "state": {
-              "type": "all-properties",
-              "state": {
-                "sortOrder": "frequency",
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-archive",
-              "title": "添加笔记属性"
-            }
-          },
-          {
-            "id": "f1f0c223b98119da",
-            "type": "leaf",
-            "state": {
-              "type": "git-view",
-              "state": {},
-              "icon": "git-pull-request",
-              "title": "Source Control"
+              "title": "4.编码 的大纲"
             }
           }
         ],
@@ -174,67 +150,64 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 347.5
   },
   "left-ribbon": {
     "hiddenItems": {
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
-      "canvas:新建白板": false,
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
-      "command-palette:打开命令面板": false,
-      "obsidian-excalidraw-plugin:新建绘图文件": false,
-      "obsidian-git:Open Git source control": false
+      "command-palette:打开命令面板": false
     }
   },
-  "active": "dd32e8621a780f9c",
+  "active": "ac02e1e583a9c186",
   "lastOpenFiles": [
-    "self/ESLint/ESLint原理介绍与自定义插件的实现.md",
-    "local/JS/Web API/Stream API.md",
-    "local/JS/Web API/TextDecoder.md",
-    "local/工具/WbPack/未命名.md",
-    "local/工程设计/发布订阅.md",
-    "self/Test/算法.md",
-    "blogs/home.md",
-    "self/埋点.md",
-    "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/7.编辑距离问题.md",
-    "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/5.完全背包问题.md",
-    "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/6.分数背包问题.md",
-    "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/4.0-1 背包问题.md",
-    "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/1.初探动态规划.md",
-    "blogs/index.md",
-    "blogs/note/计算机基础/数据结构与算法/算法/2.排序/5.归并排序.md",
-    "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/3.动态规划解题思路.md",
-    "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/2.动态规划问题特性.md",
-    "self/Test",
-    "local/demo/tempCodeRunnerFile.js",
-    "blogs/note/计算机基础/数据结构与算法/算法/1.搜索/3.重识搜索算法.md",
-    "blogs/note/计算机基础/数据结构与算法/算法/1.搜索/2.哈希优化策略.md",
-    "blogs/note/计算机基础/数据结构与算法/算法/1.搜索/1.二分查找.md",
+    "blogs/note/计算机基础/数据结构与算法/数据结构/1.算法基础/3.基本数据类型.md",
     "blogs/note/计算机基础/数据结构与算法/数据结构/1.算法基础/2.算法复杂度.md",
     "blogs/note/计算机基础/数据结构与算法/数据结构/1.算法基础/1.数据结构与算法是什么.md",
-    "blogs/note/计算机基础/数据结构与算法/算法/2.排序/4.希尔排序.md",
-    "blogs/note/计算机基础/数据结构与算法/算法/2.排序/6.快速排序.md",
-    "blogs/note/计算机基础/数据结构与算法/算法/2.排序/7.堆排序.md",
-    "local/demo/getIssue.js",
-    "local/demo/index.html",
-    "blogs/note/计算机基础/数据结构与算法/算法/2.排序/3.插入排序.md",
-    "local/demo/sort.js",
-    "local/demo/test1.js",
-    "local/demo/test1.ts",
-    "local/demo",
-    "local/JS/demo/test1.ts",
-    "local/JS/demo/test1.js",
-    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/img/QQ_1734934328595.png",
-    "Pasted image 20250601145901.png",
     "blogs/public/xiaoba-smile.jpg",
     "blogs/public/xiaoba-runonce.gif",
     "blogs/public/xiaoba-logo.png",
-    "self/react/react源码/QQ_1747466479319.png",
-    "self/react/react源码/171ca3cb228c57b5129c89fbcf1f4f64.png",
-    "self/react/react源码/7517fc31-6a3c-436d-b6f0-9d3c7ba84bb5.jpeg",
-    "self/react/react源码/3c87e000bc969927ee502d8fe5bec519.png",
-    "self/react/react源码/b1b0db5050195eca055cf483f6b73c18.png"
+    "blogs/projects.md",
+    "blogs/home.md",
+    "blogs/index.md",
+    "local/工作/已经完成/饮食偏好.md",
+    "local/工作/待完成/IDEA插件开发.md",
+    "local/工作/已经完成/HealReport（）.md",
+    "local/工作/已经完成/获取体检报告历史记录.md",
+    "local/JS/Web API/TextDecoder.md",
+    "local/JS/Web API/Stream API.md",
+    "local/工具/Git/Git详细教程.md",
+    "local/工具/ESLint/开源勘探-ESlint篇：ESLint原理介绍与自定义插件的实现.md",
+    "local/工具/WbPack/未命名.md",
+    "local/工具/Git/Git速查.md",
+    "local/工具/Git/Github实用小技巧.md",
+    "local/react/react源码/QQ_1747466479319.png",
+    "local/react/react源码/171ca3cb228c57b5129c89fbcf1f4f64.png",
+    "local/react/react源码/7517fc31-6a3c-436d-b6f0-9d3c7ba84bb5.jpeg",
+    "local/react/react源码/3c87e000bc969927ee502d8fe5bec519.png",
+    "local/react/react源码/b1b0db5050195eca055cf483f6b73c18.png",
+    "local/react/react源码/38148e4f583a32c38ca7b21babf6c0f8.png",
+    "local/react/react源码/1d30c388-04ed-4a1b-bfcb-73c89ac340a2.jpeg",
+    "local/react/React Fiber原理解析/对react fiber的理解.md",
+    "local/react/React Fiber原理解析/p334_mateuszpawlik_vldb2012.pdf",
+    "local/乱七八糟/1-3章操作系统.md",
+    "local/工作/进行中",
+    "local/工作/待完成",
+    "local/工作/已经完成",
+    "local/乱七八糟/问题描述.md",
+    "local/乱七八糟/操作系统作业.md",
+    "local/乱七八糟/456章操作系统.md",
+    "local/乱七八糟/os.md",
+    "local/工程设计/埋点.md",
+    "local/工程设计/发布订阅.md",
+    "local/JS/Web API",
+    "local/工具/ESLint",
+    "local/工具/WbPack",
+    "local/工具/Git",
+    "local/react/React源码.md",
+    "local/react/react源码",
+    "local/react/React Fiber原理解析"
   ]
 }
