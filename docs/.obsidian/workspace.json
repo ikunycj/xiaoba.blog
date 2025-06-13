@@ -1,24 +1,20 @@
 {
   "main": {
-    "id": "c1b8c8411aa36c42",
+    "id": "2b63c844c431be84",
     "type": "split",
     "children": [
       {
-        "id": "d68572515ec2b6da",
+        "id": "57094f61aaba51d7",
         "type": "tabs",
         "children": [
           {
-            "id": "ac02e1e583a9c186",
+            "id": "45ff08c5b71dc3e0",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "blogs/note/计算机基础/数据结构与算法/数据结构/1.算法基础/4.编码.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "4.编码"
+              "title": "新标签页"
             }
           }
         ]
@@ -27,15 +23,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "4e36ee019766a4f8",
+    "id": "d33c24bd997a0633",
     "type": "split",
     "children": [
       {
-        "id": "ac5956c127a5725c",
+        "id": "286624c0e7a77e1c",
         "type": "tabs",
         "children": [
           {
-            "id": "dd32e8621a780f9c",
+            "id": "150e58ee8093b624",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -48,12 +44,12 @@
             }
           },
           {
-            "id": "9d2b7256b6e6f7ff",
+            "id": "a886675256e53516",
             "type": "leaf",
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "单点登录",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -65,7 +61,7 @@
             }
           },
           {
-            "id": "6200dffd7b55113c",
+            "id": "73679bd1a27d051d",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -78,64 +74,64 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 323.5
   },
   "right": {
-    "id": "414ae52dfc0c6d34",
+    "id": "5a308f9d57a5daae",
     "type": "split",
     "children": [
       {
-        "id": "8b4aeac4b573cd63",
+        "id": "8fb960e95a459842",
         "type": "tabs",
         "children": [
           {
-            "id": "ba905c57543dd88c",
+            "id": "ee17eab705637203",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
+                "file": "项目笔记/正式项目/UniversalAI/资源信息.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
                 "searchQuery": "",
                 "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
+                "unlinkedCollapsed": false
               },
               "icon": "links-coming-in",
-              "title": "反向链接"
+              "title": "资源信息 的反向链接列表"
             }
           },
           {
-            "id": "8a1d4655ad0522ca",
+            "id": "48896ec729243976",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "项目笔记/正式项目/UniversalAI/资源信息.md",
                 "linksCollapsed": false,
-                "unlinkedCollapsed": true
+                "unlinkedCollapsed": false
               },
               "icon": "links-going-out",
-              "title": "出链"
+              "title": "资源信息 的出链列表"
             }
           },
           {
-            "id": "740c96176c48a0c0",
+            "id": "769cc81ddc6cf0ee",
             "type": "leaf",
             "state": {
               "type": "tag",
               "state": {
-                "sortOrder": "frequency",
-                "useHierarchy": true,
-                "showSearch": false,
-                "searchQuery": ""
+                "sortOrder": "alphabetical",
+                "useHierarchy": false
               },
               "icon": "lucide-tags",
               "title": "标签"
             }
           },
           {
-            "id": "d5d5517870962e14",
+            "id": "0dcb13761e661ed8",
             "type": "leaf",
             "state": {
               "type": "outline",
@@ -154,13 +150,12 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 347.5
   },
   "left-ribbon": {
     "hiddenItems": {
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
-      "canvas:新建白板": false,
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
       "command-palette:打开命令面板": false
