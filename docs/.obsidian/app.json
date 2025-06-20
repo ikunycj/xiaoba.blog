@@ -1,7 +1,3 @@
 {
-  "spellcheck": false,
-  "showLineNumber": true,
-  "alwaysUpdateLinks": true,
-  "showUnsupportedFiles": true,
-  "attachmentFolderPath": "./attach"
+  "spellcheck": false
 }
