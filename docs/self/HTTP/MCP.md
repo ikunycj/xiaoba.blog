@@ -1,6 +1,6 @@
 ## 1. MCP概念
 
-**MCP**全称**模型上下文协议**（Model Context Protocol，https://docs.anthropic.com/zh-CN/docs/agents-and-tools/mcp），是由 Anthropic （Claude 模型的主体公司）在2024年11月推出并开源的一项创新标准，旨在让大语言模型能够无缝连接至第三方的数据源。
+**MCP**全称**模型上下文协议**（[Model Context Protocol](https://modelcontextprotocol.io/introduction)），是由 Anthropic （Claude 模型的主体公司）（[在Claude中使用MCP](https://docs.anthropic.com/zh-CN/docs/agents-and-tools/mcp)）在2024年11月推出并开源的一项创新标准，旨在让大语言模型能够无缝连接至第三方的数据源。
 
 该协议支持对接内容存储库、业务工具、开发环境等多种外部服务，从而赋能 AI 大模型获取更丰富的上下文信息，生成更加精准、相关且智能的回答。
 
@@ -40,9 +40,9 @@ MCP 协议遵循互联网常见的 C / S 架构，即客户端（Client）- 服�
 
 MCP 协议引入了主机（Host）的概念，组成了基本的主机（Host）- 客户端（Client）- 服务器（Server）架构。
 
-![[Pasted image 20250523191449.png]]
+![[d6697dfe-aa89-456b-83e0-433a0cb7c6ce.jpeg]]
 
-### 主机 Host
+### 主机 MCP Host
 
 MCP 协议里的主机就是大模型应用，类似 Claude 桌面客户端、Cursor 编辑器这种应用。可以在主机内调度客户端进程，发起到服务器的连接。
 
@@ -101,28 +101,7 @@ MCP 协议中的服务器是在主机外运行的，用于提供特定资源和�
 
 
 MCP 协议解决了 AI 大模型与数据源集成碎片化的问题，提供统一标准，**让开发者无需为每个数据源和 AI 助手单独开发连接器。** 通过 MCP，**数据源和 AI 工具可建立安全双向连接，** 使 AI 在不同工具和数据集间流畅协作，实现更可持续的架构。
-
-### 2.Blender MCP
-
-一句话提示，Claude自动化打开Blender将2D图片转为3D建模。而且还能只用一次提示词，再基于这个场景搭建可以互动的网页。
-
-https://github.com/ahujasid/blender-mcp
-
-![](https://xiaomi.f.mioffice.cn/space/api/box/stream/download/asynccode/?code=M2YyY2E1ZTk4YmJlODgxOTM1YjNhZmJhNGMzZmExMWRfZWtobm4zWE1YV2g1VE1pbWF5R3VmUmZ5M3NnWUNKQ2ZfVG9rZW46Ym94azRKZHZOVlB1MjRyeHFxRHh4NEtlUjVkXzE3NDc5OTg0MzA6MTc0ODAwMjAzMF9WNA)![](https://xiaomi.f.mioffice.cn/space/api/box/stream/download/asynccode/?code=N2RkMDc2OGVjZTc2NWY2ZTdjYjI2YmJhMTJkNDFkYTVfU3lUOHBwUEhOWnBUZ2ZUVUlPYzB6TnJoWVdwMXFtOUJfVG9rZW46Ym94azRkc09lNnJhcU1ZVzBtWjZsUVliS2pnXzE3NDc5OTg0MzA6MTc0ODAwMjAzMF9WNA)
-
-![](https://xiaomi.f.mioffice.cn/space/api/box/stream/download/asynccode/?code=YWJmMTliZDMzMDJjZDMxMTQ0NDQ3YTMwZGFjZjJlYTFfRkRYc043SHlUeUtGWHZEQ1FBdVBHSWpNcEdYVG5rcmpfVG9rZW46Ym94azRxZFQyekZMc2FOUWx3Nk4yTzVmZkJqXzE3NDc5OTg0MzA6MTc0ODAwMjAzMF9WNA)![](https://xiaomi.f.mioffice.cn/space/api/box/stream/download/asynccode/?code=ZjEwOWQ3YzlkMTNjZWU1NDdkNWRiNDEwODMwNmVlNzFfeUhiTXJmRU9sSmlZMElvZlJLUDhsNUhHR2lzTVRCeVdfVG9rZW46Ym94azRUNGZET2JOSHoyUWZqSlFaUXd2MHpnXzE3NDc5OTg0MzA6MTc0ODAwMjAzMF9WNA)
-
-还有直接通过对话的方式快速去构建一个用 blender 渲染好的飞机：
-
-### 3.Manus
-
-Manus 的底层其实也是用了类似 MCP 的方式进行了一系列的工具能力调用（但是求证后实际上是没有使用 MCP，但是思维模式相似）
-
-**亚马逊商店销售分析及策略**
-
-https://manus.im/share/c3onakN6Iajcm1Vt1xAVG7?replay=1
-
-### 4.Browser use
+### 2.Browser use
 
 与Manus类似，Browser Use可以直接在终端中操控电脑浏览器的工具，能够跨越纯 API 数据获取的方式，进行指令的下发。
 
@@ -130,7 +109,7 @@ https://github.com/browser-use/browser-use?tab=readme-ov-file
 
 **阅读简历并查找机器学习职位，并将其保存到文件中**
 
-### 5.AI 代码沙盒
+### 3.AI 代码沙盒
 
 一个代码沙盒的MCP服务，能让AI助手使用沙盒以安全的方式运行任意代码。
 
@@ -142,8 +121,6 @@ https://github.com/302ai/302_browser_use_mcp
 
 
 主要分为MCP server和MCP client
-
-![](https://xiaomi.f.mioffice.cn/space/api/box/stream/download/asynccode/?code=MjBjOThjNGU0NzViNWQxODRiMTMyM2YxYzI1YTljNjZfM2FPZTdKQUxieEFkM3R3dUtvYjJVbUdTOGNuWkRhWXhfVG9rZW46Ym94azRZVGVWNWMxSEs5eEZPbVp5U01SdUNnXzE3NDc5OTg0MzA6MTc0ODAwMjAzMF9WNA)
 
 ### 1.MCP Servers
 
@@ -166,38 +143,16 @@ MCP Servers的一些例子：
 
 市面上目前也有越来越多的能力被挖掘出来，并被统一、分类，由不同的数据源和工具控制和供给，以便于用户快速的安装调用。
 
-- **官方MCP Servers**
-
-https://github.com/modelcontextprotocol/servers
-
-- **其他MCP Servers**
-
-国内最大中文MCP社区（3万+服务）
-
-https://www.mcpservers.cn/
-
-著名独立开发者idoubi开发的 MCP.so 导航，收录了2k多个Server
-
-https://mcp.so/
-
-个人开发者打造的产品
-
-https://smithery.ai/
-
-收录1,704个MCP服务器的生态图谱
-
-https://www.pulsemcp.com/
-
-每个MCP都可以生成一个SSE URL，开发者技能在自己应用中集成这个MCP的能力，无需从0开发
-
-https://mcp.composio.dev/
-
-涉及领域广泛的市场，有近一万个服务
-
-https://himcp.ai/
+- [官方MCP Servers](https://github.com/modelcontextprotocol/servers)
+- 其他MCP Servers
+[国内最大中文MCP社区（3万+服务）](https://www.mcpservers.cn/)
+[著名独立开发者idoubi开发的 MCP.so 导航，收录了2k多个Server](https://mcp.so/)
+[个人开发者打造的产品](https://smithery.ai/)
+[收录1,704个MCP服务器的生态图谱](https://www.pulsemcp.com/)
+[每个MCP都可以生成一个SSE URL，开发者技能在自己应用中集成这个MCP的能力，无需从0开发](https://mcp.composio.dev/)
+[涉及领域广泛的市场，有近一万个服务](https://himcp.ai/)
 
 ### 2.MCP Clients
-
 - **主流客户端**
 
 |                    |                                                                                |                                                                                                     |                                                                           |             |
@@ -213,9 +168,7 @@ https://himcp.ai/
 
 - **其他**
 
-比如扣子空间也支持一些特定的MCP
-
-https://space.coze.cn/?from=landingpage
+[比如扣子空间也支持一些特定的MCP](https://space.coze.cn/?from=landingpage)
 ![[Pasted image 20250523193532.png]]
 
 # 参考文档
@@ -223,4 +176,4 @@ https://space.coze.cn/?from=landingpage
 - https://modelcontextprotocol.io/introduction
 - https://mp.weixin.qq.com/s/dRp02phUG4Z4o-K_VjtxNA
 - https://mp.weixin.qq.com/s/uTsr06MnJ9t3sGDzLD99_g
-- https://tech.xiaomi.com/#/pc/article-detail?id=40649
+- https://docs.anthropic.com/zh-CN/docs/agents-and-tools/mcp

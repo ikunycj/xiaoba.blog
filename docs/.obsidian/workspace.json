@@ -4,17 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "76e5ac10388655b7",
+        "id": "f3a01e2dc79dbc49",
         "type": "tabs",
         "children": [
           {
-            "id": "402b8805524a803b",
+            "id": "4b9cc35345ea4cbb",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "self/HTTP/MCP.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "MCP"
             }
           }
         ]
@@ -85,6 +90,21 @@
         "type": "tabs",
         "children": [
           {
+            "id": "d5d5517870962e14",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "self/HTTP/MCP.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "MCP 的大纲"
+            }
+          },
+          {
             "id": "ba905c57543dd88c",
             "type": "leaf",
             "state": {
@@ -131,21 +151,6 @@
             }
           },
           {
-            "id": "d5d5517870962e14",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "self/react/对react fiber的理解.md",
-                "followCursor": false,
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-list",
-              "title": "对react fiber的理解 的大纲"
-            }
-          },
-          {
             "id": "07fa94e60be70143",
             "type": "leaf",
             "state": {
@@ -169,8 +174,7 @@
               "title": "Source Control"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
@@ -190,14 +194,26 @@
   },
   "active": "dd32e8621a780f9c",
   "lastOpenFiles": [
+    "self/HTTP/attach/d6697dfe-aa89-456b-83e0-433a0cb7c6ce.jpeg",
+    "self/HTTP/MCP.md",
+    "self/HTTP/attach",
+    "self/CSS/滚动条出现导致页面左移闪烁.md",
+    "self/react/React Fiber原理解析.md",
+    "self/CSS",
+    "self/react/React Hook.md",
+    "self/react/PDF预览.md",
+    "local/工程设计/发布订阅.md",
+    "self/react/Diff算法解析.md",
+    "self/react/对react fiber的简单理解.md",
+    "self/react/React源码.md",
+    "self/埋点.md",
+    "self/学习路线.md",
     "self/ESLint/ESLint原理介绍与自定义插件的实现.md",
     "local/JS/Web API/Stream API.md",
     "local/JS/Web API/TextDecoder.md",
     "local/工具/WbPack/未命名.md",
-    "local/工程设计/发布订阅.md",
     "self/Test/算法.md",
     "blogs/home.md",
-    "self/埋点.md",
     "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/7.编辑距离问题.md",
     "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/5.完全背包问题.md",
     "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/6.分数背包问题.md",
@@ -206,26 +222,14 @@
     "blogs/index.md",
     "blogs/note/计算机基础/数据结构与算法/算法/2.排序/5.归并排序.md",
     "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/3.动态规划解题思路.md",
-    "blogs/note/计算机基础/数据结构与算法/算法/5.动态规划/2.动态规划问题特性.md",
     "self/Test",
     "local/demo/tempCodeRunnerFile.js",
-    "blogs/note/计算机基础/数据结构与算法/算法/1.搜索/3.重识搜索算法.md",
-    "blogs/note/计算机基础/数据结构与算法/算法/1.搜索/2.哈希优化策略.md",
-    "blogs/note/计算机基础/数据结构与算法/算法/1.搜索/1.二分查找.md",
-    "blogs/note/计算机基础/数据结构与算法/数据结构/1.算法基础/2.算法复杂度.md",
-    "blogs/note/计算机基础/数据结构与算法/数据结构/1.算法基础/1.数据结构与算法是什么.md",
-    "blogs/note/计算机基础/数据结构与算法/算法/2.排序/4.希尔排序.md",
-    "blogs/note/计算机基础/数据结构与算法/算法/2.排序/6.快速排序.md",
-    "blogs/note/计算机基础/数据结构与算法/算法/2.排序/7.堆排序.md",
     "local/demo/getIssue.js",
     "local/demo/index.html",
-    "blogs/note/计算机基础/数据结构与算法/算法/2.排序/3.插入排序.md",
     "local/demo/sort.js",
     "local/demo/test1.js",
     "local/demo/test1.ts",
     "local/demo",
-    "local/JS/demo/test1.ts",
-    "local/JS/demo/test1.js",
     "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/img/QQ_1734934328595.png",
     "Pasted image 20250601145901.png",
     "blogs/public/xiaoba-smile.jpg",
@@ -234,7 +238,6 @@
     "self/react/react源码/QQ_1747466479319.png",
     "self/react/react源码/171ca3cb228c57b5129c89fbcf1f4f64.png",
     "self/react/react源码/7517fc31-6a3c-436d-b6f0-9d3c7ba84bb5.jpeg",
-    "self/react/react源码/3c87e000bc969927ee502d8fe5bec519.png",
-    "self/react/react源码/b1b0db5050195eca055cf483f6b73c18.png"
+    "self/react/react源码/3c87e000bc969927ee502d8fe5bec519.png"
   ]
 }
