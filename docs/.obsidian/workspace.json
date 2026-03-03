@@ -4,17 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "57094f61aaba51d7",
+        "id": "ca4d0780ab788bbb",
         "type": "tabs",
         "children": [
           {
-            "id": "45ff08c5b71dc3e0",
+            "id": "22542ad07389b59e",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "note/开发运维/数据库/Redis/Redis故障排查/微信支付XConfig Redis雪崩.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "微信支付XConfig Redis雪崩"
             }
           }
         ]
@@ -136,13 +141,27 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "blogs/note/计算机基础/数据结构与算法/数据结构/1.算法基础/4.编码.md",
+                "file": "note/开发运维/数据库/Redis/Redis故障排查/微信支付XConfig Redis雪崩.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "4.编码 的大纲"
+              "title": "微信支付XConfig Redis雪崩 的大纲"
+            }
+          },
+          {
+            "id": "e753c1e201ad196e",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
             }
           }
         ],
@@ -154,6 +173,10 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "bases:创建新数据库": false,
+      "canvas:新建白板": false,
+      "obsidian-excalidraw-plugin:新建绘图文件": false,
+      "obsidian-git:Open Git source control": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "daily-notes:打开/创建今天的日记": false,
@@ -161,53 +184,52 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "ac02e1e583a9c186",
+  "active": "22542ad07389b59e",
   "lastOpenFiles": [
-    "blogs/note/计算机基础/数据结构与算法/数据结构/1.算法基础/3.基本数据类型.md",
-    "blogs/note/计算机基础/数据结构与算法/数据结构/1.算法基础/2.算法复杂度.md",
-    "blogs/note/计算机基础/数据结构与算法/数据结构/1.算法基础/1.数据结构与算法是什么.md",
-    "blogs/public/xiaoba-smile.jpg",
-    "blogs/public/xiaoba-runonce.gif",
-    "blogs/public/xiaoba-logo.png",
-    "blogs/projects.md",
-    "blogs/home.md",
-    "blogs/index.md",
-    "local/工作/已经完成/饮食偏好.md",
-    "local/工作/待完成/IDEA插件开发.md",
-    "local/工作/已经完成/HealReport（）.md",
-    "local/工作/已经完成/获取体检报告历史记录.md",
-    "local/JS/Web API/TextDecoder.md",
-    "local/JS/Web API/Stream API.md",
-    "local/工具/Git/Git详细教程.md",
-    "local/工具/ESLint/开源勘探-ESlint篇：ESLint原理介绍与自定义插件的实现.md",
-    "local/工具/WbPack/未命名.md",
-    "local/工具/Git/Git速查.md",
-    "local/工具/Git/Github实用小技巧.md",
-    "local/react/react源码/QQ_1747466479319.png",
-    "local/react/react源码/171ca3cb228c57b5129c89fbcf1f4f64.png",
-    "local/react/react源码/7517fc31-6a3c-436d-b6f0-9d3c7ba84bb5.jpeg",
-    "local/react/react源码/3c87e000bc969927ee502d8fe5bec519.png",
-    "local/react/react源码/b1b0db5050195eca055cf483f6b73c18.png",
-    "local/react/react源码/38148e4f583a32c38ca7b21babf6c0f8.png",
-    "local/react/react源码/1d30c388-04ed-4a1b-bfcb-73c89ac340a2.jpeg",
-    "local/react/React Fiber原理解析/对react fiber的理解.md",
-    "local/react/React Fiber原理解析/p334_mateuszpawlik_vldb2012.pdf",
-    "local/乱七八糟/1-3章操作系统.md",
-    "local/工作/进行中",
-    "local/工作/待完成",
-    "local/工作/已经完成",
-    "local/乱七八糟/问题描述.md",
-    "local/乱七八糟/操作系统作业.md",
-    "local/乱七八糟/456章操作系统.md",
-    "local/乱七八糟/os.md",
-    "local/工程设计/埋点.md",
-    "local/工程设计/发布订阅.md",
-    "local/JS/Web API",
-    "local/工具/ESLint",
-    "local/工具/WbPack",
-    "local/工具/Git",
-    "local/react/React源码.md",
-    "local/react/react源码",
-    "local/react/React Fiber原理解析"
+    "未命名.base",
+    "note/开发运维/数据库/Redis/Redis故障排查/微信支付XConfig Redis雪崩.md",
+    "local/杂记/考试/大三上/计网.md",
+    "note/开发运维/数据库/Redis/Redis故障排查",
+    "local/杂记/考试/大三上/最优化.md",
+    "QQ_1766020111367.png",
+    "QQ_1766023851260.png",
+    "QQ_1766022843782.png",
+    "QQ_1766022478916.png",
+    "QQ_1766022492885.png",
+    "QQ_1766022187275.png",
+    "QQ_1766020954167.png",
+    "QQ_1766020928124.png",
+    "QQ_1766020570746.png",
+    "QQ_1766020526283.png",
+    "local/杂记/考试/大三上/编译原理.md",
+    "local/杂记/考试/大三上/广辰编译原理.md",
+    "local/杂记/考试/大二",
+    "local/杂记/考试/大三上",
+    "local/杂记/考试/大二/面向对象.md",
+    "local/杂记/考试",
+    "local/杂记/考试/大二/数据库题目.md",
+    "blogs/note/前端/JS/继承与原型链.md",
+    "note/编程语言/前端语言/JavaScript/JavaScript学习/3.高级/继承与原型链.md",
+    "local/test/tempCodeRunnerFile.js",
+    "blogs/note/前端/JS/未命名.md",
+    "blogs/note/index.md",
+    "blogs/note/前端/JS",
+    "blogs/note/前端",
+    "note/编程语言/前端语言/JavaScript/JavaScript.md",
+    "blogs/note/计算机基础/数据结构与算法/算法/1.搜索/4.双指针.md",
+    "note/计算机知识/数据结构与算法/算法/1.搜索/3.重识搜索算法.md",
+    "note/计算机知识/数据结构与算法/算法/6.贪心/4.最大切分乘积问题.md",
+    "note/计算机知识/数据结构与算法/算法/6.贪心/3.最大容量问题.md",
+    "note/计算机知识/数据结构与算法/算法/6.贪心/2.分数背包问题.md",
+    "note/计算机知识/数据结构与算法/算法/7.数学运算/1.位运算.md",
+    "note/计算机知识/数据结构与算法/算法/6.贪心/1.贪心算法.md",
+    "note/计算机知识/数据结构与算法/算法/5.动态规划/7.编辑距离问题.md",
+    "note/计算机知识/数据结构与算法/算法/5.动态规划/5.完全背包问题.md",
+    "note/计算机知识/数据结构与算法/算法/5.动态规划/6.分数背包问题.md",
+    "note/计算机知识/数据结构与算法/算法/5.动态规划/4.0-1 背包问题.md",
+    "note/计算机知识/数据结构与算法/算法/5.动态规划/2.动态规划问题特性.md",
+    "note/计算机知识/数据结构与算法/算法/5.动态规划/3.动态规划解题思路.md",
+    "note/计算机知识/数据结构与算法/算法/7.数学运算",
+    "note/计算机知识/数据结构与算法/算法/6.贪心"
   ]
 }
