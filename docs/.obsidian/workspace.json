@@ -1,6 +1,6 @@
 {
   "main": {
-    "id": "2b63c844c431be84",
+    "id": "c1b8c8411aa36c42",
     "type": "split",
     "children": [
       {
@@ -28,15 +28,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "d33c24bd997a0633",
+    "id": "4e36ee019766a4f8",
     "type": "split",
     "children": [
       {
-        "id": "286624c0e7a77e1c",
+        "id": "ac5956c127a5725c",
         "type": "tabs",
         "children": [
           {
-            "id": "150e58ee8093b624",
+            "id": "dd32e8621a780f9c",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -49,12 +49,12 @@
             }
           },
           {
-            "id": "a886675256e53516",
+            "id": "9d2b7256b6e6f7ff",
             "type": "leaf",
             "state": {
               "type": "search",
               "state": {
-                "query": "单点登录",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -66,7 +66,7 @@
             }
           },
           {
-            "id": "73679bd1a27d051d",
+            "id": "6200dffd7b55113c",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -79,67 +79,82 @@
       }
     ],
     "direction": "horizontal",
-    "width": 323.5
+    "width": 300
   },
   "right": {
-    "id": "5a308f9d57a5daae",
+    "id": "414ae52dfc0c6d34",
     "type": "split",
     "children": [
       {
-        "id": "8fb960e95a459842",
+        "id": "8b4aeac4b573cd63",
         "type": "tabs",
         "children": [
           {
-            "id": "ee17eab705637203",
+            "id": "d5d5517870962e14",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "self/HTTP/MCP.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "MCP 的大纲"
+            }
+          },
+          {
+            "id": "ba905c57543dd88c",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "项目笔记/正式项目/UniversalAI/资源信息.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
                 "searchQuery": "",
                 "backlinkCollapsed": false,
-                "unlinkedCollapsed": false
+                "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "资源信息 的反向链接列表"
+              "title": "反向链接"
             }
           },
           {
-            "id": "48896ec729243976",
+            "id": "8a1d4655ad0522ca",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "项目笔记/正式项目/UniversalAI/资源信息.md",
                 "linksCollapsed": false,
-                "unlinkedCollapsed": false
+                "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "资源信息 的出链列表"
+              "title": "出链"
             }
           },
           {
-            "id": "769cc81ddc6cf0ee",
+            "id": "740c96176c48a0c0",
             "type": "leaf",
             "state": {
               "type": "tag",
               "state": {
-                "sortOrder": "alphabetical",
-                "useHierarchy": false
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-tags",
               "title": "标签"
             }
           },
           {
-            "id": "0dcb13761e661ed8",
+            "id": "07fa94e60be70143",
             "type": "leaf",
             "state": {
-              "type": "outline",
+              "type": "all-properties",
               "state": {
                 "file": "note/开发运维/数据库/Redis/Redis故障排查/微信支付XConfig Redis雪崩.md",
                 "followCursor": false,
@@ -163,13 +178,22 @@
               "icon": "lucide-archive",
               "title": "添加笔记属性"
             }
+          },
+          {
+            "id": "f1f0c223b98119da",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 347.5
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -179,9 +203,12 @@
       "obsidian-git:Open Git source control": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
-      "command-palette:打开命令面板": false
+      "command-palette:打开命令面板": false,
+      "obsidian-excalidraw-plugin:新建绘图文件": false,
+      "obsidian-git:Open Git source control": false
     }
   },
   "active": "22542ad07389b59e",
