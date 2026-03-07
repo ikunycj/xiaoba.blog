@@ -26,7 +26,6 @@ export default defineConfig({
         text: '分享',
         items: [
           { text: '分享推荐', link: '/share' },
-          { text: '网站导航', link: '/share/map' },
           { text: '博客建站', link: '/share/blogbuild/choose' },
           { text: '效率工具推荐', link: '/share/tools' },
           { text: '山大', link: '/share/sdu' },

@@ -29,13 +29,15 @@ features:
     linkText: 进入笔记
   - icon: 🛠️
     title: actionAgent 项目（研发中）
-    details: 正在持续开发迭代，记录进度与关键方案。
-    link: /projects
-    linkText: 查看进展
+    details: 面向自动化任务执行的 Agent 项目，聚焦工作流编排、工具调用与可观测性建设。
+    link: https://github.com/ikunycj/actionAgent
+    linkText: 查看 GitHub
+    target: _blank
+    rel: noopener noreferrer
   - icon: 🤝
     title: 友链分享
     details: 推荐优质站点与实用资源。
-    link: /share/map
+    link: /share
     linkText: 去逛逛
 ---
 

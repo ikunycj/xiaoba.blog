@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "note/开发运维/大前端/面经/JS/1.js八股(基础).md",
+                "file": "note/开发运维/大前端/面经/JS/2.js八股(数据类型).md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "1.js八股(基础)"
+              "title": "2.js八股(数据类型)"
             }
           }
         ]
@@ -95,13 +95,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "note/开发运维/大前端/面经/JS/1.js八股(基础).md",
+                "file": "note/开发运维/大前端/面经/JS/2.js八股(数据类型).md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "1.js八股(基础) 的大纲"
+              "title": "2.js八股(数据类型) 的大纲"
             }
           },
           {
@@ -210,6 +210,7 @@
   },
   "active": "22542ad07389b59e",
   "lastOpenFiles": [
+    "note/开发运维/大前端/面经/JS/1.js八股(基础).md",
     "blogs/home.md",
     "note/开发运维/数据库/Redis/Redis故障排查/微信支付XConfig Redis雪崩.md",
     "未命名.base",
@@ -253,7 +254,6 @@
     "note/计算机知识/数据结构与算法/算法/5.动态规划/6.分数背包问题.md",
     "note/计算机知识/数据结构与算法/算法/5.动态规划/4.0-1 背包问题.md",
     "note/计算机知识/数据结构与算法/算法/5.动态规划/2.动态规划问题特性.md",
-    "note/计算机知识/数据结构与算法/算法/5.动态规划/3.动态规划解题思路.md",
     "note/计算机知识/数据结构与算法/算法/7.数学运算",
     "note/计算机知识/数据结构与算法/算法/6.贪心"
   ]
