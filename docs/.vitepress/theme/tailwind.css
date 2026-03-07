@@ -14,6 +14,8 @@
   --xb-shadow: 0 18px 40px -26px rgba(15, 23, 42, 0.42);
   --xb-body-font: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
   --xb-display-font: "Trebuchet MS", "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --vp-nav-bg-color: rgba(255, 255, 255, 0.96);
+  --vp-nav-screen-bg-color: rgba(255, 255, 255, 0.98);
 }
 
 .dark {
@@ -26,6 +28,8 @@
   --xb-muted: #c1c9d6;
   --xb-border: #2d3748;
   --xb-shadow: 0 18px 40px -28px rgba(0, 0, 0, 0.62);
+  --vp-nav-bg-color: rgba(15, 21, 33, 0.95);
+  --vp-nav-screen-bg-color: rgba(15, 21, 33, 0.98);
 }
 
 body {
@@ -35,13 +39,15 @@ body {
 
 .VPContent {
   position: relative;
+  isolation: isolate;
 }
 
 .VPContent::before {
   content: "";
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: -1;
+  pointer-events: none;
   background:
     radial-gradient(circle at 8% 15%, rgba(56, 189, 248, 0.12), transparent 30%),
     radial-gradient(circle at 92% 10%, rgba(20, 184, 166, 0.12), transparent 28%),
@@ -198,5 +204,15 @@ body {
 
   .xb-kpi-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 960px) {
+  /* VitePress docs pages with sidebar keep nav wrapper transparent by default.
+     Fill the sidebar-layout nav container to avoid right-edge background bleed. */
+  .VPNavBar.has-sidebar,
+  .VPNavBar.has-sidebar .content,
+  .VPNavBar.has-sidebar .content-body {
+    background-color: var(--vp-nav-bg-color);
   }
 }
