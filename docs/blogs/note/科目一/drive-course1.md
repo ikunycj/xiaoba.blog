@@ -108,7 +108,6 @@ dateCreated: 2024-12-25T21:55:28.477Z
 
 # 知识图片
 
-
 ![](./img/8a0cdb0d71e61041f7fe1210e4caba77.jpeg)
 ![](./img/3047a8a0bc6993d0147743435433d1c6.jpeg)
 ![](./img//b4dd00ada05b188fc0ea061c7ce04207.jpeg)
@@ -118,7 +117,6 @@ dateCreated: 2024-12-25T21:55:28.477Z
 ![](./img//857b38c5d12008b15cdd933b79957fc6%201.jpeg)
 ![](./img/4502f59e10d4c8c70879de806d58c4e4%201.jpeg)
 ![](./img/ac8d1c00386579694bfea851213b567e.jpeg)
-
 
 # 基本知识
 ## **一、扣分**
