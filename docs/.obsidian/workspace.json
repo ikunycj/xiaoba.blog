@@ -4,22 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "ca4d0780ab788bbb",
+        "id": "b7ce05bf3b77264f",
         "type": "tabs",
         "children": [
           {
-            "id": "22542ad07389b59e",
+            "id": "6902a8f84581a146",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "note/开发运维/大前端/面经/JS/2.js八股(数据类型).md",
+                "file": "note/开发运维/大前端/面经/JS/4.js八股(this绑定).md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "2.js八股(数据类型)"
+              "title": "4.js八股(this绑定)"
             }
           }
         ]
@@ -95,13 +95,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "note/开发运维/大前端/面经/JS/2.js八股(数据类型).md",
+                "file": "note/开发运维/大前端/面经/JS/4.js八股(this绑定).md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "2.js八股(数据类型) 的大纲"
+              "title": "4.js八股(this绑定) 的大纲"
             }
           },
           {
@@ -208,53 +208,53 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "22542ad07389b59e",
+  "active": "6902a8f84581a146",
   "lastOpenFiles": [
-    "note/开发运维/大前端/面经/JS/1.js八股(基础).md",
-    "blogs/home.md",
-    "note/开发运维/数据库/Redis/Redis故障排查/微信支付XConfig Redis雪崩.md",
-    "未命名.base",
-    "local/杂记/考试/大三上/计网.md",
-    "note/开发运维/数据库/Redis/Redis故障排查",
-    "local/杂记/考试/大三上/最优化.md",
-    "QQ_1766020111367.png",
-    "QQ_1766023851260.png",
-    "QQ_1766022843782.png",
-    "QQ_1766022478916.png",
-    "QQ_1766022492885.png",
-    "QQ_1766022187275.png",
-    "QQ_1766020954167.png",
-    "QQ_1766020928124.png",
-    "QQ_1766020570746.png",
-    "QQ_1766020526283.png",
-    "local/杂记/考试/大三上/编译原理.md",
-    "local/杂记/考试/大三上/广辰编译原理.md",
-    "local/杂记/考试/大二",
-    "local/杂记/考试/大三上",
-    "local/杂记/考试/大二/面向对象.md",
-    "local/杂记/考试",
-    "local/杂记/考试/大二/数据库题目.md",
-    "blogs/note/前端/JS/继承与原型链.md",
-    "note/编程语言/前端语言/JavaScript/JavaScript学习/3.高级/继承与原型链.md",
-    "local/test/tempCodeRunnerFile.js",
-    "blogs/note/前端/JS/未命名.md",
-    "blogs/note/index.md",
-    "blogs/note/前端/JS",
-    "blogs/note/前端",
-    "note/编程语言/前端语言/JavaScript/JavaScript.md",
-    "blogs/note/计算机基础/数据结构与算法/算法/1.搜索/4.双指针.md",
-    "note/计算机知识/数据结构与算法/算法/1.搜索/3.重识搜索算法.md",
-    "note/计算机知识/数据结构与算法/算法/6.贪心/4.最大切分乘积问题.md",
-    "note/计算机知识/数据结构与算法/算法/6.贪心/3.最大容量问题.md",
-    "note/计算机知识/数据结构与算法/算法/6.贪心/2.分数背包问题.md",
-    "note/计算机知识/数据结构与算法/算法/7.数学运算/1.位运算.md",
-    "note/计算机知识/数据结构与算法/算法/6.贪心/1.贪心算法.md",
-    "note/计算机知识/数据结构与算法/算法/5.动态规划/7.编辑距离问题.md",
-    "note/计算机知识/数据结构与算法/算法/5.动态规划/5.完全背包问题.md",
-    "note/计算机知识/数据结构与算法/算法/5.动态规划/6.分数背包问题.md",
-    "note/计算机知识/数据结构与算法/算法/5.动态规划/4.0-1 背包问题.md",
-    "note/计算机知识/数据结构与算法/算法/5.动态规划/2.动态规划问题特性.md",
-    "note/计算机知识/数据结构与算法/算法/7.数学运算",
-    "note/计算机知识/数据结构与算法/算法/6.贪心"
+    "note/index.md",
+    "blogs/note/工具/GPT使用/assets/image-20231107174807-tovlqv8.png",
+    "blogs/note/工具/GPT使用/assets/image-20231107172859-ub1ngq3.png",
+    "blogs/note/工具/GPT使用/assets/image-20231108143333-d83qkip.png",
+    "blogs/note/工具/GPT使用/assets/image-20231107172803-kpg5pxd.png",
+    "blogs/note/工具/GPT使用/assets/image-20231107172719-ugb7t0p.png",
+    "blogs/note/工具/GPT使用/assets/image-20231107172642-x3108iy.png",
+    "blogs/note/工具/GPT使用/assets/image-20231107172531-7pqtl2p.png",
+    "blogs/note/工具/GPT使用/assets/image-20231107172442-2i9xd69.png",
+    "blogs/note/工具/GPT使用/assets/image-20231107171400-299vx98.png",
+    "blogs/note/工具/GPT使用/assets",
+    "blogs/note/计算机知识/计算机网络/网络协议/HTTP/9.HTTP 的重定向.md",
+    "blogs/note/计算机知识/计算机网络/网络协议/HTTP/8.HTTP 状态码.md",
+    "blogs/note/计算机知识/计算机网络/网络协议/HTTP/7.HTTP Cookie.md",
+    "blogs/note/计算机知识/计算机网络/网络协议/HTTP/6.HTTP身份验证.md",
+    "blogs/note/计算机知识/计算机网络/网络协议/HTTP/5.HTTP 消息结构.md",
+    "blogs/note/计算机知识/计算机网络/网络协议/HTTP/4.HTTP 缓存.md",
+    "blogs/note/计算机知识/计算机网络/网络协议/HTTP/3.HTTP 数据内容.md",
+    "blogs/note/计算机知识/计算机网络/网络协议/HTTP/2.HTTP 与 HTTPS.md",
+    "blogs/note/计算机知识/计算机网络/网络协议/HTTP/14.HTTP 安全.md",
+    "blogs/note/计算机知识/计算机网络/网络协议/HTTP/13.HTTP1.x 的连接管理.md",
+    "blogs/note/计算机知识/计算机网络/网络协议/HTTP/12.HTTP 请求.md",
+    "blogs/note/计算机知识/计算机网络/网络协议/HTTP/11.HTTP发展.md",
+    "blogs/note/计算机知识/计算机网络/网络协议/HTTP/1.HTTP概述.md",
+    "blogs/note/计算机知识/计算机网络/网络协议/WebSocket/WebSocket.md",
+    "blogs/note/计算机知识/计算机网络/网络协议/TCP.IP/TCP.md",
+    "blogs/note/计算机知识/数据结构与算法/算法/6.贪心/4.最大切分乘积问题.md",
+    "blogs/note/计算机知识/数据结构与算法/算法/6.贪心/3.最大容量问题.md",
+    "blogs/note/计算机知识/数据结构与算法/算法/7.数学运算/1.位运算.md",
+    "blogs/note/计算机知识/数据结构与算法/算法/6.贪心/2.分数背包问题.md",
+    "blogs/note/计算机知识/数据结构与算法/算法/3.分治/4.汉诺塔问题.md",
+    "blogs/note/计算机知识/数据结构与算法/算法/3.分治/3.构建二叉树问题.md",
+    "blogs/note/计算机知识/数据结构与算法/算法/6.贪心/1.贪心算法.md",
+    "blogs/note/计算机知识/数据结构与算法/算法/3.分治/2.分治搜索策略.md",
+    "blogs/note/计算机知识/数据结构与算法/算法/4.回溯/4.n 皇后问题.md",
+    "blogs/note/计算机知识/数据结构与算法/算法/4.回溯/3.子集和问题.md",
+    "blogs/note/计算机知识/计算机网络/网络协议/WebSocket",
+    "blogs/note/计算机知识/计算机网络/网络协议/TCP.IP",
+    "blogs/note/计算机知识/计算机网络/网络协议/HTTP",
+    "blogs/note/计算机知识/数据结构与算法/算法/7.数学运算",
+    "blogs/note/计算机知识/数据结构与算法/算法/6.贪心",
+    "blogs/note/计算机知识/数据结构与算法/算法/3.分治",
+    "blogs/note/计算机知识/数据结构与算法/算法/4.回溯",
+    "blogs/note/计算机知识/数据结构与算法/算法/5.动态规划",
+    "blogs/note/计算机知识/数据结构与算法/算法/2.排序",
+    "blogs/note/编程语言/Java/2.高级特性/6.面向对象/1.多态包权限final/img/多态练习的分析.png"
   ]
 }

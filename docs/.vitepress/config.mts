@@ -1,10 +1,55 @@
-﻿import { defineConfig } from 'vitepress'
+import { defineConfig } from 'vitepress'
 import { generateSidebar } from 'vitepress-sidebar'
+
+function sanitizeNoteMarkdown(content: string): string {
+  const withoutMarkdownImages = content
+    .replace(/!\[[^\]]*]\(([^)]+)\)/g, '')
+    .replace(/!\[\[([^[\]]+)\]\]/g, '')
+    .replace(
+      /\[([^\]]*)]\(([^)]+\.(?:png|jpe?g|gif|bmp|webp|svg)(?:[?#][^)]+)?)\)/gi,
+      '[$1](about:blank)'
+    )
+    .replace(/<img\b[^>]*>/gi, '')
+
+  const escapedAngleBrackets = withoutMarkdownImages.replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  const escapedProcessingInstruction = escapedAngleBrackets
+    .replace(/<\?/g, '&lt;?')
+    .replace(/\?>/g, '?&gt;')
+
+  const escapedInvalidTagLikeContent = escapedProcessingInstruction.replace(
+    /<([^>\n]+)>/g,
+    (match, innerRaw) => {
+      const inner = innerRaw.trim()
+      if (!inner) return '&lt;&gt;'
+      if (inner.startsWith('!--') && inner.endsWith('--')) return match
+      if (inner.startsWith('!DOCTYPE')) return match
+
+      const normalized = inner.startsWith('/') ? inner.slice(1).trim() : inner
+      const tagName = normalized.split(/\s+/)[0] || ''
+      if (!/^[A-Za-z][\w:-]*$/.test(tagName)) {
+        return `&lt;${innerRaw}&gt;`
+      }
+
+      return match
+    }
+  )
+
+  const escapedAttrs = escapedInvalidTagLikeContent.replace(
+    /\{([^{}\n]+)\}/g,
+    (_match, inner) => `&#123;${inner}&#125;`
+  )
+
+  return escapedAttrs.replace(/\{\{/g, '&#123;&#123;').replace(/\}\}/g, '&#125;&#125;')
+}
 
 export default defineConfig({
   title: '小八',
   description: '小八博客',
-  srcDir: './blogs',
+  srcDir: '.',
+  srcExclude: ['.obsidian/**', 'local/**', 'self/**'],
+  rewrites: {
+    'blogs/:path(.*)': ':path',
+  },
   head: [['link', { rel: 'icon', href: '/xiaoba-logo.png' }]],
 
   base: '/',
@@ -21,7 +66,7 @@ export default defineConfig({
     nav: [
       { text: '首页', link: '/home' },
       { text: '博客', link: '/blog/index' },
-      { text: '笔记', link: '/note/index' },
+      { text: '笔记', link: '/note/' },
       {
         text: '分享',
         items: [
@@ -36,7 +81,7 @@ export default defineConfig({
 
     sidebar: generateSidebar([
       {
-        documentRootPath: '/docs/blogs/note',
+        documentRootPath: '/docs/note',
         scanStartPath: '/',
         resolvePath: '/note/',
         useTitleFromFileHeading: false,
@@ -90,7 +135,25 @@ export default defineConfig({
 
   markdown: {
     math: true,
+    config(md) {
+      md.set({ linkify: false })
+    },
   },
 
-  vite: {},
+  vite: {
+    publicDir: 'blogs/public',
+    plugins: [
+      {
+        name: 'sanitize-note-md',
+        enforce: 'pre',
+        transform(code, id) {
+          const normalizedId = id.split('?')[0].replace(/\\/g, '/')
+          if (!normalizedId.endsWith('.md')) return null
+          if (!normalizedId.includes('/docs/note/')) return null
+          if (normalizedId.endsWith('/docs/note/index.md')) return null
+          return sanitizeNoteMarkdown(code)
+        },
+      },
+    ],
+  },
 })
