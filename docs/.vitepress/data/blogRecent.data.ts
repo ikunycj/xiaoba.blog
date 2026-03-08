@@ -14,6 +14,7 @@ export { data };
 
 const BLOG_ROOT = "/blog/";
 const NOTE_ROOT = "/note/";
+const MAX_RECENT_POSTS = 120;
 
 const isArticlePage = (url: string, root: string): boolean => {
   if (!url.startsWith(root)) {
@@ -108,6 +109,6 @@ export default createContentLoader("**/*.md", {
         };
       })
       .sort((a, b) => b.updated - a.updated)
-      .slice(0, 24);
+      .slice(0, MAX_RECENT_POSTS);
   },
 });

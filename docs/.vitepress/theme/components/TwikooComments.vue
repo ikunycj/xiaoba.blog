@@ -9,9 +9,11 @@
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useData, useRoute } from 'vitepress'
 import { loadTwikoo } from '../utils/twikoo'
+import { ensureTwikooEndpointReady } from '../utils/twikooEndpoint'
+import { setupTwikooProfileCache } from '../utils/twikooProfileCache'
 
 interface TwikooThemeConfig {
   envId?: string
@@ -23,6 +25,7 @@ const route = useRoute()
 const { frontmatter, theme } = useData()
 const containerRef = ref<HTMLElement | null>(null)
 let mountCounter = 0
+let stopProfileCache: (() => void) | null = null
 
 const twikooConfig = computed<TwikooThemeConfig>(() => {
   return ((theme.value as Record<string, unknown>).twikoo as TwikooThemeConfig) || {}
@@ -55,7 +58,11 @@ function showError(message: string): void {
 }
 
 async function mountComments(): Promise<void> {
-  if (!showComment.value || !containerRef.value) return
+  if (!showComment.value || !containerRef.value) {
+    stopProfileCache?.()
+    stopProfileCache = null
+    return
+  }
 
   const envId = normalizeEnvId(twikooConfig.value.envId || '')
   if (!envId) {
@@ -68,6 +75,7 @@ async function mountComments(): Promise<void> {
   containerRef.value.innerHTML = `<div id="${mountId}"></div>`
 
   try {
+    await ensureTwikooEndpointReady(envId)
     const twikoo = await loadTwikoo()
     if (currentMount !== mountCounter) return
 
@@ -78,6 +86,9 @@ async function mountComments(): Promise<void> {
       el: `#${mountId}`,
       path: normalizePath(route.path),
     })
+
+    stopProfileCache?.()
+    stopProfileCache = setupTwikooProfileCache(containerRef.value)
   } catch (error) {
     const message = error instanceof Error ? error.message : '评论加载失败'
     showError(message)
@@ -96,6 +107,11 @@ watch(
     await mountComments()
   }
 )
+
+onBeforeUnmount(() => {
+  stopProfileCache?.()
+  stopProfileCache = null
+})
 </script>
 
 <style scoped>
@@ -118,6 +134,31 @@ watch(
 
 .xb-comments__container {
   min-height: 220px;
+}
+
+.xb-comments__container :deep(.tk-meta-input) {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.55rem;
+}
+
+.xb-comments__container :deep(.tk-meta-input .tk-input),
+.xb-comments__container :deep(.tk-meta-input .el-input),
+.xb-comments__container :deep(.tk-meta-input input) {
+  width: 100%;
+  min-width: 0;
+}
+
+.xb-comments__container :deep(.tk-meta-input .el-input__inner),
+.xb-comments__container :deep(.tk-meta-input input) {
+  border-radius: 10px;
+  border: 1px solid var(--xb-border);
+  background: color-mix(in srgb, var(--xb-surface-soft) 70%, transparent 30%);
+}
+
+.xb-comments__container :deep(.tk-meta-input .el-input__prefix),
+.xb-comments__container :deep(.tk-meta-input .el-input__icon) {
+  color: var(--xb-accent-strong);
 }
 
 .xb-comments__error {

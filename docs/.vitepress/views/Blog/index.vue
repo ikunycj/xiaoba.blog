@@ -1,229 +1,776 @@
-<template>
-  <section class="xb-page blog-shell">
-    <header id="blog-intro" class="xb-hero">
-      <p class="xb-eyebrow">Blog Hub</p>
-      <h1>小八的博客</h1>
-      <p class="xb-muted">
-        这里持续记录技术学习与项目实践。顶部是我的个人博客卡牌，下面按最近更新时间展示文章卡片，方便快速浏览最新内容。
-      </p>
-      <div class="xb-chip-row">
-        <span class="xb-chip">最近更新 {{ recentPosts.length }} 篇</span>
-        <span class="xb-chip">专题目录 {{ catalogs.length }} 个</span>
-        <a class="xb-chip" :href="toPath('/note/index')">进入笔记总览</a>
-      </div>
-    </header>
-
-    <section class="blog-intro-cards">
-      <article v-for="card in introCards" :key="card.title" class="xb-card">
-        <p class="xb-eyebrow">{{ card.emoji }} {{ card.title }}</p>
-        <h3 class="mt-2 text-lg">{{ card.headline }}</h3>
-        <p class="mt-2 text-sm xb-muted">{{ card.desc }}</p>
-        <a class="mt-3 inline-block text-sm font-semibold" :href="toPath(card.link)">查看详情</a>
-      </article>
-    </section>
-
+﻿<template>
+  <section class="xb-page blog-page">
     <div class="blog-layout">
-      <aside class="blog-sidebar">
-        <div class="xb-card blog-dir-card">
-          <p class="xb-eyebrow">博客目录</p>
-          <a class="blog-dir-link" href="#recent-posts">
-            <span>最近更新</span>
-          </a>
-          <a class="blog-dir-link" href="#blog-intro">
-            <span>博客简介</span>
-          </a>
-          <a v-for="item in catalogs" :key="item.name" class="blog-dir-link" :href="toPath(item.link)">
-            <span>{{ item.name }}</span>
-            <span class="xb-muted">{{ item.count }}</span>
-          </a>
-        </div>
+      <aside class="blog-left">
+        <article class="xb-card profile-card">
+          <img class="profile-card__avatar" :src="avatarSrc" alt="小八头像" />
+          <p class="xb-eyebrow">Profile</p>
+          <h2>小八</h2>
+          <p class="xb-muted profile-card__intro">持续记录前端、工程化和真实项目里的可复用经验。</p>
+          <div class="profile-card__stats">
+            <div>
+              <strong>{{ allPosts.length }}</strong>
+              <span>文章</span>
+            </div>
+            <div>
+              <strong>{{ archiveBuckets.length - 1 }}</strong>
+              <span>归档</span>
+            </div>
+            <div>
+              <strong>{{ latestUpdatedText }}</strong>
+              <span>最近更新</span>
+            </div>
+          </div>
+          <div class="xb-chip-row profile-card__links">
+            <a class="xb-chip" :href="toPath('/home')">首页</a>
+            <a class="xb-chip" :href="toPath('/projects')">项目</a>
+            <a class="xb-chip" :href="toPath('/share')">分享</a>
+          </div>
+        </article>
+
+        <article class="xb-card archive-card">
+          <p class="xb-eyebrow">Timeline</p>
+          <h3>时间线归档</h3>
+          <ul class="archive-list">
+            <li v-for="bucket in archiveBuckets" :key="bucket.key">
+              <button
+                type="button"
+                class="archive-btn"
+                :class="{ 'archive-btn--active': selectedArchiveKey === bucket.key }"
+                @click="selectArchive(bucket.key)"
+              >
+                <span>{{ bucket.label }}</span>
+                <span class="xb-muted">{{ bucket.count }}</span>
+              </button>
+            </li>
+          </ul>
+        </article>
       </aside>
 
-      <main id="recent-posts" class="blog-main">
-        <header class="blog-main-header">
-          <p class="xb-eyebrow">Recent Updates</p>
-          <h2>最近更新文章</h2>
+      <main class="blog-main">
+        <header class="xb-hero blog-main__hero">
+          <p class="xb-eyebrow">Recent Posts</p>
+          <h1>最近发布</h1>
+          <p class="xb-muted">
+            当前筛选：{{ activeArchiveLabel }}，共 {{ filteredPosts.length }} 篇，按时间线分页展示。
+          </p>
+          <div class="xb-chip-row">
+            <span class="xb-chip">第 {{ currentPage }} / {{ totalPages }} 页</span>
+            <span class="xb-chip">每页 {{ PAGE_SIZE }} 篇</span>
+            <a class="xb-chip" :href="toPath('/note/index')">进入笔记总览</a>
+          </div>
         </header>
 
-        <div v-if="recentPosts.length === 0" class="xb-card">
-          <p class="xb-muted">当前还没有可展示的最近更新文章。</p>
+        <div v-if="pagedPosts.length === 0" class="xb-card">
+          <p class="xb-muted">当前没有符合筛选条件的文章。</p>
         </div>
 
         <div v-else class="blog-post-stack">
-          <article v-for="post in recentPosts" :key="post.url" class="xb-card post-card">
-            <div class="post-meta">
+          <article v-for="post in pagedPosts" :key="post.url" class="xb-card post-card">
+            <div class="post-card__meta">
               <span class="xb-tag">{{ post.section }}</span>
-              <span class="xb-muted">更新于 {{ post.updatedText }}</span>
+              <time class="xb-muted" :datetime="toIsoDate(post.updated)">{{ formatDate(post.updated) }}</time>
             </div>
-            <h3 class="mt-2 text-lg">{{ post.title }}</h3>
-            <p class="mt-2 text-sm xb-muted">{{ post.summary }}</p>
-            <a class="post-link" :href="toPath(post.url)">阅读全文</a>
+            <h2>{{ post.title }}</h2>
+            <p class="xb-muted">{{ post.summary }}</p>
+            <a class="post-card__link" :href="toPath(post.url)">阅读全文</a>
           </article>
         </div>
+
+        <nav class="xb-card pager" aria-label="博客分页">
+          <button type="button" class="pager-btn" :disabled="currentPage <= 1" @click="goPrevPage">
+            上一页
+          </button>
+          <span class="pager-text">第 {{ currentPage }} / {{ totalPages }} 页</span>
+          <button type="button" class="pager-btn" :disabled="currentPage >= totalPages" @click="goNextPage">
+            下一页
+          </button>
+        </nav>
       </main>
+
+      <aside class="blog-right">
+        <article class="xb-card recent-comments-card">
+          <p class="xb-eyebrow">Recent Comments</p>
+          <h3>最新评论</h3>
+          <p v-if="commentsLoading" class="xb-muted">最新评论加载中...</p>
+          <p v-else-if="commentsError" class="comment-error">{{ commentsError }}</p>
+          <ul v-else-if="latestComments.length" class="comment-list">
+            <li v-for="comment in latestComments" :key="comment.id" class="comment-item">
+              <p class="comment-item__text">{{ comment.summary }}</p>
+              <div class="comment-item__meta">
+                <span>{{ comment.nick }} · {{ comment.createdText }}</span>
+                <a :href="toPath(comment.url)">原文</a>
+              </div>
+            </li>
+          </ul>
+          <p v-else class="xb-muted">暂时还没有评论，欢迎抢沙发。</p>
+        </article>
+
+        <article class="xb-card global-comments-card">
+          <p class="xb-eyebrow">Global Comment</p>
+          <h3>全局评论</h3>
+          <p class="xb-muted">这里的留言会挂在博客首页（/blog/）下，适合站内公共讨论。</p>
+          <div ref="globalCommentRef" class="global-comments-card__mount" />
+        </article>
+      </aside>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-import { withBase } from "vitepress";
-import { data as posts } from "../../data/blogRecent.data";
-
-type IntroCard = {
-  emoji: string;
-  title: string;
-  headline: string;
-  desc: string;
-  link: string;
-};
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { useData, withBase } from 'vitepress'
+import { data as posts } from '../../data/blogRecent.data'
+import { loadTwikoo } from '../../theme/utils/twikoo'
+import { ensureTwikooEndpointReady } from '../../theme/utils/twikooEndpoint'
+import { setupTwikooProfileCache } from '../../theme/utils/twikooProfileCache'
 
 type RecentPost = {
-  title: string;
-  summary: string;
-  section: string;
-  url: string;
-  updatedText: string;
-};
+  title: string
+  summary: string
+  section: string
+  url: string
+  updated: number
+  updatedText: string
+}
 
-type Catalog = {
-  name: string;
-  count: number;
-  link: string;
-};
+type ArchiveBucket = {
+  key: string
+  label: string
+  count: number
+  latest: number
+}
 
-const introCards: IntroCard[] = [
-  {
-    emoji: "🧭",
-    title: "博客定位",
-    headline: "记录可复用的技术经验",
-    desc: "重点沉淀前端、工程化和项目实践过程中的可落地方法。",
-    link: "/blog/index",
-  },
-  {
-    emoji: "📅",
-    title: "更新节奏",
-    headline: "围绕真实项目持续更新",
-    desc: "每次迭代都同步整理关键思路，保证内容长期可维护。",
-    link: "/projects",
-  },
-  {
-    emoji: "🔍",
-    title: "阅读建议",
-    headline: "先看最近更新，再按专题深入",
-    desc: "左侧目录可快速跳转到高频专题，适合日常检索和复盘。",
-    link: "/note/index",
-  },
-];
+type TwikooThemeConfig = {
+  envId?: string
+  region?: string
+  lang?: string
+}
 
-const recentPosts = computed<RecentPost[]>(() => (posts as RecentPost[]).slice(0, 18));
+type RawRecentComment = {
+  id?: string
+  nick?: string
+  url?: string
+  commentText?: string
+  created?: string | number
+  createdAt?: string | number
+  created_at?: string | number
+  updated?: string | number
+}
 
-const catalogs = computed<Catalog[]>(() => {
-  const map = new Map<string, Catalog>();
+type RecentComment = {
+  id: string
+  nick: string
+  url: string
+  summary: string
+  createdText: string
+}
 
-  recentPosts.value.forEach((post) => {
-    const current = map.get(post.section);
+const PAGE_SIZE = 6
+const GLOBAL_COMMENT_PATH = '/blog/'
+
+const { theme } = useData()
+const avatarSrc = withBase('/xiaoba-smile.jpg')
+
+const selectedArchiveKey = ref('all')
+const currentPage = ref(1)
+
+const commentsLoading = ref(false)
+const commentsError = ref('')
+const latestComments = ref<RecentComment[]>([])
+const globalCommentRef = ref<HTMLElement | null>(null)
+let commentRefreshTimer: ReturnType<typeof setInterval> | null = null
+let mountVersion = 0
+let stopGlobalProfileCache: (() => void) | null = null
+
+const twikooConfig = computed<TwikooThemeConfig>(() => {
+  return ((theme.value as Record<string, unknown>).twikoo as TwikooThemeConfig) || {}
+})
+
+const allPosts = computed<RecentPost[]>(() => {
+  return (posts as RecentPost[]).filter((post) => typeof post.url === 'string' && post.url.length > 0)
+})
+
+const latestUpdatedText = computed(() => {
+  const latest = allPosts.value.find((post) => post.updated > 0)
+  return latest ? formatDate(latest.updated) : '未知'
+})
+
+const archiveBuckets = computed<ArchiveBucket[]>(() => {
+  const map = new Map<string, ArchiveBucket>()
+
+  allPosts.value.forEach((post) => {
+    const key = resolveArchiveKey(post.updated)
+    const current = map.get(key)
     if (current) {
-      current.count += 1;
-      return;
+      current.count += 1
+      if (post.updated > current.latest) current.latest = post.updated
+      return
     }
-    map.set(post.section, {
-      name: post.section,
+
+    map.set(key, {
+      key,
+      label: resolveArchiveLabel(key),
       count: 1,
-      link: post.url,
-    });
-  });
+      latest: post.updated,
+    })
+  })
 
-  return Array.from(map.values()).sort((a, b) => b.count - a.count);
-});
+  const buckets = Array.from(map.values()).sort((a, b) => {
+    if (a.key === 'unknown') return 1
+    if (b.key === 'unknown') return -1
+    return b.latest - a.latest
+  })
 
-const toPath = (path: string): string => withBase(encodeURI(path));
+  return [
+    {
+      key: 'all',
+      label: '全部',
+      count: allPosts.value.length,
+      latest: allPosts.value[0]?.updated || 0,
+    },
+    ...buckets,
+  ]
+})
+
+const activeArchiveLabel = computed(() => {
+  const current = archiveBuckets.value.find((item) => item.key === selectedArchiveKey.value)
+  return current?.label || '全部'
+})
+
+const filteredPosts = computed<RecentPost[]>(() => {
+  if (selectedArchiveKey.value === 'all') return allPosts.value
+  return allPosts.value.filter((post) => resolveArchiveKey(post.updated) === selectedArchiveKey.value)
+})
+
+const totalPages = computed(() => {
+  return Math.max(1, Math.ceil(filteredPosts.value.length / PAGE_SIZE))
+})
+
+const pagedPosts = computed<RecentPost[]>(() => {
+  const start = (currentPage.value - 1) * PAGE_SIZE
+  return filteredPosts.value.slice(start, start + PAGE_SIZE)
+})
+
+watch(selectedArchiveKey, () => {
+  currentPage.value = 1
+})
+
+watch(
+  () => filteredPosts.value.length,
+  () => {
+    if (currentPage.value > totalPages.value) {
+      currentPage.value = totalPages.value
+    }
+  }
+)
+
+watch(
+  () => [twikooConfig.value.envId, twikooConfig.value.region, twikooConfig.value.lang],
+  async () => {
+    await nextTick()
+    await Promise.all([refreshLatestComments(), mountGlobalComments()])
+  }
+)
+
+function selectArchive(key: string): void {
+  selectedArchiveKey.value = key
+}
+
+function goPrevPage(): void {
+  currentPage.value = Math.max(1, currentPage.value - 1)
+}
+
+function goNextPage(): void {
+  currentPage.value = Math.min(totalPages.value, currentPage.value + 1)
+}
+
+function normalizeEnvId(envId: string): string {
+  const trimmed = envId.trim()
+  if (!/^https?:\/\//i.test(trimmed)) return trimmed
+  return trimmed.replace(/\/+$/, '')
+}
+
+function resolveArchiveKey(timestamp: number): string {
+  if (!timestamp) return 'unknown'
+  const date = new Date(timestamp)
+  if (!Number.isFinite(date.getTime())) return 'unknown'
+  const month = `${date.getMonth() + 1}`.padStart(2, '0')
+  return `${date.getFullYear()}-${month}`
+}
+
+function resolveArchiveLabel(key: string): string {
+  if (key === 'unknown') return '未知时间'
+  const [year, month] = key.split('-')
+  return `${year}年${month}月`
+}
+
+function formatDate(timestamp: number): string {
+  if (!timestamp) return '未知时间'
+  return new Date(timestamp).toLocaleDateString('zh-CN', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  })
+}
+
+function toIsoDate(timestamp: number): string {
+  if (!timestamp) return ''
+  return new Date(timestamp).toISOString()
+}
+
+function normalizePath(url: string): string {
+  if (!url) return '/'
+
+  if (/^https?:\/\//i.test(url)) {
+    try {
+      const parsed = new URL(url)
+      return parsed.pathname || '/'
+    } catch {
+      return '/'
+    }
+  }
+
+  const plain = url.split('#')[0].split('?')[0]
+  return plain.startsWith('/') ? plain : `/${plain}`
+}
+
+function stripHtml(value: string): string {
+  return value.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
+}
+
+function summarizeComment(value: string): string {
+  const clean = stripHtml(value || '')
+  if (clean.length <= 100) return clean
+  return `${clean.slice(0, 100)}...`
+}
+
+function resolveCommentTimestamp(input: RawRecentComment): number {
+  const candidate = input.created ?? input.createdAt ?? input.created_at ?? input.updated
+  if (typeof candidate === 'number') return candidate
+  if (typeof candidate === 'string') {
+    const parsed = new Date(candidate).getTime()
+    if (Number.isFinite(parsed)) return parsed
+  }
+  return 0
+}
+
+function formatCommentDate(value: number): string {
+  if (!value) return '刚刚'
+  return new Date(value).toLocaleString('zh-CN', {
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+  })
+}
+
+function toPath(path: string): string {
+  return withBase(encodeURI(path))
+}
+
+function showGlobalCommentMessage(message: string, isError = false): void {
+  if (!globalCommentRef.value) return
+  const p = document.createElement('p')
+  p.className = isError ? 'global-comments-card__error' : 'global-comments-card__tip'
+  p.textContent = message
+  globalCommentRef.value.innerHTML = ''
+  globalCommentRef.value.appendChild(p)
+}
+
+async function refreshLatestComments(): Promise<void> {
+  const envId = normalizeEnvId(twikooConfig.value.envId || '')
+  if (!envId) {
+    commentsError.value = '缺少评论配置：请在 themeConfig.twikoo.envId 中填写服务地址。'
+    latestComments.value = []
+    return
+  }
+
+  commentsLoading.value = true
+  commentsError.value = ''
+
+  try {
+    await ensureTwikooEndpointReady(envId)
+    const twikoo = await loadTwikoo()
+    const result = await twikoo.getRecentComments({
+      envId,
+      region: twikooConfig.value.region || undefined,
+      pageSize: 8,
+      includeReply: false,
+    })
+
+    latestComments.value = (Array.isArray(result) ? result : [])
+      .map((item) => item as RawRecentComment)
+      .filter((item) => typeof item.id === 'string' && item.id.length > 0)
+      .map((item) => {
+        const timestamp = resolveCommentTimestamp(item)
+        return {
+          id: item.id || '',
+          nick: item.nick || '匿名用户',
+          url: normalizePath(item.url || '/blog/'),
+          summary: summarizeComment(item.commentText || '') || '（该评论仅包含附件或链接）',
+          createdText: formatCommentDate(timestamp),
+        }
+      })
+  } catch (error) {
+    const message = error instanceof Error ? error.message : '最新评论加载失败，请稍后重试。'
+    commentsError.value = message
+    latestComments.value = []
+  } finally {
+    commentsLoading.value = false
+  }
+}
+
+async function mountGlobalComments(): Promise<void> {
+  if (!globalCommentRef.value) {
+    stopGlobalProfileCache?.()
+    stopGlobalProfileCache = null
+    return
+  }
+
+  const envId = normalizeEnvId(twikooConfig.value.envId || '')
+  if (!envId) {
+    stopGlobalProfileCache?.()
+    stopGlobalProfileCache = null
+    showGlobalCommentMessage('缺少评论配置：请先设置 twikoo 的 envId。', true)
+    return
+  }
+
+  const currentMount = ++mountVersion
+  const mountId = `twikoo-blog-global-${currentMount}`
+  globalCommentRef.value.innerHTML = `<div id="${mountId}"></div>`
+
+  try {
+    await ensureTwikooEndpointReady(envId)
+    const twikoo = await loadTwikoo()
+    if (currentMount !== mountVersion) return
+
+    await twikoo.init({
+      envId,
+      region: twikooConfig.value.region || undefined,
+      lang: twikooConfig.value.lang || 'zh-CN',
+      el: `#${mountId}`,
+      path: GLOBAL_COMMENT_PATH,
+    })
+
+    stopGlobalProfileCache?.()
+    stopGlobalProfileCache = setupTwikooProfileCache(globalCommentRef.value)
+  } catch (error) {
+    const message = error instanceof Error ? error.message : '全局评论加载失败'
+    showGlobalCommentMessage(message, true)
+  }
+}
+
+onMounted(async () => {
+  await Promise.all([refreshLatestComments(), mountGlobalComments()])
+  commentRefreshTimer = setInterval(() => {
+    void refreshLatestComments()
+  }, 60_000)
+})
+
+onBeforeUnmount(() => {
+  mountVersion += 1
+  if (commentRefreshTimer) {
+    clearInterval(commentRefreshTimer)
+    commentRefreshTimer = null
+  }
+  stopGlobalProfileCache?.()
+  stopGlobalProfileCache = null
+})
 </script>
 
 <style scoped>
-.blog-intro-cards {
-  margin-top: 1rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 0.85rem;
+.blog-page {
+  width: calc(100% - 1.25rem);
+  max-width: none;
+  overflow-x: clip;
+  margin-bottom: 4rem;
 }
 
 .blog-layout {
-  margin-top: 1rem;
   display: grid;
-  grid-template-columns: 250px minmax(0, 1fr);
+  grid-template-columns: 250px minmax(0, 1fr) 300px;
   gap: 1rem;
   align-items: start;
 }
 
-.blog-sidebar {
+.blog-left,
+.blog-right {
   position: sticky;
   top: calc(var(--vp-nav-height) + 24px);
+  display: grid;
+  gap: 0.9rem;
 }
 
-.blog-dir-card {
-  padding: 0.9rem;
+.blog-right {
+  min-width: 0;
 }
 
-.blog-dir-link {
+.profile-card__avatar {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid color-mix(in srgb, var(--xb-accent) 45%, var(--xb-border) 55%);
+  margin-bottom: 0.7rem;
+}
+
+.profile-card h2,
+.archive-card h3,
+.recent-comments-card h3,
+.global-comments-card h3 {
+  margin-top: 0.4rem;
+  font-size: 1.12rem;
+}
+
+.profile-card__intro {
+  margin-top: 0.45rem;
+  font-size: 0.92rem;
+}
+
+.profile-card__stats {
+  margin-top: 0.85rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.profile-card__stats div {
+  border-radius: 12px;
+  border: 1px dashed var(--xb-border);
+  padding: 0.45rem;
+  background: color-mix(in srgb, var(--xb-accent-soft) 35%, transparent 65%);
+}
+
+.profile-card__stats strong {
+  display: block;
+  font-size: 0.95rem;
+}
+
+.profile-card__stats span {
+  font-size: 0.75rem;
+  color: var(--xb-muted);
+}
+
+.profile-card__links .xb-chip {
+  font-size: 0.76rem;
+  padding: 0.34rem 0.6rem;
+}
+
+.archive-list {
+  margin-top: 0.7rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.archive-btn {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 0.55rem;
-  padding: 0.5rem 0.65rem;
+  padding: 0.48rem 0.62rem;
   border-radius: 10px;
   border: 1px solid var(--xb-border);
-  background: color-mix(in srgb, var(--xb-surface-soft) 75%, transparent 25%);
-  font-size: 0.88rem;
-  transition: background 0.2s ease, transform 0.2s ease;
+  background: color-mix(in srgb, var(--xb-surface-soft) 80%, transparent 20%);
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
-.blog-dir-link:hover {
+.archive-btn:hover {
   transform: translateY(-1px);
-  background: color-mix(in srgb, var(--xb-accent-soft) 45%, transparent 55%);
+  border-color: color-mix(in srgb, var(--xb-accent) 35%, var(--xb-border) 65%);
+}
+
+.archive-btn--active {
+  border-color: color-mix(in srgb, var(--xb-accent) 55%, var(--xb-border) 45%);
+  background: color-mix(in srgb, var(--xb-accent-soft) 62%, transparent 38%);
 }
 
 .blog-main {
   min-width: 0;
 }
 
-.blog-main-header h2 {
-  margin-top: 0.45rem;
-  font-size: clamp(1.3rem, 3.2vw, 1.9rem);
+.blog-main__hero p {
+  max-width: 46rem;
 }
 
 .blog-post-stack {
-  margin-top: 0.8rem;
+  margin-top: 0.95rem;
   display: grid;
   gap: 0.85rem;
 }
 
-.post-card {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
+.post-card h2 {
+  margin-top: 0.45rem;
+  font-size: 1.06rem;
 }
 
-.post-meta {
+.post-card__meta {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
   flex-wrap: wrap;
+  gap: 0.45rem;
 }
 
-.post-link {
-  margin-top: 0.35rem;
+.post-card__link {
+  margin-top: 0.3rem;
   width: fit-content;
   font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.pager {
+  margin-top: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.pager-btn {
+  border-radius: 10px;
+  border: 1px solid var(--xb-border);
+  background: color-mix(in srgb, var(--xb-accent-soft) 50%, transparent 50%);
+  padding: 0.42rem 0.75rem;
+  font-size: 0.86rem;
   font-weight: 600;
 }
 
-@media (max-width: 960px) {
+.pager-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.pager-text {
+  font-size: 0.86rem;
+  color: var(--xb-muted);
+}
+
+.comment-list {
+  margin-top: 0.75rem;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.comment-item {
+  border-radius: 12px;
+  border: 1px solid var(--xb-border);
+  padding: 0.56rem;
+  background: color-mix(in srgb, var(--xb-surface-soft) 68%, transparent 32%);
+}
+
+.comment-item__text {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.42;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.comment-item__meta {
+  margin-top: 0.45rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.74rem;
+  color: var(--xb-muted);
+}
+
+.comment-item__meta a {
+  font-weight: 600;
+}
+
+.comment-error {
+  margin-top: 0.5rem;
+  border-radius: 10px;
+  border: 1px dashed var(--vp-c-danger-1);
+  padding: 0.6rem;
+  color: var(--vp-c-danger-1);
+  font-size: 0.86rem;
+}
+
+.global-comments-card__mount {
+  min-height: 240px;
+  margin-top: 0.75rem;
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+.global-comments-card__tip,
+.global-comments-card__error {
+  border-radius: 10px;
+  border: 1px dashed var(--xb-border);
+  padding: 0.65rem;
+  font-size: 0.86rem;
+}
+
+.global-comments-card__error {
+  border-color: var(--vp-c-danger-1);
+  color: var(--vp-c-danger-1);
+}
+
+:deep(.tk-comments-container),
+:deep(.tk-comments),
+:deep(.tk-main),
+:deep(.tk-content),
+:deep(.tk-row),
+:deep(.tk-meta-input),
+:deep(.tk-preview-container),
+:deep(.tk-input),
+:deep(.tk-editor),
+:deep(.tk-submit),
+:deep(.el-input),
+:deep(.el-textarea) {
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+:deep(.tk-meta-input) {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.55rem;
+}
+
+:deep(.tk-meta-input .tk-input),
+:deep(.tk-meta-input .el-input),
+:deep(.tk-meta-input input) {
+  width: 100%;
+  min-width: 0;
+}
+
+:deep(.tk-meta-input .el-input__inner),
+:deep(.tk-meta-input input) {
+  border-radius: 10px;
+  border: 1px solid var(--xb-border);
+  background: color-mix(in srgb, var(--xb-surface-soft) 72%, transparent 28%);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+:deep(.tk-meta-input .el-input__inner:focus),
+:deep(.tk-meta-input input:focus) {
+  border-color: color-mix(in srgb, var(--xb-accent) 55%, var(--xb-border) 45%);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--xb-accent-soft) 52%, transparent 48%);
+}
+
+:deep(.tk-meta-input .el-input__prefix),
+:deep(.tk-meta-input .el-input__icon) {
+  color: var(--xb-accent-strong);
+}
+
+@media (max-width: 1200px) {
+  .blog-layout {
+    grid-template-columns: 220px minmax(0, 1fr) 280px;
+  }
+}
+
+@media (max-width: 1024px) {
   .blog-layout {
     grid-template-columns: 1fr;
   }
 
-  .blog-sidebar {
+  .blog-left,
+  .blog-right {
     position: static;
   }
 }
