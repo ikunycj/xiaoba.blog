@@ -107,9 +107,12 @@
         </article>
 
         <article class="xb-card global-comments-card">
-          <p class="xb-eyebrow">Global Comment</p>
-          <h3>全局评论</h3>
-          <p class="xb-muted">这里的留言会挂在博客首页（/blog/）下，适合站内公共讨论。</p>
+          <p class="xb-eyebrow">Comment</p>
+          <h3>留言评论</h3>
+          <p v-if="globalCommentError" class="global-comments-card__error">{{ globalCommentError }}</p>
+          <p v-else-if="globalCommentLoading && !globalCommentMounted" class="xb-muted global-comments-card__tip">
+            评论区加载中...
+          </p>
           <div ref="globalCommentRef" class="global-comments-card__mount" />
         </article>
       </aside>
@@ -169,7 +172,6 @@ type RecentComment = {
 
 const PAGE_SIZE = 6
 const GLOBAL_COMMENT_PATH = '/blog/'
-
 const { theme } = useData()
 const avatarSrc = withBase('/xiaoba-smile.jpg')
 
@@ -179,9 +181,12 @@ const currentPage = ref(1)
 const commentsLoading = ref(false)
 const commentsError = ref('')
 const latestComments = ref<RecentComment[]>([])
-const globalCommentRef = ref<HTMLElement | null>(null)
 let commentRefreshTimer: ReturnType<typeof setInterval> | null = null
-let mountVersion = 0
+const globalCommentRef = ref<HTMLElement | null>(null)
+const globalCommentLoading = ref(false)
+const globalCommentError = ref('')
+const globalCommentMounted = ref(false)
+let globalCommentMountVersion = 0
 let stopGlobalProfileCache: (() => void) | null = null
 
 const twikooConfig = computed<TwikooThemeConfig>(() => {
@@ -268,9 +273,9 @@ watch(
 
 watch(
   () => [twikooConfig.value.envId, twikooConfig.value.region, twikooConfig.value.lang],
-  async () => {
-    await nextTick()
-    await Promise.all([refreshLatestComments(), mountGlobalComments()])
+  () => {
+    void refreshLatestComments()
+    void mountGlobalComments()
   }
 )
 
@@ -370,13 +375,9 @@ function toPath(path: string): string {
   return withBase(encodeURI(path))
 }
 
-function showGlobalCommentMessage(message: string, isError = false): void {
-  if (!globalCommentRef.value) return
-  const p = document.createElement('p')
-  p.className = isError ? 'global-comments-card__error' : 'global-comments-card__tip'
-  p.textContent = message
-  globalCommentRef.value.innerHTML = ''
-  globalCommentRef.value.appendChild(p)
+function cleanupGlobalProfileCache(): void {
+  stopGlobalProfileCache?.()
+  stopGlobalProfileCache = null
 }
 
 async function refreshLatestComments(): Promise<void> {
@@ -422,28 +423,30 @@ async function refreshLatestComments(): Promise<void> {
 }
 
 async function mountGlobalComments(): Promise<void> {
-  if (!globalCommentRef.value) {
-    stopGlobalProfileCache?.()
-    stopGlobalProfileCache = null
+  const mountContainer = globalCommentRef.value
+  if (!mountContainer) {
+    cleanupGlobalProfileCache()
     return
   }
 
   const envId = normalizeEnvId(twikooConfig.value.envId || '')
   if (!envId) {
-    stopGlobalProfileCache?.()
-    stopGlobalProfileCache = null
-    showGlobalCommentMessage('缺少评论配置：请先设置 twikoo 的 envId。', true)
+    globalCommentError.value = '缺少评论配置：请在 themeConfig.twikoo.envId 中填写服务地址。'
+    cleanupGlobalProfileCache()
     return
   }
 
-  const currentMount = ++mountVersion
-  const mountId = `twikoo-blog-global-${currentMount}`
-  globalCommentRef.value.innerHTML = `<div id="${mountId}"></div>`
+  const currentVersion = ++globalCommentMountVersion
+  const mountId = `blog-global-comment-${currentVersion}`
+  mountContainer.innerHTML = `<div id="${mountId}"></div>`
+  globalCommentLoading.value = true
+  globalCommentError.value = ''
+  globalCommentMounted.value = false
 
   try {
     await ensureTwikooEndpointReady(envId)
     const twikoo = await loadTwikoo()
-    if (currentMount !== mountVersion) return
+    if (currentVersion !== globalCommentMountVersion) return
 
     await twikoo.init({
       envId,
@@ -453,28 +456,33 @@ async function mountGlobalComments(): Promise<void> {
       path: GLOBAL_COMMENT_PATH,
     })
 
-    stopGlobalProfileCache?.()
-    stopGlobalProfileCache = setupTwikooProfileCache(globalCommentRef.value)
+    cleanupGlobalProfileCache()
+    stopGlobalProfileCache = setupTwikooProfileCache(mountContainer, `xb:twikoo:profile:${GLOBAL_COMMENT_PATH}`)
+    globalCommentMounted.value = true
   } catch (error) {
-    showGlobalCommentMessage(formatTwikooError(error, envId), true)
+    globalCommentError.value = formatTwikooError(error, envId)
+    globalCommentMounted.value = false
+    cleanupGlobalProfileCache()
+  } finally {
+    globalCommentLoading.value = false
   }
 }
 
 onMounted(async () => {
-  await Promise.all([refreshLatestComments(), mountGlobalComments()])
+  await refreshLatestComments()
+  await nextTick()
+  await mountGlobalComments()
   commentRefreshTimer = setInterval(() => {
     void refreshLatestComments()
   }, 60_000)
 })
 
 onBeforeUnmount(() => {
-  mountVersion += 1
   if (commentRefreshTimer) {
     clearInterval(commentRefreshTimer)
     commentRefreshTimer = null
   }
-  stopGlobalProfileCache?.()
-  stopGlobalProfileCache = null
+  cleanupGlobalProfileCache()
 })
 </script>
 
@@ -688,73 +696,74 @@ onBeforeUnmount(() => {
   font-size: 0.86rem;
 }
 
+.global-comments-card__tip {
+  margin-top: 0.45rem;
+  font-size: 0.84rem;
+}
+
+.global-comments-card__error {
+  margin-top: 0.5rem;
+  border-radius: 10px;
+  border: 1px dashed var(--vp-c-danger-1);
+  padding: 0.6rem;
+  color: var(--vp-c-danger-1);
+  font-size: 0.84rem;
+}
+
 .global-comments-card__mount {
-  min-height: 240px;
-  margin-top: 0.75rem;
+  margin-top: 0.65rem;
+  min-height: 220px;
   min-width: 0;
   overflow-x: hidden;
 }
 
-.global-comments-card__tip,
-.global-comments-card__error {
-  border-radius: 10px;
-  border: 1px dashed var(--xb-border);
-  padding: 0.65rem;
-  font-size: 0.86rem;
-}
-
-.global-comments-card__error {
-  border-color: var(--vp-c-danger-1);
-  color: var(--vp-c-danger-1);
-}
-
-:deep(.tk-comments-container),
-:deep(.tk-comments),
-:deep(.tk-main),
-:deep(.tk-content),
-:deep(.tk-row),
-:deep(.tk-meta-input),
-:deep(.tk-preview-container),
-:deep(.tk-input),
-:deep(.tk-editor),
-:deep(.tk-submit),
-:deep(.el-input),
-:deep(.el-textarea) {
-  max-width: 100%;
-  min-width: 0;
-  box-sizing: border-box;
-}
-
-:deep(.tk-meta-input) {
+.global-comments-card__mount :deep(.tk-meta-input) {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.55rem;
+  gap: 0.56rem;
 }
 
-:deep(.tk-meta-input .tk-input),
-:deep(.tk-meta-input .el-input),
-:deep(.tk-meta-input input) {
+.global-comments-card__mount :deep(.tk-meta-input > *),
+.global-comments-card__mount :deep(.tk-meta-input .tk-meta-input-item),
+.global-comments-card__mount :deep(.tk-meta-input .tk-input),
+.global-comments-card__mount :deep(.tk-meta-input .el-input) {
+  margin-left: 0 !important;
+}
+
+.global-comments-card__mount :deep(.tk-meta-input .tk-input),
+.global-comments-card__mount :deep(.tk-meta-input .el-input),
+.global-comments-card__mount :deep(.tk-meta-input input) {
   width: 100%;
   min-width: 0;
 }
 
-:deep(.tk-meta-input .el-input__inner),
-:deep(.tk-meta-input input) {
+.global-comments-card__mount :deep(.tk-meta-input .el-input__inner),
+.global-comments-card__mount :deep(.tk-meta-input input) {
   border-radius: 10px;
   border: 1px solid var(--xb-border);
   background: color-mix(in srgb, var(--xb-surface-soft) 72%, transparent 28%);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  min-height: 40px;
+  height: 40px;
+  line-height: 40px;
+  box-sizing: border-box;
 }
 
-:deep(.tk-meta-input .el-input__inner:focus),
-:deep(.tk-meta-input input:focus) {
-  border-color: color-mix(in srgb, var(--xb-accent) 55%, var(--xb-border) 45%);
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--xb-accent-soft) 52%, transparent 48%);
+.global-comments-card__mount :deep(.tk-meta-input .el-input__inner) {
+  padding-left: 2.15rem;
 }
 
-:deep(.tk-meta-input .el-input__prefix),
-:deep(.tk-meta-input .el-input__icon) {
+.global-comments-card__mount :deep(.tk-meta-input .el-input__prefix) {
+  left: 0.7rem;
+  width: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--xb-accent-strong);
+}
+
+.global-comments-card__mount :deep(.tk-meta-input .el-input__icon) {
+  line-height: 1;
+  font-size: 0.92rem;
 }
 
 @media (max-width: 1200px) {

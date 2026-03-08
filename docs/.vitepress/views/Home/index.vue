@@ -37,12 +37,19 @@
       <p v-else>暂无评论。先到文章页发布第一条留言吧。</p>
     </div>
   </section>
+
+  <FloatingCommentCard
+    comment-path="/home/"
+    title="首页留言卡片"
+    description="支持 Markdown。填写昵称、QQ 邮箱、网址后将自动记忆。"
+  />
 </template>
 
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useData } from 'vitepress'
 import { loadTwikoo } from '../../theme/utils/twikoo'
+import FloatingCommentCard from '../../theme/components/FloatingCommentCard.vue'
 
 interface TwikooThemeConfig {
   envId?: string
@@ -79,6 +86,8 @@ const { theme } = useData()
 const HOME_FOOTER_HIDE_CLASS = 'xb-home-no-footer'
 const MAX_VISIBLE_BUBBLES = 6
 const FLOATING_TICK_MS = 1_800
+const BUBBLE_SIDE_GUTTER_PX = 12
+const BUBBLE_DRIFT_GUARD_PX = 24
 const loading = ref(false)
 const comments = ref<StreamItem[]>([])
 const floatingItems = ref<FloatingItem[]>([])
@@ -103,14 +112,15 @@ const sourceComments = computed<StreamItem[]>(() => {
 function createFloatingItem(base: StreamItem): FloatingItem {
   const stamp = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`
   const seed = hashCode(`${base.id}-${stamp}`)
+  const width = 220 + (seed % 110)
 
   return {
     ...base,
     renderKey: `${base.id}-${stamp}`,
-    left: 6 + (seed % 86),
+    left: resolveSafeLeft(width),
     delay: Number(((seed % 7) / 10).toFixed(2)),
     duration: 10 + (seed % 7),
-    width: 220 + (seed % 110),
+    width,
     opacity: Number((0.45 + (seed % 28) / 100).toFixed(2)),
     drift: ((Math.floor(seed / 11) % 36) - 18),
   }
@@ -175,6 +185,18 @@ function hashCode(input: string): number {
     hash = (hash * 31 + input.charCodeAt(i)) >>> 0
   }
   return hash
+}
+
+function resolveSafeLeft(width: number): number {
+  if (typeof window === 'undefined') return 50
+
+  const viewportWidth = Math.max(window.innerWidth || 0, 320)
+  const bubbleWidth = Math.min(width, viewportWidth * 0.86)
+  const safePadding = BUBBLE_SIDE_GUTTER_PX + BUBBLE_DRIFT_GUARD_PX
+  const minLeft = safePadding
+  const maxLeft = Math.max(minLeft, viewportWidth - bubbleWidth - safePadding)
+  const leftPx = minLeft + Math.random() * Math.max(0, maxLeft - minLeft)
+  return Number(((leftPx / viewportWidth) * 100).toFixed(2))
 }
 
 function normalizePath(url: string): string {
@@ -315,7 +337,7 @@ onBeforeUnmount(() => {
 
 .xb-comment-bubble {
   position: absolute;
-  left: var(--xb-left);
+  left: clamp(1rem, var(--xb-left), calc(100% - min(86vw, var(--xb-width)) - 1rem));
   bottom: -160px;
   width: min(86vw, var(--xb-width));
   padding: 0.72rem 0.82rem;
@@ -431,3 +453,5 @@ onBeforeUnmount(() => {
   }
 }
 </style>
+
+

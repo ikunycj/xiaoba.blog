@@ -142,6 +142,13 @@ onBeforeUnmount(() => {
   gap: 0.55rem;
 }
 
+.xb-comments__container :deep(.tk-meta-input > *),
+.xb-comments__container :deep(.tk-meta-input .tk-meta-input-item),
+.xb-comments__container :deep(.tk-meta-input .tk-input),
+.xb-comments__container :deep(.tk-meta-input .el-input) {
+  margin-left: 0 !important;
+}
+
 .xb-comments__container :deep(.tk-meta-input .tk-input),
 .xb-comments__container :deep(.tk-meta-input .el-input),
 .xb-comments__container :deep(.tk-meta-input input) {
@@ -154,11 +161,32 @@ onBeforeUnmount(() => {
   border-radius: 10px;
   border: 1px solid var(--xb-border);
   background: color-mix(in srgb, var(--xb-surface-soft) 70%, transparent 30%);
+  min-height: 40px;
+  height: 40px;
+  line-height: 40px;
+  box-sizing: border-box;
 }
 
 .xb-comments__container :deep(.tk-meta-input .el-input__prefix),
 .xb-comments__container :deep(.tk-meta-input .el-input__icon) {
   color: var(--xb-accent-strong);
+}
+
+.xb-comments__container :deep(.tk-meta-input .el-input__inner) {
+  padding-left: 2.15rem;
+}
+
+.xb-comments__container :deep(.tk-meta-input .el-input__prefix) {
+  left: 0.7rem;
+  width: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.xb-comments__container :deep(.tk-meta-input .el-input__icon) {
+  line-height: 1;
+  font-size: 0.92rem;
 }
 
 .xb-comments__error {
