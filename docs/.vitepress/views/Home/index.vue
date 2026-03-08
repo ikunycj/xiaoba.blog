@@ -5,8 +5,9 @@
     <div v-if="floatingItems.length" class="xb-comment-bg__field">
       <article
         v-for="item in floatingItems"
-        :key="item.id"
+        :key="item.renderKey"
         class="xb-comment-bubble"
+        @animationend="handleBubbleAnimationEnd(item.renderKey)"
         :style="{
           '--xb-left': `${item.left}%`,
           '--xb-delay': `${item.delay}s`,
@@ -65,6 +66,7 @@ interface StreamItem {
 }
 
 interface FloatingItem extends StreamItem {
+  renderKey: string
   left: number
   delay: number
   duration: number
@@ -75,17 +77,19 @@ interface FloatingItem extends StreamItem {
 
 const { theme } = useData()
 const HOME_FOOTER_HIDE_CLASS = 'xb-home-no-footer'
+const MAX_VISIBLE_BUBBLES = 6
+const FLOATING_TICK_MS = 1_800
 const loading = ref(false)
 const comments = ref<StreamItem[]>([])
+const floatingItems = ref<FloatingItem[]>([])
 let refreshTimer: ReturnType<typeof setInterval> | null = null
+let bubbleTickTimer: ReturnType<typeof setInterval> | null = null
 
 const twikooConfig = computed<TwikooThemeConfig>(() => {
   return ((theme.value as Record<string, unknown>).twikoo as TwikooThemeConfig) || {}
 })
 
-const floatingItems = computed<FloatingItem[]>(() => {
-  if (comments.value.length === 0) return []
-
+const sourceComments = computed<StreamItem[]>(() => {
   const deduped: StreamItem[] = []
   const seen = new Set<string>()
   for (const item of comments.value) {
@@ -93,27 +97,77 @@ const floatingItems = computed<FloatingItem[]>(() => {
     seen.add(item.id)
     deduped.push(item)
   }
-
-  const source = deduped.slice(0, 18)
-  const total = source.length
-
-  return source.map((base, index) => {
-    const seed = hashCode(base.id)
-    const lane = (index + 0.5) / total
-    const jitter = ((seed % 11) - 5) * 0.8
-    const left = Math.min(92, Math.max(4, 4 + lane * 88 + jitter))
-
-    return {
-      ...base,
-      left: Number(left.toFixed(2)),
-      delay: -1 * (index * 3 + (seed % 9)),
-      duration: 16 + (seed % 18),
-      width: 220 + (seed % 130),
-      opacity: Number((0.36 + (seed % 34) / 100).toFixed(2)),
-      drift: ((Math.floor(seed / 11) % 40) - 20),
-    }
-  })
+  return deduped.slice(0, 24)
 })
+
+function createFloatingItem(base: StreamItem): FloatingItem {
+  const stamp = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`
+  const seed = hashCode(`${base.id}-${stamp}`)
+
+  return {
+    ...base,
+    renderKey: `${base.id}-${stamp}`,
+    left: 6 + (seed % 86),
+    delay: Number(((seed % 7) / 10).toFixed(2)),
+    duration: 10 + (seed % 7),
+    width: 220 + (seed % 110),
+    opacity: Number((0.45 + (seed % 28) / 100).toFixed(2)),
+    drift: ((Math.floor(seed / 11) % 36) - 18),
+  }
+}
+
+function handleBubbleAnimationEnd(renderKey: string): void {
+  const next = floatingItems.value.filter((item) => item.renderKey !== renderKey)
+  if (next.length === floatingItems.value.length) return
+  floatingItems.value = next
+  tickFloatingItems()
+}
+
+function pickRandom<T>(items: T[]): T {
+  const index = Math.floor(Math.random() * items.length)
+  return items[index]
+}
+
+function tickFloatingItems(): void {
+  const source = sourceComments.value
+  if (source.length === 0) {
+    floatingItems.value = []
+    return
+  }
+
+  const sourceIds = new Set(source.map((item) => item.id))
+  const uniqueCurrent: FloatingItem[] = []
+  const currentSeen = new Set<string>()
+
+  floatingItems.value.forEach((item) => {
+    if (!sourceIds.has(item.id) || currentSeen.has(item.id)) return
+    currentSeen.add(item.id)
+    uniqueCurrent.push(item)
+  })
+
+  const maxVisible = Math.min(MAX_VISIBLE_BUBBLES, source.length)
+  if (uniqueCurrent.length < maxVisible) {
+    const currentIds = new Set(uniqueCurrent.map((item) => item.id))
+    const candidates = source.filter((item) => !currentIds.has(item.id))
+    if (candidates.length > 0) {
+      uniqueCurrent.push(createFloatingItem(pickRandom(candidates)))
+    }
+    floatingItems.value = uniqueCurrent
+    return
+  }
+
+  const currentIds = new Set(uniqueCurrent.map((item) => item.id))
+  const offscreenCandidates = source.filter((item) => !currentIds.has(item.id))
+  if (offscreenCandidates.length === 0) {
+    floatingItems.value = uniqueCurrent
+    return
+  }
+
+  const next = uniqueCurrent.slice()
+  const replaceIndex = Math.floor(Math.random() * next.length)
+  next[replaceIndex] = createFloatingItem(pickRandom(offscreenCandidates))
+  floatingItems.value = next
+}
 
 function hashCode(input: string): number {
   let hash = 0
@@ -194,8 +248,12 @@ async function refreshComments(): Promise<void> {
       .map((item) => item as RecentCommentItem)
       .filter((item) => !!item?.id)
       .map((item) => toStreamItem(item, siteUrl))
+    if (floatingItems.value.length === 0) {
+      tickFloatingItems()
+    }
   } catch {
     comments.value = []
+    floatingItems.value = []
   } finally {
     loading.value = false
   }
@@ -204,6 +262,16 @@ async function refreshComments(): Promise<void> {
 onMounted(async () => {
   document.documentElement.classList.add(HOME_FOOTER_HIDE_CLASS)
   await refreshComments()
+
+  const initialWarmup = Math.min(3, sourceComments.value.length)
+  for (let i = 0; i < initialWarmup; i += 1) {
+    tickFloatingItems()
+  }
+
+  bubbleTickTimer = setInterval(() => {
+    tickFloatingItems()
+  }, FLOATING_TICK_MS)
+
   refreshTimer = setInterval(() => {
     void refreshComments()
   }, 60_000)
@@ -211,6 +279,10 @@ onMounted(async () => {
 
 onBeforeUnmount(() => {
   document.documentElement.classList.remove(HOME_FOOTER_HIDE_CLASS)
+  if (bubbleTickTimer) {
+    clearInterval(bubbleTickTimer)
+    bubbleTickTimer = null
+  }
   if (refreshTimer) {
     clearInterval(refreshTimer)
     refreshTimer = null
@@ -244,25 +316,31 @@ onBeforeUnmount(() => {
 .xb-comment-bubble {
   position: absolute;
   left: var(--xb-left);
-  bottom: -220px;
+  bottom: -160px;
   width: min(86vw, var(--xb-width));
   padding: 0.72rem 0.82rem;
   border-radius: 14px;
-  border: 1px solid rgb(255 255 255 / 28%);
+  border: 1px solid rgb(148 163 184 / 45%);
   backdrop-filter: blur(8px);
-  background: linear-gradient(145deg, rgb(255 255 255 / 28%), rgb(148 163 184 / 16%));
-  color: rgb(248 250 252 / 96%);
+  background: linear-gradient(145deg, rgb(15 23 42 / 72%), rgb(30 41 59 / 58%));
+  color: rgb(248 250 252 / 99%);
   box-shadow: 0 16px 40px rgb(15 23 42 / 22%);
   opacity: var(--xb-opacity);
   pointer-events: auto;
-  animation: xb-float-up var(--xb-duration) linear infinite;
+  animation: xb-float-up var(--xb-duration) linear 1 both;
   animation-delay: var(--xb-delay);
+}
+
+.xb-comment-bubble:hover,
+.xb-comment-bubble:focus-within {
+  animation-play-state: paused;
 }
 
 .xb-comment-bubble__text {
   margin: 0;
   line-height: 1.45;
   font-size: 0.86rem;
+  text-shadow: 0 1px 1px rgb(2 6 23 / 45%);
 }
 
 .xb-comment-bubble__meta {
@@ -272,11 +350,11 @@ onBeforeUnmount(() => {
   justify-content: space-between;
   gap: 0.5rem;
   font-size: 0.74rem;
-  color: rgb(241 245 249 / 86%);
+  color: rgb(226 232 240 / 96%);
 }
 
 .xb-comment-bubble__meta a {
-  color: rgb(186 230 253 / 96%);
+  color: rgb(125 211 252 / 100%);
   text-decoration: underline;
 }
 
@@ -326,14 +404,14 @@ onBeforeUnmount(() => {
     transform: translate3d(0, 0, 0) scale(0.94);
     opacity: 0;
   }
-  10% {
+  6% {
     opacity: var(--xb-opacity);
   }
   85% {
     opacity: var(--xb-opacity);
   }
   100% {
-    transform: translate3d(var(--xb-drift), calc(-100vh - 320px), 0) scale(1.05);
+    transform: translate3d(var(--xb-drift), calc(-100vh - 280px), 0) scale(1.05);
     opacity: 0;
   }
 }
