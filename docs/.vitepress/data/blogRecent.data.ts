@@ -1,4 +1,4 @@
-import { createContentLoader } from "vitepress";
+﻿import { createContentLoader } from "vitepress";
 
 type RecentPost = {
   title: string;
@@ -12,19 +12,27 @@ type RecentPost = {
 declare const data: RecentPost[];
 export { data };
 
-const SECTION_ROOT = "/note/";
+const BLOG_ROOT = "/blog/";
+const NOTE_ROOT = "/note/";
 
-const isBlogPost = (url: string): boolean => {
-  if (!url.startsWith(SECTION_ROOT)) {
+const isArticlePage = (url: string, root: string): boolean => {
+  if (!url.startsWith(root)) {
     return false;
   }
-  return url !== "/note/index" && !url.endsWith("/index");
+  return url !== `${root}index` && !url.endsWith("/index");
+};
+
+const isBlogPost = (url: string): boolean => {
+  return isArticlePage(url, BLOG_ROOT) || isArticlePage(url, NOTE_ROOT);
 };
 
 const stripHtml = (value: string): string => value.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
 
 const resolveSection = (url: string): string => {
   const parts = decodeURI(url).split("/").filter(Boolean);
+  if (parts[0] === "blog") {
+    return "博客";
+  }
   return parts[1] || "其他";
 };
 
@@ -53,6 +61,22 @@ const resolveSummary = (
   return `来自「${section}」专题的最近更新文章。`;
 };
 
+const resolveUpdated = (lastUpdated: unknown, frontmatter: Record<string, unknown>): number => {
+  if (typeof lastUpdated === "number" && lastUpdated > 0) {
+    return lastUpdated;
+  }
+
+  const rawDate = frontmatter.date;
+  if (typeof rawDate === "string" || typeof rawDate === "number") {
+    const parsed = new Date(rawDate).getTime();
+    if (Number.isFinite(parsed) && parsed > 0) {
+      return parsed;
+    }
+  }
+
+  return 0;
+};
+
 const formatDate = (timestamp: number): string => {
   if (!timestamp) {
     return "未知时间";
@@ -71,7 +95,7 @@ export default createContentLoader("**/*.md", {
       .filter((item) => typeof item.url === "string" && isBlogPost(item.url))
       .map((item) => {
         const frontmatter = (item.frontmatter || {}) as Record<string, unknown>;
-        const updated = typeof item.lastUpdated === "number" ? item.lastUpdated : 0;
+        const updated = resolveUpdated(item.lastUpdated, frontmatter);
         const section = resolveSection(item.url);
 
         return {

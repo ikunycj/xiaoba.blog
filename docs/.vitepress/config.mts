@@ -1,5 +1,17 @@
-import { defineConfig } from 'vitepress'
-import { generateSidebar } from 'vitepress-sidebar'
+﻿import { generateSidebar } from 'vitepress-sidebar'
+
+import { defineConfigWithTheme, type DefaultTheme } from 'vitepress'
+
+interface TwikooThemeConfig {
+  envId?: string
+  region?: string
+  lang?: string
+  siteUrl?: string
+}
+
+type ThemeConfig = DefaultTheme.Config & {
+  twikoo?: TwikooThemeConfig
+}
 
 function sanitizeNoteMarkdown(content: string): string {
   const withoutMarkdownImages = content
@@ -26,9 +38,7 @@ function sanitizeNoteMarkdown(content: string): string {
 
       const normalized = inner.startsWith('/') ? inner.slice(1).trim() : inner
       const tagName = normalized.split(/\s+/)[0] || ''
-      if (!/^[A-Za-z][\w:-]*$/.test(tagName)) {
-        return `&lt;${innerRaw}&gt;`
-      }
+      if (!/^[A-Za-z][\w:-]*$/.test(tagName)) return `&lt;${innerRaw}&gt;`
 
       return match
     }
@@ -42,7 +52,7 @@ function sanitizeNoteMarkdown(content: string): string {
   return escapedAttrs.replace(/\{\{/g, '&#123;&#123;').replace(/\}\}/g, '&#125;&#125;')
 }
 
-export default defineConfig({
+export default defineConfigWithTheme<ThemeConfig>({
   title: '小八',
   description: '小八博客',
   srcDir: '.',
@@ -62,7 +72,12 @@ export default defineConfig({
       level: 'deep',
       label: '大纲',
     },
-
+    twikoo: {
+      envId: 'https://xiaobamy.vercel.app',
+      region: '',
+      lang: 'zh-CN',
+      siteUrl: 'https://xiaoba.blog',
+    },
     nav: [
       { text: '首页', link: '/home' },
       { text: '博客', link: '/blog/index' },
@@ -78,7 +93,6 @@ export default defineConfig({
       },
       { text: '项目', link: '/projects' },
     ],
-
     sidebar: generateSidebar([
       {
         documentRootPath: '/docs/note',
@@ -111,12 +125,12 @@ export default defineConfig({
 
     footer: {
       message: 'xiaoba blog',
-      copyright: 'Copyright © 2023-2024 xiaoba.my',
+      copyright: 'Copyright © 2023-2026 xiaoba.my',
     },
 
     editLink: {
-      pattern: 'https://github.com/ikunycj/xiaoba.my/tree/master/docs/src/:path',
-      text: '👋 Welcome to edit this page!',
+      pattern: 'https://github.com/ikunycj/xiaoba.my/tree/master/docs/:path',
+      text: '欢迎一起完善文档',
     },
 
     lastUpdated: {

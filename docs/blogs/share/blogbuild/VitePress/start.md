@@ -1,5 +1,6 @@
 ---
 order: 1
+comment: true
 ---
 # 快速上手
 ## 新建项目

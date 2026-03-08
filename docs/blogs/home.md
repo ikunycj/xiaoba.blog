@@ -14,28 +14,28 @@ hero:
       link: /blog/index
     - theme: alt
       text: 个人笔记
-      link: /note/index
+      link: /note/
 
 features:
-  - icon: 📝
+  - icon: 📑
     title: 博客
     details: 查看文章、项目复盘与技术分享。
     link: /blog/index
-    linkText: 立即查看
-  - icon: 📚
+    linkText: 立刻查看
+  - icon: 📝
     title: 个人笔记
     details: 系统化整理的学习笔记与知识卡片。
-    link: /note/index
+    link: /note/
     linkText: 进入笔记
-  - icon: 🛠️
+  - icon: 🛰️
     title: actionAgent 项目（研发中）
     details: 面向自动化任务执行的 Agent 项目，聚焦工作流编排、工具调用与可观测性建设。
     link: https://github.com/ikunycj/actionAgent
     linkText: 查看 GitHub
     target: _blank
     rel: noopener noreferrer
-  - icon: 🤝
-    title: 友链分享
+  - icon: 🧭
+    title: 友情链接分享
     details: 推荐优质站点与实用资源。
     link: /share
     linkText: 去逛逛
