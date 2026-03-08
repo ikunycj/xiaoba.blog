@@ -123,6 +123,7 @@ import { useData, withBase } from 'vitepress'
 import { data as posts } from '../../data/blogRecent.data'
 import { loadTwikoo } from '../../theme/utils/twikoo'
 import { ensureTwikooEndpointReady } from '../../theme/utils/twikooEndpoint'
+import { formatTwikooError } from '../../theme/utils/twikooError'
 import { setupTwikooProfileCache } from '../../theme/utils/twikooProfileCache'
 
 type RecentPost = {
@@ -413,8 +414,7 @@ async function refreshLatestComments(): Promise<void> {
         }
       })
   } catch (error) {
-    const message = error instanceof Error ? error.message : '最新评论加载失败，请稍后重试。'
-    commentsError.value = message
+    commentsError.value = formatTwikooError(error, envId)
     latestComments.value = []
   } finally {
     commentsLoading.value = false
@@ -456,8 +456,7 @@ async function mountGlobalComments(): Promise<void> {
     stopGlobalProfileCache?.()
     stopGlobalProfileCache = setupTwikooProfileCache(globalCommentRef.value)
   } catch (error) {
-    const message = error instanceof Error ? error.message : '全局评论加载失败'
-    showGlobalCommentMessage(message, true)
+    showGlobalCommentMessage(formatTwikooError(error, envId), true)
   }
 }
 

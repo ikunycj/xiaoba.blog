@@ -13,6 +13,7 @@ import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useData, useRoute } from 'vitepress'
 import { loadTwikoo } from '../utils/twikoo'
 import { ensureTwikooEndpointReady } from '../utils/twikooEndpoint'
+import { formatTwikooError } from '../utils/twikooError'
 import { setupTwikooProfileCache } from '../utils/twikooProfileCache'
 
 interface TwikooThemeConfig {
@@ -90,8 +91,7 @@ async function mountComments(): Promise<void> {
     stopProfileCache?.()
     stopProfileCache = setupTwikooProfileCache(containerRef.value)
   } catch (error) {
-    const message = error instanceof Error ? error.message : '评论加载失败'
-    showError(message)
+    showError(formatTwikooError(error, envId))
   }
 }
 

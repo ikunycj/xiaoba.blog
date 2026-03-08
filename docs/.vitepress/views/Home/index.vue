@@ -5,7 +5,7 @@
     <div v-if="floatingItems.length" class="xb-comment-bg__field">
       <article
         v-for="item in floatingItems"
-        :key="item.renderKey"
+        :key="item.id"
         class="xb-comment-bubble"
         :style="{
           '--xb-left': `${item.left}%`,
@@ -65,7 +65,6 @@ interface StreamItem {
 }
 
 interface FloatingItem extends StreamItem {
-  renderKey: string
   left: number
   delay: number
   duration: number
@@ -75,6 +74,7 @@ interface FloatingItem extends StreamItem {
 }
 
 const { theme } = useData()
+const HOME_FOOTER_HIDE_CLASS = 'xb-home-no-footer'
 const loading = ref(false)
 const comments = ref<StreamItem[]>([])
 let refreshTimer: ReturnType<typeof setInterval> | null = null
@@ -86,16 +86,27 @@ const twikooConfig = computed<TwikooThemeConfig>(() => {
 const floatingItems = computed<FloatingItem[]>(() => {
   if (comments.value.length === 0) return []
 
-  const total = Math.min(36, Math.max(12, comments.value.length * 3))
-  return Array.from({ length: total }, (_value, index) => {
-    const base = comments.value[index % comments.value.length]
-    const seed = hashCode(`${base.id}-${index}`)
+  const deduped: StreamItem[] = []
+  const seen = new Set<string>()
+  for (const item of comments.value) {
+    if (seen.has(item.id)) continue
+    seen.add(item.id)
+    deduped.push(item)
+  }
+
+  const source = deduped.slice(0, 18)
+  const total = source.length
+
+  return source.map((base, index) => {
+    const seed = hashCode(base.id)
+    const lane = (index + 0.5) / total
+    const jitter = ((seed % 11) - 5) * 0.8
+    const left = Math.min(92, Math.max(4, 4 + lane * 88 + jitter))
 
     return {
       ...base,
-      renderKey: `${base.id}-${index}`,
-      left: 4 + (seed % 92),
-      delay: -1 * (seed % 30),
+      left: Number(left.toFixed(2)),
+      delay: -1 * (index * 3 + (seed % 9)),
       duration: 16 + (seed % 18),
       width: 220 + (seed % 130),
       opacity: Number((0.36 + (seed % 34) / 100).toFixed(2)),
@@ -191,6 +202,7 @@ async function refreshComments(): Promise<void> {
 }
 
 onMounted(async () => {
+  document.documentElement.classList.add(HOME_FOOTER_HIDE_CLASS)
   await refreshComments()
   refreshTimer = setInterval(() => {
     void refreshComments()
@@ -198,6 +210,7 @@ onMounted(async () => {
 })
 
 onBeforeUnmount(() => {
+  document.documentElement.classList.remove(HOME_FOOTER_HIDE_CLASS)
   if (refreshTimer) {
     clearInterval(refreshTimer)
     refreshTimer = null
@@ -302,6 +315,10 @@ onBeforeUnmount(() => {
 :global(.VPHome .container) {
   position: relative;
   z-index: 2;
+}
+
+:global(.xb-home-no-footer .VPFooter) {
+  display: none;
 }
 
 @keyframes xb-float-up {

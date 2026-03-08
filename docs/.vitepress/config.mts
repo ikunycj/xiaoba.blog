@@ -73,7 +73,7 @@ export default defineConfigWithTheme<ThemeConfig>({
       label: '大纲',
     },
     twikoo: {
-      envId: 'https://xiaobamy.vercel.app',
+      envId: 'https://twikoo-snowy-ten-37.vercel.app',
       region: '',
       lang: 'zh-CN',
       siteUrl: 'https://xiaoba.blog',

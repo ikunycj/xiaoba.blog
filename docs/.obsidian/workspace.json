@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "note/开发运维/大前端/面经/JS/5.js八股(异步编程).md",
+                "file": "note/开发运维/大前端/面经/JS/7.js八股(垃圾回收与内存泄漏).md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "5.js八股(异步编程)"
+              "title": "7.js八股(垃圾回收与内存泄漏)"
             }
           }
         ]
@@ -95,13 +95,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "note/开发运维/大前端/面经/JS/5.js八股(异步编程).md",
+                "file": "note/开发运维/大前端/面经/JS/7.js八股(垃圾回收与内存泄漏).md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "5.js八股(异步编程) 的大纲"
+              "title": "7.js八股(垃圾回收与内存泄漏) 的大纲"
             }
           },
           {
@@ -210,6 +210,8 @@
   },
   "active": "6902a8f84581a146",
   "lastOpenFiles": [
+    "note/开发运维/大前端/面经/JS/6.js八股(面向对象).md",
+    "note/开发运维/大前端/面经/JS/5.js八股(异步编程).md",
     "note/开发运维/大前端/面经/JS/4.js八股(this绑定).md",
     "blogs/blog/comment-feature.md",
     "blogs/home.md",
@@ -244,8 +246,6 @@
     "blogs/note/计算机知识/数据结构与算法/算法/7.数学运算/1.位运算.md",
     "blogs/note/计算机知识/数据结构与算法/算法/6.贪心/2.分数背包问题.md",
     "blogs/note/计算机知识/数据结构与算法/算法/3.分治/4.汉诺塔问题.md",
-    "blogs/note/计算机知识/数据结构与算法/算法/3.分治/3.构建二叉树问题.md",
-    "blogs/note/计算机知识/数据结构与算法/算法/6.贪心/1.贪心算法.md",
     "blogs/note/计算机知识/计算机网络/网络协议/WebSocket",
     "blogs/note/计算机知识/计算机网络/网络协议/TCP.IP",
     "blogs/note/计算机知识/计算机网络/网络协议/HTTP",
