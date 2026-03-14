@@ -69,7 +69,7 @@
           <article v-for="post in pagedPosts" :key="post.url" class="xb-card post-card">
             <div class="post-card__meta">
               <span class="xb-tag">{{ post.section }}</span>
-              <time class="xb-muted" :datetime="toIsoDate(post.updated)">{{ formatDate(post.updated) }}</time>
+              <time class="xb-muted" :datetime="toIsoDate(post.publishedAt)">{{ formatDate(post.publishedAt) }}</time>
             </div>
             <h2>{{ post.title }}</h2>
             <p class="xb-muted">{{ post.summary }}</p>
@@ -134,7 +134,9 @@ type RecentPost = {
   summary: string
   section: string
   url: string
-  updated: number
+  publishedAt: number
+  publishedText: string
+  updatedAt: number
   updatedText: string
 }
 
@@ -198,19 +200,19 @@ const allPosts = computed<RecentPost[]>(() => {
 })
 
 const latestUpdatedText = computed(() => {
-  const latest = allPosts.value.find((post) => post.updated > 0)
-  return latest ? formatDate(latest.updated) : '未知'
+  const latest = allPosts.value.find((post) => post.updatedAt > 0)
+  return latest ? formatDate(latest.updatedAt) : '未知'
 })
 
 const archiveBuckets = computed<ArchiveBucket[]>(() => {
   const map = new Map<string, ArchiveBucket>()
 
   allPosts.value.forEach((post) => {
-    const key = resolveArchiveKey(post.updated)
+    const key = resolveArchiveKey(post.publishedAt)
     const current = map.get(key)
     if (current) {
       current.count += 1
-      if (post.updated > current.latest) current.latest = post.updated
+      if (post.publishedAt > current.latest) current.latest = post.publishedAt
       return
     }
 
@@ -218,7 +220,7 @@ const archiveBuckets = computed<ArchiveBucket[]>(() => {
       key,
       label: resolveArchiveLabel(key),
       count: 1,
-      latest: post.updated,
+      latest: post.publishedAt,
     })
   })
 
@@ -233,7 +235,7 @@ const archiveBuckets = computed<ArchiveBucket[]>(() => {
       key: 'all',
       label: '全部',
       count: allPosts.value.length,
-      latest: allPosts.value[0]?.updated || 0,
+      latest: allPosts.value[0]?.publishedAt || 0,
     },
     ...buckets,
   ]
@@ -246,7 +248,7 @@ const activeArchiveLabel = computed(() => {
 
 const filteredPosts = computed<RecentPost[]>(() => {
   if (selectedArchiveKey.value === 'all') return allPosts.value
-  return allPosts.value.filter((post) => resolveArchiveKey(post.updated) === selectedArchiveKey.value)
+  return allPosts.value.filter((post) => resolveArchiveKey(post.publishedAt) === selectedArchiveKey.value)
 })
 
 const totalPages = computed(() => {
