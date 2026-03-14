@@ -4,22 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "2995939d88c410d5",
+        "id": "5cb2d2e2538e9698",
         "type": "tabs",
         "children": [
           {
-            "id": "29514dc90d44e1d9",
+            "id": "3c42bb489d687149",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "blogs/blog/文档驱动开发构建项目.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "文档驱动开发构建项目"
+              "title": "新标签页"
             }
           }
         ]
@@ -95,13 +90,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "blogs/blog/文档驱动开发构建项目.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "文档驱动开发构建项目 的大纲"
+              "title": "大纲"
             }
           },
           {
@@ -208,52 +202,53 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "29514dc90d44e1d9",
+  "active": "3c42bb489d687149",
   "lastOpenFiles": [
-    "ccf5d2e4-1b5b-4d97-9eb4-9334a22add7c.png",
-    "blogs/blog/文档驱动开发构建项目.md",
-    "note/AI/AI 使用/Prompt工程.md",
-    "note/AI/AI 使用/prompt-generate.drawio.svg",
-    "note/AI/AI 使用/1.md",
-    "local/杂记/学业/学分修读.md",
-    "blogs/note/面经/前端面经/HTTP/计网八股.md",
-    "note/AI/AI 使用",
-    "blogs/note/面经/前端面经/JS/8.js手写(基础).md",
-    "note/AI/AI Coding/AI Coding最佳实践（codex为例子）.md",
-    "note/AI/AI Coding",
-    "note/AI",
-    "blogs/note/面经/前端面经/JS/10.js手写(场景应用).md",
-    "blogs/note/面经/前端面经/JS/9.js手写(数据处理).md",
-    "blogs/note/面经/前端面经/JS/7.js八股(垃圾回收与内存泄漏).md",
-    "blogs/note/面经/前端面经/JS/4.js八股(this绑定).md",
-    "blogs/note/面经/前端面经/工程化/前端性能优化.md",
-    "blogs/note/面经/前端面经/工程化/RESTful API.md",
-    "blogs/note/面经/前端面经/工程化/mvc,mvvm,mvp框架.md",
-    "blogs/note/面经/前端面经/工程化/GraphQL.md",
-    "blogs/note/面经/前端面经/React/React简单.md",
-    "blogs/note/面经/前端面经/React/React困难.md",
-    "blogs/note/面经/前端面经/React/8.虚拟DOM.md",
-    "blogs/note/面经/前端面经/React/9.其他.md",
-    "blogs/note/面经/前端面经/React/7.Hooks.md",
-    "blogs/note/面经/前端面经/React/4.react组件通信.md",
-    "blogs/note/面经/前端面经/React/6.redux.md",
-    "blogs/note/面经/前端面经/React/5.react路由.md",
-    "blogs/note/面经/前端面经/React/3.react生命周期.md",
-    "blogs/note/面经/前端面经/React/2.react数据管理.md",
-    "blogs/note/面经/前端面经/工程化",
-    "blogs/note/面经/前端面经/React",
-    "blogs/note/面经/前端面经/Vue",
-    "blogs/note/面经/前端面经/JS",
-    "blogs/note/面经/前端面经/HTTP",
-    "blogs/note/面经/前端面经/CSS",
-    "blogs/note/面经/前端面经",
-    "blogs/note/计算机基础/数据结构与算法/数据结构/7.图(graph)/img/QQ_1736072127837.png",
-    "blogs/note/计算机基础/数据结构与算法/数据结构/7.图(graph)/img/QQ_1736079977014.png",
-    "blogs/note/计算机基础/数据结构与算法/数据结构/5.树/img/QQ_1734934328595.png",
-    "blogs/note/科目一/img/Pasted image 20240716110650.png",
-    "blogs/note/科目一/img/Pasted image 20240716110618.png",
-    "blogs/note/科目一/img/Pasted image 20240716110023.png",
-    "blogs/note/科目一/img/Pasted image 20240716110511.png",
-    "blogs/note/科目一/img/Pasted image 20240716110459.png"
+    "note/面经/前端面经/工程化/前端性能优化.md",
+    "note/面经/前端面经/工程化/RESTful API.md",
+    "note/面经/前端面经/工程化/GraphQL.md",
+    "note/面经/前端面经/工程化/mvc,mvvm,mvp框架.md",
+    "note/面经/前端面经/React/React简单.md",
+    "note/面经/前端面经/React/React困难.md",
+    "note/面经/前端面经/React/9.其他.md",
+    "note/面经/前端面经/Vue/Vue.md",
+    "note/面经/前端面经/React/8.虚拟DOM.md",
+    "note/面经/前端面经/React/7.Hooks.md",
+    "note/面经/前端面经/React/6.redux.md",
+    "note/面经/前端面经/React/5.react路由.md",
+    "note/面经/前端面经/React/4.react组件通信.md",
+    "note/面经/前端面经/React/3.react生命周期.md",
+    "note/面经/前端面经/React/1.react组件基础.md",
+    "note/面经/前端面经/React/2.react数据管理.md",
+    "note/面经/前端面经/JS/手撕.md",
+    "note/面经/前端面经/JS/9.js手写(数据处理).md",
+    "note/面经/前端面经/JS/8.js手写(基础).md",
+    "note/面经/前端面经/JS/6.js八股(面向对象).md",
+    "note/面经/前端面经/JS/7.js八股(垃圾回收与内存泄漏).md",
+    "note/面经/前端面经/JS/5.js八股(异步编程).md",
+    "note/面经/前端面经/JS/4.js八股(this绑定).md",
+    "note/面经/前端面经/JS/3.js八股(ES6).md",
+    "note/面经/前端面经/JS/2.js八股(数据类型).md",
+    "note/面经/前端面经/JS/10.js手写(场景应用).md",
+    "note/面经/前端面经/工程化",
+    "note/面经/前端面经/Vue",
+    "note/面经/前端面经/React",
+    "note/面经/前端面经/JS",
+    "note/面经/前端面经/HTTP",
+    "note/面经/前端面经/CSS",
+    "note/面经/前端面经",
+    "note/面经",
+    "note/科目一/img/Pasted image 20240716110650.png",
+    "note/科目一/img/Pasted image 20240716110618.png",
+    "note/科目一/img/Pasted image 20240716110557.png",
+    "note/科目一/img/Pasted image 20240716110511.png",
+    "note/科目一/img/Pasted image 20240716110459.png",
+    "note/科目一/img/Pasted image 20240716110023.png",
+    "note/科目一/img/b4dd00ada05b188fc0ea061c7ce04207.jpeg",
+    "note/科目一/img/ac8d1c00386579694bfea851213b567e.jpeg",
+    "note/科目一/img/8a0cdb0d71e61041f7fe1210e4caba77.jpeg",
+    "note/科目一/img/857b38c5d12008b15cdd933b79957fc6.jpeg",
+    "note/科目一/img",
+    "note/科目一"
   ]
 }
