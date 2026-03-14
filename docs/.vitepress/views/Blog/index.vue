@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <section class="xb-page blog-page">
     <div class="blog-layout">
       <aside class="blog-left">
@@ -58,6 +58,7 @@
             <span class="xb-chip">第 {{ currentPage }} / {{ totalPages }} 页</span>
             <span class="xb-chip">每页 {{ PAGE_SIZE }} 篇</span>
             <a class="xb-chip" :href="toPath('/note/index')">进入笔记总览</a>
+            <a class="xb-chip" :href="toPath('/blog/index#guestbook')">博客留言板</a>
           </div>
         </header>
 
@@ -89,31 +90,12 @@
       </main>
 
       <aside class="blog-right">
-        <article class="xb-card recent-comments-card">
-          <p class="xb-eyebrow">Recent Comments</p>
-          <h3>最新评论</h3>
-          <p v-if="commentsLoading" class="xb-muted">最新评论加载中...</p>
-          <p v-else-if="commentsError" class="comment-error">{{ commentsError }}</p>
-          <ul v-else-if="latestComments.length" class="comment-list">
-            <li v-for="comment in latestComments" :key="comment.id" class="comment-item">
-              <p class="comment-item__text">{{ comment.summary }}</p>
-              <div class="comment-item__meta">
-                <span>{{ comment.nick }} · {{ comment.createdText }}</span>
-                <a :href="toPath(comment.url)">原文</a>
-              </div>
-            </li>
-          </ul>
-          <p v-else class="xb-muted">暂时还没有评论，欢迎抢沙发。</p>
-        </article>
-
-        <article class="xb-card global-comments-card">
-          <p class="xb-eyebrow">Comment</p>
-          <h3>留言评论</h3>
-          <p v-if="globalCommentError" class="global-comments-card__error">{{ globalCommentError }}</p>
-          <p v-else-if="globalCommentLoading && !globalCommentMounted" class="xb-muted global-comments-card__tip">
-            评论区加载中...
-          </p>
-          <div ref="globalCommentRef" class="global-comments-card__mount" />
+        <article id="guestbook" class="xb-card discussion-card">
+          <GiscusPanel
+            title="留言板"
+            mapping="specific"
+            term="blog-guestbook"
+          />
         </article>
       </aside>
     </div>
@@ -121,13 +103,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
-import { useData, withBase } from 'vitepress'
+import { computed, ref, watch } from 'vue'
+import { withBase } from 'vitepress'
 import { data as posts } from '../../data/blogRecent.data'
-import { loadTwikoo } from '../../theme/utils/twikoo'
-import { ensureTwikooEndpointReady } from '../../theme/utils/twikooEndpoint'
-import { formatTwikooError } from '../../theme/utils/twikooError'
-import { setupTwikooProfileCache } from '../../theme/utils/twikooProfileCache'
+import GiscusPanel from '../../theme/components/GiscusPanel.vue'
 
 type RecentPost = {
   title: string
@@ -147,53 +126,11 @@ type ArchiveBucket = {
   latest: number
 }
 
-type TwikooThemeConfig = {
-  envId?: string
-  region?: string
-  lang?: string
-}
-
-type RawRecentComment = {
-  id?: string
-  nick?: string
-  url?: string
-  commentText?: string
-  created?: string | number
-  createdAt?: string | number
-  created_at?: string | number
-  updated?: string | number
-}
-
-type RecentComment = {
-  id: string
-  nick: string
-  url: string
-  summary: string
-  createdText: string
-}
-
 const PAGE_SIZE = 6
-const GLOBAL_COMMENT_PATH = '/blog/'
-const { theme } = useData()
 const avatarSrc = withBase('/xiaoba-smile.jpg')
 
 const selectedArchiveKey = ref('all')
 const currentPage = ref(1)
-
-const commentsLoading = ref(false)
-const commentsError = ref('')
-const latestComments = ref<RecentComment[]>([])
-let commentRefreshTimer: ReturnType<typeof setInterval> | null = null
-const globalCommentRef = ref<HTMLElement | null>(null)
-const globalCommentLoading = ref(false)
-const globalCommentError = ref('')
-const globalCommentMounted = ref(false)
-let globalCommentMountVersion = 0
-let stopGlobalProfileCache: (() => void) | null = null
-
-const twikooConfig = computed<TwikooThemeConfig>(() => {
-  return ((theme.value as Record<string, unknown>).twikoo as TwikooThemeConfig) || {}
-})
 
 const allPosts = computed<RecentPost[]>(() => {
   return (posts as RecentPost[]).filter((post) => typeof post.url === 'string' && post.url.length > 0)
@@ -273,14 +210,6 @@ watch(
   }
 )
 
-watch(
-  () => [twikooConfig.value.envId, twikooConfig.value.region, twikooConfig.value.lang],
-  () => {
-    void refreshLatestComments()
-    void mountGlobalComments()
-  }
-)
-
 function selectArchive(key: string): void {
   selectedArchiveKey.value = key
 }
@@ -291,12 +220,6 @@ function goPrevPage(): void {
 
 function goNextPage(): void {
   currentPage.value = Math.min(totalPages.value, currentPage.value + 1)
-}
-
-function normalizeEnvId(envId: string): string {
-  const trimmed = envId.trim()
-  if (!/^https?:\/\//i.test(trimmed)) return trimmed
-  return trimmed.replace(/\/+$/, '')
 }
 
 function resolveArchiveKey(timestamp: number): string {
@@ -327,165 +250,9 @@ function toIsoDate(timestamp: number): string {
   return new Date(timestamp).toISOString()
 }
 
-function normalizePath(url: string): string {
-  if (!url) return '/'
-
-  if (/^https?:\/\//i.test(url)) {
-    try {
-      const parsed = new URL(url)
-      return parsed.pathname || '/'
-    } catch {
-      return '/'
-    }
-  }
-
-  const plain = url.split('#')[0].split('?')[0]
-  return plain.startsWith('/') ? plain : `/${plain}`
-}
-
-function stripHtml(value: string): string {
-  return value.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
-}
-
-function summarizeComment(value: string): string {
-  const clean = stripHtml(value || '')
-  if (clean.length <= 100) return clean
-  return `${clean.slice(0, 100)}...`
-}
-
-function resolveCommentTimestamp(input: RawRecentComment): number {
-  const candidate = input.created ?? input.createdAt ?? input.created_at ?? input.updated
-  if (typeof candidate === 'number') return candidate
-  if (typeof candidate === 'string') {
-    const parsed = new Date(candidate).getTime()
-    if (Number.isFinite(parsed)) return parsed
-  }
-  return 0
-}
-
-function formatCommentDate(value: number): string {
-  if (!value) return '刚刚'
-  return new Date(value).toLocaleString('zh-CN', {
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-  })
-}
-
 function toPath(path: string): string {
   return withBase(encodeURI(path))
 }
-
-function cleanupGlobalProfileCache(): void {
-  stopGlobalProfileCache?.()
-  stopGlobalProfileCache = null
-}
-
-async function refreshLatestComments(): Promise<void> {
-  const envId = normalizeEnvId(twikooConfig.value.envId || '')
-  if (!envId) {
-    commentsError.value = '缺少评论配置：请在 themeConfig.twikoo.envId 中填写服务地址。'
-    latestComments.value = []
-    return
-  }
-
-  commentsLoading.value = true
-  commentsError.value = ''
-
-  try {
-    await ensureTwikooEndpointReady(envId)
-    const twikoo = await loadTwikoo()
-    const result = await twikoo.getRecentComments({
-      envId,
-      region: twikooConfig.value.region || undefined,
-      pageSize: 8,
-      includeReply: false,
-    })
-
-    latestComments.value = (Array.isArray(result) ? result : [])
-      .map((item) => item as RawRecentComment)
-      .filter((item) => typeof item.id === 'string' && item.id.length > 0)
-      .map((item) => {
-        const timestamp = resolveCommentTimestamp(item)
-        return {
-          id: item.id || '',
-          nick: item.nick || '匿名用户',
-          url: normalizePath(item.url || '/blog/'),
-          summary: summarizeComment(item.commentText || '') || '（该评论仅包含附件或链接）',
-          createdText: formatCommentDate(timestamp),
-        }
-      })
-  } catch (error) {
-    commentsError.value = formatTwikooError(error, envId)
-    latestComments.value = []
-  } finally {
-    commentsLoading.value = false
-  }
-}
-
-async function mountGlobalComments(): Promise<void> {
-  const mountContainer = globalCommentRef.value
-  if (!mountContainer) {
-    cleanupGlobalProfileCache()
-    return
-  }
-
-  const envId = normalizeEnvId(twikooConfig.value.envId || '')
-  if (!envId) {
-    globalCommentError.value = '缺少评论配置：请在 themeConfig.twikoo.envId 中填写服务地址。'
-    cleanupGlobalProfileCache()
-    return
-  }
-
-  const currentVersion = ++globalCommentMountVersion
-  const mountId = `blog-global-comment-${currentVersion}`
-  mountContainer.innerHTML = `<div id="${mountId}"></div>`
-  globalCommentLoading.value = true
-  globalCommentError.value = ''
-  globalCommentMounted.value = false
-
-  try {
-    await ensureTwikooEndpointReady(envId)
-    const twikoo = await loadTwikoo()
-    if (currentVersion !== globalCommentMountVersion) return
-
-    await twikoo.init({
-      envId,
-      region: twikooConfig.value.region || undefined,
-      lang: twikooConfig.value.lang || 'zh-CN',
-      el: `#${mountId}`,
-      path: GLOBAL_COMMENT_PATH,
-    })
-
-    cleanupGlobalProfileCache()
-    stopGlobalProfileCache = setupTwikooProfileCache(mountContainer, `xb:twikoo:profile:${GLOBAL_COMMENT_PATH}`)
-    globalCommentMounted.value = true
-  } catch (error) {
-    globalCommentError.value = formatTwikooError(error, envId)
-    globalCommentMounted.value = false
-    cleanupGlobalProfileCache()
-  } finally {
-    globalCommentLoading.value = false
-  }
-}
-
-onMounted(async () => {
-  await refreshLatestComments()
-  await nextTick()
-  await mountGlobalComments()
-  commentRefreshTimer = setInterval(() => {
-    void refreshLatestComments()
-  }, 60_000)
-})
-
-onBeforeUnmount(() => {
-  if (commentRefreshTimer) {
-    clearInterval(commentRefreshTimer)
-    commentRefreshTimer = null
-  }
-  cleanupGlobalProfileCache()
-})
 </script>
 
 <style scoped>
@@ -498,7 +265,7 @@ onBeforeUnmount(() => {
 
 .blog-layout {
   display: grid;
-  grid-template-columns: 250px minmax(0, 1fr) 300px;
+  grid-template-columns: 250px minmax(0, 1fr) 320px;
   gap: 1rem;
   align-items: start;
 }
@@ -525,9 +292,7 @@ onBeforeUnmount(() => {
 }
 
 .profile-card h2,
-.archive-card h3,
-.recent-comments-card h3,
-.global-comments-card h3 {
+.archive-card h3 {
   margin-top: 0.4rem;
   font-size: 1.12rem;
 }
@@ -654,123 +419,13 @@ onBeforeUnmount(() => {
   color: var(--xb-muted);
 }
 
-.comment-list {
-  margin-top: 0.75rem;
-  display: grid;
-  gap: 0.65rem;
-}
-
-.comment-item {
-  border-radius: 12px;
-  border: 1px solid var(--xb-border);
-  padding: 0.56rem;
-  background: color-mix(in srgb, var(--xb-surface-soft) 68%, transparent 32%);
-}
-
-.comment-item__text {
-  margin: 0;
-  font-size: 0.86rem;
-  line-height: 1.42;
-  overflow-wrap: anywhere;
-  word-break: break-word;
-}
-
-.comment-item__meta {
-  margin-top: 0.45rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  font-size: 0.74rem;
-  color: var(--xb-muted);
-}
-
-.comment-item__meta a {
-  font-weight: 600;
-}
-
-.comment-error {
-  margin-top: 0.5rem;
-  border-radius: 10px;
-  border: 1px dashed var(--vp-c-danger-1);
-  padding: 0.6rem;
-  color: var(--vp-c-danger-1);
-  font-size: 0.86rem;
-}
-
-.global-comments-card__tip {
-  margin-top: 0.45rem;
-  font-size: 0.84rem;
-}
-
-.global-comments-card__error {
-  margin-top: 0.5rem;
-  border-radius: 10px;
-  border: 1px dashed var(--vp-c-danger-1);
-  padding: 0.6rem;
-  color: var(--vp-c-danger-1);
-  font-size: 0.84rem;
-}
-
-.global-comments-card__mount {
-  margin-top: 0.65rem;
-  min-height: 220px;
+.discussion-card {
   min-width: 0;
-  overflow-x: hidden;
-}
-
-.global-comments-card__mount :deep(.tk-meta-input) {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.56rem;
-}
-
-.global-comments-card__mount :deep(.tk-meta-input > *),
-.global-comments-card__mount :deep(.tk-meta-input .tk-meta-input-item),
-.global-comments-card__mount :deep(.tk-meta-input .tk-input),
-.global-comments-card__mount :deep(.tk-meta-input .el-input) {
-  margin-left: 0 !important;
-}
-
-.global-comments-card__mount :deep(.tk-meta-input .tk-input),
-.global-comments-card__mount :deep(.tk-meta-input .el-input),
-.global-comments-card__mount :deep(.tk-meta-input input) {
-  width: 100%;
-  min-width: 0;
-}
-
-.global-comments-card__mount :deep(.tk-meta-input .el-input__inner),
-.global-comments-card__mount :deep(.tk-meta-input input) {
-  border-radius: 10px;
-  border: 1px solid var(--xb-border);
-  background: color-mix(in srgb, var(--xb-surface-soft) 72%, transparent 28%);
-  min-height: 40px;
-  height: 40px;
-  line-height: 40px;
-  box-sizing: border-box;
-}
-
-.global-comments-card__mount :deep(.tk-meta-input .el-input__inner) {
-  padding-left: 2.15rem;
-}
-
-.global-comments-card__mount :deep(.tk-meta-input .el-input__prefix) {
-  left: 0.7rem;
-  width: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--xb-accent-strong);
-}
-
-.global-comments-card__mount :deep(.tk-meta-input .el-input__icon) {
-  line-height: 1;
-  font-size: 0.92rem;
 }
 
 @media (max-width: 1200px) {
   .blog-layout {
-    grid-template-columns: 220px minmax(0, 1fr) 280px;
+    grid-template-columns: 220px minmax(0, 1fr) 300px;
   }
 }
 

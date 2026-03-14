@@ -1,79 +1,81 @@
-在 2026 年的 AI 开发语境下，**Codex** 已经从最初的自动补全模型进化为了一个完整的**代理化开发应用 (Codex App)**。
+# AI Coding 最佳实践（以 Codex 为例）
 
-要实现这种“Agentic + HITL + Spec”的复合范式，核心在于将**模糊的自然语言**通过 **Spec（规格说明）** 转化为**确定性的任务流**，并利用 **Agent（代理）** 的自主性与**人类（HITL）**的决策权进行博弈。
+最近我在尝试一套更“顺手”的新项目启动方式。
 
-以下是以 Codex 为例的实现路径：
+不是先闷头建目录、搭脚手架、写 `README`，而是让 AI 从需求整理、方案拆分，到代码落地和后续补全，全程参与。
 
----
+这篇笔记记录的是我当前这套工作流，也欢迎后续继续迭代。
 
-## 1. Spec 范式实现：建立“真相源”
+## 使用工具
 
-在 Codex 的工作流中，Spec 不再是死文档，而是 **可执行的蓝图**。
+### 1. OpenSpec：把模糊需求拆成清晰任务
 
-* **创建 `.spec` 或 `AGENTS.md`：** 在项目根目录，通过 Codex 命令行（CLI）初始化项目规格。你会定义：
-* **Constitution（宪法）：** 规定代码风格（如：使用 Go 1.24, 严格处理 error）。
-* **Architecture（架构）：** 模块依赖关系图。
+链接：[https://github.com/Fission-AI/OpenSpec](https://github.com/Fission-AI/OpenSpec)
 
-* **指令化规格：** 你可以输入 `codex specify "为 Nexus 增加一个插件加载机制"`。Codex 会先生成一份详细的 Markdown 规格说明，包含接口定义和测试用例。
-* **人类确认（HITL 第一环）：** 你审查这份 Spec。如果不符合你的构思，直接在文档中修改。**只有当你标记 Spec 为 `Ready` 时，Agent 才会启动。**
+OpenSpec 是一款基于 SPEC 范式的轻量代码提示词辅助工具，核心价值是把原本“一句话让 AI 直接开干”的输入，拆成结构化文档。
 
-### 工具推荐
-#### 1. GitHub Spec Kit：官方标准化的“四步法”
+常见的四个文档是：
 
-GitHub 推出的 Spec Kit 将开发过程拆解为四个极其严格的阶段，每一个阶段都是一个 **HITL（人在回路）** 的审批点。
-1. **Specify（规范化）：** 你输入模糊想法，运行 `/specify`。AI 生成 `SPEC.md`。此时你需要介入，确认功能边界。
-2. **Plan（方案化）：** 运行 `/plan`。AI 扫描代码库，在 `PLAN.md` 中写下技术实现细节（如：修改哪些接口、数据库字段）。**这是防范架构偏离的关键点。**
-3. **Tasks（任务化）：** 运行 `/tasks`。AI 将方案拆解为 Checklist。
-4. **Implement（执行）：** 运行 `/implement`。Agent 开始根据任务列表“敲代码”。
+- `proposal`：为什么要做
+- `specs`：需求和场景
+- `design`：技术设计
+- `tasks`：具体实施清单
 
-**特点：** 流程非常“重”，适合对代码质量要求极高、或者需要多人协作的大型项目。它强制 AI 在动代码前先完成“思考”。
+### 2. Codex CLI：真正的落地入口
 
----
+CLI 相对 IDE 对话式 Agent 有几个明显优势：
 
-#### 2. OpenSpec：轻量级、便携的“变更驱动”
+- 方便并发工作，可以同时开启多个终端协作
+- 能直接执行命令，过程更透明
+- 工具链和命令行生态更丰富，更容易接入现有工程流
 
-OpenSpec 相比 Spec Kit 更灵活，它更像是为 **Cursor**、**Windsurf** 或 **Claude Code** 设计的增强插件。
-- **`.openspec/` 目录：** 它在你的项目里建立一个专门的文件夹，存放 `specs/`（长期存活的系统定义）和 `changes/`（当前正在做的特性）。
-- **命令流：**
-    - `/openspec:proposal`：生成一份提案。
-    - `/openspec:apply`：Agent 读取提案并执行。
-    - `/openspec:archive`：任务完成后，将此次变更合入主 Spec 库，更新系统的“记忆”。
+## 面向文档开发的两个核心
 
-**特点：** 它解决了“聊天记录滚动太快导致 AI 忘了最初需求”的问题。它让需求和任务变成了**物理存在的 Markdown 文件**，Agent 每次行动都会强行读取这些文件作为“真理来源”。
+### 1. 面向文档编程
 
----
+Documentation-Oriented Programming 的核心主张是：文档即代码，文档先于代码。
 
-## 2. Agentic Coding 工作流实现：代理循环
+#### 核心理念
 
-一旦 Spec 确定，Codex 就会进入 **Agent Loop（代理循环）**，其内部逻辑如下：
+- Markdown 是 AI 时代的重要源代码
+- 编程重点正在从“直接写代码”转向“先写清楚需求和约束”
 
-1. **Plan（计划）：** Codex 将大任务拆解为 3-5 个原子化的 **Task**。
-2. **Execute（执行）：** 它会开启一个隔离的 **Git Worktree（工作树）**，在不影响你当前代码的情况下进行修改。
-3. **Tool Use（工具调用）：** 它会自主调用 `go build`、`go test` 或 `golangci-lint`。
-4. **Self-Correction（自愈）：** * 如果测试失败，它会查看报错日志（Log）并重新修改代码。
-* 它甚至能通过网络搜索（Search）解决特定的第三方库报错。
+#### 关键实践
 
+建议在项目根目录维护一套清晰的文档结构：
 
----
+```text
+README.md                     # 项目介绍
+AGENTS.md                     # 给 AI 编程工具阅读的项目概览和约束
+.codex/
+  rules/                      # AI 规则、电子围栏、宏命令
+docs/
+  requirements/
+    archive/                  # 已完成需求归档
+    requirename-date/         # 某次具体需求
+      require.md              # 需求描述
+      test.md                 # 测试用例与验证说明
+  PRD.md                      # 产品宏观描述，最终形态
+  CURRENT.md                  # 当前产品状态
+  ARCHITETUCTURE.md           # 系统架构
+  API.md                      # 项目 API 文档
+```
 
-## 3. Human-in-the-Loop 实现：关键节点审批
-Codex 应用被设计为“代理指挥中心”，它不会一次性把所有代码直接推送到主分支，而是通过以下方式实现协作：
+### 2. 面向测试编程
 
-* **检查点（Checkpoints）：** 每完成一个 Task，Codex 会在控制面板显示 Diff（代码差异）。
-* **反馈修正：** 如果你发现它某个变量命名不好，你可以直接在对话框说：“重命名这个变量为 `TaskRegistry`”。Agent 会理解上下文并只修改受影响的部分。
-* **异步工作：** 你可以同时运行多个 Agent 任务（例如：一个在改 Bug，一个在写新功能）。它们在后台运行，完成后会通过系统通知提醒你进入“决策回路”。
+面向测试编程是保证交付质量的核心手段，最典型的代表就是 TDD。
 
----
+#### 核心范式：TDD
 
-## 4. 总结：完整的开发闭环
+TDD 遵循一个很经典的循环：
 
-将这三种模式整合后，你的开发流程会变成这样：
+1. `Red`：先写一个一定会失败的测试，因为功能还没实现。
+2. `Green`：写最少量的代码，让测试通过。
+3. `Refactor`：在测试保护下重构代码，优化结构、去掉冗余，但不改变行为。
 
-| 阶段 | 参与者 | 产出物 | 核心动作 |
-| --- | --- | --- | --- |
-| **定义阶段** | 人类 + Codex | `SPEC.md` | 使用 **Spec 范式** 锁定需求和边界。 |
-| **拆解阶段** | Codex Agent | `PLAN.md` | 将 Spec 转化为可操作的任务序列。 |
-| **开发阶段** | Codex Agent | 代码 + 测试 | **Agentic 工作流** 自主编写并验证代码。 |
-| **审查阶段** | 人类 (HITL) | 合并请求 (PR) | 审查差异、运行演示、最终批准。 |
+## 核心步骤
 
-
+1. 根据 `PRD`、`CURRENT`、`ARCHITETUCTURE`、`API`、`AGENTS` 生成某次需求对应的 `requirename-date` 文件夹，并补齐 `require.md` 和 `test.md`。
+2. 执行 `opsx-propose`，以 `requirename-date` 为输入，生成 `proposal.md`、`task.md`、`design.md`、`spec.md`。
+3. 执行 `opsx-apply` 生成代码，并依据 `test.md` 进行验证。
+4. 需求完成后，把对应 `requirename-date` 目录归档。

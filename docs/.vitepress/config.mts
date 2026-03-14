@@ -2,15 +2,26 @@
 
 import { defineConfigWithTheme, type DefaultTheme } from 'vitepress'
 
-interface TwikooThemeConfig {
-  envId?: string
-  region?: string
+interface GiscusThemeConfig {
+  repo?: string
+  repoId?: string
+  category?: string
+  categoryId?: string
+  mapping?: 'pathname' | 'url' | 'title' | 'og:title' | 'specific' | 'number'
+  term?: string
+  strict?: '0' | '1'
+  reactionsEnabled?: '0' | '1'
+  emitMetadata?: '0' | '1'
+  inputPosition?: 'top' | 'bottom'
   lang?: string
-  siteUrl?: string
+  theme?: string
+  lightTheme?: string
+  darkTheme?: string
+  loading?: 'lazy' | 'eager'
 }
 
 type ThemeConfig = DefaultTheme.Config & {
-  twikoo?: TwikooThemeConfig
+  giscus?: GiscusThemeConfig
 }
 
 function sanitizeNoteMarkdown(content: string): string {
@@ -72,11 +83,22 @@ export default defineConfigWithTheme<ThemeConfig>({
       level: 'deep',
       label: '大纲',
     },
-    twikoo: {
-      envId: 'https://twikoo-snowy-ten-37.vercel.app',
-      region: '',
+    giscus: {
+      repo: 'ikunycj/xiaoba.blog',
+      // Fill these IDs from https://giscus.app/ after enabling GitHub Discussions.
+      repoId: 'R_kgDONgF0HQ',
+      category: 'General',
+      categoryId: 'DIC_kwDONgF0Hc4C4YOS',
+      mapping: 'pathname',
+      term: '',
+      strict: '0',
+      reactionsEnabled: '1',
+      emitMetadata: '0',
+      inputPosition: 'bottom',
       lang: 'zh-CN',
-      siteUrl: 'https://xiaoba.blog',
+      lightTheme: 'light',
+      darkTheme: 'dark_dimmed',
+      loading: 'lazy',
     },
     nav: [
       { text: '首页', link: '/home' },
