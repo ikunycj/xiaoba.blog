@@ -11,10 +11,15 @@
             "id": "3c42bb489d687149",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "note/AI/Agent/Code miner/Agent设计.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "Agent设计"
             }
           }
         ]
@@ -90,12 +95,13 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "note/AI/Agent/Code miner/Agent设计.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "大纲"
+              "title": "Agent设计 的大纲"
             }
           },
           {
@@ -204,6 +210,16 @@
   },
   "active": "3c42bb489d687149",
   "lastOpenFiles": [
+    "note/AI/Agent/Code miner/CodeMiner通信.md",
+    "note/AI/Agent/Code miner/未命名 2.md",
+    "note/AI/Agent/Code miner/COdeminer体系简介.md",
+    "note/AI/Agent/Code miner/Agent设计.md",
+    "note/AI/Agent/Code miner/CodeMiner体系.md",
+    "note/AI/Agent/Code miner/未命名 3.md",
+    "note/AI/Agent/Code miner/未命名 1.md",
+    "note/AI/Agent/Code miner/未命名.md",
+    "note/AI/Agent/Code miner",
+    "note/AI/Agent",
     "note/AI/AI Coding/AI Coding最佳实践（codex为例子）.md",
     "note/面经/前端面经/工程化/前端性能优化.md",
     "note/面经/前端面经/工程化/RESTful API.md",
@@ -222,14 +238,6 @@
     "note/面经/前端面经/React/1.react组件基础.md",
     "note/面经/前端面经/React/2.react数据管理.md",
     "note/面经/前端面经/JS/手撕.md",
-    "note/面经/前端面经/JS/9.js手写(数据处理).md",
-    "note/面经/前端面经/JS/8.js手写(基础).md",
-    "note/面经/前端面经/JS/6.js八股(面向对象).md",
-    "note/面经/前端面经/JS/7.js八股(垃圾回收与内存泄漏).md",
-    "note/面经/前端面经/JS/5.js八股(异步编程).md",
-    "note/面经/前端面经/JS/4.js八股(this绑定).md",
-    "note/面经/前端面经/JS/3.js八股(ES6).md",
-    "note/面经/前端面经/JS/2.js八股(数据类型).md",
     "note/面经/前端面经/工程化",
     "note/面经/前端面经/Vue",
     "note/面经/前端面经/React",
@@ -247,8 +255,6 @@
     "note/科目一/img/b4dd00ada05b188fc0ea061c7ce04207.jpeg",
     "note/科目一/img/ac8d1c00386579694bfea851213b567e.jpeg",
     "note/科目一/img/8a0cdb0d71e61041f7fe1210e4caba77.jpeg",
-    "note/科目一/img/857b38c5d12008b15cdd933b79957fc6.jpeg",
-    "note/科目一/img",
-    "note/科目一"
+    "note/科目一/img/857b38c5d12008b15cdd933b79957fc6.jpeg"
   ]
 }
