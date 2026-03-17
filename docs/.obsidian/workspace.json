@@ -4,22 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "5cb2d2e2538e9698",
+        "id": "91f3e2bcce5d46b3",
         "type": "tabs",
         "children": [
           {
-            "id": "3c42bb489d687149",
+            "id": "6b32cb59fc91d18f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "note/AI/Agent/Code miner/Agent设计.md",
+                "file": "note/AI/AI 文章解读/Building effective agents.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "Agent设计"
+              "title": "Building effective agents"
             }
           }
         ]
@@ -95,13 +95,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "note/AI/Agent/Code miner/Agent设计.md",
+                "file": "note/AI/AI 文章解读/Building effective agents.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Agent设计 的大纲"
+              "title": "Building effective agents 的大纲"
             }
           },
           {
@@ -208,17 +208,23 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "3c42bb489d687149",
+  "active": "6b32cb59fc91d18f",
   "lastOpenFiles": [
-    "note/AI/Agent/Code miner/CodeMiner通信.md",
+    "note/AI/Agent/Code miner项目/Agent设计.md",
+    "note/AI/AI 文章解读/Building effective agents.md",
+    "note/AI/Agent/Memory",
+    "note/AI/Transformer",
+    "note/index.md",
+    "note/AI/AI 文章解读",
+    "note/AI/未命名.md",
+    "note/AI/Agent/Code miner项目/CodeMiner通信.md",
     "note/AI/Agent/Code miner/未命名 2.md",
-    "note/AI/Agent/Code miner/COdeminer体系简介.md",
-    "note/AI/Agent/Code miner/Agent设计.md",
-    "note/AI/Agent/Code miner/CodeMiner体系.md",
+    "note/AI/Agent/Code miner项目/COdeminer体系简介.md",
+    "note/AI/Agent/Code miner项目/CodeMiner体系.md",
     "note/AI/Agent/Code miner/未命名 3.md",
     "note/AI/Agent/Code miner/未命名 1.md",
     "note/AI/Agent/Code miner/未命名.md",
-    "note/AI/Agent/Code miner",
+    "note/AI/Agent/Code miner项目",
     "note/AI/Agent",
     "note/AI/AI Coding/AI Coding最佳实践（codex为例子）.md",
     "note/面经/前端面经/工程化/前端性能优化.md",
@@ -234,18 +240,11 @@
     "note/面经/前端面经/React/6.redux.md",
     "note/面经/前端面经/React/5.react路由.md",
     "note/面经/前端面经/React/4.react组件通信.md",
-    "note/面经/前端面经/React/3.react生命周期.md",
-    "note/面经/前端面经/React/1.react组件基础.md",
-    "note/面经/前端面经/React/2.react数据管理.md",
-    "note/面经/前端面经/JS/手撕.md",
     "note/面经/前端面经/工程化",
     "note/面经/前端面经/Vue",
     "note/面经/前端面经/React",
     "note/面经/前端面经/JS",
     "note/面经/前端面经/HTTP",
-    "note/面经/前端面经/CSS",
-    "note/面经/前端面经",
-    "note/面经",
     "note/科目一/img/Pasted image 20240716110650.png",
     "note/科目一/img/Pasted image 20240716110618.png",
     "note/科目一/img/Pasted image 20240716110557.png",

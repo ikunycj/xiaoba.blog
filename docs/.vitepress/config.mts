@@ -24,6 +24,127 @@ type ThemeConfig = DefaultTheme.Config & {
   giscus?: GiscusThemeConfig
 }
 
+const KNOWN_FENCE_LANGUAGES = new Set([
+  'apache',
+  'bash',
+  'c++',
+  'cmd',
+  'cpp',
+  'csharp',
+  'css',
+  'dart',
+  'go',
+  'html',
+  'http',
+  'java',
+  'javascript',
+  'js',
+  'json',
+  'jsx',
+  'markdown',
+  'mermaid',
+  'nginx',
+  'php',
+  'plaintext',
+  'powershell',
+  'properties',
+  'python',
+  'regex',
+  'sql',
+  'text',
+  'ts',
+  'tsx',
+  'txt',
+  'typescript',
+  'vue',
+  'xml',
+  'yaml',
+  'yml',
+])
+
+const FENCE_LANGUAGE_ALIASES = new Map([
+  ['htnl', 'html'],
+  ['ja', 'java'],
+  ['jav', 'java'],
+  ['ks', 'js'],
+  ['mysql', 'sql'],
+  ['plain', 'plaintext'],
+  ['pythobn', 'python'],
+  ['shell', 'bash'],
+  ['shellscript', 'bash'],
+])
+
+const SHELL_COMMAND_STARTERS = new Set([
+  'bun',
+  'conda',
+  'curl',
+  'deno',
+  'docker',
+  'git',
+  'kubectl',
+  'mvn',
+  'node',
+  'npm',
+  'npx',
+  'pip',
+  'pip3',
+  'pnpm',
+  'python',
+  'python3',
+  'yarn',
+])
+
+function normalizeFenceLanguageToken(token: string): string {
+  const lowered = token.trim().toLowerCase()
+  if (!lowered) return ''
+
+  const direct = FENCE_LANGUAGE_ALIASES.get(lowered) || (KNOWN_FENCE_LANGUAGES.has(lowered) ? lowered : '')
+  if (direct) return direct
+
+  const leading = lowered.match(/^[a-z0-9+#-]+/u)?.[0] || ''
+  if (!leading || leading === lowered) return ''
+
+  return FENCE_LANGUAGE_ALIASES.get(leading) || (KNOWN_FENCE_LANGUAGES.has(leading) ? leading : '')
+}
+
+function normalizeFenceInfo(info: string, content: string): { info: string; content: string } {
+  const trimmedInfo = info.trim()
+  if (!trimmedInfo) {
+    return { info, content }
+  }
+
+  const [firstToken, ...restTokens] = trimmedInfo.split(/\s+/)
+  const rest = restTokens.join(' ')
+  const loweredFirstToken = firstToken.toLowerCase()
+  const normalizedLanguage = normalizeFenceLanguageToken(firstToken)
+
+  if (firstToken === '$' || (!normalizedLanguage && rest && SHELL_COMMAND_STARTERS.has(loweredFirstToken))) {
+    const normalizedContent = content.startsWith(trimmedInfo) ? content : `${trimmedInfo}\n${content}`
+    return {
+      info: 'bash',
+      content: normalizedContent,
+    }
+  }
+
+  if (normalizedLanguage) {
+    if (!rest || normalizedLanguage !== loweredFirstToken) {
+      return {
+        info: normalizedLanguage,
+        content,
+      }
+    }
+  }
+
+  if (/^[-=]+$/.test(firstToken) || /^[^\p{L}\p{N}]+$/u.test(firstToken)) {
+    return {
+      info: 'txt',
+      content,
+    }
+  }
+
+  return { info, content }
+}
+
 function sanitizeNoteMarkdown(content: string): string {
   const withoutMarkdownImages = content
     .replace(/!\[[^\]]*]\(([^)]+)\)/g, '')
@@ -173,6 +294,26 @@ export default defineConfigWithTheme<ThemeConfig>({
     math: true,
     config(md) {
       md.set({ linkify: false })
+
+      const defaultFenceRenderer = md.renderer.rules.fence
+      if (!defaultFenceRenderer) return
+
+      md.renderer.rules.fence = (tokens, idx, options, env, self) => {
+        const token = tokens[idx]
+        const originalInfo = token.info
+        const originalContent = token.content
+        const normalized = normalizeFenceInfo(originalInfo, originalContent)
+
+        token.info = normalized.info
+        token.content = normalized.content
+
+        try {
+          return defaultFenceRenderer(tokens, idx, options, env, self)
+        } finally {
+          token.info = originalInfo
+          token.content = originalContent
+        }
+      }
     },
   },
 

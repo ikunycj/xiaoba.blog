@@ -1,6 +1,5 @@
-import { execFileSync } from "node:child_process";
 import { existsSync, statSync } from "node:fs";
-import { relative, resolve } from "node:path";
+import { resolve } from "node:path";
 import { createContentLoader } from "vitepress";
 
 type RecentPost = {
@@ -22,8 +21,6 @@ const NOTE_ROOT = "/note/";
 const MAX_RECENT_POSTS = 120;
 const REPO_ROOT = process.cwd();
 const DOCS_ROOT = resolve(REPO_ROOT, "docs");
-const SAFE_DIRECTORY = REPO_ROOT.replace(/\\/g, "/");
-const createdAtCache = new Map<string, number>();
 
 const normalizeContentUrl = (url: string): string => {
   let normalized = url.trim();
@@ -95,36 +92,15 @@ const resolveSourcePath = (url: string): string | null => {
   return null;
 };
 
-const getGitCreatedTimestamp = (filePath: string): number => {
-  const cached = createdAtCache.get(filePath);
-  if (typeof cached === "number") {
-    return cached;
-  }
-
-  let timestamp = 0;
-
+const getFileCreatedTimestamp = (filePath: string): number => {
   try {
-    const gitPath = relative(REPO_ROOT, filePath).replace(/\\/g, "/");
-    const output = execFileSync(
-      "git",
-      ["-c", `safe.directory=${SAFE_DIRECTORY}`, "log", "--diff-filter=A", "--follow", "--format=%aI", "--", gitPath],
-      { cwd: REPO_ROOT, encoding: "utf8" }
-    ).trim();
+    const { birthtimeMs, mtimeMs } = statSync(filePath);
+    const createdAt = Number.isFinite(birthtimeMs) && birthtimeMs > 0 ? birthtimeMs : 0;
+    if (createdAt > 0) {
+      return createdAt;
+    }
 
-    const firstLine = output.split(/\r?\n/).find((line) => line.trim().length > 0) || "";
-    timestamp = parseTimestamp(firstLine);
-  } catch {
-    timestamp = 0;
-  }
-
-  createdAtCache.set(filePath, timestamp);
-  return timestamp;
-};
-
-const getFileModifiedTimestamp = (filePath: string): number => {
-  try {
-    const modifiedAt = statSync(filePath).mtimeMs;
-    return Number.isFinite(modifiedAt) && modifiedAt > 0 ? modifiedAt : 0;
+    return Number.isFinite(mtimeMs) && mtimeMs > 0 ? mtimeMs : 0;
   } catch {
     return 0;
   }
@@ -188,14 +164,9 @@ const resolvePublished = (
 
   const sourcePath = resolveSourcePath(url);
   if (sourcePath) {
-    const createdAt = getGitCreatedTimestamp(sourcePath);
+    const createdAt = getFileCreatedTimestamp(sourcePath);
     if (createdAt > 0) {
       return createdAt;
-    }
-
-    const modifiedAt = getFileModifiedTimestamp(sourcePath);
-    if (modifiedAt > 0) {
-      return modifiedAt;
     }
   }
 
@@ -213,7 +184,7 @@ const formatDate = (timestamp: number): string => {
   });
 };
 
-export default createContentLoader("**/*.md", {
+export default createContentLoader(["note/**/*.md", "blogs/**/*.md"], {
   excerpt: true,
   transform(rawData): RecentPost[] {
     return rawData
