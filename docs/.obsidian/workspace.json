@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "note/AI/AI 文章解读/Building effective agents.md",
+                "file": "note/AI/Agent/RAG/Agentic RAG.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "Building effective agents"
+              "title": "Agentic RAG"
             }
           }
         ]
@@ -95,13 +95,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "note/AI/AI 文章解读/Building effective agents.md",
+                "file": "note/AI/Agent/RAG/Agentic RAG.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Building effective agents 的大纲"
+              "title": "Agentic RAG 的大纲"
             }
           },
           {
@@ -210,22 +210,33 @@
   },
   "active": "6b32cb59fc91d18f",
   "lastOpenFiles": [
-    "note/AI/Agent/Code miner项目/Agent设计.md",
+    "blogs/public/blog-index/manifest.json",
+    "blogs/public/blog-index/all/page-109.json",
+    "blogs/public/blog-index/all/page-108.json",
+    "blogs/public/blog-index/archive/2026-03/page-99.json",
+    "blogs/public/blog-index/archive/2026-03/page-98.json",
+    "blogs/public/blog-index/archive/2026-03/page-97.json",
+    "blogs/public/blog-index/archive/2026-03/page-96.json",
+    "blogs/public/blog-index/archive/2026-03/page-95.json",
+    "blogs/public/blog-index/archive/2026-03/page-94.json",
+    "blogs/public/blog-index/archive/2026-03/page-93.json",
+    "blogs/public/blog-index/archive/2026-03/page-92.json",
+    "self/非公开/Code miner项目/COdeminer体系简介.md",
+    "note/AI/Agent/RAG/Agentic RAG.md",
+    "self/非公开/Code miner项目/CodeMiner通信.md",
+    "note/AI/Agent/AI八股.md",
+    "self/非公开/Code miner项目/为工程确定性而设计：微信支付离线代码分析 Agent 体系.md",
+    "note/AI/AI 算法/LLM原理与训练八股.md",
+    "note/AI/AI 算法/MoE.md",
+    "note/AI/index.md",
     "note/AI/AI 文章解读/Building effective agents.md",
-    "note/AI/Agent/Memory",
-    "note/AI/Transformer",
+    "note/AI/AI 文章解读/Pasted image 20260317145641.png",
     "note/index.md",
-    "note/AI/AI 文章解读",
     "note/AI/未命名.md",
-    "note/AI/Agent/Code miner项目/CodeMiner通信.md",
     "note/AI/Agent/Code miner/未命名 2.md",
-    "note/AI/Agent/Code miner项目/COdeminer体系简介.md",
-    "note/AI/Agent/Code miner项目/CodeMiner体系.md",
     "note/AI/Agent/Code miner/未命名 3.md",
     "note/AI/Agent/Code miner/未命名 1.md",
     "note/AI/Agent/Code miner/未命名.md",
-    "note/AI/Agent/Code miner项目",
-    "note/AI/Agent",
     "note/AI/AI Coding/AI Coding最佳实践（codex为例子）.md",
     "note/面经/前端面经/工程化/前端性能优化.md",
     "note/面经/前端面经/工程化/RESTful API.md",
@@ -236,15 +247,6 @@
     "note/面经/前端面经/React/9.其他.md",
     "note/面经/前端面经/Vue/Vue.md",
     "note/面经/前端面经/React/8.虚拟DOM.md",
-    "note/面经/前端面经/React/7.Hooks.md",
-    "note/面经/前端面经/React/6.redux.md",
-    "note/面经/前端面经/React/5.react路由.md",
-    "note/面经/前端面经/React/4.react组件通信.md",
-    "note/面经/前端面经/工程化",
-    "note/面经/前端面经/Vue",
-    "note/面经/前端面经/React",
-    "note/面经/前端面经/JS",
-    "note/面经/前端面经/HTTP",
     "note/科目一/img/Pasted image 20240716110650.png",
     "note/科目一/img/Pasted image 20240716110618.png",
     "note/科目一/img/Pasted image 20240716110557.png",
@@ -253,7 +255,6 @@
     "note/科目一/img/Pasted image 20240716110023.png",
     "note/科目一/img/b4dd00ada05b188fc0ea061c7ce04207.jpeg",
     "note/科目一/img/ac8d1c00386579694bfea851213b567e.jpeg",
-    "note/科目一/img/8a0cdb0d71e61041f7fe1210e4caba77.jpeg",
-    "note/科目一/img/857b38c5d12008b15cdd933b79957fc6.jpeg"
+    "note/科目一/img/8a0cdb0d71e61041f7fe1210e4caba77.jpeg"
   ]
 }

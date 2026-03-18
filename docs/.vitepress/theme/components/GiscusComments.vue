@@ -1,10 +1,5 @@
 <template>
-  <GiscusPanel
-    v-if="showComment"
-    eyebrow="Comment"
-    title="评论区"
-    description="使用 GitHub 登录后即可参与讨论，评论将托管在 GitHub Discussions。"
-  />
+  <GiscusPanel v-if="showComment" />
 </template>
 
 <script setup lang="ts">

@@ -3,34 +3,34 @@
     <div class="blog-layout">
       <aside class="blog-left">
         <article class="xb-card profile-card">
-          <img class="profile-card__avatar" :src="avatarSrc" alt="小八头像" />
+          <img class="profile-card__avatar" :src="avatarSrc" :alt="copy.profileAlt" />
           <p class="xb-eyebrow">Profile</p>
-          <h2>小八</h2>
-          <p class="xb-muted profile-card__intro">持续记录前端、工程化和真实项目里的可复用经验。</p>
+          <h2>{{ copy.profileName }}</h2>
+          <p class="xb-muted profile-card__intro">{{ copy.profileIntro }}</p>
           <div class="profile-card__stats">
             <div>
-              <strong>{{ allPosts.length }}</strong>
-              <span>文章</span>
+              <strong>{{ totalPostsCount }}</strong>
+              <span>{{ copy.articleCount }}</span>
             </div>
             <div>
-              <strong>{{ archiveBuckets.length - 1 }}</strong>
-              <span>归档</span>
+              <strong>{{ archiveTotalCount }}</strong>
+              <span>{{ copy.archiveCount }}</span>
             </div>
             <div>
               <strong>{{ latestUpdatedText }}</strong>
-              <span>最近更新</span>
+              <span>{{ copy.latestUpdated }}</span>
             </div>
           </div>
           <div class="xb-chip-row profile-card__links">
-            <a class="xb-chip" :href="toPath('/home')">首页</a>
-            <a class="xb-chip" :href="toPath('/projects')">项目</a>
-            <a class="xb-chip" :href="toPath('/share')">分享</a>
+            <a class="xb-chip" :href="toPath('/home')">{{ copy.home }}</a>
+            <a class="xb-chip" :href="toPath('/projects')">{{ copy.projects }}</a>
+            <a class="xb-chip" :href="toPath('/share')">{{ copy.share }}</a>
           </div>
         </article>
 
         <article class="xb-card archive-card">
           <p class="xb-eyebrow">Timeline</p>
-          <h3>时间线归档</h3>
+          <h3>{{ copy.timelineTitle }}</h3>
           <ul class="archive-list">
             <li v-for="bucket in archiveBuckets" :key="bucket.key">
               <button
@@ -50,20 +50,29 @@
       <main class="blog-main">
         <header class="xb-hero blog-main__hero">
           <p class="xb-eyebrow">Recent Posts</p>
-          <h1>最近发布</h1>
-          <p class="xb-muted">
-            当前筛选：{{ activeArchiveLabel }}，共 {{ filteredPosts.length }} 篇，按时间线分页展示。
-          </p>
+          <h1>{{ copy.recentTitle }}</h1>
+          <p class="xb-muted">{{ summaryText }}</p>
           <div class="xb-chip-row">
-            <span class="xb-chip">第 {{ currentPage }} / {{ totalPages }} 页</span>
-            <span class="xb-chip">每页 {{ PAGE_SIZE }} 篇</span>
-            <a class="xb-chip" :href="toPath('/note/index')">进入笔记总览</a>
-            <a class="xb-chip" :href="toPath('/blog/index#guestbook')">博客留言板</a>
+            <span class="xb-chip">{{ pageChipText }}</span>
+            <span class="xb-chip">{{ pageSizeText }}</span>
+            <a class="xb-chip" :href="toPath('/note/index')">{{ copy.noteOverview }}</a>
+            <a class="xb-chip" :href="toPath('/blog/index#guestbook')">{{ copy.guestbook }}</a>
           </div>
         </header>
 
-        <div v-if="pagedPosts.length === 0" class="xb-card">
-          <p class="xb-muted">当前没有符合筛选条件的文章。</p>
+        <div v-if="loadError" class="xb-card status-card">
+          <p class="xb-muted">{{ loadError }}</p>
+          <div class="status-actions">
+            <button type="button" class="pager-btn" @click="retryLoad">{{ copy.retry }}</button>
+          </div>
+        </div>
+
+        <div v-else-if="isLoading && pagedPosts.length === 0" class="xb-card status-card">
+          <p class="xb-muted">{{ copy.loading }}</p>
+        </div>
+
+        <div v-else-if="pagedPosts.length === 0" class="xb-card status-card">
+          <p class="xb-muted">{{ copy.empty }}</p>
         </div>
 
         <div v-else class="blog-post-stack">
@@ -74,28 +83,34 @@
             </div>
             <h2>{{ post.title }}</h2>
             <p class="xb-muted">{{ post.summary }}</p>
-            <a class="post-card__link" :href="toPath(post.url)">阅读全文</a>
+            <a class="post-card__link" :href="toPath(post.url)">{{ copy.readMore }}</a>
           </article>
         </div>
 
-        <nav class="xb-card pager" aria-label="博客分页">
-          <button type="button" class="pager-btn" :disabled="currentPage <= 1" @click="goPrevPage">
-            上一页
+        <nav class="xb-card pager" :aria-label="copy.pagerAriaLabel">
+          <button
+            type="button"
+            class="pager-btn"
+            :disabled="isLoading || currentPage <= 1"
+            @click="goPrevPage"
+          >
+            {{ copy.prev }}
           </button>
-          <span class="pager-text">第 {{ currentPage }} / {{ totalPages }} 页</span>
-          <button type="button" class="pager-btn" :disabled="currentPage >= totalPages" @click="goNextPage">
-            下一页
+          <span class="pager-text">{{ pageChipText }}</span>
+          <button
+            type="button"
+            class="pager-btn"
+            :disabled="isLoading || currentPage >= totalPages"
+            @click="goNextPage"
+          >
+            {{ copy.next }}
           </button>
         </nav>
       </main>
 
       <aside class="blog-right">
         <article id="guestbook" class="xb-card discussion-card">
-          <GiscusPanel
-            title="留言板"
-            mapping="specific"
-            term="blog-guestbook"
-          />
+          <GiscusPanel :title="copy.commentTitle" mapping="specific" term="blog-guestbook" />
         </article>
       </aside>
     </div>
@@ -103,9 +118,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { withBase } from 'vitepress'
-import { data as posts } from '../../data/blogRecent.data'
 import GiscusPanel from '../../theme/components/GiscusPanel.vue'
 
 type RecentPost = {
@@ -124,120 +138,197 @@ type ArchiveBucket = {
   label: string
   count: number
   latest: number
+  totalPages: number
 }
 
-const PAGE_SIZE = 6
-const avatarSrc = withBase('/xiaoba-smile.jpg')
+type BlogIndexManifest = {
+  generatedAt: string
+  pageSize: number
+  latestUpdatedText: string
+  all: ArchiveBucket
+  archives: ArchiveBucket[]
+}
 
+type BlogIndexPage = {
+  key: string
+  page: number
+  totalPages: number
+  items: RecentPost[]
+}
+
+const copy = {
+  profileAlt: '\u5C0F\u516B\u5934\u50CF',
+  profileName: '\u5C0F\u516B',
+  profileIntro:
+    '\u6301\u7EED\u8BB0\u5F55\u524D\u7AEF\u3001\u5DE5\u7A0B\u5316\u548C\u771F\u5B9E\u9879\u76EE\u91CC\u7684\u53EF\u590D\u7528\u7ECF\u9A8C\u3002',
+  articleCount: '\u6587\u7AE0',
+  archiveCount: '\u5F52\u6863',
+  latestUpdated: '\u6700\u8FD1\u66F4\u65B0',
+  home: '\u9996\u9875',
+  projects: '\u9879\u76EE',
+  share: '\u5206\u4EAB',
+  timelineTitle: '\u65F6\u95F4\u7EBF\u5F52\u6863',
+  recentTitle: '\u6700\u8FD1\u53D1\u5E03',
+  noteOverview: '\u8FDB\u5165\u7B14\u8BB0\u603B\u89C8',
+  guestbook: '\u535A\u5BA2\u7559\u8A00\u677F',
+  loading: '\u6B63\u5728\u52A0\u8F7D\u6587\u7AE0\u2026',
+  empty: '\u5F53\u524D\u6CA1\u6709\u7B26\u5408\u7B5B\u9009\u6761\u4EF6\u7684\u6587\u7AE0\u3002',
+  retry: '\u91CD\u8BD5',
+  readMore: '\u9605\u8BFB\u5168\u6587',
+  prev: '\u4E0A\u4E00\u9875',
+  next: '\u4E0B\u4E00\u9875',
+  pagerAriaLabel: '\u535A\u5BA2\u5206\u9875',
+  commentTitle: '\u7559\u8A00\u677F',
+  all: '\u5168\u90E8',
+  unknown: '\u672A\u77E5',
+} as const
+
+const avatarSrc = withBase('/xiaoba-smile.jpg')
+const manifest = ref<BlogIndexManifest | null>(null)
 const selectedArchiveKey = ref('all')
 const currentPage = ref(1)
-
-const allPosts = computed<RecentPost[]>(() => {
-  return (posts as RecentPost[]).filter((post) => typeof post.url === 'string' && post.url.length > 0)
-})
-
-const latestUpdatedText = computed(() => {
-  const latest = allPosts.value.find((post) => post.updatedAt > 0)
-  return latest ? formatDate(latest.updatedAt) : '未知'
-})
+const pageItems = ref<RecentPost[]>([])
+const isLoading = ref(false)
+const loadError = ref('')
+const pageCache = new Map<string, RecentPost[]>()
+let requestId = 0
 
 const archiveBuckets = computed<ArchiveBucket[]>(() => {
-  const map = new Map<string, ArchiveBucket>()
-
-  allPosts.value.forEach((post) => {
-    const key = resolveArchiveKey(post.publishedAt)
-    const current = map.get(key)
-    if (current) {
-      current.count += 1
-      if (post.publishedAt > current.latest) current.latest = post.publishedAt
-      return
-    }
-
-    map.set(key, {
-      key,
-      label: resolveArchiveLabel(key),
-      count: 1,
-      latest: post.publishedAt,
-    })
-  })
-
-  const buckets = Array.from(map.values()).sort((a, b) => {
-    if (a.key === 'unknown') return 1
-    if (b.key === 'unknown') return -1
-    return b.latest - a.latest
-  })
-
-  return [
-    {
-      key: 'all',
-      label: '全部',
-      count: allPosts.value.length,
-      latest: allPosts.value[0]?.publishedAt || 0,
-    },
-    ...buckets,
-  ]
+  if (!manifest.value) return []
+  return [manifest.value.all, ...manifest.value.archives]
 })
 
-const activeArchiveLabel = computed(() => {
-  const current = archiveBuckets.value.find((item) => item.key === selectedArchiveKey.value)
-  return current?.label || '全部'
+const activeBucket = computed<ArchiveBucket | null>(() => {
+  return archiveBuckets.value.find((bucket) => bucket.key === selectedArchiveKey.value) || manifest.value?.all || null
 })
 
-const filteredPosts = computed<RecentPost[]>(() => {
-  if (selectedArchiveKey.value === 'all') return allPosts.value
-  return allPosts.value.filter((post) => resolveArchiveKey(post.publishedAt) === selectedArchiveKey.value)
-})
-
-const totalPages = computed(() => {
-  return Math.max(1, Math.ceil(filteredPosts.value.length / PAGE_SIZE))
-})
-
-const pagedPosts = computed<RecentPost[]>(() => {
-  const start = (currentPage.value - 1) * PAGE_SIZE
-  return filteredPosts.value.slice(start, start + PAGE_SIZE)
-})
-
-watch(selectedArchiveKey, () => {
-  currentPage.value = 1
-})
-
-watch(
-  () => filteredPosts.value.length,
-  () => {
-    if (currentPage.value > totalPages.value) {
-      currentPage.value = totalPages.value
-    }
-  }
+const totalPostsCount = computed(() => manifest.value?.all.count || 0)
+const archiveTotalCount = computed(() => manifest.value?.archives.length || 0)
+const latestUpdatedText = computed(() => manifest.value?.latestUpdatedText || copy.unknown)
+const totalPages = computed(() => activeBucket.value?.totalPages || 1)
+const activeArchiveLabel = computed(() => activeBucket.value?.label || copy.all)
+const activeArchiveCount = computed(() => activeBucket.value?.count || 0)
+const pagedPosts = computed(() => pageItems.value)
+const pageChipText = computed(() => `\u7B2C ${currentPage.value} / ${totalPages.value} \u9875`)
+const pageSizeText = computed(() => `\u6BCF\u9875 ${manifest.value?.pageSize || 0} \u7BC7`)
+const summaryText = computed(
+  () =>
+    `\u5F53\u524D\u7B5B\u9009\uFF1A${activeArchiveLabel.value}\uFF0C\u5171 ${activeArchiveCount.value} \u7BC7\uFF0C\u6309\u65F6\u95F4\u7EBF\u5206\u9875\u5C55\u793A\u3002`
 )
 
+onMounted(async () => {
+  await loadManifest()
+  await loadPage()
+})
+
+async function loadManifest(): Promise<void> {
+  if (manifest.value) return
+
+  try {
+    manifest.value = await fetchJson<BlogIndexManifest>(withBase('/blog-index/manifest.json'))
+  } catch (error) {
+    loadError.value = toErrorMessage(error)
+  }
+}
+
+async function loadPage(): Promise<void> {
+  const bucket = activeBucket.value
+  if (!bucket) {
+    pageItems.value = []
+    return
+  }
+
+  const nextPage = Math.min(Math.max(currentPage.value, 1), bucket.totalPages)
+  if (nextPage !== currentPage.value) {
+    currentPage.value = nextPage
+  }
+
+  const cacheKey = buildCacheKey(selectedArchiveKey.value, nextPage)
+  const cachedItems = pageCache.get(cacheKey)
+  if (cachedItems) {
+    pageItems.value = cachedItems
+    loadError.value = ''
+    return
+  }
+
+  const localRequestId = ++requestId
+  isLoading.value = true
+  loadError.value = ''
+
+  try {
+    const page = await fetchJson<BlogIndexPage>(buildPageUrl(selectedArchiveKey.value, nextPage))
+    if (localRequestId !== requestId) return
+    const items = Array.isArray(page.items) ? page.items : []
+    pageCache.set(cacheKey, items)
+    pageItems.value = items
+  } catch (error) {
+    if (localRequestId !== requestId) return
+    pageItems.value = []
+    loadError.value = toErrorMessage(error)
+  } finally {
+    if (localRequestId === requestId) {
+      isLoading.value = false
+    }
+  }
+}
+
 function selectArchive(key: string): void {
+  if (selectedArchiveKey.value === key) return
   selectedArchiveKey.value = key
+  currentPage.value = 1
+  void loadPage()
 }
 
 function goPrevPage(): void {
-  currentPage.value = Math.max(1, currentPage.value - 1)
+  if (currentPage.value <= 1) return
+  currentPage.value -= 1
+  void loadPage()
 }
 
 function goNextPage(): void {
-  currentPage.value = Math.min(totalPages.value, currentPage.value + 1)
+  if (currentPage.value >= totalPages.value) return
+  currentPage.value += 1
+  void loadPage()
 }
 
-function resolveArchiveKey(timestamp: number): string {
-  if (!timestamp) return 'unknown'
-  const date = new Date(timestamp)
-  if (!Number.isFinite(date.getTime())) return 'unknown'
-  const month = `${date.getMonth() + 1}`.padStart(2, '0')
-  return `${date.getFullYear()}-${month}`
+function retryLoad(): void {
+  void loadPage()
 }
 
-function resolveArchiveLabel(key: string): string {
-  if (key === 'unknown') return '未知时间'
-  const [year, month] = key.split('-')
-  return `${year}年${month}月`
+function buildCacheKey(key: string, page: number): string {
+  return `${key}:${page}`
+}
+
+function buildPageUrl(key: string, page: number): string {
+  if (key === 'all') {
+    return withBase(`/blog-index/all/page-${page}.json`)
+  }
+  return withBase(`/blog-index/archive/${encodeURIComponent(key)}/page-${page}.json`)
+}
+
+async function fetchJson<T>(url: string): Promise<T> {
+  const response = await fetch(url, {
+    headers: {
+      Accept: 'application/json',
+    },
+  })
+
+  if (!response.ok) {
+    throw new Error(`Request failed: ${response.status}`)
+  }
+
+  return (await response.json()) as T
+}
+
+function toErrorMessage(error: unknown): string {
+  if (error instanceof Error && error.message) {
+    return `\u52A0\u8F7D\u5931\u8D25\uFF1A${error.message}`
+  }
+  return '\u52A0\u8F7D\u5931\u8D25'
 }
 
 function formatDate(timestamp: number): string {
-  if (!timestamp) return '未知时间'
+  if (!timestamp) return '\u672A\u77E5\u65F6\u95F4'
   return new Date(timestamp).toLocaleDateString('zh-CN', {
     year: 'numeric',
     month: '2-digit',
@@ -265,8 +356,8 @@ function toPath(path: string): string {
 
 .blog-layout {
   display: grid;
-  grid-template-columns: 250px minmax(0, 1fr) 320px;
-  gap: 1rem;
+  grid-template-columns: 280px minmax(0, 1fr) 300px;
+  gap: 1.15rem;
   align-items: start;
 }
 
@@ -279,6 +370,10 @@ function toPath(path: string): string {
 }
 
 .blog-right {
+  min-width: 0;
+}
+
+.blog-left {
   min-width: 0;
 }
 
@@ -300,13 +395,18 @@ function toPath(path: string): string {
 .profile-card__intro {
   margin-top: 0.45rem;
   font-size: 0.92rem;
+  line-height: 1.65;
 }
 
 .profile-card__stats {
   margin-top: 0.85rem;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.45rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+.profile-card__stats div:last-child {
+  grid-column: 1 / -1;
 }
 
 .profile-card__stats div {
@@ -342,11 +442,17 @@ function toPath(path: string): string {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 0.7rem;
   padding: 0.48rem 0.62rem;
   border-radius: 10px;
   border: 1px solid var(--xb-border);
   background: color-mix(in srgb, var(--xb-surface-soft) 80%, transparent 20%);
   transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  text-align: left;
+}
+
+.archive-btn span:first-child {
+  min-width: 0;
 }
 
 .archive-btn:hover {
@@ -392,6 +498,16 @@ function toPath(path: string): string {
   font-weight: 700;
 }
 
+.status-card {
+  margin-top: 0.95rem;
+}
+
+.status-actions {
+  margin-top: 0.8rem;
+  display: flex;
+  gap: 0.6rem;
+}
+
 .pager {
   margin-top: 0.95rem;
   display: flex;
@@ -425,7 +541,7 @@ function toPath(path: string): string {
 
 @media (max-width: 1200px) {
   .blog-layout {
-    grid-template-columns: 220px minmax(0, 1fr) 300px;
+    grid-template-columns: 248px minmax(0, 1fr) 280px;
   }
 }
 

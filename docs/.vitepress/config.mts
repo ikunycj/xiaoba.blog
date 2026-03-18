@@ -225,6 +225,7 @@ export default defineConfigWithTheme<ThemeConfig>({
       { text: '首页', link: '/home' },
       { text: '博客', link: '/blog/index' },
       { text: '笔记', link: '/note/' },
+      { text: 'AI', link: '/note/AI/' },
       {
         text: '分享',
         items: [
@@ -237,6 +238,15 @@ export default defineConfigWithTheme<ThemeConfig>({
       { text: '项目', link: '/projects' },
     ],
     sidebar: generateSidebar([
+      {
+        documentRootPath: '/docs/note/AI',
+        scanStartPath: '/',
+        resolvePath: '/note/AI/',
+        useTitleFromFileHeading: false,
+        excludePattern: ['do-not-include.md'],
+        collapsed: true,
+        sortMenusByFrontmatterOrder: true,
+      },
       {
         documentRootPath: '/docs/note',
         scanStartPath: '/',
@@ -264,7 +274,7 @@ export default defineConfigWithTheme<ThemeConfig>({
       },
     ]),
 
-    socialLinks: [{ icon: 'github', link: 'https://github.com/ikunycj/xiaoba.my' }],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/ikunycj' }],
 
     footer: {
       message: 'xiaoba blog',
@@ -272,7 +282,7 @@ export default defineConfigWithTheme<ThemeConfig>({
     },
 
     editLink: {
-      pattern: 'https://github.com/ikunycj/xiaoba.my/tree/master/docs/:path',
+      pattern: 'https://github.com/ikunycj/xiaoba.blog/tree/master/docs/:path',
       text: '欢迎一起完善文档',
     },
 
