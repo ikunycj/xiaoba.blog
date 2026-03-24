@@ -4,22 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "91f3e2bcce5d46b3",
+        "id": "519a9b5baf1f14be",
         "type": "tabs",
         "children": [
           {
-            "id": "6b32cb59fc91d18f",
+            "id": "7f763b36606dd3c1",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "note/AI/Agent/RAG/Agentic RAG.md",
+                "file": "note/软件工程/前端/面经/HTTP/HTTP.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "Agentic RAG"
+              "title": "HTTP"
             }
           }
         ]
@@ -95,13 +95,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "note/AI/Agent/RAG/Agentic RAG.md",
+                "file": "note/软件工程/前端/面经/HTTP/HTTP.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Agentic RAG 的大纲"
+              "title": "HTTP 的大纲"
             }
           },
           {
@@ -208,53 +208,53 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "6b32cb59fc91d18f",
+  "active": "7f763b36606dd3c1",
   "lastOpenFiles": [
-    "blogs/public/blog-index/manifest.json",
-    "blogs/public/blog-index/all/page-109.json",
-    "blogs/public/blog-index/all/page-108.json",
-    "blogs/public/blog-index/archive/2026-03/page-99.json",
-    "blogs/public/blog-index/archive/2026-03/page-98.json",
-    "blogs/public/blog-index/archive/2026-03/page-97.json",
-    "blogs/public/blog-index/archive/2026-03/page-96.json",
-    "blogs/public/blog-index/archive/2026-03/page-95.json",
-    "blogs/public/blog-index/archive/2026-03/page-94.json",
-    "blogs/public/blog-index/archive/2026-03/page-93.json",
-    "blogs/public/blog-index/archive/2026-03/page-92.json",
-    "self/非公开/Code miner项目/COdeminer体系简介.md",
-    "note/AI/Agent/RAG/Agentic RAG.md",
-    "self/非公开/Code miner项目/CodeMiner通信.md",
-    "note/AI/Agent/AI八股.md",
-    "self/非公开/Code miner项目/为工程确定性而设计：微信支付离线代码分析 Agent 体系.md",
-    "note/AI/AI 算法/LLM原理与训练八股.md",
-    "note/AI/AI 算法/MoE.md",
-    "note/AI/index.md",
-    "note/AI/AI 文章解读/Building effective agents.md",
-    "note/AI/AI 文章解读/Pasted image 20260317145641.png",
-    "note/index.md",
-    "note/AI/未命名.md",
-    "note/AI/Agent/Code miner/未命名 2.md",
-    "note/AI/Agent/Code miner/未命名 3.md",
-    "note/AI/Agent/Code miner/未命名 1.md",
-    "note/AI/Agent/Code miner/未命名.md",
-    "note/AI/AI Coding/AI Coding最佳实践（codex为例子）.md",
-    "note/面经/前端面经/工程化/前端性能优化.md",
-    "note/面经/前端面经/工程化/RESTful API.md",
-    "note/面经/前端面经/工程化/GraphQL.md",
-    "note/面经/前端面经/工程化/mvc,mvvm,mvp框架.md",
-    "note/面经/前端面经/React/React简单.md",
-    "note/面经/前端面经/React/React困难.md",
-    "note/面经/前端面经/React/9.其他.md",
-    "note/面经/前端面经/Vue/Vue.md",
-    "note/面经/前端面经/React/8.虚拟DOM.md",
-    "note/科目一/img/Pasted image 20240716110650.png",
-    "note/科目一/img/Pasted image 20240716110618.png",
-    "note/科目一/img/Pasted image 20240716110557.png",
-    "note/科目一/img/Pasted image 20240716110511.png",
-    "note/科目一/img/Pasted image 20240716110459.png",
-    "note/科目一/img/Pasted image 20240716110023.png",
-    "note/科目一/img/b4dd00ada05b188fc0ea061c7ce04207.jpeg",
-    "note/科目一/img/ac8d1c00386579694bfea851213b567e.jpeg",
-    "note/科目一/img/8a0cdb0d71e61041f7fe1210e4caba77.jpeg"
+    "note/软件工程/前端/面经/HTTP/计网八股.md",
+    "note/软件工程/前端/面经/HTTP/HTTP.md",
+    "note/软件工程/前端/面经/React/React困难.md",
+    "note/软件工程/前端/面经/React/1.react组件基础.md",
+    "note/软件工程/前端/面经/React/2.react数据管理.md",
+    "note/软件工程/前端/react/hooks/README.md",
+    "note/软件工程/前端/react/Hooks.md",
+    "note/软件工程/前端/react/hooks/useTransition.md",
+    "note/软件工程/前端/react/hooks/useSyncExternalStore.md",
+    "note/软件工程/前端/react/hooks/useState.md",
+    "note/软件工程/前端/react/hooks/useRef.md",
+    "note/软件工程/前端/react/hooks/useReducer.md",
+    "note/软件工程/前端/react/hooks/useOptimistic.md",
+    "note/软件工程/前端/react/hooks/useMemo.md",
+    "note/软件工程/前端/react/hooks/useLayoutEffect.md",
+    "note/软件工程/前端/react/hooks/useInsertionEffect.md",
+    "note/软件工程/前端/react/hooks/useImperativeHandle.md",
+    "note/软件工程/前端/react/hooks/useId.md",
+    "note/软件工程/前端/react/hooks/useFormStatus.md",
+    "note/软件工程/前端/react/hooks/useEffectEvent.md",
+    "note/软件工程/前端/react/hooks/useEffect.md",
+    "note/软件工程/前端/react/hooks/useDeferredValue.md",
+    "note/软件工程/前端/react/hooks/useDebugValue.md",
+    "note/软件工程/前端/react/hooks/useContext.md",
+    "note/软件工程/前端/react/hooks/useCallback.md",
+    "note/软件工程/前端/react/hooks/useActionState.md",
+    "note/软件工程/前端/react/hooks",
+    "note/软件工程/服务端/SSM/Spring/Spring Security/img/QQ20240809-140213.png",
+    "note/软件工程/服务端/SSM/Spring/第三方工具/Spring Data Redis",
+    "note/软件工程/服务端/SSM/Spring/第三方工具/Swagger框架",
+    "note/软件工程/服务端/SSM/Spring/第三方工具/lombook",
+    "note/软件工程/服务端/SSM/Spring/第三方工具/jwt",
+    "note/软件工程/服务端/SSM/Spring/Spring Security/img",
+    "note/软件工程/服务端/SSM/Spring/Spring Boot/springboot基本概念",
+    "note/软件工程/服务端/SSM/Spring/Spring Boot/Spring MVC",
+    "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152056.png",
+    "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152046.png",
+    "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152040.png",
+    "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152033.png",
+    "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152020.png",
+    "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152016.png",
+    "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152001.png",
+    "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522151945.png",
+    "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522151938.png",
+    "note/软件工程/服务端/SSM/Spring/第三方工具",
+    "note/软件工程/服务端/SSM/Spring/springboot基本注解"
   ]
 }

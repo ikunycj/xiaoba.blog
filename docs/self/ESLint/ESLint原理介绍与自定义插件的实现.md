@@ -4,7 +4,7 @@
 
 想象这样一个场景：周一早晨，你打开电脑准备修复线上的一个紧急bug，代码定位到了一个同事上周提交的函数：
 
-```
+```js
 function calculateTotal(items) {
   let total = 0
   for (var i = 0; i < items.length; i++) {
@@ -19,7 +19,6 @@ function calculateTotal(items) {
 这正是ESLint存在的价值 - 它不仅是一个代码检查工具，更是团队代码质量的守护者。通过静态分析代码，ESLint能够在开发过程中及早发现潜在问题，从拼写错误、未使用变量到不符合最佳实践的代码模式，甚至是React Hooks的错误使用方式。
 
 ESLint的意义不仅限于发现错误，它还可以：
-
 - 统一代码风格，使团队代码库保持一致性和可读性 （比如import-style、arrow-body-style）
 - 强制执行最佳实践，避免常见的陷阱和反模式 （比如guard-for-in、for-direction、no-array-reduce）
 - 通过错误提示帮助团队成员学习和改进
@@ -57,20 +56,16 @@ function Counter() {
 通用的ESLint规则可能更多从普适性的角度去考虑，从降低误报的角度设计的检查逻辑，没有对这些特定业务场景中的问题进行适配。
 
 而自定义ESLint规则能够为我们带来显著的业务价值：
-
 1. 提升代码质量，减少线上故障：
-
 - 捕获特定的业务逻辑错误
 - 防止常见的错误模式重复出现
 - 减少因代码质量问题导致的线上故障
 
-2. 加速开发流程：
-
+1. 加速开发流程：
 - 自动发现问题，减少Code Review的负担
 - 提供即时反馈，缩短开发-测试-修复循环，实现测试左移
 
-3. 降低维护成本：
-
+1. 降低维护成本：
 - 确保代码遵循一致的模式和最佳实践
 - 减少技术债务的累积
 - 使新团队成员更容易理解和遵循项目规范
@@ -94,7 +89,6 @@ ESLint的核心设计理念是可配置和可扩展：
 ## 配置文件详解
 
 ESLint 配置文件是 ESLint 工作的基础，通常命名为 `.eslintrc.js`、`.eslintrc.json` 或 `.eslintrc.yml`。一个典型的 ESLint 配置文件结构如下：
-
 ```js
 module.exports = {
   parser: '@typescript-eslint/parser',  // 定义ESLint的解析器
@@ -134,20 +128,17 @@ module.exports = {
 ```
 
 接下来，需要详细了解每个配置项的作用：
-
 ### `parser` - 解析器
 
 默认情况下，ESLint 使用内置的 Espree 解析器，一般不需要特别修改。
-
 但可以通过此项配置其他解析器，例如：
-
 - `@babel/eslint-parser` - 支持 Babel 实验性语法
 - `@typescript-eslint/parser` - 支持 TypeScript
 - `vue-eslint-parser` - 支持 Vue 单文件组件
 
 选择正确的解析器对于处理不同类型的代码至关重要，例如：
 
-```
+```js
 // 使用 TypeScript 语法时需要 @typescript-eslint/parser
 const greeting: string = "Hello";
 
@@ -156,19 +147,14 @@ const element = <div>Hello</div>;
 ```
 
 ### `extends` - 继承配置
-
 `extends` 允许继承已有的配置，是快速设置 ESLint 的最佳方式。
-
 它可以是：
-
 - 预定义配置：`eslint:recommended`、`eslint:all`
 - 插件提供的配置：`plugin:react/recommended`
 - 共享配置：`airbnb-base`、`standard`
 - 本地文件路径：`./node_modules/coding-standard/eslintDefaults.js`
-
 例如：
-
-```
+```js
 extends: [
   'eslint:recommended',        // ESLint 推荐规则
   'plugin:react/recommended',  // React 推荐规则
@@ -176,7 +162,7 @@ extends: [
   'plugin:unicorn/all',       // unicorn
   'plugin:sonarjs/recommended-legacy', // sonar相关的
 ]
-```
+	```
 
 继承多个配置时，后面的配置会覆盖前面的配置。这种层叠机制可以在基础配置上进行更细致的调整。
 

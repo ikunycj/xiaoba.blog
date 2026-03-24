@@ -45,6 +45,20 @@
             </li>
           </ul>
         </article>
+
+        <article class="xb-card directory-card">
+          <p class="xb-eyebrow">Blog</p>
+          <h3>{{ copy.directoryTitle }}</h3>
+          <ul v-if="blogDirectoryEntries.length > 0" class="directory-list">
+            <li v-for="entry in blogDirectoryEntries" :key="entry.url">
+              <a class="directory-link" :href="toPath(entry.url)">
+                <span>{{ entry.title }}</span>
+                <small class="xb-muted">{{ entry.updatedText }}</small>
+              </a>
+            </li>
+          </ul>
+          <p v-else class="xb-muted directory-empty">{{ copy.directoryEmpty }}</p>
+        </article>
       </aside>
 
       <main class="blog-main">
@@ -133,6 +147,8 @@ type RecentPost = {
   updatedText: string
 }
 
+type BlogDirectoryEntry = Pick<RecentPost, 'title' | 'url' | 'updatedAt' | 'updatedText'>
+
 type ArchiveBucket = {
   key: string
   label: string
@@ -147,6 +163,7 @@ type BlogIndexManifest = {
   latestUpdatedText: string
   all: ArchiveBucket
   archives: ArchiveBucket[]
+  blogDirectory: BlogDirectoryEntry[]
 }
 
 type BlogIndexPage = {
@@ -168,6 +185,8 @@ const copy = {
   projects: '\u9879\u76EE',
   share: '\u5206\u4EAB',
   timelineTitle: '\u65F6\u95F4\u7EBF\u5F52\u6863',
+  directoryTitle: 'Blog \u76EE\u5F55',
+  directoryEmpty: '\u6682\u65E0 blog \u76EE\u5F55\u6587\u7AE0\u3002',
   recentTitle: '\u6700\u8FD1\u53D1\u5E03',
   noteOverview: '\u8FDB\u5165\u7B14\u8BB0\u603B\u89C8',
   guestbook: '\u535A\u5BA2\u7559\u8A00\u677F',
@@ -204,6 +223,7 @@ const activeBucket = computed<ArchiveBucket | null>(() => {
 
 const totalPostsCount = computed(() => manifest.value?.all.count || 0)
 const archiveTotalCount = computed(() => manifest.value?.archives.length || 0)
+const blogDirectoryEntries = computed<BlogDirectoryEntry[]>(() => manifest.value?.blogDirectory || [])
 const latestUpdatedText = computed(() => manifest.value?.latestUpdatedText || copy.unknown)
 const totalPages = computed(() => activeBucket.value?.totalPages || 1)
 const activeArchiveLabel = computed(() => activeBucket.value?.label || copy.all)
@@ -463,6 +483,40 @@ function toPath(path: string): string {
 .archive-btn--active {
   border-color: color-mix(in srgb, var(--xb-accent) 55%, var(--xb-border) 45%);
   background: color-mix(in srgb, var(--xb-accent-soft) 62%, transparent 38%);
+}
+
+.directory-list {
+  margin-top: 0.7rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.directory-link {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.55rem 0.62rem;
+  border-radius: 10px;
+  border: 1px solid var(--xb-border);
+  background: color-mix(in srgb, var(--xb-surface-soft) 82%, transparent 18%);
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.directory-link:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--xb-accent) 35%, var(--xb-border) 65%);
+}
+
+.directory-link span {
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.directory-link small {
+  font-size: 0.74rem;
+}
+
+.directory-empty {
+  margin-top: 0.7rem;
 }
 
 .blog-main {

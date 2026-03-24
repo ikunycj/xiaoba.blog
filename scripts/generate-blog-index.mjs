@@ -303,6 +303,17 @@ function buildBucket(key, label, items) {
   }
 }
 
+function buildBlogDirectory(posts) {
+  return posts
+    .filter((post) => post.url.startsWith('/blog/'))
+    .map((post) => ({
+      title: post.title,
+      url: post.url,
+      updatedAt: post.updatedAt,
+      updatedText: post.updatedText,
+    }))
+}
+
 function buildPosts() {
   const files = [
     ...walkMarkdownFiles(resolve(DOCS_ROOT, 'note')),
@@ -393,6 +404,7 @@ function generateBlogIndex() {
     latestUpdatedText,
     all: buildBucket('all', ALL_LABEL, posts),
     archives: archiveEntries.map((entry) => buildBucket(entry.key, entry.label, entry.items)),
+    blogDirectory: buildBlogDirectory(posts),
   }
 
   writeJson(resolve(OUTPUT_ROOT, 'manifest.json'), manifest)
