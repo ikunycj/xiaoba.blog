@@ -13,21 +13,6 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "note/AI/Agent/Agent是什么？.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Agent是什么？"
-            }
-          },
-          {
-            "id": "7656d10b6203e6ea",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
                 "file": "note/AI/Agent/Memory/Memory 系统怎么设计？.md",
                 "mode": "source",
                 "source": false,
@@ -36,9 +21,23 @@
               "icon": "lucide-file",
               "title": "Memory 系统怎么设计？"
             }
+          },
+          {
+            "id": "7656d10b6203e6ea",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "note/AI/Agent/Memory/OpenClaw记忆如何设计.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "OpenClaw记忆如何设计"
+            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -224,11 +223,16 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "7656d10b6203e6ea",
+  "active": "7f763b36606dd3c1",
   "lastOpenFiles": [
-    "note/AI/Agent/Memory/解密AI记忆体系.md",
+    "note/AI/Agent/Memory/img",
+    "note/AI/Agent/Memory/img/Memory.drawio.svg",
+    "note/AI/未确认 261308.crdownload",
     "note/AI/Agent/Agent是什么？.md",
+    "note/AI/Agent/Memory/OpenClaw记忆如何设计.md",
     "note/AI/Agent/Memory/Memory 系统怎么设计？.md",
+    "note/AI/Agent/Memory/解密AI记忆体系.md",
+    "note/AI/Agent/Memory/OpenClaw记忆如何设计",
     "note/AI/Agent/RAG/Agentic RAG.md",
     "note/软件工程/前端/面经/HTTP/HTTP.md",
     "note/软件工程/前端/面经/HTTP/计网八股.md",
@@ -258,19 +262,14 @@
     "note/软件工程/前端/react/hooks/useImperativeHandle.md",
     "note/软件工程/前端/react/hooks/useId.md",
     "note/软件工程/前端/react/hooks/useFormStatus.md",
-    "note/软件工程/前端/react/hooks/useEffectEvent.md",
-    "note/软件工程/前端/react/hooks/useEffect.md",
     "note/软件工程/前端/react/hooks",
     "note/软件工程/服务端/SSM/Spring/Spring Security/img/QQ20240809-140213.png",
-    "note/软件工程/服务端/SSM/Spring/第三方工具/Spring Data Redis",
-    "note/软件工程/服务端/SSM/Spring/第三方工具/Swagger框架",
     "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152056.png",
     "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152046.png",
     "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152040.png",
     "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152033.png",
     "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152020.png",
     "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152016.png",
-    "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152001.png",
-    "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522151945.png"
+    "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152001.png"
   ]
 }
