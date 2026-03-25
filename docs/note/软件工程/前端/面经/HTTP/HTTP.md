@@ -4,33 +4,27 @@
 HTTPS（HyperText Transfer Protocol Secure）比 HTTP（HyperText Transfer Protocol）更安全，主要是因为它在 HTTP 的基础上增加了 **TLS/SSL（Transport Layer Security / Secure Sockets Layer）** 加密协议，使数据传输更加安全。HTTPS 的主要安全性来源如下：
 
 1. **数据加密（Encryption）**
-    
     - 通过 **对称加密** 确保数据在客户端和服务器之间传输时无法被窃听，即使被拦截也无法解密。
     - 防止**中间人攻击（MITM，Man-In-The-Middle Attack）**。
-2. **数据完整性（Integrity）**
     
+2. **数据完整性（Integrity）**
     - 通过 **消息认证码（MAC）或哈希算法** 确保数据在传输过程中没有被篡改。
 3. **身份认证（Authentication）**
-    
     - 通过 **数字证书（SSL 证书）** 确保服务器的身份真实，防止钓鱼网站和伪造服务器。
 
----
 
 ### **HTTPS 的密钥签署过程**
 
 HTTPS 的安全性依赖于 TLS/SSL 证书，它的密钥签署主要包括以下步骤：
 
 #### **1. 证书申请与颁发**
-
 - 网站所有者向 **证书颁发机构（CA，Certificate Authority）** 申请 SSL/TLS 证书。
 - CA 机构会验证网站的身份后，使用 **CA 的私钥（Private Key）** 对网站的公钥（Public Key）进行签名，颁发证书。
 
 #### **2. TLS 握手过程（密钥协商）**
-
 在客户端（浏览器）和服务器之间的 HTTPS 连接建立过程中，会进行 **TLS 握手（TLS Handshake）**，这个过程涉及公钥和对称密钥的协商：
 
 1. **客户端 Hello**
-    
     - 客户端（浏览器）发送一个请求，包含支持的 **TLS 版本**、加密算法列表（Cipher Suites）、随机数（Client Random）等信息。
 2. **服务器 Hello**
     
