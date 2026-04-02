@@ -4,40 +4,41 @@
     "type": "split",
     "children": [
       {
-        "id": "519a9b5baf1f14be",
+        "id": "649b90a9a696584f",
         "type": "tabs",
         "children": [
           {
-            "id": "7f763b36606dd3c1",
+            "id": "2dddf7d40c873a4d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "note/AI/Agent/Memory/Memory 系统怎么设计？.md",
+                "file": "local/自我介绍.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "Memory 系统怎么设计？"
+              "title": "自我介绍"
             }
           },
           {
-            "id": "7656d10b6203e6ea",
+            "id": "ae76e5a07346e20c",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "note/AI/Agent/Memory/OpenClaw记忆如何设计.md",
+                "file": "note/AI/AI 使用/输出格式限制.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "OpenClaw记忆如何设计"
+              "title": "输出格式限制"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -57,7 +58,7 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": true
               },
               "icon": "lucide-folder-closed",
               "title": "文件列表"
@@ -110,13 +111,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "note/AI/Agent/Memory/Memory 系统怎么设计？.md",
+                "file": "note/AI/AI 使用/输出格式限制.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Memory 系统怎么设计？ 的大纲"
+              "title": "输出格式限制 的大纲"
             }
           },
           {
@@ -223,53 +224,53 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "7f763b36606dd3c1",
+  "active": "ae76e5a07346e20c",
   "lastOpenFiles": [
+    "note/AI/AI 使用/系统提示词和用户提示词区别.md",
+    "note/面经/AI/Langchain.md",
+    "note/软件工程/服务端/Node.js/事件循环.md",
+    "00B184A4.png.md",
+    "00B184A4.png",
+    "local/自我介绍.md",
+    "local/简历问答.md",
+    "self/非公开/Code miner项目/为工程确定性而设计：微信支付离线代码分析 Agent 体系.md",
+    "note/软件工程/服务端/Node.js/Node.js.md",
+    "note/软件工程/服务端/Node.js",
+    "note/软件工程/工程设计/性能优化/前端性能优化.md",
+    "note/软件工程/架构与设计模式/设计模式.md",
+    "note/面经/React/8.虚拟DOM.md",
+    "note/面经/React/6.redux.md",
+    "note/面经/Vue/5.Pinia.md",
+    "note/面经/Vue/6.虚拟DOM.md",
+    "note/软件工程/代理/1.通俗易懂讲清代理.md",
+    "self/非公开/Code miner项目/COdeminer体系简介.md",
+    "self/非公开/Code miner项目/CodeMiner通信.md",
+    "note/AI/AI 使用/Prompt工程.md",
+    "note/AI/AI Coding/AI Coding最佳实践（codex为例子）.md",
+    "note/AI/AI Coding/从0开始Vibe Coding.md",
+    "note/AI/index.md",
+    "note/面经/CSS/1.CSS基础.md",
+    "note/面经/CSS/2.CSS页面布局.md",
+    "note/面经/CSS/3.CSS定位与浮动.md",
+    "note/面经/CSS/4.CSS场景应用.md",
+    "note/面经/CSS/BFC 与 IFC.md",
+    "note/面经/CSS/未命名",
+    "note/面经/数据库/MySQL",
+    "note/面经/数据库/redis",
+    "note/面经/数据库",
+    "note/面经/AI",
+    "note/AI/AI 文章解读/img",
+    "note/AI/AI 使用/img",
+    "Pasted image 20260326154214.png",
     "note/AI/Agent/Memory/img",
     "note/AI/Agent/Memory/img/Memory.drawio.svg",
     "note/AI/未确认 261308.crdownload",
-    "note/AI/Agent/Agent是什么？.md",
-    "note/AI/Agent/Memory/OpenClaw记忆如何设计.md",
-    "note/AI/Agent/Memory/Memory 系统怎么设计？.md",
-    "note/AI/Agent/Memory/解密AI记忆体系.md",
-    "note/AI/Agent/Memory/OpenClaw记忆如何设计",
-    "note/AI/Agent/RAG/Agentic RAG.md",
-    "note/软件工程/前端/面经/HTTP/HTTP.md",
-    "note/软件工程/前端/面经/HTTP/计网八股.md",
     "0780c43868e08655b5fa4bd594117968.png",
-    "note/面经/前端面经/HTTP",
-    "note/面经/前端面经",
-    "note/面经",
-    "note/开发运维/大前端/面经/HTTP/HTTP.md",
-    "note/开发运维/大前端/面经/HTTP",
-    "note/开发运维/大前端/面经",
-    "note/开发运维/大前端",
-    "note/开发运维",
-    "note/软件工程/前端/面经/React/React困难.md",
-    "note/软件工程/前端/面经/React/1.react组件基础.md",
-    "note/软件工程/前端/面经/React/2.react数据管理.md",
-    "note/软件工程/前端/react/hooks/README.md",
-    "note/软件工程/前端/react/Hooks.md",
-    "note/软件工程/前端/react/hooks/useTransition.md",
-    "note/软件工程/前端/react/hooks/useSyncExternalStore.md",
-    "note/软件工程/前端/react/hooks/useState.md",
-    "note/软件工程/前端/react/hooks/useRef.md",
-    "note/软件工程/前端/react/hooks/useReducer.md",
-    "note/软件工程/前端/react/hooks/useOptimistic.md",
-    "note/软件工程/前端/react/hooks/useMemo.md",
-    "note/软件工程/前端/react/hooks/useLayoutEffect.md",
-    "note/软件工程/前端/react/hooks/useInsertionEffect.md",
-    "note/软件工程/前端/react/hooks/useImperativeHandle.md",
-    "note/软件工程/前端/react/hooks/useId.md",
-    "note/软件工程/前端/react/hooks/useFormStatus.md",
-    "note/软件工程/前端/react/hooks",
     "note/软件工程/服务端/SSM/Spring/Spring Security/img/QQ20240809-140213.png",
     "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152056.png",
     "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152046.png",
     "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152040.png",
     "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152033.png",
-    "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152020.png",
-    "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152016.png",
-    "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152001.png"
+    "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152020.png"
   ]
 }

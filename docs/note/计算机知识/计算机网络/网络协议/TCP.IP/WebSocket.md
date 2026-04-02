@@ -28,7 +28,6 @@ let socket = new WebSocket("ws://javascript.info");
 
 ### WebSocket 与传统 HTTP 通信的差异
 #### 1.1 轮询与长轮询的缺陷
-
 在 WebSocket 出现之前，如果前端要接收服务器端的实时数据，往往需要使用**轮询（polling）** 或**长轮询（long polling）** 等方式 ：
 1. **轮询 (Polling)**  
     客户端会隔固定时间段（如 2 秒、5 秒）发送一次 HTTP 请求，让服务器告知是否有新数据。如果有新数据则返回，没有则返回空结果或使用保持连接一段时间后再返回。这种做法导致较大的网络开销。
@@ -36,7 +35,6 @@ let socket = new WebSocket("ws://javascript.info");
     客户端发起一次请求后，服务器会在有新数据时立即返回，否则会保持住这条连接，直到超时或有新数据返回后，客户端再继续发起下一次请求。尽管它比短轮询减轻了请求次数，但在大量用户和高并发情况下仍有一定的性能和延迟问题，并且管理连接比较麻烦。
 
 #### 1.2 WebSocket 的优势
-
 - [**全双工通信** ](https://www.cnblogs.com/kungfupanda/archive/2009/12/22/1629972.html)
     服务器和客户端都可以随时主动发送数据，不再是传统的“请求-响应”模式。
 - **减少开销**  
@@ -44,17 +42,13 @@ let socket = new WebSocket("ws://javascript.info");
 - **实时性更强**  
     客户端和服务器端可以在任何时间点相互推送更新，极大地降低延迟。
 
----
 
 ### 2. WebSocket 的工作原理
-
 #### 2.1 建立连接（握手过程）
 WebSocket 的连接基于 HTTP(S) 进行一次“握手”（handshake）升级，流程大致如下：
 ![](https://zh.javascript.info/article/websocket/websocket-handshake.svg)
 
-
 1. **客户端发起 HTTP 请求，带有特殊的头部**
-    
     - 请求方法通常为 `GET /chat HTTP/1.1`
     - 关键 HTTP 头部示例：
 ```http
@@ -70,9 +64,7 @@ Sec-WebSocket-Version: 13
 我们不能使用 `XMLHttpRequest` 或 `fetch` 来进行这种 HTTP 请求，因为不允许 JavaScript 设置这些 header。
 
 2. **服务器检查并响应握手请求**
-
     - 如果服务器支持 WebSocket，则返回 101 状态码（HTTP 1.1 规定的“Switching Protocols”），以及相应的头部示例：
-
 ```http
 HTTP/1.1 101 Switching Protocols
 Upgrade: websocket
@@ -82,11 +74,9 @@ Sec-WebSocket-Accept: s3pPLMBiTxaQ9kYGzzhZRbK+xOo=
 - `Sec-WebSocket-Accept` 是服务器根据客户端提供的 `Sec-WebSocket-Key` 通过拼接魔数、再做 SHA-1 计算并 Base64 编码后得到的字符串，用来验证双方的握手协议匹配。
 
 3. **建立成功并升级连接**
-
     - 一旦握手成功，客户端和服务器的协议从 HTTP 切换为 WebSocket，后续数据通过持久化的 TCP 连接进行收发，不再通过传统 HTTP 协议。
     - 然后，使用 WebSocket 协议传输数据，我们很快就会看到它的结构（“**frames**”）。它根本不是 HTTP。
 #### 2.2 数据传输
-
 WebSocket 在传输数据时以**帧（frame）** 的形式发送。在帧层面上，数据有多种类型（如文本帧、二进制帧等），并且可以分片（fragment）发送。框架上可分为以下几类操作：
 
 - **Text Frame（文本帧）**  

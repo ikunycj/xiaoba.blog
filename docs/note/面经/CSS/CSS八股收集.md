@@ -35,7 +35,6 @@
 
 ### 2. 弹性盒子布局（Flexbox）
 Flexbox 是一种一维布局模型，适合创建灵活的响应式布局。
-
 ```css
 .container {
     display: flex;
@@ -57,7 +56,6 @@ Flexbox 是一种一维布局模型，适合创建灵活的响应式布局。
 
 ### 3. 网格布局（Grid）
 CSS Grid 是一种二维布局系统，适合创建复杂的响应式布局。
-
 ```css
 .container {
     display: grid;
@@ -79,7 +77,6 @@ CSS Grid 是一种二维布局系统，适合创建复杂的响应式布局。
 
 ### 4. 相对单位
 使用相对单位（如百分比、`em`、`rem`、`vw`、`vh`）可以让布局更具弹性。
-
 ```css
 .container {
     width: 90%; /* 宽度为父元素的 90% */
@@ -102,7 +99,6 @@ CSS Grid 是一种二维布局系统，适合创建复杂的响应式布局。
 
 ### 5. 视口单位（Viewport Units）
 视口单位（`vw`、`vh`、`vmin`、`vmax`）可以根据视口大小调整元素尺寸。
-
 ```css
 .container {
     width: 100vw; /* 宽度为视口宽度的 100% */
@@ -117,7 +113,6 @@ CSS Grid 是一种二维布局系统，适合创建复杂的响应式布局。
 
 ### 6. 图片和媒体的响应式处理
 使用 `max-width` 和 `height: auto` 确保图片和媒体元素在不同屏幕尺寸下自适应。
-
 ```css
 img {
     max-width: 100%;
@@ -132,7 +127,6 @@ video {
 
 ### 7. 响应式字体
 使用 `vw` 单位或媒体查询调整字体大小。
-
 ```css
 h1 {
     font-size: 5vw; /* 字体大小随视口宽度变化 */
@@ -147,21 +141,16 @@ h1 {
 
 ### 总结
 响应式布局的核心是根据不同设备的屏幕尺寸调整布局和样式。通过结合媒体查询、Flexbox、Grid、相对单位和视口单位，可以创建灵活且适应性强的响应式设计。
+
 ## 2.flex
 `flex` 是 CSS `Flexbox`（弹性布局）中的一个属性，主要用于控制**弹性子项（flex items）** 如何在弹性容器（flex container）内分配空间。
 
----
-
 ### 1. `flex` 属性的作用
-
 - `flex` 用于 **子元素（flex item）** 上，而不是 **父容器（flex container）**。
 - 控制**子元素的尺寸、比例和分配方式**，适用于**响应式布局**。
 - `flex` 是 `flex-grow`、`flex-shrink` 和 `flex-basis` 的简写。
 
----
-
 ### 2. `flex` 语法
-
 ```css
 .flex-item {
   flex: flex-grow flex-shrink flex-basis;
@@ -172,14 +161,10 @@ h1 {
 - `flex-shrink`：**收缩因子**（默认 `1`，即允许收缩）。
 - `flex-basis`：**初始尺寸**（默认 `auto`，即取决于 `width` 或 `content`）。
 
----
 
 ### 3. `flex` 的三个参数详解
-
 #### 3.1 `flex-grow`（放大比例）
-
 **定义**：子元素可以**按比例**占用容器的剩余空间。
-
  **示例**
 ```css
 .container {
@@ -212,7 +197,6 @@ item-3 = (3/6) * 600 = 300px
 ---
 
 #### 3.2 `flex-shrink`（缩小比例）
-
 **定义**：当**容器空间不足**时，子元素按 `flex-shrink` 的**比例缩小**。
 
 **示例**
@@ -248,7 +232,6 @@ item-2 = 200 - (2/3 * 100) ≈ 133.33px
 ---
 
 #### 3.3 `flex-basis`（初始大小）
-
 **定义**：设置**弹性子项的初始宽度或高度**（不考虑 `grow` 和 `shrink`）。
 - **默认值 `auto`**（根据 `width` 或 `content` 大小决定）。
 - 可以设定固定值（如 `100px`、`50%`）。
@@ -274,7 +257,6 @@ item-2 = 200 - (2/3 * 100) ≈ 133.33px
 ---
 
 ### 4. `flex` 的简写形式
-
 **常见写法**
 
 |**写法**|**等价写法**|**解释**|
@@ -285,7 +267,6 @@ item-2 = 200 - (2/3 * 100) ≈ 133.33px
 |`flex: 0 1 auto`|`flex-grow: 0; flex-shrink: 1; flex-basis: auto;`|允许缩小，不放大|
 |`flex: 2`|`flex: 2 1 0`|以 2:1 放大，默认可缩小|
 
----
 
 ### 5. `flex` 实战示例
 
@@ -310,8 +291,6 @@ item-2 = 200 - (2/3 * 100) ≈ 133.33px
 ```
 
 📌 **右侧宽度永远是左侧的 3 倍，适用于自适应布局**。
-
----
 
 #### 5.2 固定 + 自适应布局
 ```css
@@ -378,18 +357,16 @@ item-2 = 200 - (2/3 * 100) ≈ 133.33px
 |`flex-basis`|初始尺寸（默认 `auto`）|
 
 🔥 **推荐使用 `flex: 1`，实现简单的弹性布局！**
+
 ## 3.grid
 
 `CSS Grid` 是一种 **二维布局系统**，可以用于创建**复杂的网格布局**，相比 `Flexbox`（一维布局），`Grid` 更加适用于**多行多列的布局需求**。
-
----
 
 ### 1. 什么是 Grid？
 
 - `Grid` 允许我们将网页划分成**行（rows）和列（columns）**，并在这些网格（grid cells）中放置元素。
 - `display: grid;` 是 `Grid` 布局的核心，它用于创建一个 **网格容器（grid container）**，其子元素称为 **网格项（grid items）**。
 
----
 
 ### 2. Grid 的基本概念
 
@@ -404,10 +381,8 @@ item-2 = 200 - (2/3 * 100) ≈ 133.33px
 |**Grid Tracks（网格轨道）**|由网格线包围的行或列|
 |**Grid Area（网格区域）**|由多个单元格组成的区域|
 
----
 
 ### 3. 基本使用
-
 #### 3.1 定义一个 Grid 容器
 ```css
 .container {
@@ -417,14 +392,11 @@ item-2 = 200 - (2/3 * 100) ≈ 133.33px
   gap: 10px;
 }
 ```
-
 **解析**
-- `display: grid;` → 将 `.container` 变成 **Grid 容器**。
-- `grid-template-columns: 100px 200px auto;` → **定义列宽**（第一列 `100px`，第二列 `200px`，第三列 `auto`）。
-- `grid-template-rows: 50px 100px;` → **定义行高**（第一行 `50px`，第二行 `100px`）。
-- `gap: 10px;` → **网格间距**（行和列之间的间距）。
-
----
+- `display: grid;` → 将 `.container` 变成 **Grid 容器**
+- `grid-template-columns: 100px 200px auto;` → **定义列宽**（第一列 `100px`，第二列 `200px`，第三列 `auto`）
+- `grid-template-rows: 50px 100px;` → **定义行高**（第一行 `50px`，第二行 `100px`）
+- `gap: 10px;` → **网格间距**（行和列之间的间距）
 
 #### 3.2 Grid 子项
 ```css
@@ -453,9 +425,7 @@ item-2 = 200 - (2/3 * 100) ≈ 133.33px
 ---
 
 ### 4. Grid 轨道（Tracks）：定义列和行
-
 #### 4.1 `grid-template-columns` & `grid-template-rows`
-
 ```css
 .container {
   display: grid;
@@ -477,9 +447,7 @@ grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* 响应式 */
 ---
 
 ### 5. Grid 对齐方式
-
 #### 5.1 `justify-items`（水平方向对齐）
-
 ```css
 .container {
   justify-items: center; /* 左对齐（start），居中（center），右对齐（end） */
@@ -510,9 +478,7 @@ grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* 响应式 */
 ---
 
 ### 6. Grid 子项的控制
-
 #### 6.1 `grid-column` & `grid-row`
-
 ```css
 .item-1 {
   grid-column: 1 / 3; /* 占据 1 到 3 列 */
@@ -521,14 +487,12 @@ grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* 响应式 */
 ```
 
 📌 **效果**
-
 ```
 | 1  | 1  | 2 |
 | 1  | 1  | 3 |
 ```
 
 #### 6.2 `grid-area`（指定子项位置）
-
 ```css
 .item-1 {
   grid-area: 1 / 1 / 3 / 3; /* row-start / col-start / row-end / col-end */
@@ -538,9 +502,7 @@ grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* 响应式 */
 ---
 
 ### 7. Grid 经典布局
-
 #### 7.1 圣杯布局
-
 ```css
 .container {
   display: grid;
@@ -565,7 +527,6 @@ grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* 响应式 */
 ```
 
 📌 **布局**
-
 ```
 +-----------------------+
 |        Header         |
@@ -588,7 +549,6 @@ grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* 响应式 */
 
 📌 **Grid 适用于页面布局，Flex 适用于局部布局**。
 
----
 
 ### 9. 总结
 
@@ -607,6 +567,38 @@ grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* 响应式 */
 🔥 **Flexbox 适用于一维布局，Grid 适用于复杂网格布局！**
 
 
+## 回流和重绘
+在前端开发中，**回流（Reflow）**和**重绘（Repaint）**是浏览器渲染引擎性能优化的核心概念。
+
+### 1. 浏览器的渲染流水线
+
+在讨论这两个概念前，先看浏览器把 HTML 变成画面的过程：
+1. **解析 HTML** 生成 DOM 树 。
+2. **解析 CSS** 生成 CSSOM 树 。
+3. **合并**两者生成 **渲染树 (Render Tree)** 。
+4. **布局 (Layout/Reflow)**：计算每个节点在屏幕上的确切位置和大小。
+5. **绘制 (Painting/Repaint)**：将节点转换为屏幕上的实际像素。
+
+### 2. 回流 (Reflow) —— “牵一发而动全身”
+
+回流是指浏览器为了重新计算文档中元素的位置和几何结构而进行的过程。
+
+- **触发原因**：任何改变元素**几何属性**的操作。
+    - 改变窗口大小（Resize） 。
+    - 改变字体大小。
+    - 增删 DOM 节点 。
+    - 修改元素的 `width`、`height`、`margin`、`padding`、`border` 等。
+    - 激活伪类（如 `:hover`）。
+    - 查询某些属性（如 `offsetTop`、`clientWidth`、`getComputedStyle`），因为浏览器为了给你准确的值，必须立即触发回流。
+- **性能消耗**：**非常大**。回流必定会导致重绘，且具有“传递性”，一个元素的改变可能引发其父元素甚至整个页面的重新布局。
 
 
+### 3. 重绘 (Repaint) —— “只改表象”
 
+重绘是指当元素的样式改变，但不影响它在文档流中的几何位置时，浏览器直接重新绘制该元素。
+
+- **触发原因**：改变元素的**外观属性**。
+    - 修改 `color`、`background-color`。
+    - 修改 `visibility`（注意：`display: none` 会触发回流，而 `visibility: hidden` 只触发重绘）。
+    - 修改 `outline`、`box-shadow`。
+- **性能消耗**：**较小**。因为它不需要重新计算布局信息，只需像素级的填充。
