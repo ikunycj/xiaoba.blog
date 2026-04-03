@@ -28,13 +28,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "note/AI/AI 使用/输出格式限制.md",
+                "file": "note/面经/JS/5.js八股(异步编程).md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "输出格式限制"
+              "title": "5.js八股(异步编程)"
             }
           }
         ],
@@ -111,13 +111,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "note/AI/AI 使用/输出格式限制.md",
+                "file": "note/面经/JS/5.js八股(异步编程).md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "输出格式限制 的大纲"
+              "title": "5.js八股(异步编程) 的大纲"
             }
           },
           {
@@ -226,6 +226,15 @@
   },
   "active": "ae76e5a07346e20c",
   "lastOpenFiles": [
+    "note/面经/工程/前端性能优化.md",
+    "note/面经/工程/Vite,md",
+    "note/面经/工程/Vite",
+    "note/面经/工程",
+    "blogs/public/blog-index/archive/2026-04/page-1.json",
+    "blogs/public/blog-index/archive/2026-04",
+    "note/面经/JS/4.js八股(this绑定).md",
+    "note/面经/JS/1.js八股(基础).md",
+    "note/AI/AI 使用/输出格式限制.md",
     "note/AI/AI 使用/系统提示词和用户提示词区别.md",
     "note/面经/AI/Langchain.md",
     "note/软件工程/服务端/Node.js/事件循环.md",
@@ -250,21 +259,12 @@
     "note/AI/AI Coding/从0开始Vibe Coding.md",
     "note/AI/index.md",
     "note/面经/CSS/1.CSS基础.md",
-    "note/面经/CSS/2.CSS页面布局.md",
-    "note/面经/CSS/3.CSS定位与浮动.md",
-    "note/面经/CSS/4.CSS场景应用.md",
-    "note/面经/CSS/BFC 与 IFC.md",
     "note/面经/CSS/未命名",
     "note/面经/数据库/MySQL",
     "note/面经/数据库/redis",
     "note/面经/数据库",
-    "note/面经/AI",
-    "note/AI/AI 文章解读/img",
-    "note/AI/AI 使用/img",
     "Pasted image 20260326154214.png",
-    "note/AI/Agent/Memory/img",
     "note/AI/Agent/Memory/img/Memory.drawio.svg",
-    "note/AI/未确认 261308.crdownload",
     "0780c43868e08655b5fa4bd594117968.png",
     "note/软件工程/服务端/SSM/Spring/Spring Security/img/QQ20240809-140213.png",
     "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152056.png",
