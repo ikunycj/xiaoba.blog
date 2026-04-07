@@ -8,33 +8,48 @@
         "type": "tabs",
         "children": [
           {
-            "id": "2dddf7d40c873a4d",
+            "id": "43fded59de862fa0",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "local/自我介绍.md",
+                "file": "note/面经/React/1.react组件基础.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "自我介绍"
+              "title": "1.react组件基础"
             }
           },
           {
-            "id": "ae76e5a07346e20c",
+            "id": "164403828dd3acad",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "note/面经/JS/5.js八股(异步编程).md",
+                "file": "note/面经/工程/前端性能优化.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "5.js八股(异步编程)"
+              "title": "前端性能优化"
+            }
+          },
+          {
+            "id": "810a668fba3a6164",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "note/面经/HTTP/计网八股.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "计网八股"
             }
           }
         ],
@@ -58,7 +73,7 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": true
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "文件列表"
@@ -111,13 +126,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "note/面经/JS/5.js八股(异步编程).md",
+                "file": "note/面经/工程/前端性能优化.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "5.js八股(异步编程) 的大纲"
+              "title": "前端性能优化 的大纲"
             }
           },
           {
@@ -224,45 +239,46 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "ae76e5a07346e20c",
+  "active": "164403828dd3acad",
   "lastOpenFiles": [
+    "note/面经/React/1.react组件基础.md",
     "note/面经/工程/前端性能优化.md",
+    "note/面经/HTTP/计网八股.md",
+    "local/PDF书/亿级流量系统架构设计与实战(1).pdf",
+    "local/PDF书",
+    "local/新建文件夹",
+    "note/面经/React/React简单.md",
+    "note/面经/工程/node.js.md",
+    "note/AI/Agent/Harness/Harness是什么.md",
+    "note/AI/Agent/Context",
+    "note/AI/Agent/Prompt",
+    "note/AI/Agent/Harness/Context.md",
+    "note/AI/Agent/Harness/Prompt.md",
+    "note/AI/AI 使用/输出格式限制.md",
+    "note/AI/Agent/Harness",
+    "note/AI/AI Coding/从0开始Vibe Coding.md",
+    "note/AI/AI Coding/AI Coding最佳实践（codex为例子）.md",
+    "note/面经/JS/未命名.md",
+    "note/面经/HTTP/HTTP.md",
+    "note/面经/HTTP/HTTP 1.md",
+    "note/面经/JS/1.js八股(基础).md",
+    "note/面经/JS/10.js手写(场景应用).md",
+    "note/面经/JS/9.js手写(数据处理).md",
+    "note/面经/JS/8.js手写(基础).md",
+    "note/面经/JS/7.js八股(垃圾回收与内存泄漏).md",
+    "note/面经/JS/6.js八股(面向对象).md",
+    "note/面经/JS/5.js八股(异步编程).md",
+    "note/面经/JS/4.js八股(this绑定).md",
+    "未命名.base",
+    "self/非公开/Code miner项目/为工程确定性而设计：微信支付离线代码分析 Agent 体系.md",
+    "self/非公开/Code miner项目/COdeminer体系简介.md",
+    "local/自我介绍.md",
+    "note/面经/JS/3.js八股(ES6).md",
+    "00DC49EB.gif",
     "note/面经/工程/Vite,md",
     "note/面经/工程/Vite",
     "note/面经/工程",
-    "blogs/public/blog-index/archive/2026-04/page-1.json",
-    "blogs/public/blog-index/archive/2026-04",
-    "note/面经/JS/4.js八股(this绑定).md",
-    "note/面经/JS/1.js八股(基础).md",
-    "note/AI/AI 使用/输出格式限制.md",
-    "note/AI/AI 使用/系统提示词和用户提示词区别.md",
-    "note/面经/AI/Langchain.md",
-    "note/软件工程/服务端/Node.js/事件循环.md",
-    "00B184A4.png.md",
     "00B184A4.png",
-    "local/自我介绍.md",
-    "local/简历问答.md",
-    "self/非公开/Code miner项目/为工程确定性而设计：微信支付离线代码分析 Agent 体系.md",
-    "note/软件工程/服务端/Node.js/Node.js.md",
-    "note/软件工程/服务端/Node.js",
-    "note/软件工程/工程设计/性能优化/前端性能优化.md",
-    "note/软件工程/架构与设计模式/设计模式.md",
-    "note/面经/React/8.虚拟DOM.md",
-    "note/面经/React/6.redux.md",
-    "note/面经/Vue/5.Pinia.md",
-    "note/面经/Vue/6.虚拟DOM.md",
-    "note/软件工程/代理/1.通俗易懂讲清代理.md",
-    "self/非公开/Code miner项目/COdeminer体系简介.md",
-    "self/非公开/Code miner项目/CodeMiner通信.md",
-    "note/AI/AI 使用/Prompt工程.md",
-    "note/AI/AI Coding/AI Coding最佳实践（codex为例子）.md",
-    "note/AI/AI Coding/从0开始Vibe Coding.md",
-    "note/AI/index.md",
-    "note/面经/CSS/1.CSS基础.md",
-    "note/面经/CSS/未命名",
-    "note/面经/数据库/MySQL",
-    "note/面经/数据库/redis",
-    "note/面经/数据库",
     "Pasted image 20260326154214.png",
     "note/AI/Agent/Memory/img/Memory.drawio.svg",
     "0780c43868e08655b5fa4bd594117968.png",
@@ -270,7 +286,6 @@
     "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152056.png",
     "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152046.png",
     "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152040.png",
-    "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152033.png",
-    "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152020.png"
+    "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152033.png"
   ]
 }

@@ -8,3 +8,6 @@ docs/blogs/public/blog-index/
 # **/.obsidian
 **/docs/local/*
 **/docs/blogs/note/**
+
+# 特殊格式
+.pdf

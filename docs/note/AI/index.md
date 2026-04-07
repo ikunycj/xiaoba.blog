@@ -17,7 +17,7 @@ title: AI
 
 如果你是第一次看这一栏，建议按这个顺序读：
 
-1. [Prompt 工程](/note/AI/AI%20使用/Prompt%E5%B7%A5%E7%A8%8B)
+1. [Prompt 工程](Prompt工程.md)
 2. [Building Effective Agents 解读](/note/AI/AI%20%E6%96%87%E7%AB%A0%E8%A7%A3%E8%AF%BB/Building%20effective%20agents)
 3. [AI Coding 最佳实践（以 Codex 为例）](/note/AI/AI%20Coding/AI%20Coding%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%EF%BC%88codex%E4%B8%BA%E4%BE%8B%E5%AD%90%EF%BC%89)
 4. [Code-Miner 体系简介](COdeminer体系简介.md)
@@ -30,7 +30,7 @@ title: AI
 
 ### AI 使用
 
-- [Prompt 工程](/note/AI/AI%20使用/Prompt%E5%B7%A5%E7%A8%8B)
+- [Prompt 工程](Prompt工程.md)
   从 Prompt 的本质、设计原则到常见模式，适合作为入门。
 
 ### AI Coding
