@@ -6,6 +6,6 @@
 
 # 未来汽车
 
-​​![image](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/main/note/工具/GPT使用/assets/image-20231107171400-299vx98.png)​​
+​​![image](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/master/note/工具/GPT使用/assets/image-20231107171400-299vx98.png)​​
 
 ‍

@@ -7,7 +7,7 @@
 
 - [Babel](https://babeljs.io/)：
 **Babel是一个JavaScript 编译器**​。主要用于将高版本的JavaScript代码转为向后兼容的JS代码，从而能让我们的代码运行在更低版本的浏览器或者其他的环境中。
-![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/main/self/react/React源码/171ca3cb228c57b5129c89fbcf1f4f64.png)
+![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/master/self/react/React源码/171ca3cb228c57b5129c89fbcf1f4f64.png)
 #### 1.将JSX听过Babel编译为**React.creatElement(type,cofig,children)**
 1. 二次处理key、ref、self、source四个属性值
 2. 遍历config，筛选出可以提进props里的属性
@@ -21,11 +21,11 @@
 [一文彻底读懂Babel](https://juejin.cn/post/6901649054225465352)
 ### 2. React生命周期
 #### React15
-![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/main/self/react/React源码/38148e4f583a32c38ca7b21babf6c0f8.png)
+![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/master/self/react/React源码/38148e4f583a32c38ca7b21babf6c0f8.png)
 
 #### React16
  [更新流程](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
- ![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/main/self/react/React源码/QQ_1747466479319.png)
+ ![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/master/self/react/React源码/QQ_1747466479319.png)
 #### React 16.8
 
 ### 3.数据驱动试图
@@ -47,10 +47,10 @@
 3. **事件派发**：事件通道将事件分发给所有相应的订阅者。
 4. **处理事件**：订阅者接收到事件并作出响应。
 #### Context  API
-![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/main/self/react/React源码/b1b0db5050195eca055cf483f6b73c18.png)
+![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/master/self/react/React源码/b1b0db5050195eca055cf483f6b73c18.png)
 
 #### Redux    
-![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/main/self/react/React源码/3c87e000bc969927ee502d8fe5bec519.png)
+![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/master/self/react/React源码/3c87e000bc969927ee502d8fe5bec519.png)
 
 ### React Hooks
 React Hooks是如何帮助我们升级工作模式的
@@ -74,7 +74,7 @@ React Hooks是如何帮助我们升级工作模式的
 1. 挂载阶段：
 2. 更新阶段：
 
-![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/main/self/react/React源码/7517fc31-6a3c-436d-b6f0-9d3c7ba84bb5.jpeg)
+![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/master/self/react/React源码/7517fc31-6a3c-436d-b6f0-9d3c7ba84bb5.jpeg)
 ### Stack Reconciler（栈调 和）
 #### Diff算法
 两个假设：
@@ -86,7 +86,7 @@ React Hooks是如何帮助我们升级工作模式的
 1. 类型一致的节点才有继续Diff的必要性
 2. key属性的设置，可以帮外面尽可能重用同一层级内的节点  
 ### Fiber架构
-![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/main/self/react/React源码/1d30c388-04ed-4a1b-bfcb-73c89ac340a2 1.jpeg)
+![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/master/self/react/React源码/1d30c388-04ed-4a1b-bfcb-73c89ac340a2 1.jpeg)
 ### MVVM架构  
 ### DOM更新模式
 1. React：Fiber架构更新Vitrure DOM

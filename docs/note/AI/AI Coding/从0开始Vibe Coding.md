@@ -1,5 +1,5 @@
-![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/main/note/AI/AI Coding/img/51688584285bdb68189ca45626a26bc8.png)
-![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/main/note/AI/AI Coding/img/cff50e142148033e145324c694088d64.png)
+![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/master/note/AI/AI Coding/img/51688584285bdb68189ca45626a26bc8.png)
+![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/master/note/AI/AI Coding/img/cff50e142148033e145324c694088d64.png)
 
 1.根据前端的PRD/ARCHETECTURE/API文档，还有口头描述的需求，生成更详细的需求描述文档
 2.完善、修改更详细的需求描述文档（包括测试文档）

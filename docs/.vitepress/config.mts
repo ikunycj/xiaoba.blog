@@ -1,4 +1,4 @@
-﻿import { generateSidebar } from 'vitepress-sidebar'
+import { generateSidebar } from 'vitepress-sidebar'
 
 import { defineConfigWithTheme, type DefaultTheme } from 'vitepress'
 
@@ -147,12 +147,18 @@ function normalizeFenceInfo(info: string, content: string): { info: string; cont
 
 function sanitizeNoteMarkdown(content: string): string {
   const withoutMarkdownImages = content
-    .replace(/!\[[^\]]*]\(([^)]+)\)/g, '')
+    // 移除 obsidian 风格的图片
     .replace(/!\[\[([^[\]]+)\]\]/g, '')
+    // 移除链接中指向本地图片的内容
     .replace(
       /\[([^\]]*)]\(([^)]+\.(?:png|jpe?g|gif|bmp|webp|svg)(?:[?#][^)]+)?)\)/gi,
-      '[$1](about:blank)'
+      (match, text, url) => {
+        // 保留 http/https 外链
+        if (/^https?:\/\//i.test(url)) return match
+        return '[$1](about:blank)'
+      }
     )
+    // 移除 img 标签
     .replace(/<img\b[^>]*>/gi, '')
 
   const escapedAngleBrackets = withoutMarkdownImages.replace(/</g, '&lt;').replace(/>/g, '&gt;')

@@ -28,9 +28,22 @@ const REPO_ROOT = process.cwd()
 const DOCS_ROOT = resolve(REPO_ROOT, 'docs')
 const SOURCE_ROOT = resolve(REPO_ROOT, 'docs.source')
 
-const RAW_PREFIX = 'https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/main'
+const RAW_PREFIX = 'https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/master'
 
-const IMAGE_EXTENSIONS = new Set(['.png', '.jpg', '.jpeg', '.gif', '.webp', '.bmp', '.svg'])
+const IMAGE_EXTENSIONS = new Set([
+  // 常规格式
+  '.png', '.jpg', '.jpeg', '.gif', '.bmp', '.svg',
+  // 现代格式
+  '.webp', '.avif', '.heic', '.heif',
+  // TIFF 格式
+  '.tif', '.tiff',
+  // 图标格式
+  '.ico',
+  // JPEG 变体
+  '.jfif', '.pjpeg', '.pjp',
+  // 动画格式
+  '.apng'
+])
 
 // ─── 工具函数 ─────────────────────────────────────────────────────────────────
 

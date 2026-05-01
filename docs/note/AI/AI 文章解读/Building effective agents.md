@@ -8,7 +8,7 @@
 
 这篇文章真正想说明的，不是“怎么把 Agent 做复杂”，而是“什么时候其实根本不需要 Agent”。多数 LLM 应用都应该先走更低成本、更可控的路线：**单次调用 -> 检索 / few-shot -> workflow -> agent**。只有简单方案明显不够时，再升级复杂度。
 
-![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/main/note/AI/AI 文章解读/img/Pasted image 20260317145641.png)
+![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/master/note/AI/AI 文章解读/img/Pasted image 20260317145641.png)
 
 ## 文章主旨
 

@@ -81,7 +81,7 @@ public class HelloController {
 ```
 
 ​ 引入依赖后我们在尝试去访问之前的接口就会自动跳转到一个SpringSecurity的默认登陆页面，默认用户名是user,密码会输出在控制台。
-![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/main/note/软件工程/服务端/SSM/Spring/Spring Security/img/QQ20240809-140213.png)
+![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/master/note/软件工程/服务端/SSM/Spring/Spring Security/img/QQ20240809-140213.png)
 ​ 必须登陆之后才能对接口进行访问。
 ### 2. 认证
 

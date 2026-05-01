@@ -8,7 +8,7 @@
         "type": "tabs",
         "children": [
           {
-            "id": "4bbe74f478e16c3d",
+            "id": "115249d13f90c239",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -20,21 +20,6 @@
               },
               "icon": "lucide-file",
               "title": "drive-course1"
-            }
-          },
-          {
-            "id": "115249d13f90c239",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "note/软件工程/服务端/Node.js/Node.js.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Node.js"
             }
           },
           {
@@ -124,7 +109,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 436.5
   },
   "right": {
     "id": "414ae52dfc0c6d34",
@@ -253,8 +238,15 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "4bbe74f478e16c3d",
+  "active": "dd32e8621a780f9c",
   "lastOpenFiles": [
+    "note/其他/img/857b38c5d12008b15cdd933b79957fc6.jpeg",
+    "note/其他/drive-course1.md",
+    "note/软件工程/服务端/SSM/Spring/第三方工具/Swagger框架/knife4j框架.md",
+    "note/软件工程/服务端/Node.js/Node.js.md",
+    "note/其他/img/857b38c5d12008b15cdd933b79957fc6 1.jpeg",
+    "note/其他/img/4502f59e10d4c8c70879de806d58c4e4 1.jpeg",
+    "note/其他/img/Pasted image 20240716110618.png",
     "local/TODO.md",
     "local/工作日记/5月.md",
     "local/工作日记/4月.md",
@@ -272,9 +264,7 @@
     "blogs/public/blog-index/archive/2026-04/page-90.json",
     "note/AI/AI 模型/理解大模型的神经网络.md",
     "note/AI/AI 模型/模型量化.md",
-    "note/软件工程/服务端/Node.js/Node.js.md",
     "note/软件工程/服务端/Node.js/事件循环.md",
-    "note/其他/drive-course1.md",
     "note/面经/工程/node.js.md",
     "note/AI/AI 模型/img/Pasted image 20260429151016.png",
     "note/软件工程/服务端/Gin/Gin快速入门.md",
@@ -290,16 +280,10 @@
     "note/AI/AI 模型/模型内部参数.md",
     "note/AI/index.md",
     "note/编程语言/Java/1.基础特性/1.基础/1.Java入门.md",
-    "note/AI/AI 模型/LLM原理与训练八股.md",
-    "note/AI/AI 模型/MoE.md",
     "note/AI/AI 模型/img/Pasted image 20260428113217.png",
     "note/AI/AI 模型/img/Pasted image 20260428113144.png",
     "note/AI/AI 模型/img/Pasted image 20260428112922.png",
     "note/AI/AI 模型/img/Pasted image 20260428112727.png",
-    "note/AI/AI 模型/img/Pasted image 20260428112653.png",
-    "note/AI/AI 模型/img/Pasted image 20260428112530.png",
-    "note/AI/AI 模型/img/Pasted image 20260428112412.png",
-    "note/AI/AI 模型/img/Pasted image 20260428112303.png",
-    "note/AI/AI 模型/img/Pasted image 20260428111609.png"
+    "note/AI/AI 模型/img/Pasted image 20260428112653.png"
   ]
 }

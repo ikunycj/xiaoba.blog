@@ -108,15 +108,15 @@ dateCreated: 2024-12-25T21:55:28.477Z
 | 载货汽车 | <30%           | 1   |
 
 # 知识图片
-![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/main/note/其他/img/8a0cdb0d71e61041f7fe1210e4caba77.jpeg)
-![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/main/note/其他/img/3047a8a0bc6993d0147743435433d1c6.jpeg)
-![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/main/note/其他/img/b4dd00ada05b188fc0ea061c7ce04207.jpeg)
-![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/main/note/其他/img/84263590b146427adc15320586945f13.jpeg)
-![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/main/note/其他/img/30f59e44c4477bbe194d5e3890d8c38f.jpeg)
-![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/main/note/其他/img/430924ab7cdf015fd742778e51cb45f1.jpeg)
-![](./img//857b38c5d12008b15cdd933b79957fc6%201.jpeg)
-![](./img/4502f59e10d4c8c70879de806d58c4e4%201.jpeg)
-![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/main/note/其他/img/ac8d1c00386579694bfea851213b567e.jpeg)
+![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/master/note/其他/img/8a0cdb0d71e61041f7fe1210e4caba77.jpeg)
+![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/master/note/其他/img/3047a8a0bc6993d0147743435433d1c6.jpeg)
+![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/master/note/其他/img/b4dd00ada05b188fc0ea061c7ce04207.jpeg)
+![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/master/note/其他/img/84263590b146427adc15320586945f13.jpeg)
+![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/master/note/其他/img/30f59e44c4477bbe194d5e3890d8c38f.jpeg)
+![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/master/note/其他/img/430924ab7cdf015fd742778e51cb45f1.jpeg)
+![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/master/note/其他/img/857b38c5d12008b15cdd933b79957fc6 1.jpeg)
+![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/master/note/其他/img/4502f59e10d4c8c70879de806d58c4e4 1.jpeg)
+![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/master/note/其他/img/ac8d1c00386579694bfea851213b567e.jpeg)
 
 # 基本知识
 ## **一、扣分**
