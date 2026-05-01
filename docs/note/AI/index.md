@@ -22,7 +22,7 @@ title: AI
 3. [AI Coding 最佳实践（以 Codex 为例）](/note/AI/AI%20Coding/AI%20Coding%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%EF%BC%88codex%E4%B8%BA%E4%BE%8B%E5%AD%90%EF%BC%89)
 4. [Code-Miner 体系简介](COdeminer体系简介.md)
 5. [Agent 架构、记忆与工程八股](AI八股.md)
-6. [LLM 原理与训练八股](/note/AI/AI%20算法/LLM原理与训练八股)
+6. [LLM 原理与训练八股](LLM原理与训练八股.md)
 
 ---
 
@@ -59,10 +59,10 @@ title: AI
 
 ### AI 算法
 
-- [LLM 原理与训练八股](/note/AI/AI%20算法/LLM原理与训练八股)
+- [LLM 原理与训练八股](LLM原理与训练八股.md)
   单独整理 KV Cache、Few-shot、Attention、Mask、Pretraining、SFT、LoRA 和 RLHF。
 
-- [MoE](/note/AI/AI%20算法/MoE)
+- [MoE](MoE.md)
   聚焦当前主流大模型为什么转向 Mixture of Experts。
 
 ---

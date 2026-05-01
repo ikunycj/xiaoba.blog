@@ -9,5 +9,13 @@ docs/blogs/public/blog-index/
 **/docs/local/*
 **/docs/blogs/note/**
 
+# IDEA生成的文件
+.idea
+**/*.iml
+.codeflicker
+
 # 特殊格式
 .pdf
+
+# 图床仓库本地工作目录（独立 git 维护，不进主仓库）
+docs.source/

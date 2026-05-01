@@ -4,56 +4,70 @@
     "type": "split",
     "children": [
       {
-        "id": "649b90a9a696584f",
+        "id": "877fb73f5e23d86c",
         "type": "tabs",
         "children": [
           {
-            "id": "43fded59de862fa0",
+            "id": "4bbe74f478e16c3d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "note/面经/React/1.react组件基础.md",
+                "file": "note/其他/drive-course1.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "1.react组件基础"
+              "title": "drive-course1"
             }
           },
           {
-            "id": "164403828dd3acad",
+            "id": "115249d13f90c239",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "note/面经/工程/前端性能优化.md",
+                "file": "note/软件工程/服务端/Node.js/Node.js.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "前端性能优化"
+              "title": "Node.js"
             }
           },
           {
-            "id": "810a668fba3a6164",
+            "id": "df75417cbbd62c18",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "note/面经/HTTP/计网八股.md",
+                "file": "note/AI/AI 模型/模型量化.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "计网八股"
+              "title": "模型量化"
+            }
+          },
+          {
+            "id": "aff7c6fbf7ad1479",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "local/工作日记/5月.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "5月"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -85,7 +99,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#spec范式",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -126,13 +140,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "note/面经/工程/前端性能优化.md",
+                "file": "note/其他/drive-course1.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "前端性能优化 的大纲"
+              "title": "drive-course1 的大纲"
             }
           },
           {
@@ -235,57 +249,57 @@
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
-      "obsidian-excalidraw-plugin:新建绘图文件": false,
+      "obsidian-excalidraw-plugin:New drawing": false,
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "164403828dd3acad",
+  "active": "4bbe74f478e16c3d",
   "lastOpenFiles": [
-    "note/面经/React/1.react组件基础.md",
-    "note/面经/工程/前端性能优化.md",
-    "note/面经/HTTP/计网八股.md",
-    "local/PDF书/亿级流量系统架构设计与实战(1).pdf",
-    "local/PDF书",
-    "local/新建文件夹",
-    "note/面经/React/React简单.md",
+    "local/TODO.md",
+    "local/工作日记/5月.md",
+    "local/工作日记/4月.md",
+    "local/QUESTION.md",
+    "note/AI/AI 模型/AWQ学习建议.md",
+    "blogs/public/blog-index/archive/2026-04/page-99.json",
+    "blogs/public/blog-index/archive/2026-04/page-98.json",
+    "blogs/public/blog-index/archive/2026-04/page-97.json",
+    "blogs/public/blog-index/archive/2026-04/page-96.json",
+    "blogs/public/blog-index/archive/2026-04/page-95.json",
+    "blogs/public/blog-index/archive/2026-04/page-94.json",
+    "blogs/public/blog-index/archive/2026-04/page-93.json",
+    "blogs/public/blog-index/archive/2026-04/page-92.json",
+    "blogs/public/blog-index/archive/2026-04/page-91.json",
+    "blogs/public/blog-index/archive/2026-04/page-90.json",
+    "note/AI/AI 模型/理解大模型的神经网络.md",
+    "note/AI/AI 模型/模型量化.md",
+    "note/软件工程/服务端/Node.js/Node.js.md",
+    "note/软件工程/服务端/Node.js/事件循环.md",
+    "note/其他/drive-course1.md",
     "note/面经/工程/node.js.md",
-    "note/AI/Agent/Harness/Harness是什么.md",
-    "note/AI/Agent/Context",
-    "note/AI/Agent/Prompt",
-    "note/AI/Agent/Harness/Context.md",
-    "note/AI/Agent/Harness/Prompt.md",
-    "note/AI/AI 使用/输出格式限制.md",
-    "note/AI/Agent/Harness",
-    "note/AI/AI Coding/从0开始Vibe Coding.md",
-    "note/AI/AI Coding/AI Coding最佳实践（codex为例子）.md",
-    "note/面经/JS/未命名.md",
-    "note/面经/HTTP/HTTP.md",
-    "note/面经/HTTP/HTTP 1.md",
-    "note/面经/JS/1.js八股(基础).md",
-    "note/面经/JS/10.js手写(场景应用).md",
-    "note/面经/JS/9.js手写(数据处理).md",
-    "note/面经/JS/8.js手写(基础).md",
-    "note/面经/JS/7.js八股(垃圾回收与内存泄漏).md",
-    "note/面经/JS/6.js八股(面向对象).md",
-    "note/面经/JS/5.js八股(异步编程).md",
-    "note/面经/JS/4.js八股(this绑定).md",
-    "未命名.base",
-    "self/非公开/Code miner项目/为工程确定性而设计：微信支付离线代码分析 Agent 体系.md",
-    "self/非公开/Code miner项目/COdeminer体系简介.md",
-    "local/自我介绍.md",
-    "note/面经/JS/3.js八股(ES6).md",
-    "00DC49EB.gif",
-    "note/面经/工程/Vite,md",
-    "note/面经/工程/Vite",
-    "note/面经/工程",
-    "00B184A4.png",
-    "Pasted image 20260326154214.png",
-    "note/AI/Agent/Memory/img/Memory.drawio.svg",
-    "0780c43868e08655b5fa4bd594117968.png",
-    "note/软件工程/服务端/SSM/Spring/Spring Security/img/QQ20240809-140213.png",
-    "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152056.png",
-    "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152046.png",
-    "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152040.png",
-    "note/软件工程/数据库/Redis/2.Redis进阶/img/Pasted image 20240522152033.png"
+    "note/AI/AI 模型/img/Pasted image 20260429151016.png",
+    "note/软件工程/服务端/Gin/Gin快速入门.md",
+    "note/软件工程/代理/1.通俗易懂讲清代理.md",
+    "note/软件工程/服务端/Apache/Apache POI/Apache POI.md",
+    "note/软件工程/服务端/小型服务器/TomCat.md",
+    "note/软件工程/代理/Nginx教程/nginx常见操作.md",
+    "note/软件工程/代理/Nginx教程/4.Nginx问题.md",
+    "note/软件工程/代理/Nginx教程/3.Ngixn配置.md",
+    "note/软件工程/代理/Nginx教程/2.Nginx 运维.md",
+    "note/软件工程/代理/Nginx教程/1.Nginx入门.md",
+    "note/AI/AI 模型/评估.md",
+    "note/AI/AI 模型/模型内部参数.md",
+    "note/AI/index.md",
+    "note/编程语言/Java/1.基础特性/1.基础/1.Java入门.md",
+    "note/AI/AI 模型/LLM原理与训练八股.md",
+    "note/AI/AI 模型/MoE.md",
+    "note/AI/AI 模型/img/Pasted image 20260428113217.png",
+    "note/AI/AI 模型/img/Pasted image 20260428113144.png",
+    "note/AI/AI 模型/img/Pasted image 20260428112922.png",
+    "note/AI/AI 模型/img/Pasted image 20260428112727.png",
+    "note/AI/AI 模型/img/Pasted image 20260428112653.png",
+    "note/AI/AI 模型/img/Pasted image 20260428112530.png",
+    "note/AI/AI 模型/img/Pasted image 20260428112412.png",
+    "note/AI/AI 模型/img/Pasted image 20260428112303.png",
+    "note/AI/AI 模型/img/Pasted image 20260428111609.png"
   ]
 }

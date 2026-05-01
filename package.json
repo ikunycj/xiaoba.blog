@@ -5,7 +5,9 @@
     "i": "npm install",
     "docs:dev": "npm run blog:index && vitepress dev docs",
     "docs:build": "npm run blog:index && vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "images:prepare": "node scripts/prepare-images.mjs",
+    "images:push": "node scripts/push-image-repo.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^9.28.0",
