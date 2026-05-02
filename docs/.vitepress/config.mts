@@ -192,23 +192,59 @@ function sanitizeNoteMarkdown(content: string): string {
 
 export default defineConfigWithTheme<ThemeConfig>({
   title: '小八',
-  description: '小八博客',
+  description: '小八博客 - 技术学习与实践分享，AI、全栈开发、工程化笔记',
   srcDir: '.',
   srcExclude: ['.obsidian/**', 'local/**', 'self/**'],
   rewrites: {
     'blogs/:path(.*)': ':path',
   },
-  head: [['link', { rel: 'icon', href: '/xiaoba-logo.png' }]],
+  head: [
+    ['link', { rel: 'icon', href: '/xiaoba-logo.png' }],
+    ['meta', { name: 'theme-color', content: '#0ea5e9' }],
+    ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
+    ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:title', content: '小八博客 - 技术学习与实践' }],
+    ['meta', { property: 'og:description', content: '记录 AI、全栈开发、工程化等技术学习历程' }],
+    ['meta', { property: 'og:image', content: '/xiaoba-logo.png' }],
+    ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
+    ['link', { rel: 'dns-prefetch', href: 'https://fonts.googleapis.com' }],
+  ],
 
   base: '/',
   cleanUrls: true,
   ignoreDeadLinks: true,
+  lastUpdated: true,
+  
+  sitemap: {
+    hostname: 'https://xioaba.blog',
+  },
 
   themeConfig: {
     logo: '/xiaoba-logo.png',
     outline: {
       level: 'deep',
-      label: '大纲',
+      label: '目录',
+    },
+    search: {
+      provider: 'local',
+      options: {
+        translations: {
+          button: {
+            buttonText: '搜索文档',
+            buttonAriaLabel: '搜索文档'
+          },
+          modal: {
+            noResultsText: '无法找到相关结果',
+            resetButtonTitle: '清除查询条件',
+            footer: {
+              selectText: '选择',
+              navigateText: '切换',
+              closeText: '关闭'
+            }
+          }
+        }
+      }
     },
     giscus: {
       repo: 'ikunycj/xiaoba.blog',
@@ -228,39 +264,59 @@ export default defineConfigWithTheme<ThemeConfig>({
       loading: 'lazy',
     },
     nav: [
-      { text: '首页', link: '/home' },
-      { text: '博客', link: '/blog/index' },
-      { text: '笔记', link: '/note/' },
-      { text: 'AI', link: '/note/AI/' },
+      { text: '🏠 首页', link: '/home' },
+      { text: '📝 博客', link: '/blog/index' },
+      { 
+        text: '📚 笔记', 
+        items: [
+          { text: '笔记首页', link: '/note/' },
+          { text: 'AI 学习', link: '/note/AI/' },
+          { text: '编程语言', link: '/note/编程语言/' },
+          { text: '软件工程', link: '/note/软件工程/' },
+          { text: '计算机基础', link: '/note/计算机知识/' },
+          { text: '开发工具', link: '/note/工具/' },
+        ]
+      },
       {
-        text: '分享',
+        text: '🎯 分享',
         items: [
           { text: '分享推荐', link: '/share' },
           { text: '博客建站', link: '/share/blogbuild/choose' },
-          { text: '效率工具推荐', link: '/share/tools' },
-          { text: '山大', link: '/share/sdu' },
+          { text: '效率工具', link: '/share/tools' },
+          { text: '山大资源', link: '/share/sdu' },
         ],
       },
-      { text: '项目', link: '/projects' },
+      { text: '💼 项目', link: '/projects' },
+      { 
+        text: '🔗 友链',
+        items: [
+          { text: 'GitHub', link: 'https://github.com/ikunycj' },
+          { text: 'actionAgent 项目', link: 'https://github.com/ikunycj/actionAgent' },
+        ]
+      },
     ],
     sidebar: generateSidebar([
       {
         documentRootPath: '/docs/note/AI',
         scanStartPath: '/',
         resolvePath: '/note/AI/',
-        useTitleFromFileHeading: false,
-        excludePattern: ['do-not-include.md'],
+        useTitleFromFileHeading: true,
+        excludePattern: ['do-not-include.md', 'index.md'],
         collapsed: true,
         sortMenusByFrontmatterOrder: true,
+        sortMenusOrderByDescending: false,
+        capitalizeFirst: true,
       },
       {
         documentRootPath: '/docs/note',
         scanStartPath: '/',
         resolvePath: '/note/',
-        useTitleFromFileHeading: false,
-        excludePattern: ['do-not-include.md'],
+        useTitleFromFileHeading: true,
+        excludePattern: ['do-not-include.md', 'index.md', 'AI/**'],
         collapsed: true,
         sortMenusByFrontmatterOrder: true,
+        sortMenusOrderByDescending: false,
+        capitalizeFirst: true,
       },
       {
         documentRootPath: '/docs/blogs/share/blogbuild',
@@ -335,6 +391,22 @@ export default defineConfigWithTheme<ThemeConfig>({
 
   vite: {
     publicDir: 'blogs/public',
+    build: {
+      chunkSizeWarningLimit: 1500,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'vitepress-vendor': ['vitepress'],
+          },
+        },
+      },
+    },
+    optimizeDeps: {
+      exclude: ['vitepress'],
+    },
+    ssr: {
+      noExternal: ['@iconify/vue'],
+    },
     plugins: [
       {
         name: 'sanitize-note-md',

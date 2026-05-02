@@ -2,41 +2,92 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ========== 小八主题配色 ========== */
 :root {
-  --xb-accent: #0f766e;
-  --xb-accent-soft: rgba(15, 118, 110, 0.14);
-  --xb-accent-strong: #0b5f58;
-  --xb-surface: #ffffff;
-  --xb-surface-soft: #f3f7fb;
-  --xb-ink: #0f172a;
-  --xb-muted: #475569;
-  --xb-border: #d3dfed;
-  --xb-shadow: 0 18px 40px -26px rgba(15, 23, 42, 0.42);
-  --xb-body-font: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
-  --xb-display-font: "Trebuchet MS", "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-  --vp-nav-bg-color: rgba(255, 255, 255, 0.96);
-  --vp-nav-screen-bg-color: rgba(255, 255, 255, 0.98);
+  /* 主色调 - 温柔粉蓝 */
+  --xb-primary: #FFB7C5;
+  --xb-secondary: #A8D8FF;
+  --xb-accent: #FFF4B8;
+  --xb-success: #B8E6C9;
+  --xb-warning: #FFD8A8;
+  
+  /* 中性色 */
+  --xb-surface: #FFFBF5;
+  --xb-surface-soft: #FFF8EF;
+  --xb-ink: #5C4D3C;
+  --xb-muted: #9B8B7E;
+  --xb-border: #F5E6D8;
+  
+  /* 阴影 */
+  --xb-shadow-sm: 0 2px 8px rgba(255, 183, 197, 0.15);
+  --xb-shadow: 0 8px 24px rgba(255, 183, 197, 0.2);
+  --xb-shadow-lg: 0 12px 32px rgba(255, 183, 197, 0.25);
+  
+  /* 渐变 */
+  --xb-gradient-pink: linear-gradient(135deg, #FFB7C5 0%, #FFC9D9 100%);
+  --xb-gradient-blue: linear-gradient(135deg, #A8D8FF 0%, #C5E6FF 100%);
+  --xb-gradient-warm: linear-gradient(135deg, #FFF4B8 0%, #FFEFC8 100%);
+  
+  /* 字体 */
+  --xb-font-base: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --xb-font-cute: "Comic Sans MS", "Yuanti SC", "Kaiti SC", cursive;
+  
+  /* VitePress 品牌色覆盖 */
+  --vp-c-brand-1: #FFB7C5;
+  --vp-c-brand-2: #FFA3B5;
+  --vp-c-brand-3: #FF90A8;
+  --vp-c-brand-soft: rgba(255, 183, 197, 0.14);
+  
+  /* 背景色 */
+  --vp-c-bg: #FFFBF5;
+  --vp-c-bg-soft: #FFF8EF;
+  --vp-c-bg-alt: #FFF4E8;
+  
+  /* 导航栏 */
+  --vp-nav-bg-color: rgba(255, 251, 245, 0.9);
 }
 
 .dark {
-  --xb-accent: #34d399;
-  --xb-accent-soft: rgba(52, 211, 153, 0.14);
-  --xb-accent-strong: #10b981;
-  --xb-surface: #141a25;
-  --xb-surface-soft: #0f1520;
-  --xb-ink: #f3f4f6;
-  --xb-muted: #c1c9d6;
-  --xb-border: #2d3748;
-  --xb-shadow: 0 18px 40px -28px rgba(0, 0, 0, 0.62);
-  --vp-nav-bg-color: rgba(15, 21, 33, 0.95);
-  --vp-nav-screen-bg-color: rgba(15, 21, 33, 0.98);
+  /* 暗色模式 - 温暖深色 */
+  --xb-primary: #E89FB0;
+  --xb-secondary: #8BBFEA;
+  --xb-accent: #E8D89F;
+  --xb-success: #9FCDB5;
+  --xb-warning: #E8C08B;
+  
+  --xb-surface: #2C2419;
+  --xb-surface-soft: #352D20;
+  --xb-ink: #F5EFE7;
+  --xb-muted: #B8ACA0;
+  --xb-border: #4A3F32;
+  
+  --xb-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --xb-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --xb-shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5);
+  
+  --vp-c-brand-1: #FFB7C5;
+  --vp-c-brand-2: #FFA3B5;
+  --vp-c-brand-3: #FF90A8;
+  
+  --vp-c-bg: #2C2419;
+  --vp-c-bg-soft: #352D20;
+  --vp-c-bg-alt: #3D342A;
+  
+  --vp-nav-bg-color: rgba(44, 36, 25, 0.9);
 }
 
+/* ========== 全局样式 ========== */
 body {
-  font-family: var(--xb-body-font);
+  font-family: var(--xb-font-base);
   color: var(--xb-ink);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+/* ========== 可爱装饰背景 ========== */
 .VPContent {
   position: relative;
   isolation: isolate;
@@ -49,16 +100,482 @@ body {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(circle at 8% 15%, rgba(56, 189, 248, 0.12), transparent 30%),
-    radial-gradient(circle at 92% 10%, rgba(20, 184, 166, 0.12), transparent 28%),
-    linear-gradient(180deg, rgba(248, 251, 255, 0.95), rgba(244, 249, 255, 0.95));
+    radial-gradient(circle at 15% 20%, rgba(255, 183, 197, 0.08), transparent 40%),
+    radial-gradient(circle at 85% 15%, rgba(168, 216, 255, 0.08), transparent 40%),
+    radial-gradient(circle at 50% 85%, rgba(255, 244, 184, 0.06), transparent 45%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23FFB7C5' fill-opacity='0.03'%3E%3Cpath d='M30 28c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm-8-8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm16 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z'/%3E%3C/g%3E%3C/svg%3E"),
+    linear-gradient(180deg, #FFFBF5, #FFF8EF);
+  opacity: 1;
+  transition: opacity 0.5s ease;
 }
 
 .dark .VPContent::before {
   background:
-    radial-gradient(circle at 8% 12%, rgba(52, 211, 153, 0.12), transparent 30%),
-    radial-gradient(circle at 92% 8%, rgba(125, 211, 252, 0.1), transparent 30%),
-    linear-gradient(180deg, rgba(12, 18, 30, 0.96), rgba(15, 21, 33, 0.98));
+    radial-gradient(circle at 15% 20%, rgba(232, 159, 176, 0.1), transparent 40%),
+    radial-gradient(circle at 85% 15%, rgba(139, 191, 234, 0.08), transparent 40%),
+    radial-gradient(circle at 50% 85%, rgba(232, 216, 159, 0.06), transparent 45%),
+    linear-gradient(180deg, #2C2419, #352D20);
+}
+
+/* ========== 可爱的页面容器 ========== */
+.xb-page {
+  width: min(1100px, calc(100% - 2rem));
+  margin: 2rem auto 4rem;
+}
+
+/* ========== Hero 卡片 - 超可爱风格 ========== */
+.xb-hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 32px;
+  border: 3px solid var(--xb-border);
+  background: var(--xb-gradient-pink);
+  padding: 2.5rem;
+  box-shadow: var(--xb-shadow-lg);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.xb-hero::before {
+  content: "🐱";
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  font-size: 120px;
+  opacity: 0.1;
+  transform: rotate(15deg);
+}
+
+.xb-hero::after {
+  content: "";
+  position: absolute;
+  bottom: -30px;
+  left: -30px;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent 70%);
+  border-radius: 50%;
+  animation: float-cute 4s ease-in-out infinite;
+}
+
+@keyframes float-cute {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(10px, -10px) scale(1.05);
+  }
+}
+
+.xb-hero:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 
+    var(--xb-shadow-lg),
+    0 0 30px rgba(255, 183, 197, 0.3);
+}
+
+/* ========== 小标签 - 手写风格 ========== */
+.xb-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  background: rgba(255, 255, 255, 0.6);
+  border: 2px dashed var(--xb-primary);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--xb-primary);
+  font-family: var(--xb-font-cute);
+}
+
+.xb-eyebrow::before {
+  content: "✨";
+  font-size: 1.1em;
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.2); }
+}
+
+/* ========== 标题样式 ========== */
+.xb-hero h1,
+.xb-card h2,
+.xb-card h3 {
+  font-family: var(--xb-font-cute);
+  color: var(--xb-ink);
+}
+
+.xb-hero h1 {
+  margin-top: 0.8rem;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  line-height: 1.3;
+  text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* ========== 可爱芯片按钮 ========== */
+.xb-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+.xb-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--xb-ink);
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid var(--xb-primary);
+  box-shadow: var(--xb-shadow-sm);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.xb-chip:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: var(--xb-shadow);
+  background: var(--xb-gradient-pink);
+  color: white;
+}
+
+.xb-chip::before {
+  content: "🐾";
+  font-size: 1em;
+  animation: bounce-paw 2s ease-in-out infinite;
+}
+
+@keyframes bounce-paw {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+/* ========== 可爱网格 ========== */
+.xb-grid {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.2rem;
+}
+
+/* ========== 卡片 - 圆润可爱 ========== */
+.xb-card {
+  position: relative;
+  display: block;
+  border: 3px solid var(--xb-border);
+  border-radius: 24px;
+  padding: 1.8rem;
+  background: var(--xb-surface);
+  box-shadow: var(--xb-shadow);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+}
+
+.xb-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: var(--xb-gradient-pink);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.xb-card:hover::before {
+  transform: scaleX(1);
+}
+
+.xb-card:hover {
+  transform: translateY(-8px) rotate(-1deg);
+  border-color: var(--xb-primary);
+  box-shadow: 
+    var(--xb-shadow-lg),
+    0 0 20px rgba(255, 183, 197, 0.3);
+}
+
+/* ========== 可爱的 KPI 卡片 ========== */
+.xb-kpi-grid {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.xb-kpi {
+  background: rgba(255, 255, 255, 0.6);
+  border: 2px dashed var(--xb-secondary);
+  border-radius: 20px;
+  padding: 1.2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.xb-kpi:hover {
+  transform: scale(1.05);
+  background: var(--xb-gradient-blue);
+  border-style: solid;
+}
+
+.xb-kpi strong {
+  display: block;
+  font-size: 1.8rem;
+  color: var(--xb-secondary);
+  font-family: var(--xb-font-cute);
+  margin-bottom: 0.25rem;
+}
+
+/* ========== 可爱标签 ========== */
+.xb-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  border: 2px solid var(--xb-border);
+  background: rgba(255, 255, 255, 0.6);
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.xb-tag:hover {
+  background: var(--xb-gradient-warm);
+  transform: scale(1.1);
+  border-color: var(--xb-accent);
+}
+
+/* ========== 响应式 ========== */
+@media (max-width: 640px) {
+  .xb-page {
+    width: calc(100% - 1rem);
+    margin-top: 1rem;
+  }
+
+  .xb-hero {
+    border-radius: 24px;
+    padding: 1.5rem;
+  }
+
+  .xb-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========== VitePress 组件增强 ========== */
+.VPNavBar {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 2px solid var(--xb-border);
+}
+
+.VPNavBar.has-sidebar,
+.VPNavBar.has-sidebar .content,
+.VPNavBar.has-sidebar .content-body {
+  background-color: var(--vp-nav-bg-color);
+}
+
+/* ========== 链接样式 - 可爱下划线 ========== */
+.vp-doc a {
+  color: var(--xb-primary);
+  text-decoration: none;
+  border-bottom: 2px dotted var(--xb-primary);
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.vp-doc a:hover {
+  color: var(--xb-secondary);
+  border-bottom-style: solid;
+  border-bottom-color: var(--xb-secondary);
+  transform: translateY(-1px);
+}
+
+/* ========== 代码块 - 圆润风格 ========== */
+.vp-doc div[class*='language-'] {
+  border-radius: 20px;
+  border: 3px solid var(--xb-border);
+  box-shadow: var(--xb-shadow);
+  margin: 2rem 0;
+}
+
+.vp-doc div[class*='language-']:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--xb-shadow-lg);
+}
+
+/* ========== 行内代码 ========== */
+.vp-doc :not(pre) > code {
+  background: var(--xb-gradient-warm);
+  color: var(--xb-ink);
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  font-size: 0.9em;
+  font-weight: 600;
+  border: 2px solid var(--xb-accent);
+}
+
+/* ========== 引用块 - 温馨风格 ========== */
+.vp-doc blockquote {
+  border-left: 5px solid var(--xb-primary);
+  background: var(--xb-gradient-pink);
+  padding: 1.5rem;
+  border-radius: 16px;
+  margin: 2rem 0;
+  color: white;
+  box-shadow: var(--xb-shadow);
+}
+
+.vp-doc blockquote::before {
+  content: "💖";
+  font-size: 2rem;
+  float: left;
+  margin-right: 1rem;
+}
+
+/* ========== 表格 ========== */
+.vp-doc table {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--xb-shadow);
+  border: 3px solid var(--xb-border);
+}
+
+/* ========== 侧边栏 ========== */
+.VPSidebar {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.VPSidebarItem.is-link:hover {
+  color: var(--xb-primary);
+}
+
+.VPSidebarItem.is-active {
+  color: var(--xb-primary);
+  font-weight: 700;
+  background: var(--xb-gradient-pink);
+  border-radius: 8px;
+  padding-left: 1rem;
+}
+
+/* ========== 可爱滚动条 ========== */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--xb-surface-soft);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--xb-gradient-pink);
+  border-radius: 10px;
+  border: 2px solid var(--xb-surface-soft);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--xb-primary);
+}
+
+/* ========== 选中文本 ========== */
+::selection {
+  background: var(--xb-primary);
+  color: white;
+}
+
+/* ========== 装饰元素 ========== */
+.cute-decoration {
+  position: relative;
+}
+
+.cute-decoration::after {
+  content: "✨";
+  position: absolute;
+  animation: float-sparkle 3s ease-in-out infinite;
+}
+
+@keyframes float-sparkle {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-10px) rotate(180deg);
+    opacity: 0.5;
+  }
+}
+
+.dark {
+  --xb-accent: #22d3ee;
+  --xb-accent-soft: rgba(34, 211, 238, 0.12);
+  --xb-accent-strong: #06b6d4;
+  --xb-surface: #0f172a;
+  --xb-surface-soft: #0a0f1e;
+  --xb-ink: #f1f5f9;
+  --xb-muted: #94a3b8;
+  --xb-border: #1e293b;
+  --xb-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.5);
+  --xb-glow: 0 0 80px rgba(34, 211, 238, 0.15);
+  --vp-nav-bg-color: rgba(15, 23, 42, 0.9);
+  --vp-nav-screen-bg-color: rgba(15, 23, 42, 0.98);
+  --vp-c-brand-1: #22d3ee;
+  --vp-c-brand-2: #06b6d4;
+  --vp-c-brand-3: #0891b2;
+}
+
+body {
+  font-family: var(--xb-body-font);
+  color: var(--xb-ink);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Content background with gradient */
+.VPContent {
+  position: relative;
+  isolation: isolate;
+}
+
+.VPContent::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(14, 165, 233, 0.08), transparent 35%),
+    radial-gradient(circle at 90% 10%, rgba(6, 182, 212, 0.08), transparent 35%),
+    radial-gradient(circle at 50% 80%, rgba(34, 211, 238, 0.06), transparent 40%),
+    linear-gradient(180deg, #ffffff, #f8fafc);
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.dark .VPContent::before {
+  background:
+    radial-gradient(circle at 10% 20%, rgba(34, 211, 238, 0.1), transparent 40%),
+    radial-gradient(circle at 90% 10%, rgba(6, 182, 212, 0.08), transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(14, 165, 233, 0.06), transparent 45%),
+    linear-gradient(180deg, #0f172a, #0a0f1e);
 }
 
 .xb-page {
@@ -71,20 +588,38 @@ body {
   overflow: hidden;
   border-radius: 24px;
   border: 1px solid var(--xb-border);
-  background: linear-gradient(130deg, var(--xb-surface), color-mix(in srgb, var(--xb-surface-soft) 70%, white 30%));
-  padding: 1.5rem;
+  background: linear-gradient(135deg, var(--xb-surface) 0%, var(--xb-surface-soft) 100%);
+  padding: 2rem;
   box-shadow: var(--xb-shadow);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.xb-hero:hover {
+  box-shadow: var(--xb-glow), var(--xb-shadow);
+  transform: translateY(-2px);
 }
 
 .xb-hero::after {
   content: "";
   position: absolute;
-  inset: auto -90px -90px auto;
-  width: 220px;
-  height: 220px;
-  border-radius: 999px;
-  background: radial-gradient(circle, var(--xb-accent-soft), transparent 65%);
+  inset: auto -100px -100px auto;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--xb-accent-soft), transparent 70%);
   pointer-events: none;
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
 }
 
 .xb-eyebrow {
@@ -150,16 +685,36 @@ body {
 .xb-card {
   display: block;
   border: 1px solid var(--xb-border);
-  border-radius: 18px;
-  padding: 1rem;
-  background: color-mix(in srgb, var(--xb-surface) 94%, var(--xb-surface-soft) 6%);
+  border-radius: 20px;
+  padding: 1.25rem;
+  background: var(--xb-surface);
   box-shadow: var(--xb-shadow);
-  transition: transform 0.24s ease, border-color 0.24s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.xb-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--xb-accent), var(--xb-accent-strong));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.xb-card:hover::before {
+  transform: scaleX(1);
 }
 
 .xb-card:hover {
-  transform: translateY(-3px);
-  border-color: color-mix(in srgb, var(--xb-accent) 45%, var(--xb-border) 55%);
+  transform: translateY(-6px);
+  border-color: var(--xb-accent);
+  box-shadow: var(--xb-glow), var(--xb-shadow);
 }
 
 .xb-kpi-grid {
@@ -215,4 +770,77 @@ body {
   .VPNavBar.has-sidebar .content-body {
     background-color: var(--vp-nav-bg-color);
   }
+}
+
+/* Enhanced link styles */
+.vp-doc a {
+  color: var(--xb-accent-strong);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.vp-doc a:hover {
+  color: var(--xb-accent);
+  border-bottom-color: var(--xb-accent);
+}
+
+/* Enhanced code blocks */
+.vp-doc div[class*='language-'] {
+  border-radius: 12px;
+  box-shadow: var(--xb-shadow);
+  margin: 1.5rem 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.vp-doc div[class*='language-']:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--xb-glow), var(--xb-shadow);
+}
+
+/* Enhanced inline code */
+.vp-doc :not(pre) > code {
+  background-color: var(--xb-accent-soft);
+  color: var(--xb-accent-strong);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+/* Enhanced blockquote */
+.vp-doc blockquote {
+  border-left: 4px solid var(--xb-accent);
+  background: var(--xb-accent-soft);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+}
+
+/* Enhanced table */
+.vp-doc table {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--xb-shadow);
+}
+
+/* Smooth nav backdrop blur */
+.VPNav {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Enhanced sidebar */
+.VPSidebar {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.VPSidebarItem.is-link:hover {
+  color: var(--xb-accent-strong);
+}
+
+.VPSidebarItem.is-active {
+  color: var(--xb-accent-strong);
+  font-weight: 600;
 }
