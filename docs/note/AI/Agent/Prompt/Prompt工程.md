@@ -1,5 +1,5 @@
 # 一、Prompt Engineering 的本质
-
+![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/master/note/AI/Agent/Prompt/prompt-generate.drawio.svg)
 很多人误以为 Prompt 是：
 
 > “写一句让 AI 更聪明的话”
