@@ -23,14 +23,14 @@
 2. IP类型：机房IP会被OpenAI识别为非个人用户，通常大概率与使用梯子/违规盗刷账号有关，而OpenAI普通账号说向个人用户提供服务的，因此机房IP常常被“特别关照”，是重点怀疑和封号对象
 3. 封控值：OpenAI不会向一些高危地区/IP提供服务，封控值越高被排查/封号的概率越高。推荐封控值5%以下，5-20%稍微正常可用，20-30%勉强能用但最好谨言慎行，高于30%不推荐用，封号概率大大提高
 4. 共享人数：很重要，也是决定是否封控的关键因素之一
-![[Pasted image 20260530130039.png]]
+![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/master/self/中转/Pasted image 20260530130039.png)
 
 
 #### 真实IP为不支持地区
 注意：OpenAI会通过DNS溯源查找你的真实IP，你可以访问https://browserleaks.con/dns查看你的真实IP是否泄漏
 
 1. 这种是不安全的，虽然你的IP是美国，但是通过追溯找到了你的真实IP，你的真实IP是中国，属于不支持服务地区。如果在这种环境下使用，一旦被检测，轻则临时禁用或者手机验证码，重的封号。你的所谓的IP在OpenAI面前就是个小丑🤡
-![[Pasted image 20260530131251.png]]
+![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/master/self/中转/Pasted image 20260530131251.png)
 
 2. 这种是安全的，你的真实IP就是美国，你就是个纯正的美国佬，没问题，just use it ！
-![[Pasted image 20260530131139.png]]
+![](https://raw.githubusercontent.com/ikunycj/xiaoba.blog-images/master/self/中转/Pasted image 20260530131139.png)
