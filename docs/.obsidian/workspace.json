@@ -4,22 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "e83b886387451555",
+        "id": "09ee27b2c2e32377",
         "type": "tabs",
         "children": [
           {
-            "id": "4aa01d68e3caa5d5",
+            "id": "d0471ce21448b527",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "note/AI/Agent/Prompt/Prompt工程.md",
+                "file": "local/账号密码.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "Prompt工程"
+              "title": "账号密码"
             }
           }
         ]
@@ -79,7 +79,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 436.5
+    "width": 357.5
   },
   "right": {
     "id": "414ae52dfc0c6d34",
@@ -95,13 +95,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "note/AI/Agent/Prompt/Prompt工程.md",
+                "file": "local/账号密码.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Prompt工程 的大纲"
+              "title": "账号密码 的大纲"
             }
           },
           {
@@ -208,52 +208,52 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "dd32e8621a780f9c",
+  "active": "d0471ce21448b527",
   "lastOpenFiles": [
-    "note/AI/Agent/Prompt/prompt-generate.drawio.svg",
-    "note/AI/AI 使用/系统提示词和用户提示词区别.md",
-    "local/工作日记/5月.md",
-    "note/AI/AI Coding/从0开始Vibe Coding.md",
-    "note/AI/AI Coding/AI Coding最佳实践（codex为例子）.md",
+    "local/工作/TODO.md",
+    "local/工作/5月.md",
+    "Pasted image 20260605113323.png",
+    "未命名.md",
+    "local/账号密码.md",
+    "Pasted image 20260519110427.png",
+    "Pasted image 20260515112651.png",
+    "Pasted image 20260515105410.png",
+    "Pasted image 20260513153636.png",
+    "Pasted image 20260513142743.png",
+    "Pasted image 20260512200025.png",
+    "Pasted image 20260512190752.png",
+    "self/中转/GPT防止封号注意技巧.md",
+    "GPT防止封号注意技巧.pdf",
+    "self/中转/Pasted image 20260530131251.png",
+    "self/中转/Pasted image 20260530131139.png",
+    "note/计算机知识/数据结构与算法/算法/1.搜索/1.二分查找.md",
+    "note/计算机知识/数据结构与算法/算法/7.数学运算/1.位运算.md",
+    "note/计算机知识/数据结构与算法/相关资料.md",
+    "self/中转/ChatGPT官方额度.md",
+    "self/中转/Codex手机端使用第三方API.md",
+    "self/中转/总体方案.md",
+    "self/其他/MNIST情况.md",
+    "self/未命名",
     "self/评估.md",
-    "note/AI/AI 模型/LLM原理与训练八股.md",
-    "note/AI/端侧模型/模型量化.md",
-    "note/AI/AI 模型/AWQ学习建议.md",
-    "note/其他/drive-course1.md",
-    "blogs/XIAOBA-THEME.md",
-    "blogs/SUMMARY.md",
-    "blogs/OPTIMIZATION.md",
-    "blogs/CHANGELOG.md",
+    "self/埋点.md",
+    "self/中转/开源项目.md",
+    "self/中转/代理.md",
+    "self/中转/账号问题.md",
+    "self/中转/服务器问题.md",
+    "self/中转",
+    "note/软件工程/运维/Linux/Vim.md",
+    "note/软件工程/运维/Linux/Linux课程笔记.pdf",
+    "note/软件工程/运维/Linux/Linux系统.md",
+    "note/软件工程/运维/Linux/Shell笔记.md",
+    "note/软件工程/运维/Linux/Linux命令.md",
+    "self/其他/exercise.md",
+    "self/其他/exercise.md.md",
+    "self/其他",
+    "local/工作/QUESTION.md",
     "blogs/public/robots.txt",
-    "note/其他/img/857b38c5d12008b15cdd933b79957fc6.jpeg",
-    "note/软件工程/服务端/SSM/Spring/第三方工具/Swagger框架/knife4j框架.md",
-    "note/软件工程/服务端/Node.js/Node.js.md",
-    "note/其他/img/857b38c5d12008b15cdd933b79957fc6 1.jpeg",
-    "note/其他/img/4502f59e10d4c8c70879de806d58c4e4 1.jpeg",
-    "note/其他/img/Pasted image 20240716110618.png",
-    "local/TODO.md",
-    "local/工作日记/4月.md",
-    "local/QUESTION.md",
     "blogs/public/blog-index/archive/2026-04/page-99.json",
     "blogs/public/blog-index/archive/2026-04/page-98.json",
     "blogs/public/blog-index/archive/2026-04/page-97.json",
-    "blogs/public/blog-index/archive/2026-04/page-96.json",
-    "blogs/public/blog-index/archive/2026-04/page-95.json",
-    "blogs/public/blog-index/archive/2026-04/page-94.json",
-    "blogs/public/blog-index/archive/2026-04/page-93.json",
-    "blogs/public/blog-index/archive/2026-04/page-92.json",
-    "blogs/public/blog-index/archive/2026-04/page-91.json",
-    "note/AI/AI 模型/理解大模型的神经网络.md",
-    "note/软件工程/服务端/Node.js/事件循环.md",
-    "note/面经/工程/node.js.md",
-    "note/AI/AI 模型/img/Pasted image 20260429151016.png",
-    "note/软件工程/服务端/Gin/Gin快速入门.md",
-    "note/软件工程/代理/1.通俗易懂讲清代理.md",
-    "note/软件工程/服务端/Apache/Apache POI/Apache POI.md",
-    "note/软件工程/服务端/小型服务器/TomCat.md",
-    "note/AI/AI 模型/img/Pasted image 20260428113217.png",
-    "note/AI/AI 模型/img/Pasted image 20260428113144.png",
-    "note/AI/AI 模型/img/Pasted image 20260428112922.png",
-    "note/AI/AI 模型/img/Pasted image 20260428112727.png"
+    "blogs/public/blog-index/archive/2026-04/page-96.json"
   ]
 }
