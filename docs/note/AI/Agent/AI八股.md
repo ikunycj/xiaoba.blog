@@ -2,7 +2,7 @@
 
 > 本文聚焦 Agent / Workflow、MCP、记忆与上下文管理、工程安全隔离、工具生态和实战案例。
 >
-> 与模型原理、KV Cache、Attention、Mask、训练对齐相关的内容已拆分到 [LLM 原理与训练八股](LLM原理与训练八股.md)。
+> 与模型原理、KV Cache、Attention、Mask、训练对齐相关的内容已拆分到 [LLM 原理与训练八股](/note/AI/AI%20%E6%A8%A1%E5%9E%8B/LLM%E5%8E%9F%E7%90%86%E4%B8%8E%E8%AE%AD%E7%BB%83%E5%85%AB%E8%82%A1)。
 
 ## 文档导航
 
@@ -4370,4 +4370,3 @@ WHERE category = 'payment' AND id = ?;
    - 多工具协同
    - 安全沙箱执行
    - 结构化输出"
-

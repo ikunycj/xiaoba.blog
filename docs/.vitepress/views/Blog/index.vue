@@ -1,132 +1,174 @@
 <template>
-  <section class="xb-page blog-page">
-    <div class="blog-layout">
-      <aside class="blog-left">
-        <article class="xb-card profile-card">
-          <img class="profile-card__avatar" :src="avatarSrc" :alt="copy.profileAlt" />
-          <p class="xb-eyebrow">Profile</p>
-          <h2>{{ copy.profileName }}</h2>
-          <p class="xb-muted profile-card__intro">{{ copy.profileIntro }}</p>
-          <div class="profile-card__stats">
-            <div>
-              <strong>{{ totalPostsCount }}</strong>
-              <span>{{ copy.articleCount }}</span>
-            </div>
-            <div>
-              <strong>{{ archiveTotalCount }}</strong>
-              <span>{{ copy.archiveCount }}</span>
-            </div>
-            <div>
-              <strong>{{ latestUpdatedText }}</strong>
-              <span>{{ copy.latestUpdated }}</span>
-            </div>
-          </div>
-          <div class="xb-chip-row profile-card__links">
-            <a class="xb-chip" :href="toPath('/home')">{{ copy.home }}</a>
-            <a class="xb-chip" :href="toPath('/projects')">{{ copy.projects }}</a>
-            <a class="xb-chip" :href="toPath('/share')">{{ copy.share }}</a>
-          </div>
-        </article>
+  <section class="blog-page" aria-labelledby="blog-title">
+    <div class="blog-shell">
+      <header class="blog-hero">
+        <div class="hero-copy">
+          <p class="eyebrow">
+            <Icon icon="lucide:book-open-check" aria-hidden="true" />
+            <span>博客</span>
+          </p>
+          <h1 id="blog-title">博客文章</h1>
+          <p class="hero-description">整理好的技术实践、项目复盘和方法记录。</p>
+          <nav class="hero-actions" aria-label="博客入口">
+            <a class="action action--primary" :href="toPath('/')">
+              <Icon icon="lucide:house" aria-hidden="true" />
+              <span>返回首页</span>
+            </a>
+            <a class="action action--secondary" :href="toPath('/note/')">
+              <Icon icon="lucide:notebook-tabs" aria-hidden="true" />
+              <span>浏览笔记</span>
+            </a>
+          </nav>
+        </div>
 
-        <article class="xb-card archive-card">
-          <p class="xb-eyebrow">Timeline</p>
-          <h3>{{ copy.timelineTitle }}</h3>
-          <ul class="archive-list">
-            <li v-for="bucket in archiveBuckets" :key="bucket.key">
-              <button
-                type="button"
-                class="archive-btn"
-                :class="{ 'archive-btn--active': selectedArchiveKey === bucket.key }"
-                @click="selectArchive(bucket.key)"
-              >
-                <span>{{ bucket.label }}</span>
-                <span class="xb-muted">{{ bucket.count }}</span>
+        <div class="hero-portrait" aria-label="博客状态">
+          <img :src="avatarSrc" alt="小八头像" />
+          <div class="hero-portrait__note">
+            <Icon icon="lucide:calendar-days" aria-hidden="true" />
+            <span>最近更新 {{ latestUpdatedText }}</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="blog-content">
+        <aside class="blog-sidebar" aria-label="博客筛选与导航">
+          <section class="sidebar-section">
+            <div class="section-label">
+              <Icon icon="lucide:calendar-range" aria-hidden="true" />
+              <span>按时间归档</span>
+            </div>
+            <ul class="archive-list">
+              <li v-for="bucket in archiveBuckets" :key="bucket.key">
+                <button
+                  type="button"
+                  class="archive-button"
+                  :class="{ 'archive-button--active': selectedArchiveKey === bucket.key }"
+                  :aria-pressed="selectedArchiveKey === bucket.key"
+                  @click="selectArchive(bucket.key)"
+                >
+                  <span>{{ bucket.label }}</span>
+                  <span class="archive-count">{{ bucket.count }}</span>
+                </button>
+              </li>
+            </ul>
+          </section>
+
+          <section class="sidebar-section sidebar-section--links">
+            <div class="section-label">
+              <Icon icon="lucide:compass" aria-hidden="true" />
+              <span>其他入口</span>
+            </div>
+            <nav class="sidebar-links" aria-label="博客相关页面">
+              <a :href="toPath('/projects')">
+                <Icon icon="lucide:blocks" aria-hidden="true" />
+                <span>项目</span>
+                <Icon class="link-arrow" icon="lucide:arrow-up-right" aria-hidden="true" />
+              </a>
+              <a :href="toPath('/share')">
+                <Icon icon="lucide:wrench" aria-hidden="true" />
+                <span>工具箱</span>
+                <Icon class="link-arrow" icon="lucide:arrow-up-right" aria-hidden="true" />
+              </a>
+              <a href="#guestbook">
+                <Icon icon="lucide:message-circle" aria-hidden="true" />
+                <span>博客留言板</span>
+                <Icon class="link-arrow" icon="lucide:arrow-down" aria-hidden="true" />
+              </a>
+            </nav>
+          </section>
+        </aside>
+
+        <main class="blog-results">
+          <header class="results-header">
+            <div>
+              <p class="eyebrow">文章列表</p>
+              <h2>{{ activeArchiveLabel }}</h2>
+            </div>
+            <div class="results-meta" role="status" aria-live="polite">
+              <strong>{{ activeArchiveCount }}</strong>
+              <span>篇文章</span>
+              <span class="results-meta__dot" aria-hidden="true">·</span>
+              <span>{{ pageChipText }}</span>
+            </div>
+          </header>
+
+          <div v-if="loadError" class="state-panel state-panel--error" role="alert">
+            <Icon icon="lucide:triangle-alert" aria-hidden="true" />
+            <div>
+              <h3>暂时拿不到文章</h3>
+              <p>{{ loadError }}</p>
+              <button type="button" class="action action--secondary" @click="retryLoad">
+                <Icon icon="lucide:refresh-cw" aria-hidden="true" />
+                <span>重新加载</span>
               </button>
-            </li>
-          </ul>
-        </article>
+            </div>
+          </div>
 
-        <article class="xb-card directory-card">
-          <p class="xb-eyebrow">Blog</p>
-          <h3>{{ copy.directoryTitle }}</h3>
-          <ul v-if="blogDirectoryEntries.length > 0" class="directory-list">
-            <li v-for="entry in blogDirectoryEntries" :key="entry.url">
-              <a class="directory-link" :href="toPath(entry.url)">
-                <span>{{ entry.title }}</span>
-                <small class="xb-muted">{{ entry.updatedText }}</small>
+          <div v-else-if="isLoading && pagedPosts.length === 0" class="state-panel">
+            <Icon icon="lucide:loader-circle" class="state-panel__spin" aria-hidden="true" />
+            <p>{{ copy.loading }}</p>
+          </div>
+
+          <div v-else-if="pagedPosts.length === 0" class="state-panel">
+            <Icon icon="lucide:inbox" aria-hidden="true" />
+            <p>{{ copy.empty }}</p>
+          </div>
+
+          <ol v-else class="post-list">
+            <li v-for="(post, index) in pagedPosts" :key="post.url" class="post-row">
+              <span class="post-row__index" aria-hidden="true">{{ String(index + 1).padStart(2, '0') }}</span>
+              <div class="post-row__body">
+                <div class="post-row__meta">
+                  <span class="post-label">{{ post.section }}</span>
+                  <time :datetime="toIsoDate(post.publishedAt)">{{ post.publishedText || formatDate(post.publishedAt) }}</time>
+                </div>
+                <h3>
+                  <a :href="toPath(post.url)">{{ post.title }}</a>
+                </h3>
+                <p>{{ post.summary }}</p>
+              </div>
+              <a class="post-row__link" :href="toPath(post.url)" :aria-label="`${copy.readMore}：${post.title}`">
+                <span>{{ copy.readMore }}</span>
+                <Icon icon="lucide:arrow-up-right" aria-hidden="true" />
               </a>
             </li>
-          </ul>
-          <p v-else class="xb-muted directory-empty">{{ copy.directoryEmpty }}</p>
-        </article>
-      </aside>
+          </ol>
 
-      <main class="blog-main">
-        <header class="xb-hero blog-main__hero">
-          <p class="xb-eyebrow">Recent Posts</p>
-          <h1>{{ copy.recentTitle }}</h1>
-          <p class="xb-muted">{{ summaryText }}</p>
-          <div class="xb-chip-row">
-            <span class="xb-chip">{{ pageChipText }}</span>
-            <span class="xb-chip">{{ pageSizeText }}</span>
-            <a class="xb-chip" :href="toPath('/note/index')">{{ copy.noteOverview }}</a>
-            <a class="xb-chip" :href="toPath('/blog/index#guestbook')">{{ copy.guestbook }}</a>
+          <nav class="pager" :aria-label="copy.pagerAriaLabel">
+            <button
+              type="button"
+              class="pager-button"
+              :disabled="isLoading || currentPage <= 1"
+              @click="goPrevPage"
+            >
+              <Icon icon="lucide:arrow-left" aria-hidden="true" />
+              <span>{{ copy.prev }}</span>
+            </button>
+            <span class="pager-status">{{ pageChipText }}</span>
+            <button
+              type="button"
+              class="pager-button"
+              :disabled="isLoading || currentPage >= totalPages"
+              @click="goNextPage"
+            >
+              <span>{{ copy.next }}</span>
+              <Icon icon="lucide:arrow-right" aria-hidden="true" />
+            </button>
+          </nav>
+        </main>
+      </div>
+
+      <section id="guestbook" class="guestbook" aria-labelledby="guestbook-title">
+        <div class="guestbook__heading">
+          <div>
+            <p class="eyebrow">留言</p>
+            <h2 id="guestbook-title">博客留言板</h2>
           </div>
-        </header>
-
-        <div v-if="loadError" class="xb-card status-card">
-          <p class="xb-muted">{{ loadError }}</p>
-          <div class="status-actions">
-            <button type="button" class="pager-btn" @click="retryLoad">{{ copy.retry }}</button>
-          </div>
+          <Icon icon="lucide:message-circle-heart" aria-hidden="true" />
         </div>
-
-        <div v-else-if="isLoading && pagedPosts.length === 0" class="xb-card status-card">
-          <p class="xb-muted">{{ copy.loading }}</p>
-        </div>
-
-        <div v-else-if="pagedPosts.length === 0" class="xb-card status-card">
-          <p class="xb-muted">{{ copy.empty }}</p>
-        </div>
-
-        <div v-else class="blog-post-stack">
-          <article v-for="post in pagedPosts" :key="post.url" class="xb-card post-card">
-            <div class="post-card__meta">
-              <span class="xb-tag">{{ post.section }}</span>
-              <time class="xb-muted" :datetime="toIsoDate(post.publishedAt)">{{ formatDate(post.publishedAt) }}</time>
-            </div>
-            <h2>{{ post.title }}</h2>
-            <p class="xb-muted">{{ post.summary }}</p>
-            <a class="post-card__link" :href="toPath(post.url)">{{ copy.readMore }}</a>
-          </article>
-        </div>
-
-        <nav class="xb-card pager" :aria-label="copy.pagerAriaLabel">
-          <button
-            type="button"
-            class="pager-btn"
-            :disabled="isLoading || currentPage <= 1"
-            @click="goPrevPage"
-          >
-            {{ copy.prev }}
-          </button>
-          <span class="pager-text">{{ pageChipText }}</span>
-          <button
-            type="button"
-            class="pager-btn"
-            :disabled="isLoading || currentPage >= totalPages"
-            @click="goNextPage"
-          >
-            {{ copy.next }}
-          </button>
-        </nav>
-      </main>
-
-      <aside class="blog-right">
-        <article id="guestbook" class="xb-card discussion-card">
-          <GiscusPanel :title="copy.commentTitle" mapping="specific" term="blog-guestbook" />
-        </article>
-      </aside>
+        <p class="guestbook__description">欢迎留言、补充或勘误。</p>
+        <GiscusPanel mapping="specific" term="blog-guestbook" />
+      </section>
     </div>
   </section>
 </template>
@@ -134,6 +176,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 import { withBase } from 'vitepress'
+import { Icon } from '@iconify/vue'
 import GiscusPanel from '../../theme/components/GiscusPanel.vue'
 
 type RecentPost = {
@@ -163,7 +206,7 @@ type BlogIndexManifest = {
   latestUpdatedText: string
   all: ArchiveBucket
   archives: ArchiveBucket[]
-  blogDirectory: BlogDirectoryEntry[]
+  blogDirectory?: BlogDirectoryEntry[]
 }
 
 type BlogIndexPage = {
@@ -174,32 +217,13 @@ type BlogIndexPage = {
 }
 
 const copy = {
-  profileAlt: '\u5C0F\u516B\u5934\u50CF',
-  profileName: '\u5C0F\u516B',
-  profileIntro:
-    '\u6301\u7EED\u8BB0\u5F55\u524D\u7AEF\u3001\u5DE5\u7A0B\u5316\u548C\u771F\u5B9E\u9879\u76EE\u91CC\u7684\u53EF\u590D\u7528\u7ECF\u9A8C\u3002',
-  articleCount: '\u6587\u7AE0',
-  archiveCount: '\u5F52\u6863',
-  latestUpdated: '\u6700\u8FD1\u66F4\u65B0',
-  home: '\u9996\u9875',
-  projects: '\u9879\u76EE',
-  share: '\u5206\u4EAB',
-  timelineTitle: '\u65F6\u95F4\u7EBF\u5F52\u6863',
-  directoryTitle: 'Blog \u76EE\u5F55',
-  directoryEmpty: '\u6682\u65E0 blog \u76EE\u5F55\u6587\u7AE0\u3002',
-  recentTitle: '\u6700\u8FD1\u53D1\u5E03',
-  noteOverview: '\u8FDB\u5165\u7B14\u8BB0\u603B\u89C8',
-  guestbook: '\u535A\u5BA2\u7559\u8A00\u677F',
-  loading: '\u6B63\u5728\u52A0\u8F7D\u6587\u7AE0\u2026',
-  empty: '\u5F53\u524D\u6CA1\u6709\u7B26\u5408\u7B5B\u9009\u6761\u4EF6\u7684\u6587\u7AE0\u3002',
-  retry: '\u91CD\u8BD5',
-  readMore: '\u9605\u8BFB\u5168\u6587',
-  prev: '\u4E0A\u4E00\u9875',
-  next: '\u4E0B\u4E00\u9875',
-  pagerAriaLabel: '\u535A\u5BA2\u5206\u9875',
-  commentTitle: '\u7559\u8A00\u677F',
-  all: '\u5168\u90E8',
-  unknown: '\u672A\u77E5',
+  loading: '正在读取博客目录…',
+  empty: '当前归档还没有文章。',
+  readMore: '阅读全文',
+  prev: '上一页',
+  next: '下一页',
+  pagerAriaLabel: '博客分页',
+  unknown: '未知时间',
 } as const
 
 const avatarSrc = withBase('/xiaoba-smile.jpg')
@@ -221,20 +245,12 @@ const activeBucket = computed<ArchiveBucket | null>(() => {
   return archiveBuckets.value.find((bucket) => bucket.key === selectedArchiveKey.value) || manifest.value?.all || null
 })
 
-const totalPostsCount = computed(() => manifest.value?.all.count || 0)
-const archiveTotalCount = computed(() => manifest.value?.archives.length || 0)
-const blogDirectoryEntries = computed<BlogDirectoryEntry[]>(() => manifest.value?.blogDirectory || [])
 const latestUpdatedText = computed(() => manifest.value?.latestUpdatedText || copy.unknown)
-const totalPages = computed(() => activeBucket.value?.totalPages || 1)
-const activeArchiveLabel = computed(() => activeBucket.value?.label || copy.all)
+const activeArchiveLabel = computed(() => activeBucket.value?.label || '全部文章')
 const activeArchiveCount = computed(() => activeBucket.value?.count || 0)
+const totalPages = computed(() => activeBucket.value?.totalPages || 1)
 const pagedPosts = computed(() => pageItems.value)
-const pageChipText = computed(() => `\u7B2C ${currentPage.value} / ${totalPages.value} \u9875`)
-const pageSizeText = computed(() => `\u6BCF\u9875 ${manifest.value?.pageSize || 0} \u7BC7`)
-const summaryText = computed(
-  () =>
-    `\u5F53\u524D\u7B5B\u9009\uFF1A${activeArchiveLabel.value}\uFF0C\u5171 ${activeArchiveCount.value} \u7BC7\uFF0C\u6309\u65F6\u95F4\u7EBF\u5206\u9875\u5C55\u793A\u3002`
-)
+const pageChipText = computed(() => `第 ${currentPage.value} / ${totalPages.value} 页`)
 
 onMounted(async () => {
   await loadManifest()
@@ -311,8 +327,11 @@ function goNextPage(): void {
   void loadPage()
 }
 
-function retryLoad(): void {
-  void loadPage()
+async function retryLoad(): Promise<void> {
+  if (!manifest.value) {
+    await loadManifest()
+  }
+  await loadPage()
 }
 
 function buildCacheKey(key: string, page: number): string {
@@ -342,13 +361,13 @@ async function fetchJson<T>(url: string): Promise<T> {
 
 function toErrorMessage(error: unknown): string {
   if (error instanceof Error && error.message) {
-    return `\u52A0\u8F7D\u5931\u8D25\uFF1A${error.message}`
+    return `加载失败：${error.message}`
   }
-  return '\u52A0\u8F7D\u5931\u8D25'
+  return '加载失败，请稍后再试。'
 }
 
 function formatDate(timestamp: number): string {
-  if (!timestamp) return '\u672A\u77E5\u65F6\u95F4'
+  if (!timestamp) return copy.unknown
   return new Date(timestamp).toLocaleDateString('zh-CN', {
     year: 'numeric',
     month: '2-digit',
@@ -368,245 +387,643 @@ function toPath(path: string): string {
 
 <style scoped>
 .blog-page {
-  width: calc(100% - 1.25rem);
-  max-width: none;
-  overflow-x: clip;
-  margin-bottom: 4rem;
+  --blog-page: var(--xb-page, #f7fbfe);
+  --blog-paper: var(--xb-paper, #ffffff);
+  --blog-ink: var(--xb-ink, #1d2b36);
+  --blog-muted: var(--xb-muted, #5f7180);
+  --blog-border: var(--xb-border, #cfe2ee);
+  --blog-blue: var(--xb-blue, #2b78a6);
+  --blog-blue-deep: var(--xb-blue-deep, #174a70);
+  --blog-blue-soft: var(--xb-blue-soft, #e6f4fb);
+  --blog-blush: var(--xb-blush, #f59caf);
+  --blog-yellow: var(--xb-yellow, #f2c94c);
+  --blog-blush-soft: color-mix(in srgb, var(--blog-blush) 16%, var(--blog-paper));
+  --blog-yellow-soft: color-mix(in srgb, var(--blog-yellow) 24%, var(--blog-paper));
+  --blog-mint: color-mix(in srgb, var(--xb-success) 14%, var(--blog-paper));
+  --blog-mint-ink: var(--xb-success);
+  max-width: 1180px;
+  margin: 0 auto 4rem;
+  padding: 1.25rem 1rem 0;
+  color: var(--blog-ink);
 }
 
-.blog-layout {
-  display: grid;
-  grid-template-columns: 280px minmax(0, 1fr) 300px;
-  gap: 1.15rem;
-  align-items: start;
-}
-
-.blog-left,
-.blog-right {
-  position: sticky;
-  top: calc(var(--vp-nav-height) + 24px);
-  display: grid;
-  gap: 0.9rem;
-}
-
-.blog-right {
+.blog-shell {
   min-width: 0;
 }
 
-.blog-left {
+.blog-page :where(a, button):focus-visible {
+  outline: 3px solid var(--blog-yellow);
+  outline-offset: 3px;
+}
+
+.blog-page :deep(.icon) {
+  width: 1.1rem;
+  height: 1.1rem;
+  flex: 0 0 auto;
+}
+
+.blog-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 180px;
+  gap: 2rem;
+  align-items: center;
+  overflow: hidden;
+  padding: 40px;
+  border: 1px solid color-mix(in srgb, var(--blog-blue) 34%, var(--blog-border));
+  border-radius: 8px;
+  background: var(--blog-paper);
+}
+
+.blog-hero::before {
+  position: absolute;
+  top: 0;
+  left: 2rem;
+  width: 96px;
+  height: 5px;
+  border-radius: 0 0 4px 4px;
+  background: var(--blog-yellow);
+  content: '';
+}
+
+.hero-copy {
   min-width: 0;
 }
 
-.profile-card__avatar {
-  width: 78px;
-  height: 78px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid color-mix(in srgb, var(--xb-accent) 45%, var(--xb-border) 55%);
-  margin-bottom: 0.7rem;
-}
-
-.profile-card h2,
-.archive-card h3 {
-  margin-top: 0.4rem;
-  font-size: 1.12rem;
-}
-
-.profile-card__intro {
-  margin-top: 0.45rem;
-  font-size: 0.92rem;
-  line-height: 1.65;
-}
-
-.profile-card__stats {
-  margin-top: 0.85rem;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.55rem;
-}
-
-.profile-card__stats div:last-child {
-  grid-column: 1 / -1;
-}
-
-.profile-card__stats div {
-  border-radius: 12px;
-  border: 1px dashed var(--xb-border);
-  padding: 0.45rem;
-  background: color-mix(in srgb, var(--xb-accent-soft) 35%, transparent 65%);
-}
-
-.profile-card__stats strong {
-  display: block;
-  font-size: 0.95rem;
-}
-
-.profile-card__stats span {
-  font-size: 0.75rem;
-  color: var(--xb-muted);
-}
-
-.profile-card__links .xb-chip {
-  font-size: 0.76rem;
-  padding: 0.34rem 0.6rem;
-}
-
-.archive-list {
-  margin-top: 0.7rem;
-  display: grid;
-  gap: 0.45rem;
-}
-
-.archive-btn {
-  width: 100%;
+.eyebrow,
+.section-label {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.7rem;
-  padding: 0.48rem 0.62rem;
-  border-radius: 10px;
-  border: 1px solid var(--xb-border);
-  background: color-mix(in srgb, var(--xb-surface-soft) 80%, transparent 20%);
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  gap: 0.4rem;
+  margin: 0;
+  color: var(--blog-blue-deep);
+  font-size: 0.875rem;
+  font-weight: 750;
+  letter-spacing: 0;
+  line-height: 1.4;
+  text-transform: none;
+}
+
+.eyebrow :deep(.icon),
+.section-label :deep(.icon) {
+  color: var(--blog-blush);
+}
+
+.blog-hero h1 {
+  max-width: 30rem;
+  margin: 0.8rem 0 0;
+  color: var(--blog-blue-deep);
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+.hero-description {
+  max-width: 65ch;
+  margin: 1rem 0 0;
+  color: var(--blog-muted);
+  font-size: 1.03rem;
+  line-height: 1.8;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.35rem;
+}
+
+.action,
+.pager-button {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  border: 1px solid var(--blog-border);
+  border-radius: 8px;
+  padding: 0.55rem 0.85rem;
+  color: var(--blog-blue-deep);
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: border-color 160ms ease, background-color 160ms ease, color 160ms ease;
+}
+
+.action--primary {
+  border-color: var(--blog-blue-deep);
+  background: var(--blog-blue-deep);
+  color: #ffffff;
+}
+
+.action--primary:hover {
+  border-color: var(--blog-blue);
+  background: var(--blog-blue);
+  color: #ffffff;
+}
+
+.action--secondary {
+  border-color: color-mix(in srgb, var(--blog-yellow) 40%, var(--blog-border));
+  background: var(--blog-yellow-soft);
+}
+
+.action--secondary:hover,
+.pager-button:not(:disabled):hover {
+  border-color: var(--blog-blue);
+  background: var(--blog-mint);
+  color: var(--blog-blue-deep);
+}
+
+.hero-portrait {
+  display: grid;
+  justify-items: center;
+  gap: 0.75rem;
+}
+
+.hero-portrait img {
+  width: 132px;
+  height: 132px;
+  border: 3px solid var(--blog-yellow);
+  border-radius: 50%;
+  box-shadow: none;
+  object-fit: cover;
+}
+
+.hero-portrait__note {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 32px;
+  border: 1px solid color-mix(in srgb, var(--blog-mint-ink) 30%, var(--blog-border));
+  border-radius: 8px;
+  padding: 0.25rem 0.65rem;
+  color: var(--blog-mint-ink);
+  background: var(--blog-mint);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.blog-content {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 2rem;
+  margin-top: 2.25rem;
+}
+
+.blog-sidebar {
+  align-self: start;
+  position: sticky;
+  top: calc(var(--vp-nav-height) + 1.25rem);
+}
+
+.sidebar-section + .sidebar-section {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--blog-border);
+}
+
+.archive-list,
+.sidebar-links {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0.8rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.archive-button,
+.sidebar-links a {
+  display: flex;
+  width: 100%;
+  min-height: 44px;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 0.55rem 0.65rem;
+  color: var(--blog-muted);
+  background: transparent;
+  font: inherit;
+  font-size: 0.9rem;
+  line-height: 1.3;
   text-align: left;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-.archive-btn span:first-child {
+.archive-button:hover,
+.sidebar-links a:hover {
+  border-color: color-mix(in srgb, var(--blog-mint-ink) 30%, var(--blog-border));
+  color: var(--blog-blue-deep);
+  background: var(--blog-mint);
+}
+
+.archive-button--active {
+  border-color: var(--blog-blue);
+  color: var(--blog-blue-deep);
+  background: var(--blog-blue-soft);
+  font-weight: 750;
+}
+
+.archive-button > span:first-child,
+.sidebar-links a > span:not(.link-arrow) {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.archive-count {
+  margin-left: auto;
+  border-radius: 999px;
+  padding: 0.1rem 0.45rem;
+  color: var(--blog-blue-deep);
+  background: var(--blog-yellow-soft);
+  font-size: 0.875rem;
+}
+
+.sidebar-links .link-arrow {
+  width: 0.9rem;
+  height: 0.9rem;
+  margin-left: auto;
+}
+
+.blog-results {
   min-width: 0;
 }
 
-.archive-btn:hover {
-  transform: translateY(-1px);
-  border-color: color-mix(in srgb, var(--xb-accent) 35%, var(--xb-border) 65%);
+.results-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid color-mix(in srgb, var(--blog-mint-ink) 28%, var(--blog-border));
+  border-radius: 8px;
+  background: var(--blog-mint);
 }
 
-.archive-btn--active {
-  border-color: color-mix(in srgb, var(--xb-accent) 55%, var(--xb-border) 45%);
-  background: color-mix(in srgb, var(--xb-accent-soft) 62%, transparent 38%);
+.results-header h2 {
+  margin: 0.45rem 0 0;
+  color: var(--blog-blue-deep);
+  font-size: 1.7rem;
+  line-height: 1.25;
 }
 
-.directory-list {
-  margin-top: 0.7rem;
+.results-meta {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: baseline;
+  flex-wrap: wrap;
+  justify-content: end;
+  gap: 0.35rem;
+  border: 1px solid color-mix(in srgb, var(--blog-yellow) 44%, var(--blog-border));
+  border-radius: 8px;
+  padding: 0.35rem 0.7rem;
+  color: var(--blog-muted);
+  background: var(--blog-yellow-soft);
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+.results-meta strong {
+  color: var(--blog-blue-deep);
+  font-size: 1.15rem;
+}
+
+.results-meta__dot {
+  color: var(--blog-blush);
+  font-size: 1.25rem;
+}
+
+.post-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.post-row {
   display: grid;
-  gap: 0.55rem;
+  grid-template-columns: 2.5rem minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: start;
+  margin-inline: -0.75rem;
+  padding: 1.35rem 0.75rem;
+  border-bottom: 1px solid var(--blog-border);
+  transition: background-color 160ms ease, border-color 160ms ease;
 }
 
-.directory-link {
-  display: grid;
-  gap: 0.2rem;
-  padding: 0.55rem 0.62rem;
-  border-radius: 10px;
-  border: 1px solid var(--xb-border);
-  background: color-mix(in srgb, var(--xb-surface-soft) 82%, transparent 18%);
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+.post-row:hover {
+  border-bottom-color: color-mix(in srgb, var(--blog-blue) 35%, var(--blog-border));
+  background: var(--blog-page);
 }
 
-.directory-link:hover {
-  transform: translateY(-1px);
-  border-color: color-mix(in srgb, var(--xb-accent) 35%, var(--xb-border) 65%);
+.post-row__index {
+  padding-top: 0.2rem;
+  color: var(--blog-blush);
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 750;
 }
 
-.directory-link span {
-  font-size: 0.92rem;
-  font-weight: 600;
+.post-row:nth-child(3n + 2) .post-row__index {
+  color: var(--blog-yellow);
 }
 
-.directory-link small {
-  font-size: 0.74rem;
+.post-row:nth-child(3n + 3) .post-row__index {
+  color: var(--blog-mint-ink);
 }
 
-.directory-empty {
-  margin-top: 0.7rem;
-}
-
-.blog-main {
+.post-row__body {
   min-width: 0;
 }
 
-.blog-main__hero p {
-  max-width: 46rem;
-}
-
-.blog-post-stack {
-  margin-top: 0.95rem;
-  display: grid;
-  gap: 0.85rem;
-}
-
-.post-card h2 {
-  margin-top: 0.45rem;
-  font-size: 1.06rem;
-}
-
-.post-card__meta {
+.post-row__meta {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.45rem;
+  gap: 0.55rem;
+  color: var(--blog-muted);
+  font-size: 0.875rem;
 }
 
-.post-card__link {
-  margin-top: 0.3rem;
-  width: fit-content;
-  font-size: 0.9rem;
-  font-weight: 700;
+.post-label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  color: var(--blog-blue-deep);
+  background: var(--blog-blue-soft);
+  font-weight: 750;
 }
 
-.status-card {
-  margin-top: 0.95rem;
+.post-row:nth-child(3n + 2) .post-label {
+  color: var(--blog-blue-deep);
+  background: var(--blog-blush-soft);
 }
 
-.status-actions {
-  margin-top: 0.8rem;
+.post-row:nth-child(3n + 3) .post-label {
+  color: var(--blog-mint-ink);
+  background: var(--blog-mint);
+}
+
+.post-row h3 {
+  margin: 0.5rem 0 0;
+  font-size: 1.22rem;
+  line-height: 1.4;
+}
+
+.post-row h3 a {
+  color: var(--blog-ink);
+  text-decoration: none;
+}
+
+.post-row h3 a:hover {
+  color: var(--blog-blue);
+}
+
+.post-row p {
+  max-width: 72ch;
+  margin: 0.45rem 0 0;
+  color: var(--blog-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.post-row__link {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 0.3rem;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 0.45rem 0.6rem;
+  color: var(--blog-blue-deep);
+  font-size: 0.875rem;
+  font-weight: 750;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.post-row__link:hover {
+  border-color: color-mix(in srgb, var(--blog-yellow) 42%, var(--blog-border));
+  background: var(--blog-yellow-soft);
+  color: var(--blog-blue);
+}
+
+.state-panel {
   display: flex;
-  gap: 0.6rem;
+  min-height: 150px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  margin-top: 1.25rem;
+  border: 1px dashed var(--blog-border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  color: var(--blog-muted);
+  background: var(--blog-page);
+  text-align: center;
+}
+
+.state-panel--error {
+  align-items: flex-start;
+  justify-content: flex-start;
+  color: var(--blog-ink);
+  text-align: left;
+}
+
+.state-panel--error > :deep(.icon) {
+  color: var(--blog-blush);
+}
+
+.state-panel h3 {
+  margin: 0;
+  color: var(--blog-blue-deep);
+  font-size: 1rem;
+}
+
+.state-panel p {
+  margin: 0.3rem 0 0;
+  color: var(--blog-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.state-panel .action {
+  margin-top: 0.8rem;
+}
+
+.state-panel__spin {
+  animation: blog-spin 900ms linear infinite;
 }
 
 .pager {
-  margin-top: 0.95rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.8rem;
+  gap: 1rem;
+  margin-top: 1.25rem;
 }
 
-.pager-btn {
-  border-radius: 10px;
-  border: 1px solid var(--xb-border);
-  background: color-mix(in srgb, var(--xb-accent-soft) 50%, transparent 50%);
-  padding: 0.42rem 0.75rem;
-  font-size: 0.86rem;
-  font-weight: 600;
+.pager-button {
+  background: var(--blog-paper);
+  cursor: pointer;
 }
 
-.pager-btn:disabled {
+.pager-button:disabled {
   cursor: not-allowed;
-  opacity: 0.45;
+  opacity: 0.42;
 }
 
-.pager-text {
-  font-size: 0.86rem;
-  color: var(--xb-muted);
+.pager-status {
+  border: 1px solid color-mix(in srgb, var(--blog-yellow) 42%, var(--blog-border));
+  border-radius: 8px;
+  color: var(--blog-muted);
+  background: var(--blog-yellow-soft);
+  padding: 0.3rem 0.65rem;
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
 }
 
-.discussion-card {
-  min-width: 0;
+.guestbook {
+  margin-top: 3rem;
+  border-top: 1px solid var(--blog-border);
+  padding-top: 2rem;
 }
 
-@media (max-width: 1200px) {
-  .blog-layout {
-    grid-template-columns: 248px minmax(0, 1fr) 280px;
+.guestbook__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.guestbook__heading > :deep(.icon) {
+  width: 2rem;
+  height: 2rem;
+  color: var(--blog-blush);
+}
+
+.guestbook h2 {
+  margin: 0.45rem 0 0;
+  color: var(--blog-blue-deep);
+  font-size: 1.55rem;
+}
+
+.guestbook__description {
+  max-width: 60ch;
+  margin: 0.7rem 0 1.25rem;
+  color: var(--blog-muted);
+  line-height: 1.7;
+}
+
+@keyframes blog-spin {
+  to {
+    transform: rotate(360deg);
   }
 }
 
-@media (max-width: 1024px) {
-  .blog-layout {
+@media (prefers-reduced-motion: reduce) {
+  .state-panel__spin {
+    animation: none;
+  }
+
+  .action,
+  .pager-button,
+  .archive-button,
+  .sidebar-links a,
+  .post-row {
+    transition: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .blog-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .blog-sidebar {
+    order: 2;
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .blog-results {
+    order: 1;
+  }
+
+  .sidebar-section + .sidebar-section {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+  }
+}
+
+@media (max-width: 620px) {
+  .blog-page {
+    width: 100%;
+    padding-inline: 0.75rem;
+  }
+
+  .blog-hero {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 28px 20px 24px;
+  }
+
+  .blog-hero h1 {
+    font-size: 28px;
+  }
+
+  .hero-portrait {
+    justify-items: start;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+  }
+
+  .hero-portrait img {
+    width: 84px;
+    height: 84px;
+  }
+
+  .hero-portrait__note {
+    text-align: left;
+  }
+
+  .blog-sidebar {
     grid-template-columns: 1fr;
   }
 
-  .blog-left,
-  .blog-right {
-    position: static;
+  .results-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .results-meta {
+    justify-content: start;
+  }
+
+  .post-row {
+    grid-template-columns: 2rem minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  .post-row__link {
+    grid-column: 2;
+    justify-self: start;
+    padding-top: 0.2rem;
+  }
+
+  .pager-button {
+    padding-inline: 0.65rem;
   }
 }
 </style>

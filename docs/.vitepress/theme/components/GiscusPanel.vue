@@ -225,8 +225,8 @@ onBeforeUnmount(() => {
 }
 
 .xb-giscus__error {
-  border-radius: 12px;
-  border: 1px dashed var(--vp-c-divider);
+  border-radius: 8px;
+  border: 1px solid var(--vp-c-divider);
   padding: 0.75rem 0.85rem;
   color: var(--vp-c-danger-1);
   font-size: 0.86rem;

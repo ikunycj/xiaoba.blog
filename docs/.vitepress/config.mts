@@ -1,4 +1,6 @@
 import { generateSidebar } from 'vitepress-sidebar'
+import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
+import { dirname, join } from 'node:path'
 
 import { defineConfigWithTheme, type DefaultTheme } from 'vitepress'
 
@@ -190,34 +192,114 @@ function sanitizeNoteMarkdown(content: string): string {
   return escapedAttrs.replace(/\{\{/g, '&#123;&#123;').replace(/\}\}/g, '&#125;&#125;')
 }
 
+function rewritePublicRoute(route: string): string {
+  const publicRoute = route.startsWith('blogs/') ? route.slice('blogs/'.length) : route
+  return publicRoute.replace(/c\+\+/gi, 'cpp').replace(/\+/g, '-plus-')
+}
+
+function rewriteSidebarItems(items: DefaultTheme.SidebarItem[]): DefaultTheme.SidebarItem[] {
+  return items.map((item) => ({
+    ...item,
+    link: item.link ? rewritePublicRoute(item.link) : undefined,
+    items: item.items ? rewriteSidebarItems(item.items) : undefined,
+  }))
+}
+
+function rewriteSidebarLinks(sidebar: DefaultTheme.Sidebar): DefaultTheme.Sidebar {
+  if (Array.isArray(sidebar)) return rewriteSidebarItems(sidebar)
+
+  return Object.fromEntries(
+    Object.entries(sidebar).map(([route, config]) => [
+      route,
+      Array.isArray(config)
+        ? rewriteSidebarItems(config)
+        : { ...config, items: rewriteSidebarItems(config.items) },
+    ])
+  )
+}
+
+function createLegacyPlusAliases(
+  outputDirectory: string,
+  pages: string[],
+  rewrites: Record<string, string | undefined>
+): void {
+  for (const sourcePage of pages) {
+    if (!sourcePage.includes('+')) continue
+
+    const publicPage = rewrites[sourcePage]
+    if (!publicPage) continue
+
+    const canonicalPath = join(outputDirectory, publicPage.replace(/\.md$/, '.html'))
+    if (!existsSync(canonicalPath)) {
+      throw new Error(`Missing canonical page for legacy route: ${publicPage}`)
+    }
+
+    const canonicalUrl = `/${publicPage.replace(/\.md$/, '')}`
+    const escapedCanonicalUrl = canonicalUrl
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/"/g, '&quot;')
+    const redirectHtml = `<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <link rel="canonical" href="${escapedCanonicalUrl}">
+    <script>location.replace(${JSON.stringify(canonicalUrl)} + location.search + location.hash)</script>
+    <title>正在跳转 | 小八博客</title>
+  </head>
+  <body>
+    <a href="${escapedCanonicalUrl}">前往新地址</a>
+  </body>
+</html>
+`
+
+    for (const legacyPage of [sourcePage, sourcePage.replace(/\+/g, '%2B')]) {
+      const aliasPath = join(outputDirectory, legacyPage.replace(/\.md$/, '.html'))
+      mkdirSync(dirname(aliasPath), { recursive: true })
+      writeFileSync(aliasPath, redirectHtml)
+    }
+  }
+}
+
 export default defineConfigWithTheme<ThemeConfig>({
-  title: '小八',
-  description: '小八博客 - 技术学习与实践分享，AI、全栈开发、工程化笔记',
+  title: '小八博客',
+  description: '记录技术实践、学习笔记、项目与工具。',
   srcDir: '.',
-  srcExclude: ['.obsidian/**', 'local/**', 'self/**'],
-  rewrites: {
-    'blogs/:path(.*)': ':path',
-  },
+  srcExclude: [
+    '.obsidian/**',
+    'local/**',
+    'self/**',
+    'blogs/CHANGELOG.md',
+    'blogs/OPTIMIZATION.md',
+    'blogs/SUMMARY.md',
+    'blogs/XIAOBA-THEME.md',
+  ],
+  rewrites: rewritePublicRoute,
   head: [
     ['link', { rel: 'icon', href: '/xiaoba-logo.png' }],
-    ['meta', { name: 'theme-color', content: '#0ea5e9' }],
+    ['meta', { name: 'theme-color', content: '#2b78a6' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
     ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
     ['meta', { property: 'og:type', content: 'website' }],
-    ['meta', { property: 'og:title', content: '小八博客 - 技术学习与实践' }],
-    ['meta', { property: 'og:description', content: '记录 AI、全栈开发、工程化等技术学习历程' }],
-    ['meta', { property: 'og:image', content: '/xiaoba-logo.png' }],
+    ['meta', { property: 'og:title', content: '小八博客' }],
+    ['meta', { property: 'og:description', content: '记录技术实践、学习笔记、项目与工具。' }],
+    ['meta', { property: 'og:image', content: '/xiaoba/xiaoba-coding.jpg' }],
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
     ['link', { rel: 'dns-prefetch', href: 'https://fonts.googleapis.com' }],
   ],
 
   base: '/',
   cleanUrls: true,
-  ignoreDeadLinks: true,
+  ignoreDeadLinks: 'localhostLinks',
   lastUpdated: true,
   
   sitemap: {
-    hostname: 'https://xioaba.blog',
+    hostname: 'https://xiaoba.blog',
+  },
+
+  buildEnd(siteConfig) {
+    createLegacyPlusAliases(siteConfig.outDir, siteConfig.pages, siteConfig.rewrites.map)
   },
 
   themeConfig: {
@@ -231,8 +313,8 @@ export default defineConfigWithTheme<ThemeConfig>({
       options: {
         translations: {
           button: {
-            buttonText: '搜索文档',
-            buttonAriaLabel: '搜索文档'
+          buttonText: '搜索',
+          buttonAriaLabel: '搜索'
           },
           modal: {
             noResultsText: '无法找到相关结果',
@@ -264,10 +346,11 @@ export default defineConfigWithTheme<ThemeConfig>({
       loading: 'lazy',
     },
     nav: [
-      { text: '🏠 首页', link: '/home' },
-      { text: '📝 博客', link: '/blog/index' },
-      { 
-        text: '📚 笔记', 
+      { text: '首页', link: '/' },
+      { text: '博客', link: '/blog/', activeMatch: '^/blog(?:/|$)' },
+      {
+        text: '笔记',
+        activeMatch: '^/note(?:/|$)',
         items: [
           { text: '笔记首页', link: '/note/' },
           { text: 'AI 学习', link: '/note/AI/' },
@@ -278,24 +361,26 @@ export default defineConfigWithTheme<ThemeConfig>({
         ]
       },
       {
-        text: '🎯 分享',
+        text: '工具箱',
+        activeMatch: '^/share(?:/|$)',
         items: [
-          { text: '分享推荐', link: '/share' },
+          { text: '工具箱首页', link: '/share' },
           { text: '博客建站', link: '/share/blogbuild/choose' },
           { text: '效率工具', link: '/share/tools' },
-          { text: '山大资源', link: '/share/sdu' },
+          { text: '山大资料', link: '/share/sdu' },
         ],
       },
-      { text: '💼 项目', link: '/projects' },
-      { 
-        text: '🔗 友链',
+      { text: '项目', link: '/projects', activeMatch: '^/projects(?:/|$)' },
+      { text: 'GitHub', link: 'https://github.com/ikunycj/xiaoba.blog' },
+      {
+        text: '链接',
         items: [
           { text: 'GitHub', link: 'https://github.com/ikunycj' },
           { text: 'actionAgent 项目', link: 'https://github.com/ikunycj/actionAgent' },
         ]
       },
     ],
-    sidebar: generateSidebar([
+    sidebar: rewriteSidebarLinks(generateSidebar([
       {
         documentRootPath: '/docs/note/AI',
         scanStartPath: '/',
@@ -334,13 +419,11 @@ export default defineConfigWithTheme<ThemeConfig>({
         collapsed: true,
         sortMenusByFrontmatterOrder: true,
       },
-    ]),
-
-    socialLinks: [{ icon: 'github', link: 'https://github.com/ikunycj' }],
+    ])),
 
     footer: {
-      message: 'xiaoba blog',
-      copyright: 'Copyright © 2023-2026 xiaoba.my',
+      message: 'xiaoba.blog',
+      copyright: 'Copyright © 2023-2026 小八',
     },
 
     editLink: {

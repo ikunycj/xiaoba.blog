@@ -2,18 +2,18 @@
   <Transition name="fade">
     <button
       v-if="isVisible"
+      type="button"
       class="back-to-top"
       @click="scrollToTop"
       aria-label="返回顶部"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 19V5M5 12l7-7 7 7"/>
-      </svg>
+      <Icon icon="lucide:arrow-up" aria-hidden="true" />
     </button>
   </Transition>
 </template>
 
 <script setup lang="ts">
+import { Icon } from '@iconify/vue'
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const isVisible = ref(false)
@@ -43,29 +43,43 @@ onUnmounted(() => {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: var(--vp-c-brand-1);
-  color: white;
-  border: none;
-  cursor: pointer;
   display: flex;
+  width: 44px;
+  height: 44px;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
+  border: 1px solid var(--xb-blue, var(--vp-c-brand-1));
+  border-radius: 8px;
+  color: var(--xb-blue-deep, var(--vp-c-brand-1));
+  background: var(--xb-paper, var(--vp-c-bg));
+  box-shadow: 2px 2px 0 var(--xb-blue-soft, var(--vp-c-brand-soft));
+  cursor: pointer;
+  transition: color 180ms ease-out, background-color 180ms ease-out,
+    border-color 180ms ease-out, box-shadow 180ms ease-out, transform 180ms ease-out;
   z-index: 50;
 }
 
+.back-to-top :deep(svg) {
+  width: 18px;
+  height: 18px;
+}
+
 .back-to-top:hover {
-  background: var(--vp-c-brand-2);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  border-color: var(--xb-blue-deep, var(--vp-c-brand-2));
+  color: #ffffff;
+  background: var(--xb-blue, var(--vp-c-brand-1));
+  box-shadow: 3px 3px 0 var(--xb-blue-soft, var(--vp-c-brand-soft));
+  transform: translateY(-2px);
+}
+
+.back-to-top:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--xb-yellow, #f2c94c) 78%, transparent);
+  outline-offset: 3px;
 }
 
 .back-to-top:active {
-  transform: translateY(-2px);
+  box-shadow: none;
+  transform: translateY(0);
 }
 
 .fade-enter-active,
@@ -76,15 +90,21 @@ onUnmounted(() => {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
-  transform: scale(0.8);
+  transform: translateY(6px);
 }
 
 @media (max-width: 768px) {
   .back-to-top {
     bottom: 1.5rem;
     right: 1.5rem;
-    width: 44px;
-    height: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back-to-top,
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: none;
   }
 }
 </style>

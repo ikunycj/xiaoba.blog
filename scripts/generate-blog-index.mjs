@@ -2,7 +2,6 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync, wri
 import { basename, relative, resolve } from 'node:path'
 
 const BLOG_ROOT = '/blog/'
-const NOTE_ROOT = '/note/'
 const PAGE_SIZE = 6
 const REPO_ROOT = process.cwd()
 const DOCS_ROOT = resolve(REPO_ROOT, 'docs')
@@ -10,7 +9,6 @@ const OUTPUT_ROOT = resolve(DOCS_ROOT, 'blogs', 'public', 'blog-index')
 const ALL_LABEL = '\u5168\u90E8'
 const UNKNOWN_LABEL = '\u672A\u77E5\u65F6\u95F4'
 const BLOG_LABEL = '\u535A\u5BA2'
-const OTHER_LABEL = '\u5176\u4ED6'
 
 function normalizeFsPath(value) {
   return value.replace(/\\/g, '/')
@@ -44,10 +42,6 @@ function isArticlePage(url, root) {
     return false
   }
   return url !== `${root}index` && !url.endsWith('/index')
-}
-
-function isBlogPost(url) {
-  return isArticlePage(url, BLOG_ROOT) || isArticlePage(url, NOTE_ROOT)
 }
 
 function walkMarkdownFiles(dir, files = []) {
@@ -125,7 +119,7 @@ function resolveSection(url) {
   if (parts[0] === 'blog') {
     return BLOG_LABEL
   }
-  return parts[1] || OTHER_LABEL
+  return BLOG_LABEL
 }
 
 function resolveTitle(filePath, frontmatter) {
@@ -270,17 +264,18 @@ function parseFrontmatterBlock(block) {
 }
 
 function extractFrontmatter(source) {
-  const match = source.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?/u)
+  const normalizedSource = source.replace(/^\uFEFF/u, '')
+  const match = normalizedSource.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?/u)
   if (!match) {
     return {
       frontmatter: {},
-      content: source,
+      content: normalizedSource,
     }
   }
 
   return {
     frontmatter: parseFrontmatterBlock(match[1]),
-    content: source.slice(match[0].length),
+    content: normalizedSource.slice(match[0].length),
   }
 }
 
@@ -315,15 +310,15 @@ function buildBlogDirectory(posts) {
 }
 
 function buildPosts() {
-  const files = [
-    ...walkMarkdownFiles(resolve(DOCS_ROOT, 'note')),
-    ...walkMarkdownFiles(resolve(DOCS_ROOT, 'blogs')),
-  ].sort()
+  // The formal blog feed is intentionally separate from the learning-note tree.
+  // Keeping the scan rooted here prevents hundreds of note pages from leaking
+  // into the public blog archive while preserving their existing routes.
+  const files = walkMarkdownFiles(resolve(DOCS_ROOT, 'blogs', 'blog')).sort()
 
   return files
     .map((filePath) => {
       const url = toRoutePath(filePath)
-      if (!isBlogPost(url)) {
+      if (!isArticlePage(url, BLOG_ROOT)) {
         return null
       }
 

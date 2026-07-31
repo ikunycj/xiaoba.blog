@@ -33,9 +33,8 @@ onUnmounted(() => {
   top: 0;
   left: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--vp-c-brand-1), var(--vp-c-brand-2), var(--vp-c-brand-3));
+  background: var(--vp-c-brand-1);
   z-index: 100;
   transition: width 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 0 10px var(--vp-c-brand-1);
 }
 </style>

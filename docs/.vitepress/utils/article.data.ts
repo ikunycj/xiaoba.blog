@@ -6,9 +6,9 @@ declare const data: Post[];
 export { data };
 
 /**
- * 返回 src/Notes/ 目录下所有 md 文档信息
+ * 返回学习抽屉下所有 md 文档信息
  */
-export default createContentLoader("/Notes/**/*.md", {
+export default createContentLoader("/note/**/*.md", {
   transform(rawData): Post[] {
     return rawData
       .map(({ url, frontmatter }) => ({
@@ -16,7 +16,7 @@ export default createContentLoader("/Notes/**/*.md", {
         frontmatter,
         date: formatDate(frontmatter.updateTime),
       }))
-      .filter((post) => /.html/.test(post.url) && !post.frontmatter.hidden)
+      .filter((post) => !post.frontmatter.hidden && !post.url.endsWith('/note/'))
       .sort((a, b) => b.date.time - a.date.time);
   },
 });

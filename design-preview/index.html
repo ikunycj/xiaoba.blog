@@ -1,0 +1,1547 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
+    <title>小八博客 - 视觉设计稿</title>
+    <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+    <style>
+      :root {
+        --sky: #2eb7e5;
+        --sky-dark: #087ca7;
+        --sky-soft: #dff7ff;
+        --yellow: #ffe06a;
+        --pink: #ff91ab;
+        --mint: #84dfc1;
+        --ink: #17384a;
+        --muted: #4e6977;
+        --paper: #fffefa;
+        --page: #f5fcff;
+        --line: #17384a;
+        --white: #ffffff;
+        --shadow-blue: #087ca7;
+        --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+        --ease-soft: cubic-bezier(0.25, 1, 0.5, 1);
+        --max: 1180px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        overflow-x: hidden;
+        color: var(--ink);
+        background: var(--page);
+        font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        line-height: 1.65;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button,
+      input {
+        font: inherit;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .site-header {
+        position: sticky;
+        z-index: 20;
+        top: 0;
+        min-height: 68px;
+        border-bottom: 3px solid var(--line);
+        background: var(--paper);
+      }
+
+      .header-inner {
+        width: min(calc(100% - 40px), var(--max));
+        min-height: 68px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 28px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        flex: 0 0 auto;
+        gap: 10px;
+        font-family: "Yuanti SC", "STYuanti", "PingFang SC", sans-serif;
+        font-size: 20px;
+        font-weight: 800;
+        transition: transform 180ms var(--ease-out);
+      }
+
+      .brand:hover {
+        transform: translateY(-2px);
+      }
+
+      .brand-avatar {
+        width: 43px;
+        height: 43px;
+        overflow: hidden;
+        border: 2px solid var(--line);
+        border-radius: 50%;
+        background: var(--white);
+      }
+
+      .brand-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: stretch;
+        align-self: stretch;
+        gap: 4px;
+      }
+
+      .nav-link {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 14px;
+        font-size: 15px;
+        font-weight: 700;
+        transition: color 180ms ease-out, transform 180ms var(--ease-out);
+      }
+
+      .nav-link:hover {
+        color: var(--sky-dark);
+        transform: translateY(-2px);
+      }
+
+      .nav-link.active::after {
+        position: absolute;
+        right: 14px;
+        bottom: 8px;
+        left: 14px;
+        height: 5px;
+        border-radius: 99px;
+        background: var(--pink);
+        content: "";
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-left: auto;
+      }
+
+      .github-link {
+        display: inline-flex;
+        min-height: 42px;
+        align-items: center;
+        gap: 8px;
+        padding: 0 13px;
+        border: 2px solid var(--line);
+        border-radius: 10px;
+        color: var(--white);
+        background: var(--ink);
+        font-size: 14px;
+        font-weight: 850;
+        transition: transform 180ms var(--ease-out), background-color 180ms ease-out, box-shadow 180ms ease-out;
+      }
+
+      .github-link .iconify:first-child {
+        font-size: 18px;
+      }
+
+      .github-link .external-icon {
+        font-size: 14px;
+        transition: transform 180ms var(--ease-out);
+      }
+
+      .github-link:hover {
+        background: var(--sky-dark);
+        box-shadow: 4px 4px 0 var(--pink);
+        transform: translate(-2px, -2px);
+      }
+
+      .github-link:hover .external-icon {
+        transform: translate(2px, -2px);
+      }
+
+      .github-link:active {
+        box-shadow: 2px 2px 0 var(--pink);
+        transform: translate(0, 0) scale(0.97);
+      }
+
+      .icon-button {
+        display: inline-grid;
+        width: 42px;
+        height: 42px;
+        padding: 0;
+        place-items: center;
+        border: 2px solid var(--line);
+        border-radius: 50%;
+        color: var(--ink);
+        background: var(--white);
+        cursor: pointer;
+      }
+
+      .icon-button:hover {
+        background: var(--yellow);
+      }
+
+      .icon-button {
+        transition: transform 180ms var(--ease-out), background-color 180ms ease-out;
+      }
+
+      .icon-button:hover {
+        transform: translateY(-2px) rotate(-3deg);
+      }
+
+      .icon-button:active {
+        transform: translateY(0) scale(0.94);
+      }
+
+      .hero {
+        position: relative;
+        min-height: calc(100svh - 68px);
+        max-height: 860px;
+        overflow: hidden;
+        border-bottom: 3px solid var(--line);
+        background: var(--sky);
+      }
+
+      .hero::after {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 12px;
+        background: var(--pink);
+        content: "";
+      }
+
+      .hero-inner {
+        position: relative;
+        z-index: 2;
+        width: min(calc(100% - 40px), var(--max));
+        min-height: calc(100svh - 68px);
+        max-height: 860px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+      }
+
+      .sky-scene {
+        position: absolute;
+        z-index: 0;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      .sky-cloud,
+      .sky-spark {
+        position: absolute;
+        display: grid;
+        place-items: center;
+        color: var(--white);
+        pointer-events: none;
+      }
+
+      .sky-cloud {
+        font-size: 68px;
+        opacity: 0.56;
+        animation: cloudDrift 16s var(--ease-soft) infinite alternate;
+      }
+
+      .sky-cloud-one {
+        top: 3%;
+        left: 42%;
+      }
+
+      .sky-cloud-two {
+        top: 33%;
+        right: 41%;
+        font-size: 42px;
+        opacity: 0.38;
+        animation-delay: -7s;
+        animation-duration: 19s;
+      }
+
+      .sky-spark {
+        color: var(--yellow);
+        font-size: 26px;
+        animation: sparklePulse 2.8s ease-in-out infinite;
+      }
+
+      .sky-spark-one {
+        top: 18%;
+        right: 48%;
+      }
+
+      .sky-spark-two {
+        right: 7%;
+        bottom: 31%;
+        font-size: 20px;
+        animation-delay: -1.3s;
+      }
+
+      .hero-art {
+        position: absolute;
+        z-index: -1;
+        right: -7%;
+        bottom: -17%;
+        width: min(760px, 66vw);
+        aspect-ratio: 1;
+        overflow: hidden;
+        border-radius: 50%;
+        background: var(--paper);
+        transform: rotate(4deg);
+        animation: heroArtFloat 8s ease-in-out infinite alternate;
+        will-change: transform;
+      }
+
+      .hero-art::before,
+      .hero-art::after {
+        position: absolute;
+        z-index: 2;
+        width: 34px;
+        height: 34px;
+        border: 3px solid var(--line);
+        border-radius: 50%;
+        background: var(--yellow);
+        content: "";
+        animation: accentPulse 3.4s ease-in-out infinite;
+      }
+
+      .hero-art::before {
+        top: 12%;
+        left: 8%;
+      }
+
+      .hero-art::after {
+        right: 8%;
+        bottom: 14%;
+        background: var(--pink);
+        animation-delay: -1.7s;
+      }
+
+      .hero-art img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        animation: imageBreath 9s ease-in-out infinite alternate;
+        will-change: transform;
+      }
+
+      .hero-copy {
+        width: min(560px, 49vw);
+        padding: 70px 0 104px;
+        color: var(--white);
+        animation: heroCopySettle 620ms var(--ease-out) backwards;
+      }
+
+      .hero-copy > * {
+        animation: heroElementSettle 560ms var(--ease-out) backwards;
+      }
+
+      .hero-copy > :nth-child(1) {
+        animation-delay: 80ms;
+      }
+
+      .hero-copy > :nth-child(2) {
+        animation-delay: 150ms;
+      }
+
+      .hero-copy > :nth-child(3) {
+        animation-delay: 220ms;
+      }
+
+      .hero-copy > :nth-child(4) {
+        animation-delay: 290ms;
+      }
+
+      .hero-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0 0 18px;
+        padding: 8px 12px;
+        border: 2px solid var(--line);
+        border-radius: 8px;
+        color: var(--ink);
+        background: var(--yellow);
+        box-shadow: 4px 4px 0 var(--pink);
+        font-size: 14px;
+        font-weight: 800;
+        transition: transform 180ms var(--ease-out), box-shadow 180ms ease-out;
+      }
+
+      .hero-kicker:hover {
+        box-shadow: 6px 6px 0 var(--pink);
+        transform: translate(-2px, -2px) rotate(-1deg);
+      }
+
+      .hero h1 {
+        max-width: 8ch;
+        margin: 0;
+        font-family: "Yuanti SC", "STYuanti", "PingFang SC", sans-serif;
+        font-size: min(8vw, 94px);
+        font-weight: 900;
+        line-height: 0.98;
+        letter-spacing: 0;
+        text-wrap: balance;
+      }
+
+      .hero h1 span {
+        position: relative;
+        display: inline-block;
+        color: var(--yellow);
+      }
+
+      .hero h1 span::after {
+        position: absolute;
+        right: -22px;
+        bottom: 10px;
+        width: 15px;
+        height: 15px;
+        border: 2px solid var(--line);
+        border-radius: 50%;
+        background: var(--pink);
+        content: "";
+        animation: accentPulse 2.4s ease-in-out infinite;
+      }
+
+      .hero-lede {
+        max-width: 29rem;
+        margin: 24px 0 0;
+        font-size: 18px;
+        font-weight: 650;
+        line-height: 1.8;
+        text-wrap: pretty;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 30px;
+      }
+
+      .hero-source {
+        display: inline-flex;
+        min-height: 44px;
+        align-items: center;
+        gap: 7px;
+        margin-top: 15px;
+        color: var(--white);
+        font-size: 14px;
+        font-weight: 850;
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 4px;
+        transition: color 160ms ease-out, transform 160ms var(--ease-out);
+      }
+
+      .hero-source:hover {
+        color: var(--yellow);
+        transform: translateX(4px);
+      }
+
+      .button {
+        display: inline-flex;
+        min-height: 48px;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        padding: 0 18px;
+        border: 2px solid var(--line);
+        border-radius: 10px;
+        font-weight: 800;
+        transition: transform 160ms ease-out, box-shadow 160ms ease-out;
+      }
+
+      .button:hover {
+        transform: translate(-2px, -2px);
+      }
+
+      .button-primary {
+        color: var(--ink);
+        background: var(--yellow);
+        box-shadow: 5px 5px 0 var(--ink);
+      }
+
+      .button-primary:hover {
+        box-shadow: 7px 7px 0 var(--ink);
+      }
+
+      .button:active {
+        box-shadow: 2px 2px 0 var(--ink);
+        transform: translate(1px, 1px) scale(0.98);
+      }
+
+      .button-secondary {
+        color: var(--ink);
+        background: var(--white);
+        box-shadow: 5px 5px 0 var(--pink);
+      }
+
+      .hero-note {
+        position: absolute;
+        right: 2.5%;
+        bottom: 54px;
+        display: flex;
+        width: 260px;
+        min-height: 74px;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 15px;
+        border: 2px solid var(--line);
+        border-radius: 10px;
+        background: var(--mint);
+        box-shadow: 6px 6px 0 var(--ink);
+        font-size: 14px;
+        font-weight: 800;
+        transform: rotate(-2deg);
+        animation: noteFloat 4.8s ease-in-out infinite alternate;
+        will-change: transform;
+      }
+
+      .hero-note img {
+        width: 48px;
+        height: 48px;
+        flex: 0 0 auto;
+        border: 2px solid var(--line);
+        border-radius: 50%;
+        object-fit: cover;
+        background: var(--white);
+      }
+
+      .hero-note small {
+        display: block;
+        color: #245165;
+        font-weight: 700;
+      }
+
+      .status-dot {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        margin-right: 5px;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        background: #39c98f;
+        vertical-align: 1px;
+        animation: statusPulse 2s ease-in-out infinite;
+      }
+
+      main {
+        overflow: hidden;
+      }
+
+      .latest {
+        background: var(--paper);
+      }
+
+      .section-inner {
+        width: min(calc(100% - 40px), var(--max));
+        margin: 0 auto;
+        padding: 92px 0;
+      }
+
+      .section-heading {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 24px;
+        margin-bottom: 38px;
+      }
+
+      .section-heading h2 {
+        max-width: 14ch;
+        margin: 0;
+        font-family: "Yuanti SC", "STYuanti", "PingFang SC", sans-serif;
+        font-size: 44px;
+        line-height: 1.12;
+        letter-spacing: 0;
+        text-wrap: balance;
+      }
+
+      .section-heading p {
+        max-width: 30rem;
+        margin: 0;
+        color: var(--muted);
+        text-align: right;
+        font-weight: 650;
+      }
+
+      .post-list {
+        border-top: 3px solid var(--line);
+      }
+
+      .post-row {
+        display: grid;
+        min-height: 158px;
+        grid-template-columns: 150px minmax(0, 1fr) 190px;
+        align-items: center;
+        gap: 30px;
+        border-bottom: 3px solid var(--line);
+        transition: background-color 180ms ease-out, transform 180ms var(--ease-out);
+      }
+
+      .post-row:hover {
+        background: var(--sky-soft);
+        transform: translateX(5px);
+      }
+
+      .post-row:focus-visible {
+        position: relative;
+        z-index: 1;
+        background: var(--sky-soft);
+        transform: translateX(5px);
+      }
+
+      .post-date {
+        font-size: 14px;
+        font-weight: 800;
+      }
+
+      .post-date span {
+        display: block;
+        margin-top: 5px;
+        color: var(--muted);
+        font-weight: 650;
+      }
+
+      .post-title {
+        min-width: 0;
+      }
+
+      .post-title h3 {
+        margin: 0;
+        font-size: 25px;
+        line-height: 1.35;
+        letter-spacing: 0;
+        text-wrap: balance;
+      }
+
+      .post-title p {
+        max-width: 58ch;
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-size: 15px;
+      }
+
+      .post-tag {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 10px;
+        font-size: 14px;
+        font-weight: 800;
+      }
+
+      .tag-dot {
+        width: 12px;
+        height: 12px;
+        border: 2px solid var(--line);
+        border-radius: 50%;
+        background: var(--pink);
+        transition: transform 180ms var(--ease-out), background-color 180ms ease-out;
+      }
+
+      .post-row:hover .tag-dot,
+      .post-row:focus-visible .tag-dot {
+        transform: scale(1.25) rotate(18deg);
+        background: var(--sky-dark);
+      }
+
+      .post-row:nth-child(2) .tag-dot {
+        background: var(--yellow);
+      }
+
+      .post-row:nth-child(3) .tag-dot {
+        background: var(--mint);
+      }
+
+      .desk {
+        border-top: 3px solid var(--line);
+        border-bottom: 3px solid var(--line);
+        background: var(--sky);
+      }
+
+      .desk .section-inner {
+        padding-bottom: 104px;
+      }
+
+      .desk .section-heading h2,
+      .desk .section-heading p {
+        color: var(--ink);
+      }
+
+      .shelf-layout {
+        display: grid;
+        grid-template-columns: 1.35fr 0.65fr;
+        gap: 22px;
+      }
+
+      .big-drawer,
+      .small-drawer {
+        position: relative;
+        overflow: hidden;
+        border: 3px solid var(--line);
+        border-radius: 14px;
+        background: var(--paper);
+        box-shadow: 8px 8px 0 var(--ink);
+        transition: transform 220ms var(--ease-out), box-shadow 220ms ease-out;
+      }
+
+      .big-drawer:hover,
+      .big-drawer:focus-within,
+      .small-drawer:hover,
+      .small-drawer:focus-within {
+        box-shadow: 10px 10px 0 var(--ink);
+        transform: translate(-3px, -3px);
+      }
+
+      .big-drawer {
+        min-height: 420px;
+        padding: 44px;
+      }
+
+      .drawer-label {
+        display: inline-flex;
+        min-height: 38px;
+        align-items: center;
+        gap: 8px;
+        padding: 0 12px;
+        border: 2px solid var(--line);
+        border-radius: 8px;
+        background: var(--yellow);
+        font-size: 14px;
+        font-weight: 800;
+      }
+
+      .big-drawer h3 {
+        max-width: 10ch;
+        margin: 28px 0 14px;
+        font-family: "Yuanti SC", "STYuanti", "PingFang SC", sans-serif;
+        font-size: 48px;
+        line-height: 1.08;
+        letter-spacing: 0;
+      }
+
+      .big-drawer p {
+        max-width: 34ch;
+        margin: 0;
+        color: var(--muted);
+        font-weight: 650;
+      }
+
+      .big-drawer img {
+        position: absolute;
+        right: -34px;
+        bottom: -24px;
+        width: 50%;
+        max-width: 360px;
+        transform: rotate(4deg);
+        transition: transform 260ms var(--ease-out);
+      }
+
+      .big-drawer:hover img,
+      .big-drawer:focus-within img {
+        transform: rotate(1deg) translateY(-7px);
+      }
+
+      .drawer-link {
+        position: absolute;
+        bottom: 42px;
+        left: 44px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border-bottom: 3px solid var(--pink);
+        font-weight: 850;
+        transition: color 180ms ease-out, border-color 180ms ease-out, transform 180ms var(--ease-out);
+      }
+
+      .drawer-link:hover {
+        color: var(--sky-dark);
+        border-color: var(--sky-dark);
+        transform: translateX(3px);
+      }
+
+      .small-stack {
+        display: grid;
+        gap: 22px;
+      }
+
+      .small-drawer {
+        min-height: 199px;
+        padding: 28px;
+      }
+
+      .project-drawer {
+        min-height: 220px;
+      }
+
+      .small-drawer:nth-child(1) {
+        background: var(--yellow);
+      }
+
+      .small-drawer:nth-child(2) {
+        background: var(--mint);
+      }
+
+      .small-drawer h3 {
+        margin: 12px 0 8px;
+        font-size: 27px;
+        letter-spacing: 0;
+      }
+
+      .small-drawer p {
+        margin: 0;
+        color: #264f62;
+        font-size: 14px;
+        font-weight: 650;
+      }
+
+      .project-drawer h3,
+      .project-drawer p {
+        max-width: calc(100% - 62px);
+      }
+
+      .small-drawer > .iconify {
+        position: absolute;
+        right: 24px;
+        bottom: 22px;
+        font-size: 40px;
+        transition: transform 220ms var(--ease-out);
+      }
+
+      .small-drawer:hover > .iconify,
+      .small-drawer:focus-within > .iconify {
+        transform: rotate(-8deg) translateY(-3px);
+      }
+
+      .drawer-source {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 14px;
+        color: var(--sky-dark);
+        font-size: 13px;
+        font-weight: 850;
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 3px;
+        transition: color 160ms ease-out, transform 160ms var(--ease-out);
+      }
+
+      .drawer-source .iconify {
+        position: static;
+        font-size: 14px;
+      }
+
+      .project-drawer .drawer-source {
+        position: absolute;
+        bottom: 22px;
+        left: 28px;
+        margin-top: 0;
+      }
+
+      .drawer-source:hover {
+        color: var(--ink);
+        transform: translateX(3px);
+      }
+
+      .companion {
+        background: var(--pink);
+      }
+
+      .companion-inner {
+        position: relative;
+        min-height: 470px;
+        display: grid;
+        grid-template-columns: 0.72fr 1.28fr;
+        align-items: center;
+        gap: 70px;
+      }
+
+      .companion-image {
+        position: relative;
+        align-self: end;
+      }
+
+      .companion-image img {
+        width: min(370px, 100%);
+        margin: 0 auto;
+        border: 3px solid var(--line);
+        border-bottom: 0;
+        border-radius: 50% 50% 0 0;
+        background: var(--white);
+        animation: companionBreathe 5.5s ease-in-out infinite alternate;
+        transform-origin: bottom center;
+      }
+
+      .companion-copy {
+        padding: 82px 0;
+      }
+
+      .companion-copy p {
+        margin: 0 0 16px;
+        font-size: 15px;
+        font-weight: 850;
+      }
+
+      .companion-copy h2 {
+        max-width: 15ch;
+        margin: 0;
+        font-family: "Yuanti SC", "STYuanti", "PingFang SC", sans-serif;
+        font-size: 48px;
+        line-height: 1.18;
+        letter-spacing: 0;
+        text-wrap: balance;
+      }
+
+      .companion-copy .button {
+        margin-top: 28px;
+        background: var(--white);
+        box-shadow: 5px 5px 0 var(--yellow);
+      }
+
+      .companion-copy .button:hover {
+        box-shadow: 7px 7px 0 var(--yellow);
+      }
+
+      footer {
+        border-top: 3px solid var(--line);
+        background: var(--ink);
+        color: var(--white);
+      }
+
+      .footer-inner {
+        width: min(calc(100% - 40px), var(--max));
+        min-height: 120px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .footer-inner p {
+        margin: 0;
+      }
+
+      .footer-wordmark {
+        font-family: "Yuanti SC", "STYuanti", "PingFang SC", sans-serif;
+        font-size: 24px;
+        font-weight: 850;
+      }
+
+      :focus-visible {
+        outline: 4px solid var(--white);
+        outline-offset: 4px;
+        box-shadow: 0 0 0 7px var(--sky-dark);
+      }
+
+      @keyframes heroCopySettle {
+        from {
+          transform: translate3d(-16px, 0, 0);
+        }
+        to {
+          transform: translate3d(0, 0, 0);
+        }
+      }
+
+      @keyframes heroElementSettle {
+        from {
+          transform: translate3d(0, 14px, 0);
+        }
+        to {
+          transform: translate3d(0, 0, 0);
+        }
+      }
+
+      @keyframes heroArtFloat {
+        from {
+          transform: rotate(4deg) translate3d(0, 0, 0);
+        }
+        to {
+          transform: rotate(2.5deg) translate3d(-10px, -8px, 0);
+        }
+      }
+
+      @keyframes imageBreath {
+        from {
+          transform: scale(1);
+        }
+        to {
+          transform: scale(1.025);
+        }
+      }
+
+      @keyframes noteFloat {
+        from {
+          transform: rotate(-2deg) translate3d(0, 0, 0);
+        }
+        to {
+          transform: rotate(-1deg) translate3d(0, -6px, 0);
+        }
+      }
+
+      @keyframes cloudDrift {
+        from {
+          transform: translate3d(-10px, 3px, 0);
+        }
+        to {
+          transform: translate3d(22px, -7px, 0);
+        }
+      }
+
+      @keyframes sparklePulse {
+        0%,
+        100% {
+          opacity: 0.58;
+          transform: scale(0.86) rotate(0deg);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.12) rotate(12deg);
+        }
+      }
+
+      @keyframes accentPulse {
+        0%,
+        100% {
+          transform: scale(0.92);
+        }
+        50% {
+          transform: scale(1.08);
+        }
+      }
+
+      @keyframes statusPulse {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(57, 201, 143, 0.35);
+        }
+        50% {
+          box-shadow: 0 0 0 5px rgba(57, 201, 143, 0);
+        }
+      }
+
+      @keyframes companionBreathe {
+        from {
+          transform: translateY(0) rotate(-1deg);
+        }
+        to {
+          transform: translateY(-7px) rotate(1deg);
+        }
+      }
+
+      @media (max-width: 980px) {
+        .nav-links {
+          display: none;
+        }
+
+        .hero {
+          min-height: 760px;
+          max-height: none;
+        }
+
+        .hero-inner {
+          min-height: 760px;
+          max-height: none;
+          align-items: flex-start;
+        }
+
+        .hero-copy {
+          width: 72%;
+          padding-top: 70px;
+        }
+
+        .hero-art {
+          right: -20%;
+          bottom: -14%;
+          width: min(670px, 78vw);
+        }
+
+        .hero h1 {
+          font-size: 72px;
+        }
+
+        .hero-note {
+          right: 28px;
+          bottom: 34px;
+        }
+
+        .post-row {
+          grid-template-columns: 110px minmax(0, 1fr);
+          gap: 24px;
+          padding: 24px 0;
+        }
+
+        .post-tag {
+          display: none;
+        }
+
+        .shelf-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .small-stack {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .header-inner,
+        .hero-inner,
+        .section-inner,
+        .footer-inner {
+          width: min(calc(100% - 28px), var(--max));
+        }
+
+        .site-header,
+        .header-inner {
+          min-height: 60px;
+        }
+
+        .brand-avatar {
+          width: 38px;
+          height: 38px;
+        }
+
+        .header-actions .icon-button:first-child {
+          display: none;
+        }
+
+        .github-link {
+          width: 42px;
+          justify-content: center;
+          padding: 0;
+          border-radius: 50%;
+        }
+
+        .github-link .github-label,
+        .github-link .external-icon {
+          display: none;
+        }
+
+        .hero {
+          min-height: 740px;
+        }
+
+        .hero-inner {
+          min-height: 740px;
+        }
+
+        .hero-copy {
+          width: 100%;
+          padding-top: 52px;
+        }
+
+        .sky-cloud-two,
+        .sky-spark-two {
+          display: none;
+        }
+
+        .hero-art {
+          right: -26%;
+          bottom: -9%;
+          width: 92vw;
+        }
+
+        .hero-kicker {
+          margin-bottom: 14px;
+        }
+
+        .hero h1 {
+          max-width: 7ch;
+          font-size: 54px;
+          line-height: 1.02;
+        }
+
+        .hero-lede {
+          max-width: 19rem;
+          margin-top: 18px;
+          font-size: 16px;
+          line-height: 1.7;
+        }
+
+        .hero-actions {
+          margin-top: 22px;
+        }
+
+        .button {
+          min-height: 46px;
+          padding: 0 15px;
+        }
+
+        .hero-note {
+          right: 16px;
+          bottom: 28px;
+          width: 212px;
+          min-height: 64px;
+          padding: 9px 11px;
+          font-size: 12px;
+        }
+
+        .hero-note img {
+          width: 42px;
+          height: 42px;
+        }
+
+        .hero-note {
+          animation-duration: 5.8s;
+        }
+
+        .section-inner {
+          padding: 64px 0;
+        }
+
+        .section-heading {
+          display: block;
+          margin-bottom: 28px;
+        }
+
+        .section-heading h2 {
+          font-size: 34px;
+        }
+
+        .section-heading p {
+          margin-top: 12px;
+          text-align: left;
+        }
+
+        .post-row {
+          display: block;
+          min-height: 0;
+          padding: 24px 0 27px;
+        }
+
+        .post-date {
+          margin-bottom: 10px;
+        }
+
+        .post-date span {
+          display: inline;
+          margin-left: 6px;
+        }
+
+        .post-title h3 {
+          font-size: 21px;
+        }
+
+        .big-drawer {
+          min-height: 430px;
+          padding: 26px;
+        }
+
+        .big-drawer h3 {
+          font-size: 37px;
+        }
+
+        .big-drawer img {
+          right: -32px;
+          width: 68%;
+        }
+
+        .drawer-link {
+          bottom: 28px;
+          left: 26px;
+        }
+
+        .small-stack {
+          grid-template-columns: 1fr;
+        }
+
+        .companion-inner {
+          min-height: 0;
+          grid-template-columns: 1fr;
+          gap: 0;
+        }
+
+        .companion-copy {
+          order: -1;
+          padding: 62px 0 28px;
+        }
+
+        .companion-copy h2 {
+          font-size: 37px;
+        }
+
+        .companion-image img {
+          width: 72%;
+        }
+
+        .footer-inner {
+          min-height: 140px;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: center;
+          gap: 6px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+
+        .hero-copy,
+        .hero-copy > *,
+        .hero-art,
+        .hero-art img,
+        .hero-note,
+        .companion-image img {
+          transform: none !important;
+          opacity: 1 !important;
+        }
+
+        .button,
+        .post-row,
+        .big-drawer,
+        .small-drawer {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+        <div class="header-inner">
+        <a class="brand" href="#top" aria-label="小八博客首页">
+          <span class="brand-avatar">
+            <img src="../docs/blogs/public/xiaoba/xiaoba-face.jpg" alt="小八头像" />
+          </span>
+          <span>小八博客</span>
+        </a>
+
+        <nav class="nav-links" aria-label="主要导航">
+          <a class="nav-link active" href="#top">首页</a>
+          <a class="nav-link" href="#latest">博客</a>
+          <a class="nav-link" href="#desk">笔记</a>
+          <a class="nav-link" href="#desk">项目</a>
+          <a class="nav-link" href="#desk">工具箱</a>
+        </nav>
+
+        <a
+          class="github-link"
+          href="https://github.com/ikunycj/xiaoba.blog"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="在新窗口打开小八博客 GitHub 仓库"
+          title="在 GitHub 查看小八博客源码"
+        >
+          <span class="iconify" data-icon="simple-icons:github" aria-hidden="true"></span>
+          <span class="github-label">GitHub</span>
+          <span class="iconify external-icon" data-icon="lucide:arrow-up-right" aria-hidden="true"></span>
+        </a>
+
+        <div class="header-actions">
+          <button class="icon-button" type="button" aria-label="搜索">
+            <span class="iconify" data-icon="lucide:search" aria-hidden="true"></span>
+          </button>
+          <button class="icon-button" type="button" aria-label="打开菜单">
+            <span class="iconify" data-icon="lucide:menu" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="top" class="hero" aria-labelledby="hero-title">
+        <div class="hero-inner">
+          <div class="sky-scene" aria-hidden="true">
+            <span class="sky-cloud sky-cloud-one">
+              <span class="iconify" data-icon="lucide:cloud"></span>
+            </span>
+            <span class="sky-cloud sky-cloud-two">
+              <span class="iconify" data-icon="lucide:cloud"></span>
+            </span>
+            <span class="sky-spark sky-spark-one">
+              <span class="iconify" data-icon="lucide:sparkle"></span>
+            </span>
+            <span class="sky-spark sky-spark-two">
+              <span class="iconify" data-icon="lucide:sparkles"></span>
+            </span>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <img src="../docs/blogs/public/xiaoba/xiaoba-coding.jpg" alt="" />
+          </div>
+          <div class="hero-copy">
+            <p class="hero-kicker">
+              <span class="iconify" data-icon="lucide:sparkles" aria-hidden="true"></span>
+              今天也一起弄明白
+            </p>
+            <h1 id="hero-title"><span>小八</span><br />博客</h1>
+            <p class="hero-lede">
+              写代码、记笔记，也认真收藏一路上遇到的好东西。这里是我和小八一起慢慢变厉害的地方。
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#latest">
+                <span class="iconify" data-icon="lucide:book-open" aria-hidden="true"></span>
+                看最近写下
+              </a>
+              <a class="button button-secondary" href="#desk">
+                <span class="iconify" data-icon="lucide:search" aria-hidden="true"></span>
+                翻翻我的脑袋
+              </a>
+            </div>
+            <a
+              class="hero-source"
+              href="https://github.com/ikunycj/xiaoba.blog"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="在新窗口打开小八博客 GitHub 仓库"
+            >
+              <span class="iconify" data-icon="simple-icons:github" aria-hidden="true"></span>
+              在 GitHub 查看源码
+              <span class="iconify" data-icon="lucide:arrow-up-right" aria-hidden="true"></span>
+            </a>
+          </div>
+
+          <aside class="hero-note" aria-label="小八当前状态">
+            <img src="../docs/blogs/public/xiaoba/xiaoba-face.jpg" alt="小八微笑" />
+            <span><span class="status-dot" aria-hidden="true"></span>小八在线陪写<small>今天正在整理 AI Agent</small></span>
+          </aside>
+        </div>
+      </section>
+
+      <section id="latest" class="latest" aria-labelledby="latest-title">
+        <div class="section-inner">
+          <header class="section-heading">
+            <h2 id="latest-title">最近写下的三件事</h2>
+            <p>不按热度，只把刚整理完、现在最想回看的内容放在这里。</p>
+          </header>
+
+          <div class="post-list">
+            <a class="post-row" href="#">
+              <div class="post-date">05 · 02<span>2026</span></div>
+              <div class="post-title">
+                <h3>文档驱动开发：把项目从想法推到落地</h3>
+                <p>从需求文档、OpenSpec 到 Codex，记录一套更顺手的 AI 项目启动方式。</p>
+              </div>
+              <div class="post-tag"><span class="tag-dot"></span>方法与实践</div>
+            </a>
+
+            <a class="post-row" href="#">
+              <div class="post-date">03 · 08<span>2026</span></div>
+              <div class="post-title">
+                <h3>评论功能上线，也给旧文章留一扇门</h3>
+                <p>把 Giscus 接进博客，顺手记录评论数据的托管方式和站点更新过程。</p>
+              </div>
+              <div class="post-tag"><span class="tag-dot"></span>站点更新</div>
+            </a>
+
+            <a class="post-row" href="#">
+              <div class="post-date">02 · 21<span>2026</span></div>
+              <div class="post-title">
+                <h3>做一次真正可复用的知识库迁移</h3>
+                <p>页面、图片、权限和检索效果，一个都不能只停在“看起来搬完了”。</p>
+              </div>
+              <div class="post-tag"><span class="tag-dot"></span>知识工程</div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="desk" class="desk" aria-labelledby="desk-title">
+        <div class="section-inner">
+          <header class="section-heading">
+            <h2 id="desk-title">我的桌面抽屉</h2>
+            <p>不是分类目录，是我平时最常打开的三个入口。</p>
+          </header>
+
+          <div class="shelf-layout">
+            <a class="big-drawer" href="#">
+              <span class="drawer-label">
+                <span class="iconify" data-icon="lucide:notebook-tabs" aria-hidden="true"></span>
+                600+ 篇
+              </span>
+              <h3>学习笔记</h3>
+              <p>AI、编程语言、软件工程和数据库，按我自己的理解重新整理。</p>
+              <span class="drawer-link">打开抽屉 <span class="iconify" data-icon="lucide:arrow-up-right"></span></span>
+              <img src="../docs/blogs/public/xiaoba/xiaoba-sparkle.jpg" alt="闪闪发光的小八" />
+            </a>
+
+            <div class="small-stack">
+              <article class="small-drawer project-drawer">
+                <span>做过的东西</span>
+                <h3>项目记录</h3>
+                <p>从想法、踩坑到最后跑起来。</p>
+                <a
+                  class="drawer-source"
+                  href="https://github.com/ikunycj/xiaoba.blog"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="在新窗口打开小八博客 GitHub 仓库"
+                >
+                  <span class="iconify" data-icon="simple-icons:github" aria-hidden="true"></span>
+                  在 GitHub 查看源码
+                  <span class="iconify" data-icon="lucide:arrow-up-right" aria-hidden="true"></span>
+                </a>
+                <span class="iconify" data-icon="lucide:folder-code" aria-hidden="true"></span>
+              </article>
+
+              <a class="small-drawer" href="#">
+                <span>值得留下</span>
+                <h3>小八工具箱</h3>
+                <p>工具、资源，以及我真实用过后的判断。</p>
+                <span class="iconify" data-icon="lucide:wrench" aria-hidden="true"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="companion" aria-labelledby="companion-title">
+        <div class="section-inner companion-inner">
+          <div class="companion-image">
+            <img src="../docs/blogs/public/xiaoba/xiaoba-sparkle.jpg" alt="开心的小八" />
+          </div>
+          <div class="companion-copy">
+            <p>小八说</p>
+            <h2 id="companion-title">今天弄明白一点点，也已经很不错了。</h2>
+            <a class="button" href="#latest">
+              随便翻一篇
+              <span class="iconify" data-icon="lucide:shuffle" aria-hidden="true"></span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <p class="footer-wordmark">小八博客</p>
+        <p>写给未来的自己，也写给今天还在继续的我。</p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -6,12 +6,14 @@ import Mycomponent from './components/Mycomponent.vue'
 import GiscusComments from './components/GiscusComments.vue'
 import ReadingProgress from './components/ReadingProgress.vue'
 import BackToTop from './components/BackToTop.vue'
+import NotFound from './components/NotFound.vue'
 
 export default {
   extends: DefaultTheme,
   Layout: () =>
     h(DefaultTheme.Layout, null, {
       'layout-top': () => h(ReadingProgress),
+      'not-found': () => h(NotFound),
       'doc-after': () => h(GiscusComments),
       'layout-bottom': () => h(BackToTop),
     }),
