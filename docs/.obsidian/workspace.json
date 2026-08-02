@@ -4,22 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "09ee27b2c2e32377",
+        "id": "2e2a1611287edf56",
         "type": "tabs",
         "children": [
           {
-            "id": "d0471ce21448b527",
+            "id": "1cb061281e5cfc33",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "local/账号密码.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "账号密码"
+              "title": "新标签页"
             }
           }
         ]
@@ -54,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "tag:#spec范式",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -79,7 +74,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 357.5
+    "width": 300
   },
   "right": {
     "id": "414ae52dfc0c6d34",
@@ -95,13 +90,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "local/账号密码.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "账号密码 的大纲"
+              "title": "大纲"
             }
           },
           {
@@ -204,56 +198,57 @@
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
-      "obsidian-excalidraw-plugin:New drawing": false,
+      "obsidian-excalidraw-plugin:新建绘图文件": false,
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "d0471ce21448b527",
+  "active": "dd32e8621a780f9c",
   "lastOpenFiles": [
-    "local/工作/TODO.md",
-    "local/工作/5月.md",
-    "Pasted image 20260605113323.png",
-    "未命名.md",
-    "local/账号密码.md",
-    "Pasted image 20260519110427.png",
-    "Pasted image 20260515112651.png",
-    "Pasted image 20260515105410.png",
-    "Pasted image 20260513153636.png",
-    "Pasted image 20260513142743.png",
-    "Pasted image 20260512200025.png",
-    "Pasted image 20260512190752.png",
-    "self/中转/GPT防止封号注意技巧.md",
-    "GPT防止封号注意技巧.pdf",
-    "self/中转/Pasted image 20260530131251.png",
-    "self/中转/Pasted image 20260530131139.png",
-    "note/计算机知识/数据结构与算法/算法/1.搜索/1.二分查找.md",
-    "note/计算机知识/数据结构与算法/算法/7.数学运算/1.位运算.md",
-    "note/计算机知识/数据结构与算法/相关资料.md",
-    "self/中转/ChatGPT官方额度.md",
-    "self/中转/Codex手机端使用第三方API.md",
-    "self/中转/总体方案.md",
-    "self/其他/MNIST情况.md",
-    "self/未命名",
+    "note/软件工程/代理/Nginx教程/nginx常见操作.md",
+    "note/软件工程/代理/Nginx教程/4.Nginx问题.md",
+    "note/软件工程/代理/Nginx教程/3.Ngixn配置.md",
+    "note/软件工程/代理/Nginx教程/2.Nginx 运维.md",
+    "note/软件工程/代理/Nginx教程/1.Nginx入门.md",
+    "note/软件工程/代理/Nginx教程",
+    "blogs/public/xiaoba/xiaoba-sparkle.jpg",
+    "blogs/public/xiaoba/xiaoba-face.jpg",
+    "blogs/public/xiaoba/xiaoba-coding.jpg",
+    "blogs/public/xiaoba",
     "self/评估.md",
-    "self/埋点.md",
-    "self/中转/开源项目.md",
-    "self/中转/代理.md",
+    "self/其他/exercise.md",
+    "self/其他",
     "self/中转/账号问题.md",
     "self/中转/服务器问题.md",
+    "self/中转/GPT防止封号注意技巧.md",
+    "self/中转/总体方案.md",
+    "self/中转/开源项目.md",
+    "self/中转/代理.md",
+    "self/中转/Codex手机端使用第三方API.md",
+    "self/中转/ChatGPT官方额度.md",
     "self/中转",
-    "note/软件工程/运维/Linux/Vim.md",
-    "note/软件工程/运维/Linux/Linux课程笔记.pdf",
-    "note/软件工程/运维/Linux/Linux系统.md",
-    "note/软件工程/运维/Linux/Shell笔记.md",
-    "note/软件工程/运维/Linux/Linux命令.md",
-    "self/其他/exercise.md",
-    "self/其他/exercise.md.md",
-    "self/其他",
-    "local/工作/QUESTION.md",
-    "blogs/public/robots.txt",
-    "blogs/public/blog-index/archive/2026-04/page-99.json",
-    "blogs/public/blog-index/archive/2026-04/page-98.json",
-    "blogs/public/blog-index/archive/2026-04/page-97.json",
-    "blogs/public/blog-index/archive/2026-04/page-96.json"
+    "note/AI/端侧模型/模型量化.md",
+    "note/AI/端侧模型/Scaling Law.md",
+    "note/AI/端侧模型",
+    "note/AI/Agent/输出格式限制.md",
+    "note/AI/Agent/AI八股.md",
+    "note/AI/AI 模型/理解大模型的神经网络.md",
+    "note/AI/AI 模型/模型内部参数.md",
+    "note/AI/AI 模型/MoE.md",
+    "note/AI/AI 模型/LLM原理与训练八股.md",
+    "note/AI/AI 模型",
+    "self/非公开/中转站使用文档/API集成/补全/文本补全.md",
+    "self/非公开/中转站使用文档/工具使用与接入/CC Switch.md",
+    "self/非公开/中转站使用文档/API集成/异步视频/查询异步视频任务.md",
+    "self/非公开/中转站使用文档/API集成/异步视频",
+    "self/非公开/中转站使用文档/API集成/嵌入",
+    "self/非公开/中转站使用文档/API集成/补全",
+    "self/非公开/中转站使用文档/API集成/对话",
+    "self/非公开/中转站使用文档/工具使用与接入/f8b8e36b0e2118aa95130e4404ddbc34.png",
+    "self/非公开/中转站使用文档/工具使用与接入/88840668e7792d0e7f2ab7e7344dbbc6.png",
+    "self/非公开/中转站使用文档/工具使用与接入/74e4ee8dd6f109c13a50a9c506d47ccb.png",
+    "self/非公开/中转站使用文档/工具使用与接入/ac4a9712e7a58f1ac13208986fe4bae7.png",
+    "self/非公开/中转站使用文档/工具使用与接入/c2631bec9d3d4b4ed7357054457051fb.png",
+    "self/非公开/中转站使用文档/工具使用与接入/60dee7d0d4a8f8e7cf99e141c1b1362c.png",
+    "self/非公开/中转站使用文档/工具使用与接入/180885b0db3fe0723f100047bd46f02b.png"
   ]
 }

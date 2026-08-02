@@ -2,7 +2,7 @@
 
 > 本文单独整理模型推理、Transformer 核心机制与训练对齐问题，适合作为 Agent 工程之外的“模型原理补课”笔记。
 >
-> 如果你更关心 Agent 架构、记忆和工程实践，请回到[Agent 架构、记忆与工程八股](/note/AI/Agent/AI%E5%85%AB%E8%82%A1)。
+> 如果你更关心 Agent 架构、记忆和工程实践，可以继续阅读 [Agent 是什么](/note/AI/Agent/Agent%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F) 与 [Memory 系统怎么设计](/note/AI/Agent/Memory/Memory%20%E7%B3%BB%E7%BB%9F%E6%80%8E%E4%B9%88%E8%AE%BE%E8%AE%A1%EF%BC%9F)。
 
 ## 文档导航
 
