@@ -1,82 +1,167 @@
-# Hermes
+# Hermes Agent
 
-使用自定义端点向导或 `config.yaml` 配置 Hermes Agent。
+通过 `hermes model` 向导或 `~/.hermes/config.yaml` 将 All Token API 配置为 Hermes 的命名自定义服务商。
 
-## 使用向导配置
+> [!info] 配置核验
+> Hermes 当前推荐使用 `providers.<名称>` 定义自定义端点，并用 `model.provider: custom:<名称>` 选择它。旧版 `custom_providers` 列表和 `model.base_url/api_mode` 仍兼容，但不是本文主配置格式。
 
-模型向导是推荐的配置方式，因为它会写入当前 Hermes 使用的配置格式。
+## 1. 准备 API Key、模型和接口类型
+
+1. 在 [API Key 页面](https://alltokenapi.com/keys)创建密钥。
+2. 在[模型定价页面](https://alltokenapi.com/pricing)复制准确的模型 ID。
+3. 确认模型接口与 Hermes Transport：
+
+| 模型接口 | Hermes `transport` | Base URL |
+| --- | --- | --- |
+| `/v1/chat/completions` | `chat_completions` | `https://alltokenapi.com/v1` |
+| `/v1/responses` | `codex_responses` | `https://alltokenapi.com/v1` |
+| `/v1/messages` | `anthropic_messages` | `https://alltokenapi.com` |
+
+## 2. 推荐：使用 hermes model 向导
+
+在 Hermes 会话外的系统终端运行：
 
 ```bash
 hermes model
 ```
 
-1. 运行 `hermes model`，选择 `Custom endpoint`。
-2. 输入以 `/v1` 结尾的服务地址：`https://alltokenapi.com/v1`。
-3. 输入 API Key 和定价页面中的准确模型 ID。
-4. 除非所选模型明确要求其他 API 模式，否则选择 `chat_completions`。
-5. 保存配置并启动新的 Hermes 会话。
+1. 选择 **Custom endpoint**。
+2. 输入与接口匹配的 Base URL。
+3. 输入 API Key 和准确模型 ID。
+4. 选择 API compatibility mode：
+   - Chat Completions：`chat_completions`；
+   - Responses / Codex：`codex_responses`；
+   - Anthropic Messages：`anthropic_messages`。
+5. 保存并退出向导。
 
-## 手动编辑 config.yaml
+`hermes model` 是完整的服务商配置向导；会话内的 `/model` 只能切换已经配置好的服务商，不能新增端点或录入密钥。
 
-Hermes 将主配置存储在 `~/.hermes/config.yaml`。先将 API Key 保存在环境变量中，再把 `model` 配置块合并到现有文件。
+## 3. 手动配置
 
-### 设置 API Key 环境变量
+### 3.1 保存密钥
 
-在 Windows 上设置持久用户变量后，请打开新终端。在 macOS 和 Linux 上，除非将其加入 Shell 配置文件，否则 `export` 只对当前 Shell 生效。
+Hermes 的密钥文件为：
 
-PowerShell：
+| 系统 | 密钥文件 |
+| --- | --- |
+| Windows | `%USERPROFILE%\.hermes\.env` |
+| macOS / Linux | `~/.hermes/.env` |
 
-```powershell
-[Environment]::SetEnvironmentVariable(
-  "ALLTOKEN_API_KEY",
-  "sk-your-api-key",
-  "User"
-)
+添加：
+
+```dotenv
+ALLTOKEN_API_KEY=此处替换为 API Key
 ```
 
-macOS / Linux：
+也可以使用命令写入 Hermes 的 `.env`：
 
 ```bash
-export ALLTOKEN_API_KEY="sk-your-api-key"
+hermes config set ALLTOKEN_API_KEY "此处替换为 API Key"
 ```
 
-### 编辑 config.yaml
+### 3.2 编辑 config.yaml
+
+以下示例按 Chat Completions 编写。Responses 模型请把 `transport` 改为 `codex_responses`；Anthropic Messages 模型还要把 `api` 改为不带 `/v1` 的服务根地址。
 
 ```yaml
+providers:
+  alltokenapi:
+    api: https://alltokenapi.com/v1
+    key_env: ALLTOKEN_API_KEY
+    transport: chat_completions
+    default_model: 此处替换为准确的模型 ID
+
 model:
-  default: your-model-id
-  provider: custom
-  base_url: https://alltokenapi.com/v1
-  api_key: ${ALLTOKEN_API_KEY}
-  api_mode: chat_completions
+  provider: custom:alltokenapi
+  default: 此处替换为准确的模型 ID
 ```
 
-> **当前配置格式**
->
-> Hermes 加载 `config.yaml` 时会展开 `${VAR}` 和 `${env:VAR}` 引用。自定义端点不再使用 `LLM_MODEL`。
+将配置合并到现有 `~/.hermes/config.yaml`，不要覆盖终端、工具、Gateway 或其他服务商设置。
 
-## 验证配置
+如果希望端点不请求 `/models`，可增加：
 
-开始实际任务前，检查解析后的模型设置和 Hermes 状态。
+```yaml
+providers:
+  alltokenapi:
+    discover_models: false
+```
+
+如果希望在配置中直接引用环境变量，也支持：
+
+```yaml
+providers:
+  alltokenapi:
+    api_key: ${ALLTOKEN_API_KEY}
+```
+
+不过 `key_env: ALLTOKEN_API_KEY` 更适合当前 `providers` 格式。`${VAR}` 和 `${env:VAR}` 都能解析；变量缺失时 Hermes 会保留占位符并记录警告，而不是静默使用空值。
+
+## 4. 验证配置
+
+先确认当前配置和密钥文件路径：
 
 ```bash
 hermes config path
 hermes config env-path
+```
+
+再检查配置与最终模型路由：
+
+```bash
 hermes config check
+hermes config get providers.alltokenapi --json
 hermes config get model --json
 hermes status
 ```
 
-1. 运行 `hermes config check`，修复报告的所有配置错误。
-2. 确认 `provider` 为 `custom`、`base_url` 以 `/v1` 结尾，且 `api_key` 仍为环境变量引用。
-3. 开始新会话并发送一个简短提示。
-4. 在使用日志中检查所选模型和请求状态。
+最后执行一次最小请求：
 
-## 故障排查
+```bash
+hermes -z "只回复 OK"
+```
 
-1. 出现 404 错误时，确认自定义 `base_url` 只以一个 `/v1` 结尾。
-2. 出现模型错误时，将显示名称替换为准确的模型 ID。
-3. 调用 `/v1/chat/completions` 时使用 `chat_completions`，调用 `/v1/responses` 时使用 `codex_responses`，调用 `/v1/messages` 时使用 `anthropic_messages`。
-4. 如果认证失败，请确认启动 Hermes 的进程可以读取 `ALLTOKEN_API_KEY`。
+到[使用日志](https://alltokenapi.com/usage-logs)确认实际模型、接口和请求状态。
 
-[Hermes Agent 文档](https://github.com/NousResearch/hermes-agent)
+## 5. 配置何时生效
+
+- 新启动的 CLI 会话会读取新配置。
+- 已经运行的会话继续使用创建时的模型；会话内可用 `/model` 切换已配置服务商。
+- Messaging Gateway 的新会话读取新默认模型。需要强制所有会话重新读取时，可运行：
+
+```bash
+hermes gateway restart
+```
+
+## 6. 常见问题
+
+### 404 或接口路径错误
+
+- `chat_completions` 和 `codex_responses` 的 `api` 通常以 `/v1` 结尾。
+- `anthropic_messages` 使用服务根地址，由 Hermes 拼接 `/v1/messages`。
+- `transport` 留空时 Hermes 会尝试按 URL 自动判断，但中转地址通常无法可靠反映协议，建议显式设置。
+
+### Hermes 仍使用旧服务商
+
+- `model.provider` 必须为 `custom:alltokenapi`，不是 `alltokenapi` 或 `custom`。
+- `model.default` 与 `providers.alltokenapi.default_model` 应使用相同的准确模型 ID。
+- 已运行会话不会自动切换，启动新会话或使用 `/model`。
+
+### 认证失败
+
+- 运行 `hermes config env-path`，确认密钥写入当前 Profile 的 `.env`。
+- 检查 `key_env` 拼写与 `.env` 中的变量名一致。
+- 如果 Hermes 以服务方式运行，重启 Gateway 以重新载入密钥环境。
+
+### 普通对话成功但 Agent 工具调用失败
+
+- 确认模型支持 Tool Calling。
+- 确认 `transport` 与模型实际接口一致。
+- Responses 接口必须使用 `codex_responses`，不能用 `chat_completions` 侥幸兼容。
+
+## 7. 官方参考
+
+- [Hermes AI Providers](https://hermes-agent.nousresearch.com/docs/integrations/providers)
+- [Hermes Configuration](https://hermes-agent.nousresearch.com/docs/user-guide/configuration)
+- [Hermes Configuring Models](https://hermes-agent.nousresearch.com/docs/user-guide/configuring-models)
+- [Hermes CLI Commands](https://hermes-agent.nousresearch.com/docs/reference/cli-commands)
+- [Hermes Agent 官方仓库](https://github.com/NousResearch/hermes-agent)
