@@ -19,7 +19,7 @@
 4. 保留服务根地址 `https://alltokenapi.com`，不要添加 `/v1` 或 `/v1beta`。
 5. 保存并启用服务商，完全退出并重新打开 Gemini CLI。
 
-详细步骤：[[CC Switch#一键导入CC Switch配置]]
+详细步骤：[[CC Switch一键配置#一键导入CC Switch配置]]
 
 ## 3. 手动配置
 

@@ -23,7 +23,7 @@ claude update
 4. 保留生成的服务根地址 `https://alltokenapi.com`，不要手动添加 `/v1`。
 5. 在 CC Switch 中保存并启用服务商，然后完全退出并重新打开 Claude Code。
 
-详细步骤：[[CC Switch#一键导入CC Switch配置]]
+详细步骤：[[CC Switch一键配置#一键导入CC Switch配置]]
 
 ## 3. 手动配置
 

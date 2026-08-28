@@ -11,10 +11,15 @@
             "id": "1cb061281e5cfc33",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "self/非公开/中转站使用文档/概览/模型定价.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "模型定价"
             }
           }
         ]
@@ -37,7 +42,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "文件列表"
@@ -90,6 +97,7 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "self/非公开/中转站使用文档/概览/模型定价.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -202,53 +210,53 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "dd32e8621a780f9c",
+  "active": "1cb061281e5cfc33",
   "lastOpenFiles": [
-    "note/软件工程/代理/Nginx教程/nginx常见操作.md",
-    "note/软件工程/代理/Nginx教程/4.Nginx问题.md",
-    "note/软件工程/代理/Nginx教程/3.Ngixn配置.md",
-    "note/软件工程/代理/Nginx教程/2.Nginx 运维.md",
-    "note/软件工程/代理/Nginx教程/1.Nginx入门.md",
-    "note/软件工程/代理/Nginx教程",
+    "self/非公开/中转站使用文档/概览/快速开始.md",
+    "self/非公开/中转站使用文档/概览/模型定价.md",
+    "self/非公开/中转站使用文档/API集成/多模态接口.md",
+    "local/测试资源需求.md",
+    "self/非公开/中转站使用文档/工具使用与接入/集成指南.md",
+    "self/非公开/中转站使用文档/工具使用与接入/Cherry Studio.md",
+    "self/非公开/中转站使用文档/工具使用与接入/qwen qoder.md",
+    "Pasted image 20260806231529.png",
+    "self/非公开/中转站使用文档/工具使用与接入/CC Switch一键配置.md",
+    "self/非公开/中转站使用文档/API集成/API模型接口.md",
+    "self/非公开/中转站使用文档/概览/推荐奖励.md",
+    "self/非公开/中转站使用文档/工具使用与接入/Codex（ChatGPT）.md",
+    "self/非公开/中转站使用文档/概览/计费与支付.md",
+    "self/非公开/中转站使用文档/概览/中转站介绍.md",
+    "self/非公开/中转站使用文档/工具使用与接入/workbuddy一键接入.md",
+    "self/非公开/中转站使用文档/API集成/兼容性与限制.md",
+    "self/非公开/中转站使用文档/API集成/文本与对话.md",
+    "self/非公开/中转站使用文档/API集成/视频与专用任务.md",
+    "self/非公开/中转站使用文档/API集成/通用约定.md",
+    "blogs/OPTIMIZATION.md",
+    "note/面经/index.md",
+    "note/软件工程/index.md",
+    "note/计算机知识/index.md",
+    "note/软件工程/运维/Linux/Shell笔记.md",
+    "note/软件工程/运维/Linux/Linux命令.md",
+    "self/非公开/中转站使用文档/API集成/音频/音频转写.md",
+    "self/非公开/中转站使用文档/API集成/音频/音频翻译.md",
+    "self/非公开/中转站使用文档/API集成/音频",
+    "self/非公开/中转站使用文档/API集成/重排",
+    "self/非公开/中转站使用文档/API集成/补全",
+    "self/非公开/中转站使用文档/API集成/异步视频",
+    "self/非公开/中转站使用文档/API集成/嵌入",
+    "self/非公开/中转站使用文档/API集成/对话",
+    "self/非公开/中转站使用文档/API集成/审核",
+    "self/非公开/中转站使用文档/API集成/实时",
+    "self/非公开/中转站使用文档/API集成/图片",
+    "self/非公开/中转站使用文档/API集成/兼容性",
     "blogs/public/xiaoba/xiaoba-sparkle.jpg",
     "blogs/public/xiaoba/xiaoba-face.jpg",
     "blogs/public/xiaoba/xiaoba-coding.jpg",
-    "blogs/public/xiaoba",
-    "self/评估.md",
-    "self/其他/exercise.md",
-    "self/其他",
-    "self/中转/账号问题.md",
-    "self/中转/服务器问题.md",
-    "self/中转/GPT防止封号注意技巧.md",
-    "self/中转/总体方案.md",
-    "self/中转/开源项目.md",
-    "self/中转/代理.md",
-    "self/中转/Codex手机端使用第三方API.md",
-    "self/中转/ChatGPT官方额度.md",
-    "self/中转",
-    "note/AI/端侧模型/模型量化.md",
-    "note/AI/端侧模型/Scaling Law.md",
-    "note/AI/端侧模型",
-    "note/AI/Agent/输出格式限制.md",
-    "note/AI/Agent/AI八股.md",
-    "note/AI/AI 模型/理解大模型的神经网络.md",
-    "note/AI/AI 模型/模型内部参数.md",
-    "note/AI/AI 模型/MoE.md",
-    "note/AI/AI 模型/LLM原理与训练八股.md",
-    "note/AI/AI 模型",
-    "self/非公开/中转站使用文档/API集成/补全/文本补全.md",
-    "self/非公开/中转站使用文档/工具使用与接入/CC Switch.md",
-    "self/非公开/中转站使用文档/API集成/异步视频/查询异步视频任务.md",
-    "self/非公开/中转站使用文档/API集成/异步视频",
-    "self/非公开/中转站使用文档/API集成/嵌入",
-    "self/非公开/中转站使用文档/API集成/补全",
-    "self/非公开/中转站使用文档/API集成/对话",
     "self/非公开/中转站使用文档/工具使用与接入/f8b8e36b0e2118aa95130e4404ddbc34.png",
     "self/非公开/中转站使用文档/工具使用与接入/88840668e7792d0e7f2ab7e7344dbbc6.png",
     "self/非公开/中转站使用文档/工具使用与接入/74e4ee8dd6f109c13a50a9c506d47ccb.png",
     "self/非公开/中转站使用文档/工具使用与接入/ac4a9712e7a58f1ac13208986fe4bae7.png",
     "self/非公开/中转站使用文档/工具使用与接入/c2631bec9d3d4b4ed7357054457051fb.png",
-    "self/非公开/中转站使用文档/工具使用与接入/60dee7d0d4a8f8e7cf99e141c1b1362c.png",
-    "self/非公开/中转站使用文档/工具使用与接入/180885b0db3fe0723f100047bd46f02b.png"
+    "self/非公开/中转站使用文档/工具使用与接入/60dee7d0d4a8f8e7cf99e141c1b1362c.png"
   ]
 }
