@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-24T10:45:00+08:00",
+  "title": "Design System: 小八博客",
+  "extensions": {
+    "colorMeta": {
+      "xiaoba-blue": {
+        "role": "primary",
+        "displayName": "小八工作蓝",
+        "canonical": "#2B78A6",
+        "tonalRamp": ["#0C263A", "#174A70", "#205F8A", "#2B78A6", "#67A9CF", "#A8D5EC", "#E6F4FB", "#F7FBFE"]
+      },
+      "xiaoba-blue-deep": {
+        "role": "primary",
+        "displayName": "深海蓝墨",
+        "canonical": "#174A70",
+        "tonalRamp": ["#081A28", "#102F47", "#174A70", "#2C638A", "#5C8FAC", "#9FC2D5", "#DCECF4", "#F4F9FC"]
+      },
+      "xiaoba-blue-soft": {
+        "role": "primary",
+        "displayName": "晴空蓝纸",
+        "canonical": "#E6F4FB",
+        "tonalRamp": ["#102A38", "#20485B", "#39708A", "#6A9FB7", "#A8D1E3", "#CDE7F3", "#E6F4FB", "#F7FCFE"]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "纯白纸面",
+        "canonical": "#FFFFFF",
+        "tonalRamp": ["#202629", "#404A4F", "#67737A", "#929DA3", "#BBC3C7", "#DDE2E5", "#F3F5F6", "#FFFFFF"]
+      },
+      "page": {
+        "role": "neutral",
+        "displayName": "冷白页面",
+        "canonical": "#F7FBFE",
+        "tonalRamp": ["#182329", "#35454E", "#60727D", "#8FA2AD", "#BAC9D1", "#DDE7EC", "#EDF4F8", "#F7FBFE"]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "小八墨色",
+        "canonical": "#1D2B36",
+        "tonalRamp": ["#11191F", "#1D2B36", "#3B4A56", "#61717D", "#8D9AA3", "#BBC4CA", "#E0E5E8", "#F6F8F9"]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "说明灰蓝",
+        "canonical": "#5F7180",
+        "tonalRamp": ["#172027", "#2D3C47", "#445766", "#5F7180", "#8697A4", "#B0BDC6", "#D7DFE4", "#F1F5F7"]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "浅蓝边线",
+        "canonical": "#CFE2EE",
+        "tonalRamp": ["#15262F", "#294956", "#477080", "#729AAA", "#A4C3D0", "#CFE2EE", "#E7F0F5", "#F8FBFD"]
+      },
+      "blush": {
+        "role": "secondary",
+        "displayName": "腮红粉",
+        "canonical": "#F59CAF",
+        "tonalRamp": ["#3B1720", "#6B2D3B", "#9D4558", "#C9677A", "#F59CAF", "#F9BBC7", "#FDDEE4", "#FFF4F6"]
+      },
+      "crown-yellow": {
+        "role": "tertiary",
+        "displayName": "皇冠黄",
+        "canonical": "#F2C94C",
+        "tonalRamp": ["#352B0D", "#64521B", "#937A28", "#C4A437", "#F2C94C", "#F6D976", "#FAEBAA", "#FFF9E5"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "首页展示", "purpose": "只用于首页品牌名。" },
+      "headline": { "displayName": "页面标题", "purpose": "各入口页面的唯一主标题。" },
+      "title": { "displayName": "内容标题", "purpose": "文章、项目与分组标题。" },
+      "body": { "displayName": "阅读正文", "purpose": "长文、摘要与说明。" },
+      "label": { "displayName": "操作标签", "purpose": "控件、日期和分类。" }
+    },
+    "shadows": [
+      { "name": "lift-low", "value": "0 8px 24px rgba(23, 74, 112, 0.10)", "purpose": "可点击卡片的悬停反馈。" },
+      { "name": "floating-tool", "value": "0 8px 20px rgba(23, 74, 112, 0.16)", "purpose": "返回顶部等浮动工具。" }
+    ],
+    "motion": [
+      { "name": "state", "value": "180ms ease-out", "purpose": "颜色、边线和轻微位移反馈。" },
+      { "name": "companion-enter", "value": "520ms cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "首页小八仅一次的轻微入场。" }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "640px" },
+      { "name": "tablet", "value": "960px" },
+      { "name": "wide", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "页面唯一的主要行动。",
+      "html": "<button class=\"ds-btn-primary\">继续阅读</button>",
+      "css": ".ds-btn-primary{height:44px;padding:12px 18px;border:0;border-radius:8px;background:#2B78A6;color:#fff;font:650 14px/1.4 system-ui;transition:background 180ms ease-out,transform 180ms ease-out}.ds-btn-primary:hover{background:#174A70;transform:translateY(-1px)}.ds-btn-primary:focus-visible{outline:3px solid #E6F4FB;outline-offset:3px}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "与主行动并列的次要入口。",
+      "html": "<button class=\"ds-btn-secondary\">打开学习抽屉</button>",
+      "css": ".ds-btn-secondary{height:44px;padding:12px 18px;border:1px solid #CFE2EE;border-radius:8px;background:#fff;color:#174A70;font:650 14px/1.4 system-ui;transition:border-color 180ms ease-out,background 180ms ease-out}.ds-btn-secondary:hover{border-color:#2B78A6;background:#F7FBFE}.ds-btn-secondary:focus-visible{outline:3px solid #E6F4FB;outline-offset:3px}"
+    },
+    {
+      "name": "Topic Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "只表达分类、日期与状态。",
+      "html": "<span class=\"ds-chip\">工程实践</span>",
+      "css": ".ds-chip{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;background:#E6F4FB;color:#174A70;font:650 14px/1.4 system-ui}"
+    },
+    {
+      "name": "Article Row",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "最近文章和搜索结果使用的紧凑内容单元。",
+      "html": "<a class=\"ds-article\" href=\"#\"><span><strong>文档驱动开发构建项目</strong><small>把文档变成研发入口</small></span><span aria-hidden=\"true\">→</span></a>",
+      "css": ".ds-article{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;border-bottom:1px solid #CFE2EE;color:#1D2B36;text-decoration:none}.ds-article strong,.ds-article small{display:block}.ds-article strong{font:700 20px/1.4 system-ui}.ds-article small{margin-top:4px;color:#5F7180;font:400 14px/1.6 system-ui}.ds-article:hover{color:#174A70}.ds-article:focus-visible{outline:3px solid #E6F4FB;outline-offset:3px}"
+    },
+    {
+      "name": "Main Navigation",
+      "kind": "nav",
+      "description": "紧凑、无 emoji 的站点主导航。",
+      "html": "<nav class=\"ds-nav\"><strong>小八博客</strong><a class=\"active\" href=\"#\">首页</a><a href=\"#\">博客</a><a href=\"#\">笔记</a></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:24px;height:64px;padding:0 20px;border-bottom:1px solid #CFE2EE;background:#fff;color:#1D2B36;font:650 14px/1.4 system-ui}.ds-nav strong{margin-right:auto;font-size:16px}.ds-nav a{height:64px;display:flex;align-items:center;color:#5F7180;text-decoration:none;border-bottom:2px solid transparent}.ds-nav a:hover,.ds-nav a.active{color:#174A70;border-bottom-color:#2B78A6}.ds-nav a:focus-visible{outline:3px solid #E6F4FB;outline-offset:-4px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "小八的蓝白工作台",
+    "overview": "这是一个每天写完代码后还愿意打开的个人工作台。白色纸面保证长文与代码的可读性，小八蓝负责导航和行动，腮红粉与皇冠黄只在角色细节和状态反馈中短暂出现。可爱感来自真实的小八素材、黑色线稿和克制的陪伴文案，不来自堆叠装饰。",
+    "keyCharacteristics": [
+      "蓝白纸面、黑色线稿、少量腮红粉与皇冠黄。",
+      "角色陪伴是连续叙事，技术内容始终是主角。",
+      "4px/8px 间距基准、8px 最大常规圆角、清楚的焦点状态。",
+      "动效只用于状态反馈和一次轻微的小八入场，并尊重减少动态效果。"
+    ],
+    "rules": [
+      { "name": "The Blue-White Rule", "body": "每个页面至少 70% 是白色或冷白色；粉色与黄色合计不得超过可见面积的 8%。", "section": "colors" },
+      { "name": "The No-Gradient Rule", "body": "禁止装饰渐变、渐变文字和发光色团；层次由实色、边线、间距与内容建立。", "section": "colors" },
+      { "name": "The Quiet Type Rule", "body": "中文字距永远为 0，禁止负字距、Comic Sans 和随视口连续缩放的字号。", "section": "typography" },
+      { "name": "The Flat-by-Default Rule", "body": "静态表面禁止阴影；如果一个页面在不交互时看起来像一叠浮卡，就说明层次过量。", "section": "elevation" }
+    ],
+    "dos": [
+      "Do 用白色或冷白色承载至少 70% 页面，并用小八工作蓝表达行动。",
+      "Do 让首页首屏露出最近写下的开头，并在 390px 宽度下保持所有内容可滚动。",
+      "Do 保持正文 16px/1.75、说明文字至少 14px，并为键盘交互提供清楚焦点环。",
+      "Do 复用真实小八素材，让角色在首页、空状态与评论区形成连续陪伴。"
+    ],
+    "donts": [
+      "Don't 使用与小八无关的通用粉色渐变模板。",
+      "Don't 使用漂浮 emoji 装饰、渐变文字、装饰色团或无意义的循环弹跳。",
+      "Don't 使用装饰压过内容的卡片堆叠、卡片套卡片或超过 8px 的常规卡片圆角。",
+      "Don't 把网站做成冷冰冰的企业文档后台；技术严谨不等于没有角色温度。",
+      "Don't 使用 Comic Sans、负字距、低于 14px 的说明文字或随视口连续缩放的字体。"
+    ]
+  }
+}

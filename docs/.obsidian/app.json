@@ -2,11 +2,14 @@
   "spellcheck": false,
   "showLineNumber": true,
   "alwaysUpdateLinks": true,
-  "promptDelete": false,
+  "promptDelete": true,
   "pdfExportSettings": {
     "pageSize": "Letter",
     "landscape": false,
     "margin": "0",
     "downscalePercent": 100
-  }
+  },
+  "attachmentFolderPath": "./",
+  "showUnsupportedFiles": true,
+  "strictLineBreaks": false
 }
