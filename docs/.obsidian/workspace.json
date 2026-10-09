@@ -4,22 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "2e2a1611287edf56",
+        "id": "e354a0cdcead00ed",
         "type": "tabs",
         "children": [
           {
-            "id": "1cb061281e5cfc33",
+            "id": "18a533d1ef04173d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "self/非公开/中转站使用文档/概览/模型定价.md",
+                "file": "blogs/share/杂记/新时代生存套餐.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "模型定价"
+              "title": "新时代生存套餐"
             }
           }
         ]
@@ -56,7 +56,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#spec范式",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -81,7 +81,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 357.5
   },
   "right": {
     "id": "414ae52dfc0c6d34",
@@ -97,7 +97,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "self/非公开/中转站使用文档/概览/模型定价.md",
+                "file": "blogs/share/杂记/新时代生存套餐.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -158,13 +158,12 @@
             "state": {
               "type": "all-properties",
               "state": {
-                "file": "note/开发运维/数据库/Redis/Redis故障排查/微信支付XConfig Redis雪崩.md",
-                "followCursor": false,
-                "showSearch": false,
+                "sortOrder": "frequency",
+                "showSearch": true,
                 "searchQuery": ""
               },
-              "icon": "lucide-list",
-              "title": "微信支付XConfig Redis雪崩 的大纲"
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
             }
           },
           {
@@ -187,15 +186,15 @@
             "state": {
               "type": "git-view",
               "state": {},
-              "icon": "lucide-ghost",
-              "title": "git-view"
+              "icon": "git-pull-request",
+              "title": "Source Control"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 345.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -206,57 +205,57 @@
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
-      "obsidian-excalidraw-plugin:新建绘图文件": false,
-      "obsidian-git:Open Git source control": false
+      "obsidian-git:Open Git source control": false,
+      "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "1cb061281e5cfc33",
+  "active": "18a533d1ef04173d",
   "lastOpenFiles": [
-    "self/非公开/中转站使用文档/概览/快速开始.md",
     "self/非公开/中转站使用文档/概览/模型定价.md",
-    "self/非公开/中转站使用文档/API集成/多模态接口.md",
-    "local/测试资源需求.md",
+    "self/非公开/中转站使用文档/概览/快速开始.md",
     "self/非公开/中转站使用文档/工具使用与接入/集成指南.md",
-    "self/非公开/中转站使用文档/工具使用与接入/Cherry Studio.md",
-    "self/非公开/中转站使用文档/工具使用与接入/qwen qoder.md",
-    "Pasted image 20260806231529.png",
-    "self/非公开/中转站使用文档/工具使用与接入/CC Switch一键配置.md",
-    "self/非公开/中转站使用文档/API集成/API模型接口.md",
-    "self/非公开/中转站使用文档/概览/推荐奖励.md",
-    "self/非公开/中转站使用文档/工具使用与接入/Codex（ChatGPT）.md",
-    "self/非公开/中转站使用文档/概览/计费与支付.md",
-    "self/非公开/中转站使用文档/概览/中转站介绍.md",
     "self/非公开/中转站使用文档/工具使用与接入/workbuddy一键接入.md",
-    "self/非公开/中转站使用文档/API集成/兼容性与限制.md",
+    "self/非公开/中转站使用文档/工具使用与接入/qwen qoder.md",
+    "self/非公开/中转站使用文档/工具使用与接入/Cherry Studio.md",
+    "self/非公开/中转站使用文档/工具使用与接入/CC Switch一键配置.md",
     "self/非公开/中转站使用文档/API集成/文本与对话.md",
-    "self/非公开/中转站使用文档/API集成/视频与专用任务.md",
-    "self/非公开/中转站使用文档/API集成/通用约定.md",
-    "blogs/OPTIMIZATION.md",
-    "note/面经/index.md",
-    "note/软件工程/index.md",
-    "note/计算机知识/index.md",
-    "note/软件工程/运维/Linux/Shell笔记.md",
-    "note/软件工程/运维/Linux/Linux命令.md",
-    "self/非公开/中转站使用文档/API集成/音频/音频转写.md",
-    "self/非公开/中转站使用文档/API集成/音频/音频翻译.md",
-    "self/非公开/中转站使用文档/API集成/音频",
-    "self/非公开/中转站使用文档/API集成/重排",
-    "self/非公开/中转站使用文档/API集成/补全",
-    "self/非公开/中转站使用文档/API集成/异步视频",
-    "self/非公开/中转站使用文档/API集成/嵌入",
-    "self/非公开/中转站使用文档/API集成/对话",
-    "self/非公开/中转站使用文档/API集成/审核",
-    "self/非公开/中转站使用文档/API集成/实时",
-    "self/非公开/中转站使用文档/API集成/图片",
-    "self/非公开/中转站使用文档/API集成/兼容性",
-    "blogs/public/xiaoba/xiaoba-sparkle.jpg",
-    "blogs/public/xiaoba/xiaoba-face.jpg",
-    "blogs/public/xiaoba/xiaoba-coding.jpg",
+    "self/非公开/中转站使用文档/API集成/多模态接口.md",
+    "self/非公开/中转站使用文档/API集成/兼容性与限制.md",
+    "Pasted image 20260806231529.png",
+    "blogs/public/blog-index/archive/2026-10/page-1.json",
+    "blogs/public/blog-index/archive/2026-10",
+    "blogs/blog/对话孙宇晨：年轻人如何抓住 AI 时代的机会？.md",
+    "blogs/public/fitness/fitness-day-3-legs-core.png",
+    "blogs/public/fitness/fitness-day-2-pull.png",
+    "blogs/public/fitness/fitness-day-1-push.png",
+    "blogs/public/fitness",
+    "blogs/share/杂记",
+    "blogs/share/杂记/新时代生存套餐.md",
+    "blogs/CHANGELOG.md",
+    "local/中转站/成本估计表.md",
+    "local/中转站/报价表.md",
+    "blogs/blog/comment-feature.md",
+    "local/小鸽开发笔记/MEMORY.md和USER.md.md",
+    "local/中转站/主流API格式.md",
+    "local/小鸽开发笔记/A2A 服务接口清单.md",
+    "self/非公开/中转站使用文档/快速上手.md",
+    "self/非公开/中转站使用文档/API集成/补全/文本补全.md",
+    "local/小鸽开发笔记/a2a协议.md",
+    "local/小鸽开发笔记/hermes笔记.md",
+    "local/小鸽开发笔记/Hermes Runtime 记忆设计方案.md",
+    "local/小鸽开发笔记/小鸽Agent架构.md",
+    "local/小鸽开发笔记/md.md",
+    "未命名.base",
+    "未命名 1.base",
+    "local/中转站",
+    "local/小鸽开发笔记",
+    "self/非公开/中转站使用文档/概览",
     "self/非公开/中转站使用文档/工具使用与接入/f8b8e36b0e2118aa95130e4404ddbc34.png",
-    "self/非公开/中转站使用文档/工具使用与接入/88840668e7792d0e7f2ab7e7344dbbc6.png",
-    "self/非公开/中转站使用文档/工具使用与接入/74e4ee8dd6f109c13a50a9c506d47ccb.png",
-    "self/非公开/中转站使用文档/工具使用与接入/ac4a9712e7a58f1ac13208986fe4bae7.png",
+    "self/非公开/中转站使用文档/工具使用与接入/f5de7f56519a46a0f159ca9b39f9578d.png",
     "self/非公开/中转站使用文档/工具使用与接入/c2631bec9d3d4b4ed7357054457051fb.png",
-    "self/非公开/中转站使用文档/工具使用与接入/60dee7d0d4a8f8e7cf99e141c1b1362c.png"
+    "self/非公开/中转站使用文档/工具使用与接入/c0d0455350ac703a01c537b4d6960468.png",
+    "self/非公开/中转站使用文档/工具使用与接入/ac4a9712e7a58f1ac13208986fe4bae7.png",
+    "self/非公开/中转站使用文档/工具使用与接入/88840668e7792d0e7f2ab7e7344dbbc6.png",
+    "self/非公开/中转站使用文档/API集成/补全"
   ]
 }
