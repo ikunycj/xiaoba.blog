@@ -3,11 +3,15 @@
   "scripts": {
     "blog:index": "node scripts/generate-blog-index.mjs",
     "i": "npm install",
-    "docs:dev": "npm run blog:index && vitepress dev docs",
-    "docs:build": "npm run blog:index && vitepress build docs",
-    "docs:preview": "vitepress preview docs",
+    "docs:dev": "npm run blog:index && vitepress dev --port 5174",
+    "docs:build": "npm run blog:index && vitepress build",
+    "docs:preview": "vitepress preview --port 4174",
     "images:prepare": "node scripts/prepare-images.mjs",
-    "images:push": "node scripts/push-image-repo.mjs"
+    "images:push": "node scripts/push-image-repo.mjs",
+    "images:sync": "npm run images:prepare && npm run images:push",
+    "hooks:install": "node scripts/install-git-hooks.mjs",
+    "prepare": "node scripts/install-git-hooks.mjs",
+    "test:images": "node --test scripts/image-pipeline.test.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",

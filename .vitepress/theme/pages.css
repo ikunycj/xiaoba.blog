@@ -1,0 +1,147 @@
+/* ============================================================
+   页面级样式
+   ------------------------------------------------------------
+   这些样式原先以 <style scoped> 内联在 content/ 的页面 markdown 中，
+   导致 Obsidian 无法干净解析这些文件。现统一收敛到代码层，
+   通过 frontmatter 的 pageClass 挂载作用域前缀。
+
+   约定：
+     content/  只放 Obsidian 能直接解析的 markdown
+     .vitepress/ 放所有样式、脚本与页面组件
+   ============================================================ */
+
+/* ---------- 关于小八窝（pageClass: xb-about） ---------- */
+
+.xb-about .about-hero {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2rem;
+  align-items: center;
+  margin: 2rem 0 3rem;
+  padding: 2rem;
+  border-radius: 12px;
+  background: var(--vp-c-bg-soft);
+}
+
+.xb-about .about-hero img {
+  border: 3px solid var(--vp-c-brand-soft);
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.xb-about .about-hero h2 {
+  margin: 0 0 0.75rem;
+  padding: 0;
+  border: 0;
+  color: var(--vp-c-brand-1);
+  font-size: 1.5rem;
+}
+
+.xb-about .about-hero p {
+  margin: 0;
+  color: var(--vp-c-text-2);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.xb-about h2 {
+  margin-top: 3rem;
+  color: var(--vp-c-brand-1);
+}
+
+.xb-about h3 {
+  margin-top: 2rem;
+  font-size: 1.125rem;
+}
+
+.xb-about .about-footer {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--vp-c-divider);
+  text-align: center;
+}
+
+.xb-about .about-footer p {
+  margin: 0.5rem 0;
+  color: var(--vp-c-text-2);
+}
+
+.xb-about .about-footer strong {
+  color: var(--vp-c-brand-1);
+}
+
+@media (max-width: 640px) {
+  .xb-about .about-hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .xb-about .about-hero img {
+    margin: 0 auto;
+    width: 120px;
+    height: 120px;
+  }
+}
+
+/* ---------- AI 应用开发（pageClass: xb-ai） ---------- */
+
+.xb-ai .ai-intro {
+  max-width: 72ch;
+  margin: 2rem 0 3rem;
+  padding: 2rem;
+  border-left: 4px solid var(--vp-c-brand-1);
+  background: var(--vp-c-bg-soft);
+  border-radius: 8px;
+}
+
+.xb-ai .lead {
+  margin: 0;
+  color: var(--vp-c-text-2);
+  font-size: 1.125rem;
+  line-height: 1.8;
+}
+
+.xb-ai h2 {
+  margin-top: 3rem;
+}
+
+.xb-ai h3 {
+  margin-top: 2rem;
+  color: var(--vp-c-brand-1);
+}
+
+.xb-ai ul {
+  margin-top: 1rem;
+}
+
+/* ---------- 全栈开发（pageClass: xb-fullstack） ---------- */
+
+.xb-fullstack .route-intro {
+  max-width: 72ch;
+  margin: 1.5rem 0 2.5rem;
+  padding: 1.5rem;
+  border-left: 4px solid var(--vp-c-brand-1);
+  border-radius: 8px;
+  background: var(--vp-c-bg-soft);
+}
+
+.xb-fullstack .route-intro p {
+  margin: 0;
+  color: var(--vp-c-text-2);
+  font-size: 1.0625rem;
+  line-height: 1.85;
+}
+
+.xb-fullstack h2 {
+  margin-top: 3rem;
+}
+
+.xb-fullstack h3 {
+  margin-top: 1.75rem;
+  color: var(--vp-c-brand-1);
+}
+
+.xb-fullstack ul {
+  margin-top: 0.75rem;
+  line-height: 1.9;
+}

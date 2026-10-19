@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./docs/.vitepress/**/*.{vue,js,ts}", "./docs/**/*.md"],
+  content: ["./.vitepress/**/*.{vue,js,ts}", "./content/**/*.md"],
   theme: {
     extend: {
       colors: {
@@ -11,4 +11,3 @@ export default {
   },
   plugins: [],
 }
-

@@ -1,20 +1,34 @@
 node_modules
 package-lock.json
-**/.vitepress/cache
-**/.vitepress/dist
-docs/blogs/public/blog-index/
+.vitepress/cache/
+.vitepress/dist/
+content/blogs/public/blog-index/
 
-# 可以忽略个性化obsidian配置的同步
-# **/.obsidian
-**/docs/local/*
+# ============================================
+# 目录约定
+#
+#   content/  Obsidian 库：只放 Obsidian 能直接解析的 markdown 与附件
+#              ├── self/   私有：提交 GitHub，站点不展示（srcExclude 排除）
+#              ├── local/  本地：不提交 GitHub
+#              ├── note/   笔记 / 项目 / 知识
+#              └── blogs/  博客（站点页面 + 文章）
+#   docs/     开发文档（README/CHANGELOG 等），不进站点
+#   .vitepress/  构建代码：配置、主题、组件、样式、产物
+# ============================================
+
+# 1) content/local —— 本地内容，绝不提交
+content/local/**
+**/content/local/*
+
+# 2) 历史遗留路径，不再使用
 **/docs/blogs/note/**
 
-# IDEA生成的文件
+# IDEA 生成的文件
 .idea
 **/*.iml
 .codeflicker
 
-特殊文件类型
+# 特殊文件类型
 .DS_Store
 
 # 特殊格式
@@ -22,3 +36,9 @@ docs/blogs/public/blog-index/
 
 # 图床仓库本地工作目录（独立 git 维护，不进主仓库）
 docs.source/
+
+# 本地制品、渲染与编辑器状态，不进入代码提交
+/work/
+/output/
+/content/.obsidian/
+*.backup

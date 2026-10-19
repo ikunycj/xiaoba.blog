@@ -45,13 +45,17 @@ npm install
 npm run docs:dev
 ```
 
-访问 http://localhost:5173
+访问 http://localhost:5174
 
 ### 构建部署
 ```bash
 npm run docs:build
 npm run docs:preview  # 本地预览构建结果
 ```
+
+### 图片自动同步
+
+执行 `npm install` 或 `npm run hooks:install` 安装本仓库钩子后，正常 `git add`、`git commit`、`git push` 即可：提交时检查并转换图片链接，推送时先同步图床，成功后才推送博客。失败时阻止代码推送，保留本地原图。详见 [图片流水线](docs/image-pipeline.md)。
 
 ---
 

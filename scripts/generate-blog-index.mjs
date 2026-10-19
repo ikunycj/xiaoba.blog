@@ -4,7 +4,7 @@ import { basename, relative, resolve } from 'node:path'
 const BLOG_ROOT = '/blog/'
 const PAGE_SIZE = 6
 const REPO_ROOT = process.cwd()
-const DOCS_ROOT = resolve(REPO_ROOT, 'docs')
+const DOCS_ROOT = resolve(REPO_ROOT, 'content')
 const OUTPUT_ROOT = resolve(DOCS_ROOT, 'blogs', 'public', 'blog-index')
 const ALL_LABEL = '\u5168\u90E8'
 const UNKNOWN_LABEL = '\u672A\u77E5\u65F6\u95F4'
