@@ -2,15 +2,15 @@
 
 <div align="center">
 
-![小八博客](docs/blogs/public/xiaoba-logo.png)
+![小八博客](content/blogs/public/xiaoba-logo.png)
 
 **基于 VitePress 的现代化技术博客系统**
 
 [![GitHub stars](https://img.shields.io/github/stars/ikunycj/xiaoba.blog?style=social)](https://github.com/ikunycj/xiaoba.blog)
 [![License](https://img.shields.io/github/license/ikunycj/xiaoba.blog)](https://github.com/ikunycj/xiaoba.blog/blob/master/LICENSE)
-[![Deploy](https://img.shields.io/badge/Deployed%20on-Vercel-black)](https://xioaba.blog)
+[![Deploy](https://img.shields.io/badge/Deployed%20on-Vercel-black)](https://xiaoba.blog)
 
-[在线预览](https://xioaba.blog) · [更新日志](docs/blogs/CHANGELOG.md) · [优化报告](docs/blogs/OPTIMIZATION.md)
+[在线预览](https://xiaoba.blog) · [更新日志](docs/blogs/CHANGELOG.md) · [优化报告](docs/blogs/OPTIMIZATION.md)
 
 </div>
 
@@ -174,7 +174,7 @@ xiaoba.blog/
 
 ## 🔗 相关链接
 
-- **博客主站**: https://xioaba.blog
+- [博客主站](https://xiaoba.blog)
 - **GitHub**: https://github.com/ikunycj
 - **actionAgent 项目**: https://github.com/ikunycj/actionAgent
 

@@ -1,7 +1,7 @@
 ---
 layout: page
 title: AI 应用开发
-description: 从原理到实战,系统学习 AI 应用开发
+description: 从大模型基础到 AI Coding、Prompt 工程、Agent 开发和 RAG 实战，按阶段学习 AI 应用开发。
 sidebar: false
 pageClass: xb-ai
 ---

@@ -155,7 +155,7 @@ const projects: Project[] = [
     name: 'xiaoba.blog',
     badge: '主站',
     stack: 'VitePress',
-    description: '小八窝主站,VitePress 驱动的教学平台。',
+    description: '小八博客主站，由 VitePress 构建。',
     highlight: '提供 AI 应用开发和全栈开发的完整学习路线。',
     repoUrl: 'https://github.com/ikunycj/xiaoba.blog',
     homepage: 'https://xiaoba.blog',

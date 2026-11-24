@@ -1,18 +1,19 @@
 ---
 layout: page
-title: 关于小八窝
+title: 关于小八博客
+description: 认识小八和小八博客，了解我为什么整理计算机知识，以及如何记录 AI 应用开发与全栈项目实践。
 sidebar: false
 pageClass: xb-about
 ---
 
-# 关于小八窝
+# 关于小八博客
 
 <div class="about-hero">
   <img src="/xiaoba/xiaoba-face.jpg" alt="小八" width="160" height="160" />
   <div>
     <h2>让计算机知识变得温暖易懂</h2>
     <p>
-      小八窝是一个专注于计算机科学教学与科普的学习平台,
+      小八博客是一个专注于计算机科学教学与科普的学习平台,
       致力于用更温暖、更易懂的方式传递技术知识。
     </p>
   </div>
@@ -95,7 +96,7 @@ pageClass: xb-about
 
 <div class="about-footer">
   <p>
-    <strong>小八窝</strong> · 让计算机知识变得温暖易懂
+    <strong>小八博客</strong> · 让计算机知识变得温暖易懂
   </p>
   <p>
     始于 2023 · 持续更新中

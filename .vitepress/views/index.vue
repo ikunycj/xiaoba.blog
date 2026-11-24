@@ -11,7 +11,7 @@
           height="88"
           fetchpriority="high"
         />
-        <h1>小八窝</h1>
+        <h1>小八博客</h1>
         <p class="lead">
           整理 AI 应用开发与全栈开发的学习路线，让计算机知识变得温暖易懂。
         </p>
@@ -66,9 +66,9 @@
       </section>
 
       <section class="block" aria-labelledby="about">
-        <h2 id="about">关于小八窝</h2>
+        <h2 id="about">关于小八博客</h2>
         <p class="prose">
-          小八窝是一个面向计算机与 AI 的学习站点。这里把散落的知识整理成可循的路线：
+          小八博客是一个面向计算机与 AI 的学习站点。这里把散落的知识整理成可循的路线：
           AI 应用开发负责「怎么用起来」，全栈开发负责「怎么做得扎实」。
           不求面面俱到，只求每条路都能带你走通一次。
         </p>
@@ -106,7 +106,7 @@ onMounted(async () => {
 const coreProjects = [
   {
     name: 'xiaoba.blog',
-    description: '小八窝站点源码：内容体系、主题定制与索引生成',
+    description: '小八博客站点源码：内容体系、主题定制与索引生成',
     link: 'https://github.com/ikunycj/xiaoba.blog',
   },
   {

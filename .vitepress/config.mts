@@ -1,8 +1,8 @@
 import { generateSidebar } from 'vitepress-sidebar'
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
-import { dirname, join } from 'node:path'
+import { basename, dirname, join } from 'node:path'
 
-import { defineConfigWithTheme, type DefaultTheme } from 'vitepress'
+import { defineConfigWithTheme, type DefaultTheme, type HeadConfig } from 'vitepress'
 
 interface GiscusThemeConfig {
   repo?: string
@@ -25,6 +25,11 @@ interface GiscusThemeConfig {
 type ThemeConfig = DefaultTheme.Config & {
   giscus?: GiscusThemeConfig
 }
+
+const SITE_NAME = '小八博客'
+const SITE_URL = 'https://xiaoba.blog'
+const SITE_DESCRIPTION = '小八的技术博客，分享 AI 应用开发、全栈开发和计算机基础，提供学习路线、实战教程与开源项目记录。'
+const SHARE_IMAGE = new URL('/xiaoba/xiaoba-coding.jpg', SITE_URL).href
 
 const KNOWN_FENCE_LANGUAGES = new Set([
   'apache',
@@ -197,6 +202,15 @@ function rewritePublicRoute(route: string): string {
   return publicRoute.replace(/c\+\+/gi, 'cpp').replace(/\+/g, '-plus-')
 }
 
+function publicPagePath(page: string): string {
+  return page.replace(/(^|\/)index\.md$/, '$1').replace(/\.md$/, '')
+}
+
+function canonicalUrl(path: string): string {
+  // Match the clean URLs served by Vercel with trailingSlash disabled.
+  return new URL(path.replace(/\/$/, ''), SITE_URL).href
+}
+
 function rewriteSidebarItems(items: DefaultTheme.SidebarItem[]): DefaultTheme.SidebarItem[] {
   return items.map((item) => ({
     ...item,
@@ -234,8 +248,8 @@ function createLegacyPlusAliases(
       throw new Error(`Missing canonical page for legacy route: ${publicPage}`)
     }
 
-    const canonicalUrl = `/${publicPage.replace(/\.md$/, '')}`
-    const escapedCanonicalUrl = canonicalUrl
+    const target = canonicalUrl(publicPagePath(publicPage))
+    const escapedCanonicalUrl = target
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
       .replace(/"/g, '&quot;')
@@ -245,8 +259,8 @@ function createLegacyPlusAliases(
     <meta charset="UTF-8">
     <meta name="robots" content="noindex">
     <link rel="canonical" href="${escapedCanonicalUrl}">
-    <script>location.replace(${JSON.stringify(canonicalUrl)} + location.search + location.hash)</script>
-    <title>正在跳转 | 小八博客</title>
+    <script>location.replace(${JSON.stringify(new URL(target).pathname)} + location.search + location.hash)</script>
+    <title>正在跳转 | ${SITE_NAME}</title>
   </head>
   <body>
     <a href="${escapedCanonicalUrl}">前往新地址</a>
@@ -263,8 +277,9 @@ function createLegacyPlusAliases(
 }
 
 export default defineConfigWithTheme<ThemeConfig>({
-  title: '小八窝',
-  description: '让计算机知识变得温暖易懂。系统整理 AI 应用开发、全栈开发知识体系与学习路线。',
+  lang: 'zh-CN',
+  title: SITE_NAME,
+  description: SITE_DESCRIPTION,
   srcDir: 'content',
   srcExclude: [
     '.obsidian/**',
@@ -277,10 +292,13 @@ export default defineConfigWithTheme<ThemeConfig>({
     ['meta', { name: 'theme-color', content: '#2b78a6' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
     ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
-    ['meta', { property: 'og:type', content: 'website' }],
-    ['meta', { property: 'og:title', content: '小八窝' }],
-    ['meta', { property: 'og:description', content: '让计算机知识变得温暖易懂' }],
-    ['meta', { property: 'og:image', content: '/xiaoba/xiaoba-coding.jpg' }],
+    ['meta', { property: 'og:site_name', content: SITE_NAME }],
+    ['meta', { property: 'og:locale', content: 'zh_CN' }],
+    ['meta', { property: 'og:image', content: SHARE_IMAGE }],
+    ['meta', { property: 'og:image:alt', content: '小八坐在电脑前写代码' }],
+    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    ['meta', { name: 'twitter:image', content: SHARE_IMAGE }],
+    ['meta', { name: 'twitter:image:alt', content: '小八坐在电脑前写代码' }],
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
     ['link', { rel: 'dns-prefetch', href: 'https://fonts.googleapis.com' }],
   ],
@@ -289,9 +307,48 @@ export default defineConfigWithTheme<ThemeConfig>({
   cleanUrls: true,
   ignoreDeadLinks: 'localhostLinks',
   lastUpdated: true,
-  
+
   sitemap: {
-    hostname: 'https://xiaoba.blog',
+    hostname: SITE_URL,
+    transformItems: (items) => items
+      .filter(({ url }) => url !== 'home' && url !== '404')
+      .map((item) => ({ ...item, url: canonicalUrl(item.url) })),
+  },
+
+  transformPageData(pageData) {
+    const { relativePath, filePath, frontmatter } = pageData
+    if (relativePath === '404.md') return
+
+    const path = publicPagePath(relativePath)
+    const url = canonicalUrl(path === 'home' ? '' : path)
+    const fileName = basename(filePath, '.md')
+    const title = pageData.title || (fileName === 'index' ? basename(dirname(filePath)) : fileName)
+    const description = pageData.description || SITE_DESCRIPTION
+    const head: HeadConfig[] = [
+      ['link', { rel: 'canonical', href: url }],
+      ['meta', { property: 'og:url', content: url }],
+      ['meta', { property: 'og:type', content: path.startsWith('blog/') && path !== 'blog/' ? 'article' : 'website' }],
+      ['meta', { property: 'og:title', content: title }],
+      ['meta', { property: 'og:description', content: description }],
+      ['meta', { name: 'twitter:title', content: title }],
+      ['meta', { name: 'twitter:description', content: description }],
+      ...(frontmatter.head || []),
+    ]
+    if (path === '') {
+      head.push(['script', { type: 'application/ld+json' }, JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: SITE_NAME,
+        url,
+      })])
+    }
+    return { title, frontmatter: { ...frontmatter, head } }
+  },
+
+  transformHead({ page, description }) {
+    if (page === '404.md') return [['meta', { name: 'robots', content: 'noindex' }]]
+    // Let VitePress escape the attribute value when rendering the HTML.
+    return [['meta', { name: 'description', content: description }]]
   },
 
   buildEnd(siteConfig) {
@@ -374,7 +431,7 @@ export default defineConfigWithTheme<ThemeConfig>({
         items: [
           { text: '工具箱', link: '/share/' },
           { text: 'GitHub', link: 'https://github.com/ikunycj/xiaoba.blog' },
-          { text: '关于小八窝', link: '/about' },
+          { text: `关于${SITE_NAME}`, link: '/about' },
         ]
       },
     ],
@@ -421,7 +478,7 @@ export default defineConfigWithTheme<ThemeConfig>({
 
     footer: {
       message: 'xiaoba.blog',
-      copyright: 'Copyright © 2023-2026 小八窝',
+      copyright: `Copyright © 2023-2026 ${SITE_NAME}`,
     },
 
     editLink: {
@@ -447,6 +504,27 @@ export default defineConfigWithTheme<ThemeConfig>({
     math: true,
     config(md) {
       md.set({ linkify: false })
+
+      md.core.ruler.push('seo-description', ({ env, tokens }) => {
+        if (!env.relativePath || env.frontmatter.description || env.frontmatter.head?.some(
+          ([tag, attrs]: HeadConfig) => tag === 'meta' && attrs.name === 'description',
+        )) return
+
+        for (let index = 0; index < tokens.length; index++) {
+          const paragraph = tokens[index]
+          if (paragraph.type !== 'paragraph_open' || paragraph.level !== 0) continue
+
+          const summary = tokens[index + 1].children?.map(({ type, content }) => {
+            if (type === 'text' || type === 'code_inline') return content
+            if (type === 'softbreak' || type === 'hardbreak') return ' '
+            return ''
+          }).join('').replace(/\s+/g, ' ').trim()
+          if (!summary || summary.length < 20 || /^https?:\/\/\S+$/.test(summary)) continue
+
+          env.frontmatter.description = summary.length > 150 ? `${summary.slice(0, 149)}…` : summary
+          break
+        }
+      })
 
       const defaultFenceRenderer = md.renderer.rules.fence
       if (!defaultFenceRenderer) return
