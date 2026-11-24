@@ -289,6 +289,22 @@ select,
     background: var(--surface-soft);
     color: var(--accent);
   }
+
+  .xiaoba-home .VPNavBarMenu .VPNavBarMenuLink.active::after {
+    position: absolute;
+    inset: auto var(--space-3) 0;
+    height: 2px;
+    background: currentColor;
+    content: '';
+  }
+}
+
+/* 平板宽度下收紧菜单间距，避免六个导航项挤出页面；保留 44px 触控高度。 */
+@media (min-width: 768px) and (max-width: 959px) {
+  .VPNavBar .VPNavBarMenu .VPNavBarMenuLink:not([href^="https://github.com/"]),
+  .VPNavBar .VPNavBarMenu .VPNavBarMenuGroup .button {
+    padding-inline: var(--space-2);
+  }
 }
 
 .VPSidebar {

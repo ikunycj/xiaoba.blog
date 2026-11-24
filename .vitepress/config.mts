@@ -400,36 +400,24 @@ export default defineConfigWithTheme<ThemeConfig>({
     },
     nav: [
       { text: '首页', link: '/' },
-      { text: '核心项目', link: '/projects', activeMatch: '^/projects(?:/|$)' },
       {
-        text: 'AI应用开发',
-        activeMatch: '^/ai(?:/|$)',
-        items: [
-          { text: 'AI 学习导览', link: '/ai/' },
-          { text: 'AI 基础', link: '/note/AI/' },
-          { text: 'AI Coding', link: '/note/AI/AI%20Coding/' },
-          { text: 'Agent 开发', link: '/note/AI/Agent/' },
-          { text: 'Prompt 工程', link: '/note/AI/Agent/Prompt/' },
-          { text: 'RAG 实战', link: '/note/AI/Agent/RAG/' },
-        ]
+        text: '博客',
+        link: '/blog/',
+        activeMatch: '^/blog(?:/|$)',
       },
       {
-        text: '全栈开发',
-        activeMatch: '^/fullstack(?:/|$)',
+        text: '知识库',
+        activeMatch: '^/(?:note|ai|fullstack)(?:/|$)',
         items: [
-          { text: '全栈导览', link: '/fullstack/' },
-          { text: '前端开发', link: '/note/面经/React/' },
-          { text: '后端开发', link: '/note/编程语言/Java/' },
-          { text: '数据库', link: '/note/软件工程/数据库/' },
-          { text: '计算机基础', link: '/note/计算机知识/' },
-          { text: '开发工具', link: '/note/工具/' },
+          { text: '知识库总览', link: '/note/' },
+          { text: 'AI 应用开发', link: '/ai/' },
+          { text: '全栈开发', link: '/fullstack/' },
         ],
       },
-      { text: '博客', link: '/blog/', activeMatch: '^/blog(?:/|$)' },
+      { text: '项目', link: '/projects', activeMatch: '^/projects(?:/|$)' },
       {
         text: '其他',
         items: [
-          { text: '工具箱', link: '/share/' },
           { text: 'GitHub', link: 'https://github.com/ikunycj/xiaoba.blog' },
           { text: `关于${SITE_NAME}`, link: '/about' },
         ]
